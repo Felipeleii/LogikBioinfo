@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento | Logik Bioinfo</title>
+    <meta name="description" content="Calcule um orçamento instantâneo para serviços de bioinformática.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .section-title {
+            border-bottom: 3px solid #22c55e; /* green-500 */
+            padding-bottom: 0.5rem;
+        }
+        .form-input {
+            background-color: #374151; /* bg-gray-700 */
+            border-color: #4b5563; /* border-gray-600 */
+        }
+        .form-input:focus {
+            --tw-ring-color: #22c55e;
+            border-color: #22c55e;
+        }
+        .service-checkbox:checked {
+            background-color: #22c55e;
+            border-color: #22c55e;
+        }
+        .service-label {
+            border-color: #4b5563;
+        }
+        .service-label:has(.service-checkbox:checked) {
+            border-color: #22c55e;
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-dna text-green-500"></i>
+                Logik Bioinfo
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="hover:text-green-400 transition duration-300">Início</a>
+                <a href="publicacoes.html" class="hover:text-green-400 transition duration-300">Publicações</a>
+                <a href="portfolio.html" class="hover:text-green-400 transition duration-300">Portfólio</a>
+                <a href="ferramentas.html" class="hover:text-green-400 transition duration-300">Ferramentas</a>
+                <a href="sobre.html" class="hover:text-green-400 transition duration-300">Sobre</a>
+                <a href="orcamento.html" class="text-green-400 font-bold transition duration-300">Orçamento</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section id="orcamento" class="py-16 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Calculadora de Orçamento</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Selecione os serviços, informe os detalhes do projeto e seus dados para gerar um orçamento instantâneo.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <form id="quote-form">
+                        <!-- Step 1: Project Details -->
+                        <h3 class="text-xl font-bold text-green-400 border-b border-gray-700 pb-2 mb-6">1. Detalhes do Projeto</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="numSamples" class="block text-sm font-medium text-gray-300 mb-2">Número de Amostras *</label>
+                                <input type="number" id="numSamples" min="1" value="1" required class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2.5">
+                            </div>
+                            <div>
+                                <label for="customerName" class="block text-sm font-medium text-gray-300 mb-2">Seu Nome / Instituição *</label>
+                                <input type="text" id="customerName" required class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2.5">
+                            </div>
+                             <div>
+                                <label for="customerEmail" class="block text-sm font-medium text-gray-300 mb-2">Seu Email *</label>
+                                <input type="email" id="customerEmail" required class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2.5">
+                            </div>
+                             <div>
+                                <label for="customerPhone" class="block text-sm font-medium text-gray-300 mb-2">Telefone (Opcional)</label>
+                                <input type="tel" id="customerPhone" class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2.5">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="projectDescription" class="block text-sm font-medium text-gray-300 mb-2">Breve Descrição do Projeto (Opcional)</label>
+                            <textarea id="projectDescription" rows="3" placeholder="Descreva seus objetivos..." class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2.5"></textarea>
+                        </div>
+
+                        <!-- Step 2: Select Services -->
+                        <h3 class="text-xl font-bold text-green-400 border-b border-gray-700 pb-2 my-6">2. Seleção de Serviços</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="servicesGrid">
+                            <!-- Services will be injected here by JS -->
+                        </div>
+                         <div id="serviceWarning" class="hidden mt-4 p-4 text-sm text-yellow-300 bg-yellow-800/30 rounded-lg flex items-center gap-2">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Para projetos com mais de 5 análises, o valor é uma estimativa inicial.
+                        </div>
+
+
+                        <!-- Step 3: Quote Result -->
+                        <div id="quoteResult" class="mt-10 hidden">
+                            <h3 class="text-xl font-bold text-green-400 border-b border-gray-700 pb-2 mb-6 flex items-center gap-2"><i class="fas fa-receipt"></i> Resumo do Orçamento</h3>
+                            <div id="quoteServicesList" class="space-y-2"></div>
+                            <div class="mt-6 pt-6 border-t border-gray-700 text-right">
+                                <p class="text-lg text-gray-300">Valor por Amostra: <span id="pricePerSample" class="font-bold text-white">R$ 0,00</span></p>
+                                <p class="text-2xl font-bold text-green-400 mt-2">Total Estimado: <span id="totalPrice">R$ 0,00</span></p>
+                            </div>
+                            <div class="text-center mt-8">
+                                <button type="button" id="downloadPdfBtn" disabled class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition-colors inline-flex items-center gap-2 disabled:bg-gray-600 disabled:cursor-not-allowed">
+                                    <i class="fas fa-file-pdf"></i> Download PDF do Orçamento
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i>
+                    Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-5 mb-4">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 text-xl transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Orçamento Logic
+        const services = [
+            { id: 'qc', name: 'Controle de Qualidade (QC)', price: 50 },
+            { id: 'assembly', name: 'Assembly de Genoma', price: 200 },
+            { id: 'annotation', name: 'Anotação Funcional', price: 150 },
+            { id: 'amr', name: 'Análise de Resistência (AMR)', price: 100 },
+            { id: 'virulence', name: 'Fatores de Virulência', price: 80 },
+            { id: 'mlst', name: 'Tipagem Molecular (MLST)', price: 75 },
+            { id: 'phylogeny', name: 'Análise Filogenética', price: 250 },
+            { id: 'pangenome', name: 'Análise de Pangenoma', price: 300 },
+            { id: 'bactopia', name: 'Pipeline Bactopia Completo', price: 400 }
+        ];
+        let currentQuoteData = null;
+
+        function renderServices() {
+            const grid = document.getElementById('servicesGrid');
+            grid.innerHTML = services.map(s => `
+                <label for="service_${s.id}" class="service-label flex items-center p-3 border-2 rounded-lg cursor-pointer transition-colors duration-300">
+                    <input type="checkbox" id="service_${s.id}" value="${s.id}" class="service-checkbox h-5 w-5 rounded border-gray-500 text-green-600 focus:ring-green-500">
+                    <span class="ml-3 text-sm font-medium text-gray-300">
+                        ${s.name} <br> <span class="text-green-400">R$ ${s.price.toFixed(2)}</span>
+                    </span>
+                </label>
+            `).join('');
+        }
+
+        function updateQuote() {
+            const numSamples = parseInt(document.getElementById('numSamples').value) || 0;
+            const quoteResult = document.getElementById('quoteResult');
+            const downloadBtn = document.getElementById('downloadPdfBtn');
+            const customerName = document.getElementById('customerName').value;
+            const customerEmail = document.getElementById('customerEmail').value;
+            const selectedServices = new Set(Array.from(document.querySelectorAll('.service-checkbox:checked')).map(cb => cb.value));
+
+            if (selectedServices.size === 0 || numSamples < 1 || !customerName || !customerEmail) {
+                quoteResult.classList.add('hidden');
+                downloadBtn.disabled = true;
+                currentQuoteData = null;
+                return;
+            }
+
+            let pricePerSample = 0;
+            let listHtml = '';
+            currentQuoteData = { services: [] };
+
+            services.forEach(service => {
+                if (selectedServices.has(service.id)) {
+                    pricePerSample += service.price;
+                    const serviceTotal = service.price * numSamples;
+                    listHtml += `<div class="flex justify-between items-center text-gray-300 py-1"><span>${service.name}</span><span class="font-medium text-gray-200">R$ ${serviceTotal.toFixed(2)}</span></div>`;
+                    currentQuoteData.services.push({ name: service.name, price: service.price, total: serviceTotal });
+                }
+            });
+
+            const total = pricePerSample * numSamples;
+            document.getElementById('quoteServicesList').innerHTML = listHtml;
+            document.getElementById('pricePerSample').textContent = `R$ ${pricePerSample.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `R$ ${total.toFixed(2)}`;
+
+            quoteResult.classList.remove('hidden');
+            downloadBtn.disabled = false;
+
+            document.getElementById('serviceWarning').style.display = selectedServices.size > 5 ? 'flex' : 'none';
+
+            currentQuoteData.number = 'LB' + Date.now().toString().slice(-6);
+            currentQuoteData.date = new Date().toLocaleDateString('pt-BR');
+            currentQuoteData.customer = { name: customerName, email: customerEmail, phone: document.getElementById('customerPhone').value };
+            currentQuoteData.numSamples = numSamples;
+            currentQuoteData.description = document.getElementById('projectDescription').value;
+            currentQuoteData.total = total;
+        }
+
+        document.getElementById('quote-form').addEventListener('input', updateQuote);
+
+        document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+            if (!currentQuoteData) return;
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Header
+            doc.setFontSize(22);
+            doc.setFont(undefined, 'bold');
+            doc.setTextColor('#22c55e'); // Green
+            doc.text('Logik Bioinfo', 14, 22);
+            doc.setFontSize(14);
+            doc.setTextColor('#333');
+            doc.text('Orçamento de Serviços', 14, 30);
+
+            // Info
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text(`Orçamento #${currentQuoteData.number}`, 196, 22, { align: 'right' });
+            doc.text(`Data: ${currentQuoteData.date}`, 196, 30, { align: 'right' });
+
+            // Client Info
+            doc.setLineWidth(0.5);
+            doc.line(14, 40, 196, 40);
+            doc.setFontSize(12);
+            doc.setTextColor('#333');
+            doc.text('Para:', 14, 50);
+            doc.text(currentQuoteData.customer.name, 14, 57);
+            doc.text(currentQuoteData.customer.email, 14, 64);
+            doc.line(14, 75, 196, 75);
+
+            // Table Header
+            let y = 85;
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text('Serviço', 14, y);
+            doc.text('Qtd. Amostras', 120, y);
+            doc.text('Valor Unit.', 150, y);
+            doc.text('Subtotal', 196, y, { align: 'right' });
+            y += 3;
+            doc.setLineWidth(0.2);
+            doc.line(14, y, 196, y);
+            y += 8;
+
+            // Table Rows
+            doc.setFont(undefined, 'normal');
+            currentQuoteData.services.forEach(service => {
+                doc.text(service.name, 14, y);
+                doc.text(currentQuoteData.numSamples.toString(), 130, y, { align: 'center' });
+                doc.text(`R$ ${service.price.toFixed(2)}`, 158, y, { align: 'center' });
+                doc.text(`R$ ${service.total.toFixed(2)}`, 196, y, { align: 'right' });
+                y += 7;
+            });
+
+            // Total
+            y += 5;
+            doc.line(120, y, 196, y);
+            y += 8;
+            doc.setFontSize(14);
+            doc.setFont(undefined, 'bold');
+            doc.text('Total do Orçamento:', 130, y);
+            doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 196, y, { align: 'right' });
+
+            doc.save(`orcamento-logikbioinfo-${currentQuoteData.number}.pdf`);
+        });
+
+        document.addEventListener('DOMContentLoaded', renderServices);
+    </script>
+</body>
+</html>

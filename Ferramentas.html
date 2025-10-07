@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas | Logik Bioinfo</title>
+    <meta name="description" content="Ferramentas online de bioinformática para processamento de arquivos FASTA e download de dados do SRA.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .section-title {
+            border-bottom: 3px solid #22c55e; /* green-500 */
+            padding-bottom: 0.5rem;
+        }
+        .tool-card {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .tab-button.active {
+            border-color: #22c55e;
+            color: #22c55e;
+        }
+        .form-input {
+            background-color: #374151; /* bg-gray-700 */
+            border-color: #4b5563; /* border-gray-600 */
+        }
+        .form-input:focus {
+            --tw-ring-color: #22c55e;
+            border-color: #22c55e;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-dna text-green-500"></i>
+                Logik Bioinfo
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="hover:text-green-400 transition duration-300">Início</a>
+                <a href="publicacoes.html" class="hover:text-green-400 transition duration-300">Publicações</a>
+                <a href="portfolio.html" class="hover:text-green-400 transition duration-300">Portfólio</a>
+                <a href="ferramentas.html" class="text-green-400 font-bold transition duration-300">Ferramentas</a>
+                <a href="sobre.html" class="hover:text-green-400 transition duration-300">Sobre</a>
+                <a href="orcamento.html" class="hover:text-green-400 transition duration-300">Orçamento</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <div id="alert-container" class="fixed top-28 right-0 left-0 z-50 flex flex-col items-center space-y-2"></div>
+        <!-- Tools Section -->
+        <section id="tools" class="py-16 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Ferramentas de Bioinformática</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Scripts e utilitários para otimizar suas análises. Todo o processamento é feito no seu navegador, garantindo a privacidade dos seus dados.</p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- MultiFASTA Tool -->
+                    <div class="tool-card rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Gerador de Arquivos MultiFASTA</h3>
+                        <p class="text-gray-400 mb-6">Crie arquivos multiFASTA onde o nome do arquivo de origem é incorporado ao cabeçalho de cada contig.</p>
+
+                        <!-- Tabs -->
+                        <div class="border-b border-gray-700 mb-6">
+                            <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                                <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg" onclick="switchTab('multifasta', 'single', this)">Arquivo Único</button>
+                                <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-500" onclick="switchTab('multifasta', 'batch', this)">Lote de Arquivos</button>
+                            </nav>
+                        </div>
+
+                        <!-- Single File Tab -->
+                        <div id="multifasta-single" class="tab-content">
+                            <form id="singleFastaForm">
+                                <label for="fastaFile" class="block text-sm font-medium text-gray-300 mb-2">Arquivo FASTA (.fasta, .fa, .fna):</label>
+                                <input type="file" id="fastaFile" accept=".fasta,.fa,.fna" required class="block w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-600 file:text-white hover:file:bg-green-700">
+                                <button type="submit" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-magic"></i> Processar</button>
+                            </form>
+                        </div>
+
+                        <!-- Batch Files Tab -->
+                        <div id="multifasta-batch" class="tab-content hidden">
+                            <form id="batchFastaForm">
+                                <label for="fastaFiles" class="block text-sm font-medium text-gray-300 mb-2">Selecione múltiplos arquivos FASTA:</label>
+                                <input type="file" id="fastaFiles" accept=".fasta,.fa,.fna" multiple required class="block w-full text-sm text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-green-600 file:text-white hover:file:bg-green-700">
+                                <button type="submit" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-layer-group"></i> Processar Lote</button>
+                            </form>
+                        </div>
+
+                        <div class="w-full bg-gray-700 rounded-full h-2.5 mt-4 hidden" id="fastaProgressContainer"><div id="fastaProgressBar" class="bg-green-600 h-2.5 rounded-full" style="width: 0%"></div></div>
+                        <pre id="fastaOutput" class="w-full bg-gray-900 rounded-md p-4 mt-4 text-sm whitespace-pre-wrap break-all max-h-96 overflow-y-auto hidden"></pre>
+                        <div id="fastaActions" class="mt-4 space-x-2 hidden">
+                            <button onclick="downloadResult('fastaOutput', 'multifasta.fasta')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-download"></i> Baixar</button>
+                            <button onclick="copyToClipboard('fastaOutput')" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-copy"></i> Copiar</button>
+                        </div>
+                    </div>
+
+                    <!-- SRA Downloader Tool -->
+                    <div class="tool-card rounded-lg shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">Gerador de Script SRA Downloader</h3>
+                        <p class="text-gray-400 mb-6">Crie scripts Bash para baixar e processar dados do SRA (Sequence Read Archive) em lote de forma eficiente.</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                            <div>
+                                <label for="sraOutputDir" class="block text-sm font-medium text-gray-300 mb-2">Diretório de Saída:</label>
+                                <input type="text" id="sraOutputDir" value="fastq_final" class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2">
+                            </div>
+                            <div>
+                                <label for="sraThreads" class="block text-sm font-medium text-gray-300 mb-2">Threads (CPUs):</label>
+                                <input type="number" id="sraThreads" value="8" min="1" class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="sraData" class="block text-sm font-medium text-gray-300 mb-2">Lista de Amostras (SRR e ID, separados por TAB ou espaço):</label>
+                            <textarea id="sraData" rows="5" class="form-input block w-full rounded-md shadow-sm sm:text-sm p-2" placeholder="SRR31370092	HSP-004-ACB&#10;SRR31370047	HSP-009-ACB"></textarea>
+                        </div>
+                        <button id="generateSraBtn" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-cogs"></i> Gerar Script</button>
+
+                        <pre id="sraOutput" class="w-full bg-gray-900 rounded-md p-4 mt-4 text-sm whitespace-pre-wrap break-all max-h-96 overflow-y-auto hidden"></pre>
+                        <div id="sraActions" class="mt-4 space-x-2 hidden">
+                            <button onclick="downloadResult('sraOutput', 'download_sra.sh')" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-download"></i> Baixar</button>
+                            <button onclick="copyToClipboard('sraOutput')" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md transition-colors inline-flex items-center gap-2"><i class="fas fa-copy"></i> Copiar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i>
+                    Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-5 mb-4">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 text-xl transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Tools Logic
+        function switchTab(tool, tabName, element) {
+            const toolContainer = element.closest('.tool-card');
+            toolContainer.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            toolContainer.querySelectorAll('.tab-button').forEach(tab => {
+                tab.classList.remove('active', 'border-green-500', 'text-green-500');
+                tab.classList.add('border-transparent', 'text-gray-400', 'hover:text-gray-300', 'hover:border-gray-500');
+            });
+            document.getElementById(`${tool}-${tabName}`).classList.remove('hidden');
+            element.classList.add('active', 'border-green-500', 'text-green-500');
+            element.classList.remove('border-transparent', 'text-gray-400', 'hover:text-gray-300', 'hover:border-gray-500');
+        }
+
+        function showAlert(message, type = 'error') {
+            const alertContainer = document.getElementById('alert-container');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `max-w-sm w-full shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            alertDiv.innerHTML = `<div class="p-4"><div class="flex items-start"><div class="flex-shrink-0"><i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'} text-white text-xl"></i></div><div class="ml-3 w-0 flex-1 pt-0.5"><p class="text-sm font-medium text-white">${message}</p></div></div></div>`;
+            alertContainer.appendChild(alertDiv);
+            setTimeout(() => { alertDiv.style.transition = 'opacity 0.5s ease'; alertDiv.style.opacity = '0'; setTimeout(() => alertDiv.remove(), 500); }, 4000);
+        }
+
+        function copyToClipboard(elementId) {
+            const content = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(content).then(() => showAlert('Copiado para a área de transferência!', 'success')).catch(err => showAlert('Erro ao copiar: ' + err.message));
+        }
+
+        function downloadResult(elementId, filename) {
+            const content = document.getElementById(elementId).textContent;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function readFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result);
+                reader.onerror = reject;
+                reader.readAsText(file);
+            });
+        }
+
+        function processFastaContent(content, prefix) {
+            return content.split('>').filter(Boolean).map((entry, index) => {
+                const lines = entry.split('\n');
+                const originalHeader = lines.shift().trim();
+                const sequence = lines.join('').replace(/\s/g, '');
+                const newHeader = `>${prefix}_contig${index + 1} ${originalHeader}`;
+                return `${newHeader}\n${sequence}`;
+            }).join('\n');
+        }
+
+        function displayToolOutput(tool, content) {
+            const outputEl = document.getElementById(`${tool}Output`);
+            const actionsEl = document.getElementById(`${tool}Actions`);
+            outputEl.textContent = content;
+            outputEl.classList.remove('hidden');
+            actionsEl.classList.remove('hidden');
+        }
+
+        document.getElementById('singleFastaForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const file = document.getElementById('fastaFile').files[0];
+            if (!file) { showAlert('Por favor, selecione um arquivo.'); return; }
+            const prefix = file.name.replace(/\.[^/.]+$/, "");
+            const content = await readFile(file);
+            const processed = processFastaContent(content, prefix);
+            displayToolOutput('fasta', processed);
+        });
+
+        document.getElementById('batchFastaForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const files = Array.from(document.getElementById('fastaFiles').files);
+            if (files.length === 0) { showAlert('Por favor, selecione ao menos um arquivo.'); return; }
+
+            const progressContainer = document.getElementById('fastaProgressContainer');
+            const progressBar = document.getElementById('fastaProgressBar');
+            progressContainer.classList.remove('hidden');
+            progressBar.style.width = '0%';
+
+            let allProcessed = [];
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const prefix = file.name.replace(/\.[^/.]+$/, "");
+                const content = await readFile(file);
+                allProcessed.push(processFastaContent(content, prefix));
+                const progress = ((i + 1) / files.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            displayToolOutput('fasta', allProcessed.join('\n\n'));
+            setTimeout(() => progressContainer.classList.add('hidden'), 1000);
+        });
+
+        document.getElementById('generateSraBtn').addEventListener('click', function() {
+            const outputDir = document.getElementById('sraOutputDir').value.trim();
+            const threads = document.getElementById('sraThreads').value;
+            const sraData = document.getElementById('sraData').value.trim();
+
+            if (!sraData || !outputDir) {
+                showAlert('Preencha a lista de amostras e o diretório de saída.');
+                return;
+            }
+
+            const script = `#!/bin/bash
+# Script gerado por LogikBioinfo
+
+set -e
+set -o pipefail
+
+OUTPUT_DIR="${outputDir}"
+THREADS=${threads}
+
+mkdir -p "$OUTPUT_DIR"
+echo "Iniciando download para $OUTPUT_DIR com $THREADS threads."
+
+while read -r srr_accession new_id; do
+    echo "--- Processando $srr_accession -> ${new_id} ---"
+    prefetch "$srr_accession"
+    fasterq-dump --split-files --threads "$THREADS" -p "$srr_accession"
+    pigz -p "$THREADS" "\\\${srr_accession}_1.fastq"
+    pigz -p "$THREADS" "\\\${srr_accession}_2.fastq"
+    mv "\\\${srr_accession}_1.fastq.gz" "$OUTPUT_DIR/\\\${new_id}_R1.fastq.gz"
+    mv "\\\${srr_accession}_2.fastq.gz" "$OUTPUT_DIR/\\\${new_id}_R2.fastq.gz"
+    rm -f "\\\${srr_accession}.sra" # Limpa o arquivo SRA para economizar espaço
+    echo "Concluído: $new_id"
+done <<EOF
+${sraData}
+EOF
+
+echo "--- Processo finalizado com sucesso! ---"
+`;
+            displayToolOutput('sra', script);
+        });
+    </script>
+</body>
+</html>

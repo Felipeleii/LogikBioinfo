@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logik Bioinfo | Assessoria em Bioinformática e Projetos de TI</title>
+    <meta name="description" content="Felipe Alberto Lei (MEI) - Assessoria especializada em Bioinformática, Treinamento em Informática, Manutenção de Computadores e Serviços de Edição.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1));
+        }
+        .icon-card {
+            background-color: #1f2937; /* bg-gray-800 */
+        }
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+        .section-title {
+            border-bottom: 3px solid #22c55e; /* green-500 */
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-dna text-green-500"></i>
+                Logik Bioinfo
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="text-green-400 font-bold transition duration-300">Início</a>
+                <a href="publicacoes.html" class="hover:text-green-400 transition duration-300">Publicações</a>
+                <a href="portfolio.html" class="hover:text-green-400 transition duration-300">Portfólio</a>
+                <a href="ferramentas.html" class="hover:text-green-400 transition duration-300">Ferramentas</a>
+                <a href="sobre.html" class="hover:text-green-400 transition duration-300">Sobre</a>
+                <a href="orcamento.html" class="hover:text-green-400 transition duration-300">Orçamento</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="pt-32 pb-20 min-h-screen flex items-center hero-gradient">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">
+                    Assessoria em Bioinformática e Soluções de TI
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                    Análise de dados, treinamento em informática e suporte técnico para impulsionar sua pesquisa e seus projetos.
+                </p>
+                <a href="orcamento.html" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105">
+                    Solicite um Orçamento
+                </a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Meus Serviços</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Ofereço um portfólio diversificado de serviços, combinando conhecimento acadêmico e técnico para atender às suas necessidades.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card 1: Bioinformática -->
+                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Assessoria em Bioinformática</h3>
+                        <p class="text-gray-400">Análise de dados genômicos, desenvolvimento de pipelines e consultoria para projetos de pesquisa.</p>
+                    </div>
+
+                    <!-- Card 2: Treinamento -->
+                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chalkboard-user"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Treinamento e Aulas</h3>
+                        <p class="text-gray-400">Cursos de informática para todos os níveis e aulas particulares personalizadas para suas metas de aprendizado.</p>
+                    </div>
+
+                    <!-- Card 3: Suporte de TI -->
+                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-computer"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Manutenção e Suporte de TI</h3>
+                        <p class="text-gray-400">Reparo e manutenção de computadores, instalação de redes e equipamentos de segurança.</p>
+                    </div>
+
+                    <!-- Card 4: Edição de Conteúdo -->
+                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-file-pen"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Edição de Conteúdo</h3>
+                        <p class="text-gray-400">Serviços profissionais de edição de livros, jornais, revistas e vídeos.</p>
+                    </div>
+
+                    <!-- Card 5: Serviços Administrativos -->
+                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-keyboard"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Serviços Administrativos</h3>
+                        <p class="text-gray-400">Digitação, preparação de documentos e edição de listas de dados com precisão e agilidade.</p>
+                    </div>
+
+                    <!-- Card 6: Projetos -->
+                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
+                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-diagram-project"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Consultoria em Projetos</h3>
+                        <p class="text-gray-400">Apoio especializado para estruturar e desenvolver seus projetos técnicos e científicos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i>
+                    Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-5 mb-4">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 text-xl transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
