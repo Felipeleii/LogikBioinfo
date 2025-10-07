@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Logik Bioinfo</title>
+    <meta name="description" content="Portfólio de trabalhos e projetos de Felipe Alberto Lei em um carrossel interativo.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827; /* bg-gray-900 */
+        }
+        .section-title {
+            border-bottom: 3px solid #22c55e; /* green-500 */
+            padding-bottom: 0.5rem;
+        }
+        /* Custom Swiper Styles */
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 80%;
+            max-width: 700px;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #1f2937; /* bg-gray-800 */
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .swiper-slide .caption {
+            padding: 1.5rem;
+            text-align: center;
+            color: #d1d5db; /* text-gray-300 */
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #22c55e; /* green-500 */
+            transform: scale(0.8);
+        }
+        .swiper-pagination-bullet-active {
+            background: #22c55e; /* green-500 */
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-dna text-green-500"></i>
+                Logik Bioinfo
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="index.html" class="hover:text-green-400 transition duration-300">Início</a>
+                <a href="publicacoes.html" class="hover:text-green-400 transition duration-300">Publicações</a>
+                <a href="portfolio.html" class="text-green-400 font-bold transition duration-300">Portfólio</a>
+                <a href="ferramentas.html" class="hover:text-green-400 transition duration-300">Ferramentas</a>
+                <a href="sobre.html" class="hover:text-green-400 transition duration-300">Sobre</a>
+                <a href="orcamento.html" class="hover:text-green-400 transition duration-300">Orçamento</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Portfolio Section -->
+        <section id="portfolio-gallery" class="py-16 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Portfólio de Trabalhos</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Navegue pelos projetos e materiais visuais desenvolvidos.</p>
+                </div>
+
+                <!-- Swiper -->
+                <div class="swiper swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/af1e8451538183fc9f5db1a03d0d6c233cfaf8ec/portfolio/Figura%202.png" alt="Esquema de inserção ISAba1">
+                            <div class="caption">
+                                <h3 class="font-bold text-white mb-2">Figura 2</h3>
+                                <p>Esquema de inserção de ISAba1 com sítio duplicado e início do gene bla ADC-1.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                            <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/af1e8451538183fc9f5db1a03d0d6c233cfaf8ec/portfolio/Fluxograma%20Ambientais.png" alt="Fluxograma para Coleta de Amostras Ambientais">
+                             <div class="caption">
+                                <h3 class="font-bold text-white mb-2">Fluxograma Ambientais</h3>
+                                <p>Instruções visuais e detalhadas para coleta de amostras ambientais.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                            <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/af1e8451538183fc9f5db1a03d0d6c233cfaf8ec/portfolio/Preparo%20das%20placas%20DNAZOL%20-%20Ilustrado.png" alt="Guia para Preparo de Placas DNAzol">
+                             <div class="caption">
+                                <h3 class="font-bold text-white mb-2">Preparo das placas DNAZOL</h3>
+                                <p>Guia ilustrado para preparo de placas DNAzol, com aviso de corrosividade.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide">
+                            <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/af1e8451538183fc9f5db1a03d0d6c233cfaf8ec/portfolio/g5_lolipop.png" alt="Gráfico Lolipop">
+                             <div class="caption">
+                                <h3 class="font-bold text-white mb-2">Gráfico Lolipop g5</h3>
+                                <p>Gráfico "lolipop" para visualização de mutações, possivelmente na proteína spike do COVID-19.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="swiper-slide">
+                            <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/af1e8451538183fc9f5db1a03d0d6c233cfaf8ec/portfolio/Graph_Gabi%20(2).png" alt="Gráfico Gabi">
+                            <div class="caption">
+                                <h3 class="font-bold text-white mb-2">Gráfico Gabi</h3>
+                                <p>Dados relacionados a Sexo, Amostra, Data de Coleta, Grupo, Clado e GISAID.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add Navigation -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i>
+                    Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.51/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-5 mb-4">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 text-xl transition-colors"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Swiper.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            loop: true,
+        });
+    </script>
+</body>
+</html>
+
