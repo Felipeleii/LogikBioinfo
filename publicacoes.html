@@ -129,19 +129,36 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
-            <div class="mb-4">
-                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
-                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
-            </div>
-            <div class="flex justify-center space-x-5 mb-4">
-                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 text-xl transition-colors"><i class="fab fa-linkedin"></i></a>
-            </div>
-            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+   <footer class="bg-gray-800">
+  <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+    <div class="mb-4">
+      <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+        <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
+      </a>
+      <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+    </div>
+
+    <div class="flex justify-center space-x-5 mb-4">
+      <a href="https://github.com/Felipeleii" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+
+      <a href="https://www.linkedin.com/in/felipelei/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="LinkedIn">
+        <i class="fab fa-linkedin"></i>
+      </a>
+
+      <a href="http://lattes.cnpq.br/4584229319522897" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="Lattes">
+        <i class="fa-solid fa-id-card"></i>
+      </a>
+
+      <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" title="Google Scholar" aria-label="Google Scholar">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </div>
+
+    <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+  </div>
+</footer>
     
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -149,6 +166,66 @@
         mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+    <!-- WhatsApp floating button: coloque antes do </body> -->
+<a href="https://wa.me/5511920045896" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp" class="whatsapp-float">
+  <img src="img/whatsapp.png" alt="WhatsApp" class="whatsapp-float-img">
+</a>
+
+<style>
+/* Container do botão (fixo no canto direito, central vertical) */
+.whatsapp-float {
+  position: fixed;
+  right: 1rem;               /* distância da borda direita */
+  bottom: 1.5rem;            /* distância da borda inferior (melhor em mobile) */
+  z-index: 60;               /* acima do conteúdo */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;            /* botão circular: ajustável */
+  height: 3.25rem;
+  background: transparent;   /* fundo transparente para combinar com ícones */
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Recuo maior em telas pequenas para não cobrir conteúdos */
+@media(min-width: 768px) {
+  .whatsapp-float { right: 1.25rem; bottom: 2.25rem; }
+}
+
+/* Aparência e tamanho da imagem (combina com text-xl dos FA icons) */
+.whatsapp-float-img {
+  width: 1.25rem;            /* ~= text-xl (20px) */
+  height: 1.25rem;
+  object-fit: contain;
+  display: inline-block;
+  filter: grayscale(100%) brightness(0.9) saturate(0);
+  transition: filter 0.18s ease, transform 0.12s ease;
+}
+
+/* Hover / foco: remove filtro para mostrar cor original do PNG (ou use fundo verde) */
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.45);
+  outline: none;
+}
+
+/* Mostra o ícone colorido ao passar o mouse ou em foco por teclado */
+.whatsapp-float:hover .whatsapp-float-img,
+.whatsapp-float:focus .whatsapp-float-img {
+  filter: none;
+  transform: scale(1.02);
+}
+
+/* Alternativa: se preferir botão com fundo verde e ícone branco (sem depender da cor do PNG),
+   troque background e use mix-blend-mode para forçar o ícone branco.
+   Substitua .whatsapp-float { background: #25D366; } e ajuste o filtro conforme necessário. */
+</style>
+
 </body>
 </html>
 
