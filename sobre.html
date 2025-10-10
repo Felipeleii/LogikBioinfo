@@ -76,21 +76,31 @@
                     <p class="text-gray-400 max-w-2xl mx-auto">Tem uma ideia, projeto ou precisa de um orçamento? Vamos conversar.</p>
                 </div>
                 <div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
-                    <form action="#" method="POST">
-                        <div class="mb-5">
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Seu nome</label>
-                            <input type="text" id="name" name="name" class="w-full p-2.5 rounded-lg border text-white text-sm" placeholder="Nome Completo" required>
-                        </div>
-                        <div class="mb-5">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Seu email</label>
-                            <input type="email" id="email" name="email" class="w-full p-2.5 rounded-lg border text-white text-sm" placeholder="seu.email@exemplo.com" required>
-                        </div>
-                        <div class="mb-5">
-                            <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Sua mensagem</label>
-                            <textarea id="message" name="message" rows="4" class="w-full p-2.5 rounded-lg border text-white text-sm" placeholder="Descreva seu projeto ou dúvida..." required></textarea>
-                        </div>
-                        <button type="submit" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar Mensagem</button>
-                    </form>
+                   <!-- Formulário (substitua pelo bloco completo do seu form) -->
+<form action="https://formspree.io/f/your_form_id" method="POST" class="max-w-2xl mx-auto space-y-4">
+  <input type="hidden" name="_subject" value="Nova mensagem do site Logik Bioinfo">
+  <input type="hidden" name="_language" value="pt-br">
+  <div>
+    <label for="nome" class="block text-sm font-medium text-gray-200">Nome</label>
+    <input id="nome" name="nome" type="text" required class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-gray-200 px-3 py-2">
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-gray-200">E-mail</label>
+    <input id="email" name="email" type="email" required class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-gray-200 px-3 py-2">
+  </div>
+
+  <div>
+    <label for="mensagem" class="block text-sm font-medium text-gray-200">Mensagem</label>
+    <textarea id="mensagem" name="mensagem" rows="5" required class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-gray-200 px-3 py-2"></textarea>
+  </div>
+
+  <!-- Campo anti-bot opcional do Formspree (remova se não usar) -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <button type="submit" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar Mensagem</button>
+</form>
+
                 </div>
             </div>
         </section>
