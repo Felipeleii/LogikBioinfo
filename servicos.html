@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serviços | Logik Bioinfo</title>
-    <meta name="description" content="Portfólio de serviços de bioinformática, análise de dados, apoio acadêmico, suporte técnico e consultoria.">
+    <meta name="description" content="Conheça os serviços oferecidos: genômica, transcriptômica, análise estatística, apoio acadêmico, consultoria e mais.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,22 @@
         .nav-link-hover:hover { color: #22c55e; }
         .nav-link-active { color: #22c55e; font-weight: 600; }
         .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
-        .icon-card { background-color: #1f2937; }
-        .icon-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); }
+        .icon-card {
+            background-color: #1f2937; /* bg-gray-800 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 100; transition: transform 0.3s ease; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
     </style>
 </head>
 <body class="text-gray-200">
@@ -52,103 +66,104 @@
     <main class="pt-24">
         <section id="servicos" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
-                
-                <!-- Seção 1: Bioinformática e Análise de Dados -->
-                <div class="text-center mb-12">
-                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Bioinformática e Análise de Dados</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Soluções completas para análise de dados biológicos, desde o planejamento até a visualização dos resultados.</p>
+                <div class="text-center mb-16">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Meus Serviços</h2>
+                    <p class="text-gray-400 max-w-3xl mx-auto">Soluções completas para impulsionar sua pesquisa, desde a análise de dados brutos até a publicação do seu artigo.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-dna"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Genômica Completa</h3>
-                        <p class="text-gray-400">Análises de WGS, pangenoma, filogenia, metagenômica (16S/shotgun) e mais.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Transcriptômica (RNA-Seq)</h3>
-                        <p class="text-gray-400">Análise de expressão diferencial de genes e enriquecimento de vias metabólicas.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chart-pie"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Análise Estatística</h3>
-                        <p class="text-gray-400">Testes de hipóteses, modelagem estatística e machine learning aplicados a dados biológicos.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chart-bar"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Visualização de Dados</h3>
-                        <p class="text-gray-400">Criação de gráficos e dashboards interativos com R (ggplot2) e Python (seaborn).</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-gears"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Desenvolvimento de Pipelines</h3>
-                        <p class="text-gray-400">Automação de análises para garantir consistência e reprodutibilidade em seus projetos.</p>
-                    </div>
-                     <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Submissão de Dados</h3>
-                        <p class="text-gray-400">Apoio na submissão de dados genômicos em plataformas públicas como NCBI (SRA) e ENA.</p>
+
+                <!-- Seção 1: Bioinformática -->
+                <div class="mb-16">
+                    <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">Bioinformática e Análise de Dados</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-dna"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Genômica Completa</h4>
+                            <p class="text-gray-400">Análises de WGS, pangenoma, filogenia, metagenômica (16S/shotgun) e mais.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Transcriptômica (RNA-Seq)</h4>
+                            <p class="text-gray-400">Análise de expressão diferencial, enriquecimento de vias e anotação funcional.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chart-pie"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Análise Estatística</h4>
+                            <p class="text-gray-400">Testes de hipóteses, modelagem estatística e algoritmos de machine learning.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chart-bar"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Visualização de Dados</h4>
+                            <p class="text-gray-400">Criação de gráficos com R (ggplot2) e Python (seaborn).</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-gears"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Desenvolvimento de Pipelines</h4>
+                            <p class="text-gray-400">Automação de análises para garantir consistência e reprodutibilidade.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Submissão de Dados</h4>
+                            <p class="text-gray-400">Apoio na submissão de dados em plataformas públicas como NCBI (SRA) e ENA.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Seção 2: Apoio Acadêmico e Científico -->
-                <div class="text-center mb-12">
-                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Apoio Acadêmico e Científico</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Assessoria completa para estudantes e pesquisadores em todas as etapas da produção científica.</p>
+                <!-- Seção 2: Apoio Acadêmico -->
+                <div class="mb-16">
+                    <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">Apoio Acadêmico e Científico</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-file-pen"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Orientação em Escrita Científica</h4>
+                            <p class="text-gray-400">Apoio na redação de artigos, TCCs, dissertações e teses.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-book"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Formatação e Referências</h4>
+                            <p class="text-gray-400">Normas (ABNT, APA) e organização de bibliotecas (Zotero, Mendeley).</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-language"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Tradução Técnica</h4>
+                            <p class="text-gray-400">Tradução Português ↔ Inglês para artigos, resumos e apresentações.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-person-chalkboard"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Preparação de Apresentações</h4>
+                            <p class="text-gray-400">Criação de slides profissionais em PowerPoint ou LaTeX (Beamer).</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-newspaper"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Consultoria em Publicação</h4>
+                            <p class="text-gray-400">Apoio na escolha de periódicos, submissão e resposta aos revisores.</p>
+                        </div>
+                         <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-award"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Orientação em Bolsas e Editais</h4>
+                            <p class="text-gray-400">Apoio na preparação de propostas e projetos de pesquisa.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-file-pen"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Orientação em Escrita Científica</h3>
-                        <p class="text-gray-400">Apoio na redação e estruturação de artigos, TCCs, dissertações e teses.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-ruler-combined"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Formatação Acadêmica</h3>
-                        <p class="text-gray-400">Adequação de trabalhos às normas ABNT, APA, Vancouver, entre outras.</p>
-                    </div>
-                     <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-language"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Tradução Técnica</h3>
-                        <p class="text-gray-400">Tradução Português ↔ Inglês para artigos, resumos e apresentações científicas.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-toolbox"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Ferramentas Digitais</h3>
-                        <p class="text-gray-400">Criação e organização de bibliotecas de referências em Zotero, Mendeley e LaTeX.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-person-chalkboard"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Preparação de Apresentações</h3>
-                        <p class="text-gray-400">Desenvolvimento de slides profissionais e impactantes em PowerPoint ou LaTeX (Beamer).</p>
-                    </div>
-                     <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-file-signature"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Consultoria em Publicação</h3>
-                        <p class="text-gray-400">Auxílio na escolha de periódicos, submissão de artigos e resposta a revisores.</p>
-                    </div>
-                </div>
-                
-                <!-- Seção 3: Suporte e Consultoria Adicional -->
-                 <div class="text-center mb-12">
-                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Suporte e Consultoria Adicional</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Serviços complementares para capacitação, desenvolvimento de projetos e suporte técnico.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chalkboard-user"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Workshops e Minicursos</h3>
-                        <p class="text-gray-400">Capacitação em estatística aplicada, bioinformática básica e escrita científica.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-diagram-project"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Consultoria em Projetos</h3>
-                        <p class="text-gray-400">Apoio na preparação de propostas e projetos de pesquisa para editais e bolsas.</p>
-                    </div>
-                    <div class="icon-card p-8 rounded-lg shadow-lg text-center transition-all duration-300">
-                        <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-computer"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Manutenção e Suporte de TI</h3>
-                        <p class="text-gray-400">Reparo de computadores, instalação de redes e suporte técnico geral.</p>
+
+                 <!-- Seção 3: Suporte e Consultoria -->
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">Suporte e Consultoria Adicional</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Workshops e Minicursos</h4>
+                            <p class="text-gray-400">Cursos práticos em estatística, bioinformática e escrita científica.</p>
+                        </div>
+                        <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-laptop-code"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Ferramentas Digitais</h4>
+                            <p class="text-gray-400">Criação de bibliotecas em Zotero, Mendeley, e introdução ao LaTeX.</p>
+                        </div>
+                         <div class="icon-card p-8 rounded-lg shadow-lg text-center">
+                            <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-diagram-project"></i></div>
+                            <h4 class="text-xl font-bold text-white mb-2">Consultoria em Projetos</h4>
+                            <p class="text-gray-400">Apoio especializado para estruturar e desenvolver seus projetos.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -158,102 +173,33 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800">
-  <div class="container mx-auto px-6 py-8 text-center text-gray-400">
-    <div class="mb-4">
-      <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
-        <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
-      </a>
-      <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
-    </div>
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-    <div class="flex justify-center space-x-5 mb-4">
-      <a href="https://github.com/Felipeleii" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-      <a href="https://www.linkedin.com/in/felipelei/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-
-      <a href="http://lattes.cnpq.br/4584229319522897" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="Lattes">
-        <i class="fa-solid fa-id-card"></i>
-      </a>
-
-      <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" title="Google Scholar" aria-label="Google Scholar">
-        <i class="fas fa-graduation-cap"></i>
-      </a>
-    </div>
-
-    <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
-  </div>
-</footer>
-    
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
-    <!-- WhatsApp floating button: coloque antes do </body> -->
-<a href="https://wa.me/5511920045896" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp" class="whatsapp-float">
-  <img src="img/whatsapp.png" alt="WhatsApp" class="whatsapp-float-img">
-</a>
-
-<style>
-/* Container do botão (fixo no canto direito, central vertical) */
-.whatsapp-float {
-  position: fixed;
-  right: 1rem;               /* distância da borda direita */
-  bottom: 1.5rem;            /* distância da borda inferior (melhor em mobile) */
-  z-index: 60;               /* acima do conteúdo */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.25rem;            /* botão circular: ajustável */
-  height: 3.25rem;
-  background: transparent;   /* fundo transparente para combinar com ícones */
-  border-radius: 9999px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Recuo maior em telas pequenas para não cobrir conteúdos */
-@media(min-width: 768px) {
-  .whatsapp-float { right: 1.25rem; bottom: 2.25rem; }
-}
-
-/* Aparência e tamanho da imagem (combina com text-xl dos FA icons) */
-.whatsapp-float-img {
-  width: 1.25rem;            /* ~= text-xl (20px) */
-  height: 1.25rem;
-  object-fit: contain;
-  display: inline-block;
-  filter: grayscale(100%) brightness(0.9) saturate(0);
-  transition: filter 0.18s ease, transform 0.12s ease;
-}
-
-/* Hover / foco: remove filtro para mostrar cor original do PNG (ou use fundo verde) */
-.whatsapp-float:hover,
-.whatsapp-float:focus {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.45);
-  outline: none;
-}
-
-/* Mostra o ícone colorido ao passar o mouse ou em foco por teclado */
-.whatsapp-float:hover .whatsapp-float-img,
-.whatsapp-float:focus .whatsapp-float-img {
-  filter: none;
-  transform: scale(1.02);
-}
-
-/* Alternativa: se preferir botão com fundo verde e ícone branco (sem depender da cor do PNG),
-   troque background e use mix-blend-mode para forçar o ícone branco.
-   Substitua .whatsapp-float { background: #25D366; } e ajuste o filtro conforme necessário. */
-</style>
-
 </body>
 </html>
 
