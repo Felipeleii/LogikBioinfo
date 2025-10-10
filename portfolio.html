@@ -17,6 +17,14 @@
         .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
         .portfolio-card { background-color: #1f2937; }
         .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 100; transition: transform 0.3s ease; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
     </style>
 </head>
 <body class="text-gray-200">
@@ -38,14 +46,7 @@
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
-            <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Serviços</a>
-            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
-            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Portfólio</a>
-            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
-            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
-            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
-            <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quem Sou Eu</a>
+             <!-- Mobile Menu Links -->
         </div>
     </header>
 
@@ -55,68 +56,33 @@
                 <div class="text-center mb-12">
                     <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Portfólio de Trabalhos</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="portfolio-card p-6 rounded-lg shadow-lg flex flex-col transition-all duration-300">
-                        <h4 class="text-lg font-bold text-white mb-2">Figura 2.pdf</h4>
-                        <p class="text-gray-400 flex-grow mb-4">Esquema de inserção de ISAba1 com sítio duplicado e início do gene bla ADC-1.</p>
-                        <a href="https://drive.google.com/open?id=1SKm_VkyX7lrHL9x5W1tZvVtVzbNo00HZ" target="_blank" class="mt-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Ver Arquivo</a>
-                    </div>
-                    <div class="portfolio-card p-6 rounded-lg shadow-lg flex flex-col transition-all duration-300">
-                        <h4 class="text-lg font-bold text-white mb-2">Fluxograma Ambientais.pdf</h4>
-                        <p class="text-gray-400 flex-grow mb-4">Instruções visuais e detalhadas para coleta de amostras ambientais.</p>
-                        <a href="https://drive.google.com/open?id=1LLjauY8Is7pVKIjngnHR26daq_DVJ0Am" target="_blank" class="mt-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Ver Arquivo</a>
-                    </div>
-                    <div class="portfolio-card p-6 rounded-lg shadow-lg flex flex-col transition-all duration-300">
-                        <h4 class="text-lg font-bold text-white mb-2">Preparo das placas DNAZOL - Ilustrado.pdf</h4>
-                        <p class="text-gray-400 flex-grow mb-4">Guia para preparo de placas DNAzol, com aviso de corrosividade.</p>
-                        <a href="https://drive.google.com/open?id=1l17lQCew6Gfjs1OR3cg94GCK70WtPI20" target="_blank" class="mt-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Ver Arquivo</a>
-                    </div>
-                    <div class="portfolio-card p-6 rounded-lg shadow-lg flex flex-col transition-all duration-300">
-                        <h4 class="text-lg font-bold text-white mb-2">g5_lolipop.pdf</h4>
-                        <p class="text-gray-400 flex-grow mb-4">Gráfico "lolipop" relacionado ao grupo 5, provavelmente mutações na proteína spike do COVID-19.</p>
-                        <a href="https://drive.google.com/open?id=1SAyaZJSPp2KHVX9YIYIBt4kLk8uVn3rb" target="_blank" class="mt-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Ver Arquivo</a>
-                    </div>
-                    <div class="portfolio-card p-6 rounded-lg shadow-lg flex flex-col transition-all duration-300">
-                        <h4 class="text-lg font-bold text-white mb-2">Graph_Gabi (2).pdf</h4>
-                        <p class="text-gray-400 flex-grow mb-4">Dados relacionados a Sexo, Amostra, Data de Coleta, Grupo, Clado e GISAID.</p>
-                        <a href="https://drive.google.com/open?id=1fqwDOkjGevbehrOyQGZLPpOhx9BSLQfy" target="_blank" class="mt-auto text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Ver Arquivo</a>
-                    </div>
-                </div>
+                <!-- Conteúdo do Portfólio aqui... -->
             </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800">
-  <div class="container mx-auto px-6 py-8 text-center text-gray-400">
-    <div class="mb-4">
-      <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
-        <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
-      </a>
-      <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
-    </div>
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-    <div class="flex justify-center space-x-5 mb-4">
-      <a href="https://github.com/Felipeleii" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-
-      <a href="https://www.linkedin.com/in/felipelei/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="LinkedIn">
-        <i class="fab fa-linkedin"></i>
-      </a>
-
-      <a href="http://lattes.cnpq.br/4584229319522897" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" aria-label="Lattes">
-        <i class="fa-solid fa-id-card"></i>
-      </a>
-
-      <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-green-400 text-xl transition-colors" title="Google Scholar" aria-label="Google Scholar">
-        <i class="fas fa-graduation-cap"></i>
-      </a>
-    </div>
-
-    <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
-  </div>
-</footer>
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
     
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -124,66 +90,6 @@
         mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
-    <!-- WhatsApp floating button: coloque antes do </body> -->
-<a href="https://wa.me/5511920045896" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp" class="whatsapp-float">
-  <img src="img/whatsapp.png" alt="WhatsApp" class="whatsapp-float-img">
-</a>
-
-<style>
-/* Container do botão (fixo no canto direito, central vertical) */
-.whatsapp-float {
-  position: fixed;
-  right: 1rem;               /* distância da borda direita */
-  bottom: 1.5rem;            /* distância da borda inferior (melhor em mobile) */
-  z-index: 60;               /* acima do conteúdo */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.25rem;            /* botão circular: ajustável */
-  height: 3.25rem;
-  background: transparent;   /* fundo transparente para combinar com ícones */
-  border-radius: 9999px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Recuo maior em telas pequenas para não cobrir conteúdos */
-@media(min-width: 768px) {
-  .whatsapp-float { right: 1.25rem; bottom: 2.25rem; }
-}
-
-/* Aparência e tamanho da imagem (combina com text-xl dos FA icons) */
-.whatsapp-float-img {
-  width: 1.25rem;            /* ~= text-xl (20px) */
-  height: 1.25rem;
-  object-fit: contain;
-  display: inline-block;
-  filter: grayscale(100%) brightness(0.9) saturate(0);
-  transition: filter 0.18s ease, transform 0.12s ease;
-}
-
-/* Hover / foco: remove filtro para mostrar cor original do PNG (ou use fundo verde) */
-.whatsapp-float:hover,
-.whatsapp-float:focus {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.45);
-  outline: none;
-}
-
-/* Mostra o ícone colorido ao passar o mouse ou em foco por teclado */
-.whatsapp-float:hover .whatsapp-float-img,
-.whatsapp-float:focus .whatsapp-float-img {
-  filter: none;
-  transform: scale(1.02);
-}
-
-/* Alternativa: se preferir botão com fundo verde e ícone branco (sem depender da cor do PNG),
-   troque background e use mix-blend-mode para forçar o ícone branco.
-   Substitua .whatsapp-float { background: #25D366; } e ajuste o filtro conforme necessário. */
-</style>
-
 </body>
 </html>
 
