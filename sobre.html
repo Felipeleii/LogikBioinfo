@@ -77,9 +77,17 @@
                 </div>
                 <div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
                    <!-- Formulário (substitua pelo bloco completo do seu form) -->
-<form action="https://formspree.io/f/your_form_id" method="POST" class="max-w-2xl mx-auto space-y-4">
+<form
+  action="https://formspree.io/f/mkgqqrbw"
+  method="POST"
+  class="max-w-2xl mx-auto space-y-4"
+>
+  <!-- Configurações Formspree -->
   <input type="hidden" name="_subject" value="Nova mensagem do site Logik Bioinfo">
   <input type="hidden" name="_language" value="pt-br">
+  <!-- Redirecionar após envio (opcional: altere para sua página de obrigado) -->
+  <!-- <input type="hidden" name="_next" value="https://logikbioinfo.com.br/obrigado.html"> -->
+
   <div>
     <label for="nome" class="block text-sm font-medium text-gray-200">Nome</label>
     <input id="nome" name="nome" type="text" required class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-gray-200 px-3 py-2">
@@ -95,7 +103,7 @@
     <textarea id="mensagem" name="mensagem" rows="5" required class="mt-1 block w-full rounded-md bg-gray-800 border border-gray-700 text-gray-200 px-3 py-2"></textarea>
   </div>
 
-  <!-- Campo anti-bot opcional do Formspree (remova se não usar) -->
+  <!-- Campo anti-bot do Formspree (deixe escondido) -->
   <input type="text" name="_gotcha" style="display:none">
 
   <button type="submit" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Enviar Mensagem</button>
@@ -128,6 +136,66 @@
         mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+    <!-- WhatsApp floating button: coloque antes do </body> -->
+<a href="https://wa.me/5511920045896" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp" class="whatsapp-float">
+  <img src="img/whatsapp.png" alt="WhatsApp" class="whatsapp-float-img">
+</a>
+
+<style>
+/* Container do botão (fixo no canto direito, central vertical) */
+.whatsapp-float {
+  position: fixed;
+  right: 1rem;               /* distância da borda direita */
+  bottom: 1.5rem;            /* distância da borda inferior (melhor em mobile) */
+  z-index: 60;               /* acima do conteúdo */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;            /* botão circular: ajustável */
+  height: 3.25rem;
+  background: transparent;   /* fundo transparente para combinar com ícones */
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Recuo maior em telas pequenas para não cobrir conteúdos */
+@media(min-width: 768px) {
+  .whatsapp-float { right: 1.25rem; bottom: 2.25rem; }
+}
+
+/* Aparência e tamanho da imagem (combina com text-xl dos FA icons) */
+.whatsapp-float-img {
+  width: 1.25rem;            /* ~= text-xl (20px) */
+  height: 1.25rem;
+  object-fit: contain;
+  display: inline-block;
+  filter: grayscale(100%) brightness(0.9) saturate(0);
+  transition: filter 0.18s ease, transform 0.12s ease;
+}
+
+/* Hover / foco: remove filtro para mostrar cor original do PNG (ou use fundo verde) */
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.45);
+  outline: none;
+}
+
+/* Mostra o ícone colorido ao passar o mouse ou em foco por teclado */
+.whatsapp-float:hover .whatsapp-float-img,
+.whatsapp-float:focus .whatsapp-float-img {
+  filter: none;
+  transform: scale(1.02);
+}
+
+/* Alternativa: se preferir botão com fundo verde e ícone branco (sem depender da cor do PNG),
+   troque background e use mix-blend-mode para forçar o ícone branco.
+   Substitua .whatsapp-float { background: #25D366; } e ajuste o filtro conforme necessário. */
+</style>
+
 </body>
 </html>
 
