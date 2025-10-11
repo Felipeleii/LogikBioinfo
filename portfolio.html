@@ -15,8 +15,14 @@
         .nav-link-hover:hover { color: #22c55e; }
         .nav-link-active { color: #22c55e; font-weight: 600; }
         .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
-        .portfolio-card { background-color: #1f2937; }
+        .portfolio-card { background-color: #1f2937; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
         .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); }
+        .portfolio-card img { height: 200px; width: 100%; object-cover; }
+        /* Estilos do Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+        .lightbox-content { margin: auto; display: block; max-width: 80%; max-height: 80%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; }
+        .lightbox-close:hover, .lightbox-close:focus { color: #bbb; text-decoration: none; cursor: pointer; }
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
             background-color: #25d366; color: #FFF; border-radius: 50px;
@@ -39,6 +45,7 @@
                 <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publicações</a>
                 <a href="portfolio.html" class="nav-link-hover transition duration-300 nav-link-active">Portfólio</a>
                 <a href="ferramentas.html" class="nav-link-hover transition duration-300">Ferramentas</a>
+                 <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
                 <a href="orcamento.html" class="nav-link-hover transition duration-300">Orçamento</a>
                 <a href="sobre.html" class="nav-link-hover transition duration-300">Sobre</a>
                 <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quem Sou Eu</a>
@@ -46,7 +53,15 @@
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-             <!-- Mobile Menu Links -->
+            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+            <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Serviços</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Portfólio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
+            <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+            <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quem Sou Eu</a>
         </div>
     </header>
 
@@ -56,16 +71,79 @@
                 <div class="text-center mb-12">
                     <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Portfólio de Trabalhos</h2>
                 </div>
-                <!-- Conteúdo do Portfólio aqui... -->
+
+                <!-- Infográficos -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Infográficos e Divulgação Científica</h3>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                     <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png" alt="Infográfico Acinetobacter" class="rounded-md mb-3">
+                        <p class="text-center text-sm font-medium">Infográfico: Resistência em Acinetobacter</p>
+                    </div>
+                </div>
+
+                <!-- Workflows -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Workflows</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Environmental_Workflow.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Environmental_Workflow.png" alt="Environmental Workflow" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Environmental Workflow</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Microbiological_Workflow.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Microbiological_Workflow.png" alt="Microbiological Workflow" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Microbiological Workflow</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Final_Workflow.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Final_Workflow.png" alt="Final Workflow" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Final Workflow</p>
+                    </div>
+                </div>
+
+                <!-- Gráficos -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Gráficos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                     <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Lollipop_Spike_G3.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Lollipop_Spike_G3.png" alt="Lollipop Spike G3" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Lollipop Spike G3</p>
+                    </div>
+                     <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Graph_Gabi.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Graph_Gabi.png" alt="Graph Gabi" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Graph Gabi</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png" alt="KPN Circular Final" class="rounded-md mb-3">
+                        <p class="text-center text-sm">KPN Circular Final</p>
+                    </div>
+                </div>
+
+                <!-- Ilustrações -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Ilustrações</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Figure_1_Overview.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Figure_1_Overview.png" alt="Overview Figure" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Overview Figure</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/DNAzol_Plate_Preparation.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/DNAzol_Plate_Preparation.png" alt="DNAzol Plate Preparation" class="rounded-md mb-3">
+                        <p class="text-center text-sm">DNAzol Plate Preparation</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-800">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+         <div class="container mx-auto px-6 py-8 text-center text-gray-400">
             <div class="mb-4">
-                 <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+                <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
+                </a>
                 <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
             </div>
             <div class="flex justify-center space-x-6 mb-4 text-2xl">
@@ -78,18 +156,33 @@
             <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
         </div>
     </footer>
-
+    
     <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Fale conosco pelo WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
     
     <script>
+        // Menu mobile
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        
+        // Ano atual
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Lógica do Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        function openLightbox(src) {
+            lightbox.style.display = 'block';
+            lightboxImg.src = src;
+        }
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
     </script>
+
 </body>
 </html>
 
