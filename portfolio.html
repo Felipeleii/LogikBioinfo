@@ -31,6 +31,29 @@
             align-items: center; justify-content: center;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .lang-option {
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #9ca3af;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            color: #22c55e;
+        }
+        .lang-option.active {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .lang-divider {
+            color: #4b5563;
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -49,6 +72,12 @@
                 <a href="orcamento.html" class="nav-link-hover transition duration-300">Orçamento</a>
                 <a href="sobre.html" class="nav-link-hover transition duration-300">Sobre</a>
                 <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quem Sou Eu</a>
+                <div class="language-selector">
+                    <span class="lang-divider">|</span>
+                    <a href="portfolio.html" class="lang-option active" data-lang="pt">PT</a>
+                    <a href="en/portfolio.html" class="lang-option" data-lang="en">EN</a>
+                    <a href="es/portfolio.html" class="lang-option" data-lang="es">ES</a>
+                </div>
             </div>
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
@@ -62,6 +91,14 @@
             <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
             <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
             <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quem Sou Eu</a>
+        
+            <div class="flex justify-center py-2 px-6 space-x-2">
+                <a href="portfolio.html" class="lang-option active text-sm" data-lang="pt">PT</a>
+                <span class="text-gray-600">|</span>
+                <a href="en/portfolio.html" class="lang-option text-sm" data-lang="en">EN</a>
+                <span class="text-gray-600">|</span>
+                <a href="es/portfolio.html" class="lang-option text-sm" data-lang="es">ES</a>
+            </div>
         </div>
     </header>
 
