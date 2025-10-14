@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Logik Bioinfo</title>
+    <meta name="description" content="Portfolio de trabalhos, figuras e fluxogramas desenvolvidos em projetos de bioinformática.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #111827; }
+        .nav-link-hover:hover { color: #22c55e; }
+        .nav-link-active { color: #22c55e; font-weight: 600; }
+        .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
+        .portfolio-card { background-color: #1f2937; transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+        .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); }
+        .portfolio-card img { height: 200px; width: 100%; object-cover; }
+        /* Estilos do Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+        .lightbox-content { margin: auto; display: block; max-width: 80%; max-height: 80%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .lightbox-close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; }
+        .lightbox-close:hover, .lightbox-close:focus { color: #bbb; text-decoration: none; cursor: pointer; }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 100; transition: transform 0.3s ease; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .lang-option {
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #9ca3af;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            color: #22c55e;
+        }
+        .lang-option.active {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .lang-divider {
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="../index.html" class="nav-link-hover transition duration-300">Home</a>
+                <a href="servicos.html" class="nav-link-hover transition duration-300">Services</a>
+                <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
+                <a href="../portfolio.html" class="nav-link-hover transition duration-300 nav-link-active">Portfolio</a>
+                <a href="ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
+                 <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
+                <a href="orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
+                <a href="sobre.html" class="nav-link-hover transition duration-300">About</a>
+                <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Who I Am</a>
+                <div class="language-selector">
+                    <span class="lang-divider">|</span>
+                    <a href="../portfolio.html" class="lang-option" data-lang="pt">PT</a>
+                    <a href="portfolio.html" class="lang-option active" data-lang="en">EN</a>
+                    <a href="../es/portfolio.html" class="lang-option" data-lang="es">ES</a>
+                </div>
+            </div>
+            <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+            <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+            <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
+            <a href="../portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Portfolio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
+            <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+            <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who I Am</a>
+        
+            <div class="flex justify-center py-2 px-6 space-x-2">
+                <a href="../portfolio.html" class="lang-option text-sm" data-lang="pt">PT</a>
+                <span class="text-gray-600">|</span>
+                <a href="portfolio.html" class="lang-option active text-sm" data-lang="en">EN</a>
+                <span class="text-gray-600">|</span>
+                <a href="../es/portfolio.html" class="lang-option text-sm" data-lang="es">ES</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <section id="portfolio-gallery" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Portfolio de Trabalhos</h2>
+                </div>
+
+                <!-- Infográficos -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Infográficos e Divulgação Científica</h3>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                     <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png" alt="Infográfico Acinetobacter" class="rounded-md mb-3">
+                        <p class="text-center text-sm font-medium">Infográfico: Resistência em Acinetobacter</p>
+                    </div>
+                </div>
+
+                <!-- Workflows -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Workflows</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Environmental_Workflow.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Environmental_Workflow.png" alt="Environmental Workflow" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Environmental Workflow</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Microbiological_Workflow.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Microbiological_Workflow.png" alt="Microbiological Workflow" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Microbiological Workflow</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Final_Workflow.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Final_Workflow.png" alt="Final Workflow" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Final Workflow</p>
+                    </div>
+                </div>
+
+                <!-- Gráficos -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Gráficos</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
+                     <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Lollipop_Spike_G3.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Lollipop_Spike_G3.png" alt="Lollipop Spike G3" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Lollipop Spike G3</p>
+                    </div>
+                     <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Graph_Gabi.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Graph_Gabi.png" alt="Graph Gabi" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Graph Gabi</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png" alt="KPN Circular Final" class="rounded-md mb-3">
+                        <p class="text-center text-sm">KPN Circular Final</p>
+                    </div>
+                </div>
+
+                <!-- Ilustrações -->
+                <h3 class="text-2xl font-semibold text-green-400 mb-6">Ilustrações</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Figure_1_Overview.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Figure_1_Overview.png" alt="Overview Figure" class="rounded-md mb-3">
+                        <p class="text-center text-sm">Overview Figure</p>
+                    </div>
+                    <div class="portfolio-card p-4 rounded-lg" onclick="openLightbox('https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/DNAzol_Plate_Preparation.png')">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/DNAzol_Plate_Preparation.png" alt="DNAzol Plate Preparation" class="rounded-md mb-3">
+                        <p class="text-center text-sm">DNAzol Plate Preparation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+         <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                <a href="../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Talk to us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <script>
+        // Menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        
+        // Ano atual
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Lógica do Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        function openLightbox(src) {
+            lightbox.style.display = 'block';
+            lightboxImg.src = src;
+        }
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
+
