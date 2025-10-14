@@ -98,18 +98,25 @@ Required fields:
 
 ## Security Features
 
-1. **Honeypot Field**: The `_gotcha` field catches bots. If filled, the form silently redirects without sending email.
+1. **Honeypot Field**: The `_gotcha` field catches bots. If filled, the form exits silently without sending email or redirecting.
 
 2. **Email Validation**: Server-side validation of email format using PHP's `FILTER_VALIDATE_EMAIL`.
 
-3. **Input Sanitization**: All user inputs are sanitized with `htmlspecialchars()` before being included in the email.
+3. **Input Sanitization**: 
+   - All user inputs in HTML emails are sanitized with `htmlspecialchars()`
+   - Plain text alternative uses `strip_tags()` for additional protection
+   - Prevents XSS attacks
 
 4. **SMTP Authentication**: Uses secure SMTP authentication to prevent email spoofing.
+
+5. **No HTTP_REFERER Trust**: Uses hardcoded redirect paths instead of trusting HTTP_REFERER header.
+
+6. **User-Friendly Error Messages**: Generic error messages prevent information disclosure while detailed errors are logged.
 
 ## Success/Error Handling
 
 ### Success
-- User is redirected back to the contact page with `?success=1` parameter
+- User is redirected to the contact page with `?success=1` parameter
 - Language-appropriate redirect:
   - PT: `/sobre.html?success=1`
   - EN: `/en/sobre.html?success=1`
@@ -117,7 +124,9 @@ Required fields:
 
 ### Error
 - HTTP 500 status code
-- Error message displayed
+- User-friendly error message in appropriate language
+- Detailed error logged to PHP error log
+- Generic error page with "Go Back" button
 - Link to go back to the form
 - Error logged to PHP error log (production)
 

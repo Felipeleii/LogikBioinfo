@@ -34,8 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 // Honeypot field check (spam protection)
 if (!empty($_POST['_gotcha'])) {
-    // Bot detected
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // Bot detected - exit silently
     exit;
 }
 
@@ -132,16 +131,13 @@ try {
     
     $mail->Body = $mailBody;
     
-    // Alternative plain text body
-    $mail->AltBody = "Name: $nome\nEmail: $email\n\nMessage:\n$mensagem\n\n---\nSent from logikbioinfo.com contact form";
+    // Alternative plain text body (sanitized)
+    $mail->AltBody = "Name: " . strip_tags($nome) . "\nEmail: " . strip_tags($email) . "\n\nMessage:\n" . strip_tags($mensagem) . "\n\n---\nSent from logikbioinfo.com contact form";
     
     // Send email
     $mail->send();
     
-    // Success - redirect back to the page with success parameter
-    $redirectUrl = $_SERVER['HTTP_REFERER'] ?? '/';
-    
-    // Determine the correct page based on language
+    // Success - redirect to appropriate contact page with success parameter
     if ($language === 'en') {
         $redirectUrl = '/en/sobre.html?success=1';
     } elseif ($language === 'es') {
@@ -154,10 +150,37 @@ try {
     exit;
     
 } catch (Exception $e) {
-    // Log error (in production, log to file instead of displaying)
+    // Log error for debugging (in production, this goes to error log)
     error_log("Email sending failed: {$mail->ErrorInfo}");
     
+    // Show user-friendly error message without exposing system details
     http_response_code(500);
-    echo "Message could not be sent. Error: {$mail->ErrorInfo}";
-    echo "<br><br><a href='" . $_SERVER['HTTP_REFERER'] . "'>Go back</a>";
+    
+    // Determine appropriate error message based on language
+    $errorMessages = [
+        'pt' => 'Desculpe, houve um erro ao enviar sua mensagem. Por favor, tente novamente mais tarde.',
+        'en' => 'Sorry, there was an error sending your message. Please try again later.',
+        'es' => 'Lo sentimos, hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo más tarde.'
+    ];
+    
+    $errorMessage = isset($errorMessages[$language]) ? $errorMessages[$language] : $errorMessages['pt'];
+    
+    echo "<!DOCTYPE html>
+    <html lang='" . htmlspecialchars($language) . "'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Error | Logik Bioinfo</title>
+        <script src='https://cdn.tailwindcss.com'></script>
+    </head>
+    <body class='bg-gray-900 text-white'>
+        <div class='container mx-auto px-6 py-20 text-center'>
+            <h1 class='text-4xl font-bold mb-4'>⚠️ Error</h1>
+            <p class='text-xl mb-8'>" . htmlspecialchars($errorMessage) . "</p>
+            <a href='javascript:history.back()' class='inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300'>
+                " . ($language === 'es' ? 'Volver' : ($language === 'en' ? 'Go Back' : 'Voltar')) . "
+            </a>
+        </div>
+    </body>
+    </html>";
 }
