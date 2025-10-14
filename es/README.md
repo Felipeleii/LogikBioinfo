@@ -4,20 +4,20 @@ Este directorio contiene las traducciones al español del sitio web de LogikBioi
 
 ## Estado
 
-Actualmente, solo la página de inicio (index.html) ha sido completamente traducida. Las páginas adicionales se traducirán según sea necesario.
+Todas las páginas principales han sido completamente traducidas y están listas para su uso.
 
 ## Estructura de Archivos
 
 - `index.html` - Página de inicio (Traducida ✓)
-- `servicos.html` - Página de servicios (Por traducir)
-- `publicacoes.html` - Página de publicaciones (Por traducir)
-- `portfolio.html` - Página de portafolio (Por traducir)
-- `ferramentas.html` - Página de herramientas (Por traducir)
-- `blog.html` - Página de blog (Por traducir)
-- `orcamento.html` - Página de calculadora de presupuesto (Por traducir)
-- `sobre.html` - Página acerca de (Por traducir)
-- `quem-sou-eu.html` - Página quién soy (Por traducir)
-- `posts/` - Directorio de publicaciones del blog (Por traducir)
+- `servicos.html` - Página de servicios (Traducida ✓)
+- `publicacoes.html` - Página de publicaciones (Traducida ✓)
+- `portfolio.html` - Página de portafolio (Traducida ✓)
+- `ferramentas.html` - Página de herramientas (Traducida ✓)
+- `blog.html` - Página de blog (Traducida ✓)
+- `orcamento.html` - Página de calculadora de presupuesto (Traducida ✓)
+- `sobre.html` - Página acerca de (Traducida ✓)
+- `quem-sou-eu.html` - Página quién soy (Traducida ✓)
+- `posts/` - Directorio de publicaciones del blog (Por traducir según sea necesario)
 
 ## Directrices de Traducción
 
