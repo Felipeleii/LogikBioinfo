@@ -4,20 +4,20 @@ This directory contains English translations of the LogikBioinfo website.
 
 ## Status
 
-Currently, only the home page (index.html) has been fully translated. Additional pages will be translated as needed.
+All main pages have been fully translated and are ready for use.
 
 ## File Structure
 
 - `index.html` - Home page (Translated ✓)
-- `servicos.html` - Services page (To be translated)
-- `publicacoes.html` - Publications page (To be translated)
-- `portfolio.html` - Portfolio page (To be translated)
-- `ferramentas.html` - Tools page (To be translated)
-- `blog.html` - Blog page (To be translated)
-- `orcamento.html` - Budget calculator page (To be translated)
-- `sobre.html` - About page (To be translated)
-- `quem-sou-eu.html` - About me page (To be translated)
-- `posts/` - Blog posts directory (To be translated)
+- `servicos.html` - Services page (Translated ✓)
+- `publicacoes.html` - Publications page (Translated ✓)
+- `portfolio.html` - Portfolio page (Translated ✓)
+- `ferramentas.html` - Tools page (Translated ✓)
+- `blog.html` - Blog page (Translated ✓)
+- `orcamento.html` - Budget calculator page (Translated ✓)
+- `sobre.html` - About page (Translated ✓)
+- `quem-sou-eu.html` - About me page (Translated ✓)
+- `posts/` - Blog posts directory (To be translated as needed)
 
 ## Translation Guidelines
 
