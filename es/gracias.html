@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gracias | Logik Bioinfo</title>
-    <meta name="description" content="Gracias por contactarnos. Nos pondremos en contacto pronto.">
+    <title>¡Gracias! | Logik Bioinfo</title>
+    <meta name="description" content="Gracias por contactar con Logik Bioinfo.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,14 @@
             align-items: center; justify-content: center;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
+        .floating-mail {
+            position: fixed; right: 16px; bottom: 110px; width: 56px; height: 56px;
+            border-radius: 50%; background: #22c55e; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; text-decoration: none;
+            box-shadow: 0 8px 16px rgba(0,0,0,.15); z-index: 9999;
+        }
+        .floating-mail:hover { background: #16a34a; }
         .language-selector {
             display: flex;
             gap: 0.5rem;
@@ -72,7 +80,7 @@
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-            <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Inicio</a>
+             <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Inicio</a>
             <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Servicios</a>
             <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicaciones</a>
             <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portafolio</a>
@@ -82,32 +90,37 @@
             <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quién Soy</a>
         
             <div class="flex justify-center py-2 px-6 space-x-2">
-                <a href="../obrigado.html" class="lang-option text-sm" data-lang="pt">PT</a>
+                <a href="../obrigado.html" class="lang-option active text-sm" data-lang="pt">PT</a>
                 <span class="text-gray-600">|</span>
                 <a href="../en/thank-you.html" class="lang-option text-sm" data-lang="en">EN</a>
                 <span class="text-gray-600">|</span>
-                <a href="gracias.html" class="lang-option active text-sm" data-lang="es">ES</a>
+                <a href="gracias.html" class="lang-option text-sm" data-lang="es">ES</a>
             </div>
         </div>
     </header>
 
     <main class="pt-24">
-        <section class="py-20 bg-gray-900 min-h-[60vh] flex items-center">
-            <div class="container mx-auto px-6 text-center">
-                <div class="max-w-2xl mx-auto">
+        <section class="py-20 bg-gray-900 min-h-screen flex items-center">
+            <div class="container mx-auto px-6 max-w-3xl text-center">
+                <div class="bg-gray-800 p-12 rounded-lg shadow-lg">
                     <div class="mb-8">
                         <i class="fas fa-check-circle text-green-500 text-6xl mb-4"></i>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">¡Gracias por contactarnos!</h1>
-                    <p class="text-xl text-gray-300 mb-8">Hemos recibido su mensaje y nos pondremos en contacto pronto.</p>
-                    <p class="text-gray-400 mb-8">Normalmente respondemos dentro de 24 horas en días hábiles.</p>
-                    <div class="flex gap-4 justify-center flex-wrap">
-                        <a href="../index.html" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300">
-                            <i class="fas fa-home mr-2"></i>Volver al Inicio
-                        </a>
-                        <a href="sobre.html" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-8 rounded-lg transition duration-300">
-                            <i class="fas fa-info-circle mr-2"></i>Más Información
-                        </a>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">¡Gracias!</h1>
+                    <p class="text-xl text-gray-300 mb-8">Su mensaje ha sido enviado con éxito. Responderemos en breve.</p>
+                    <div class="space-y-4">
+                        <p class="text-gray-400">Mientras tanto, conozca más sobre nuestros servicios y herramientas:</p>
+                        <div class="flex flex-wrap justify-center gap-4 mt-6">
+                            <a href="../index.html" class="inline-block px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition duration-300">
+                                Volver al Inicio
+                            </a>
+                            <a href="servicos.html" class="inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition duration-300">
+                                Ver Servicios
+                            </a>
+                            <a href="ferramentas.html" class="inline-block px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition duration-300">
+                                Ver Herramientas
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +141,7 @@
                 <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
                 <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="Correo Electrónico"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
             <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos los derechos reservados.</p>
         </div>
@@ -138,6 +151,9 @@
     <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contáctenos por WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
+    
+    <!-- Floating Email Button -->
+    <a href="mailto:contato@logikbioinfo.com.br?subject=Contacto%20%E2%80%93%20Logik%20Bioinfo" class="floating-mail" title="Enviar email">✉</a>
     
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');

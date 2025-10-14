@@ -28,12 +28,11 @@
         }
         .whatsapp-float:hover { transform: scale(1.1); }
         .floating-mail {
-            position: fixed; right: 16px; bottom: 96px; width: 56px; height: 56px;
+            position: fixed; right: 16px; bottom: 110px; width: 56px; height: 56px;
             border-radius: 50%; background: #22c55e; color: #fff;
             display: flex; align-items: center; justify-content: center;
             font-size: 24px; text-decoration: none;
-            box-shadow: 0 8px 16px rgba(0,0,0,.15); z-index: 100;
-            transition: background 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,.15); z-index: 9999;
         }
         .floating-mail:hover { background: #16a34a; }
         .language-selector {
@@ -131,21 +130,21 @@
                     <p class="text-gray-400 max-w-2xl mx-auto">Have an idea, project or need a quote? Let's talk.</p>
                 </div>
                 <div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
-                    <form action="https://formspree.io/f/mkgqqrbw" method="POST" class="space-y-4">
-                        <input type="hidden" name="_subject" value="New message from contact form">
+                    <form action="https://formspree.io/f/mkgqqrbw" method="POST" accept-charset="UTF-8" class="space-y-4">
+                        <input type="hidden" name="_subject" value="New message from Logik Bioinfo website">
                         <input type="hidden" name="_language" value="en">
                         <input type="hidden" name="_redirect" value="https://logikbioinfo.com.br/en/thank-you.html">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-200">Name</label>
-                            <input id="name" name="name" type="text" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
+                            <label for="nome" class="block text-sm font-medium text-gray-200">Name</label>
+                            <input id="nome" name="name" type="text" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-200">Email</label>
                             <input id="email" name="email" type="email" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
                         </div>
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-200">Message</label>
-                            <textarea id="message" name="message" rows="5" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2"></textarea>
+                            <label for="mensagem" class="block text-sm font-medium text-gray-200">Message</label>
+                            <textarea id="mensagem" name="message" rows="5" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2"></textarea>
                         </div>
                         <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
                         <button type="submit" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send Message</button>
@@ -181,9 +180,7 @@
     </a>
     
     <!-- Floating Email Button -->
-    <a href="mailto:contato@logikbioinfo.com.br?subject=Contact – Logik Bioinfo" class="floating-mail" target="_blank" rel="noopener noreferrer" title="Send us an email">
-        ✉
-    </a>
+    <a href="mailto:contato@logikbioinfo.com.br?subject=Contact%20%E2%80%93%20Logik%20Bioinfo" class="floating-mail" title="Send email">✉</a>
     
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logik Bioinfo | Asesoría en Bioinformática y Proyectos de TI</title>
-    <meta name="description" content="Asesoría especializada en Bioinformática, análisis de datos genómicos, pipelines, visualización de datos y consultoría para impulsar su investigación.">
+    <title>Quién Soy | Logik Bioinfo</title>
+    <meta name="description" content="Acerca de Felipe Alberto Lei, bioinformata, consultor de TI e fundador da Logik Bioinfo.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,9 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #111827; }
-        .hero-gradient { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(59, 130, 246, 0.1)); }
         .nav-link-hover:hover { color: #22c55e; }
         .nav-link-active { color: #22c55e; font-weight: 600; }
+        .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
             background-color: #25d366; color: #FFF; border-radius: 50px;
@@ -55,57 +55,82 @@
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="../index.html" class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
             <div class="hidden md:flex space-x-6 items-center">
-                <a href="index.html" class="nav-link-hover transition duration-300 nav-link-active">Inicio</a>
+                <a href="../index.html" class="nav-link-hover transition duration-300">Inicio</a>
                 <a href="servicos.html" class="nav-link-hover transition duration-300">Servicios</a>
                 <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publicaciones</a>
                 <a href="portfolio.html" class="nav-link-hover transition duration-300">Portafolio</a>
                 <a href="ferramentas.html" class="nav-link-hover transition duration-300">Herramientas</a>
                 <a href="orcamento.html" class="nav-link-hover transition duration-300">Presupuesto</a>
                 <a href="sobre.html" class="nav-link-hover transition duration-300">Acerca de</a>
-                <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quién Soy</a>
+                <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300 nav-link-active">Quién Soy</a>
                 <div class="language-selector">
                     <span class="lang-divider">|</span>
-                    <a href="../index.html" class="lang-option" data-lang="pt">PT</a>
-                    <a href="../en/index.html" class="lang-option" data-lang="en">EN</a>
-                    <a href="index.html" class="lang-option active" data-lang="es">ES</a>
+                    <a href="../quem-sou-eu.html" class="lang-option" data-lang="pt">PT</a>
+                    <a href="../en/quem-sou-eu.html" class="lang-option" data-lang="en">EN</a>
+                    <a href="quem-sou-eu.html" class="lang-option active" data-lang="es">ES</a>
                 </div>
             </div>
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-            <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Inicio</a>
+             <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Inicio</a>
             <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Servicios</a>
             <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicaciones</a>
             <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portafolio</a>
             <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Herramientas</a>
             <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Presupuesto</a>
             <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Acerca de</a>
-            <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quién Soy</a>
+            <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Quién Soy</a>
+        
             <div class="flex justify-center py-2 px-6 space-x-2">
-                <a href="../index.html" class="lang-option text-sm" data-lang="pt">PT</a>
+                <a href="../quem-sou-eu.html" class="lang-option text-sm" data-lang="pt">PT</a>
                 <span class="text-gray-600">|</span>
-                <a href="../en/index.html" class="lang-option text-sm" data-lang="en">EN</a>
+                <a href="../en/quem-sou-eu.html" class="lang-option text-sm" data-lang="en">EN</a>
                 <span class="text-gray-600">|</span>
-                <a href="index.html" class="lang-option active text-sm" data-lang="es">ES</a>
+                <a href="quem-sou-eu.html" class="lang-option active text-sm" data-lang="es">ES</a>
             </div>
         </div>
     </header>
 
-    <main>
-        <section id="home" class="pt-32 pb-20 min-h-screen flex items-center hero-gradient">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4">Asesoría en Bioinformática y Soluciones de TI</h1>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Análisis de datos, desarrollo de pipelines y soporte técnico para impulsar su investigación y sus proyectos.</p>
-                <a href="orcamento.html" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105">Solicite un Presupuesto</a>
+    <main class="pt-24">
+        <section id="sobre" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12 bg-gray-800 p-8 rounded-lg">
+                    <div class="md:w-1/3 text-center">
+                        <img src="https://github.com/Felipeleii/LogikBioinfo/raw/main/img/felipe_lei.jpg" alt="Foto de Felipe Alberto Lei" class="mx-auto w-48 h-48 rounded-full object-cover shadow-2xl" loading="lazy">
+                        <h3 class="text-3xl font-bold text-white mt-6">Felipe Alberto Lei</h3>
+                        <p class="text-green-400 font-medium">Bioinformata e Consultor de TI</p>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-6">Acerca de Mim</h2>
+                        <div class="space-y-4 text-gray-300">
+                            <p>
+                                Sou um profissional apaixonado por tecnologia e ciência, com formação em Ciências Biológicas e Mestrado em Infectologia pela Universidade Federal de São Paulo (UNIFESP). Minha carreira é dedicada a aplicar a computação para resolver problemas complexos no campo da biologia, especialmente em genômica bacteriana.
+                            </p>
+                            <p>
+                                Com a Logik Bioinfo, meu objetivo é oferecer serviços de alta qualidade que unem meu conhecimento acadêmico em bioinformática com habilidades práticas em tecnologia da informação, ajudando pesquisadores, estudantes e pequenas empresas a alcançarem seus objetivos.
+                            </p>
+                            <p>
+                                Atualmente sou doutorando na UNIFESP, vinculado ao Laboratório ALERTA, com foco em resistência antimicrobiana, e atuo como Research Assistant no Clinical Virology Laboratory da mesma instituição.
+                            </p>
+                        </div>
+                         <div class="mt-6 border-l-4 border-green-500 pl-4">
+                            <p class="text-gray-300 font-semibold">MEI: 61.474.591 FELIPE ALBERTO LEI</p>
+                            <p class="text-gray-400 text-sm">CNPJ: 61.474.591/0001-23</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    
+
     <!-- Footer -->
     <footer class="bg-gray-800">
         <div class="container mx-auto px-6 py-8 text-center text-gray-400">
             <div class="mb-4">
-                 <a href="../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+                <a href="../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
+                </a>
                 <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
             </div>
             <div class="flex justify-center space-x-6 mb-4 text-2xl">
@@ -115,15 +140,15 @@
                 <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
             </div>
-            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos los derechos reservados.</p>
+            <p>&copy; <span id="current-year">2025</span> Logik Bioinfo. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contáctenos por WhatsApp">
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Hable con nosotros por WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
-    
+
     <script>
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -132,3 +157,4 @@
     </script>
 </body>
 </html>
+

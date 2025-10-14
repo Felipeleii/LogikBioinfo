@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas | Logik Bioinfo</title>
+    <meta name="description" content="Herramientas web, scripts e links úteis para bioinformática e análise de dados genômicos.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #111827; }
+        .nav-link-hover:hover { color: #22c55e; }
+        .nav-link-active { color: #22c55e; font-weight: 600; }
+        .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
+        .tool-card { background-color: #1f2937; }
+        input, textarea { background-color: #111827; border-color: #374151; }
+        input:focus, textarea:focus { border-color: #22c55e; outline: none; box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4); }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 100; transition: transform 0.3s ease; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .lang-option {
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #9ca3af;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            color: #22c55e;
+        }
+        .lang-option.active {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .lang-divider {
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../index.html" class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="../index.html" class="nav-link-hover transition duration-300">Inicio</a>
+                <a href="servicos.html" class="nav-link-hover transition duration-300">Servicios</a>
+                <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publicaciones</a>
+                <a href="portfolio.html" class="nav-link-hover transition duration-300">Portafolio</a>
+                <a href="ferramentas.html" class="nav-link-hover transition duration-300 nav-link-active">Herramientas</a>
+                <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
+                <a href="orcamento.html" class="nav-link-hover transition duration-300">Presupuesto</a>
+                <a href="sobre.html" class="nav-link-hover transition duration-300">Acerca de</a>
+                <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quién Soy</a>
+                <div class="language-selector">
+                    <span class="lang-divider">|</span>
+                    <a href="../ferramentas.html" class="lang-option" data-lang="pt">PT</a>
+                    <a href="../en/ferramentas.html" class="lang-option" data-lang="en">EN</a>
+                    <a href="ferramentas.html" class="lang-option active" data-lang="es">ES</a>
+                </div>
+            </div>
+            <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+            <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Inicio</a>
+            <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Servicios</a>
+            <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicaciones</a>
+            <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portafolio</a>
+            <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Herramientas</a>
+            <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
+            <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Presupuesto</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Acerca de</a>
+            <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quién Soy</a>
+        
+            <div class="flex justify-center py-2 px-6 space-x-2">
+                <a href="../ferramentas.html" class="lang-option text-sm" data-lang="pt">PT</a>
+                <span class="text-gray-600">|</span>
+                <a href="../en/ferramentas.html" class="lang-option text-sm" data-lang="en">EN</a>
+                <span class="text-gray-600">|</span>
+                <a href="ferramentas.html" class="lang-option active text-sm" data-lang="es">ES</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Herramientas Web -->
+        <section id="web-tools" class="py-12 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Herramientas Web</h2>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Gerador de MultiFASTA -->
+                    <div class="tool-card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-green-400 mb-2">Gerador de Arquivos MultiFASTA</h3>
+                        <p class="text-gray-400 mb-4">Crie arquivos multiFASTA onde o nome do arquivo de origem é incorporado ao cabeçalho de cada contig.</p>
+                        <input type="file" id="fastaFiles" accept=".fasta,.fa,.fna" multiple class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-600 file:text-white hover:file:bg-green-700 cursor-pointer"/>
+                        <button id="processFastaBtn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">Processar</button>
+                    </div>
+                    <!-- Gerador de Script SRA -->
+                    <div class="tool-card p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-bold text-green-400 mb-2">Gerador de Script SRA Downloader</h3>
+                        <p class="text-gray-400 mb-4">Crie scripts Bash para baixar e processar dados do SRA em lote de forma eficiente.</p>
+                        <textarea id="sraData" placeholder="Cole aqui sua lista de SRR e IDs..." rows="3" class="w-full rounded-md p-2"></textarea>
+                        <button id="generateSraBtn" class="mt-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">Gerar Script</button>
+                    </div>
+                </div>
+                <div id="output-container" class="max-w-5xl mx-auto mt-8" style="display: none;">
+                    <h3 class="text-xl font-bold text-white mb-2">Resultado:</h3>
+                    <pre class="bg-gray-800 p-4 rounded-lg text-gray-300 max-h-96 overflow-auto"><code></code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tutoriais e Guias -->
+        <section id="tutorials" class="py-12 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Tutoriais e Guias</h2>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <!-- Guia WSL -->
+                    <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6">
+                        <div class="text-5xl text-green-500">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-white">Guia Completo: WSL para Bioinformática</h3>
+                            <p class="text-gray-400 mt-2">Aprenda a configurar seu ambiente Windows para análises de bioinformática com o WSL. Um guia passo a passo do básico ao avançado.</p>
+                        </div>
+                        <div>
+                            <a href="https://felipeleii.github.io/guia-wsl-bioinfo/" target="_blank" rel="noopener noreferrer" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300 inline-block">
+                                Acessar Guia
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Awesome Bioinformatics -->
+                     <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6">
+                        <div class="text-5xl text-green-500">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-white">Awesome-Bioinformatics</h3>
+                            <p class="text-gray-400 mt-2">Uma lista curada com as melhores bibliotecas, softwares e recursos para bioinformática, mantida pela comunidade.</p>
+                        </div>
+                        <div>
+                            <a href="https://github.com/danielecook/Awesome-Bioinformatics" target="_blank" rel="noopener noreferrer" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 inline-block">
+                                Acessar Lista
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Úteis -->
+        <section id="useful-links" class="py-12 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Links Úteis</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div>
+                        <h3 class="text-xl font-bold text-green-400 mb-4">Plataformas Web</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://proksee.ca/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Proksee</a></li>
+                            <li><a href="https://www.bv-brc.org/" target="_blank" class="text-gray-300 hover:text-green-500 transition">BV-BRC</a></li>
+                            <li><a href="https://galaxy.sciensano.be/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Galaxy@Sciensano</a></li>
+                            <li><a href="https://usegalaxy.eu/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Galaxy Europe</a></li>
+                            <li><a href="https://usegalaxy.org/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Galaxy US</a></li>
+                            <li><a href="https://www.mapchart.net/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Mapchart</a></li>
+                            <li><a href="https://rawgraphs.io/" target="_blank" class="text-gray-300 hover:text-green-500 transition">RAWGraphs</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-green-400 mb-4">Pipelines WGS</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://github.com/tseemann/abritamr" target="_blank" class="text-gray-300 hover:text-green-500 transition">AbritAMR</a></li>
+                            <li><a href="https://github.com/gen-bio/grenepipe/wiki" target="_blank" class="text-gray-300 hover:text-green-500 transition">Grenepipe</a></li>
+                            <li><a href="https://github.com/r-bioinformatics/rMAP" target="_blank" class="text-gray-300 hover:text-green-500 transition">rMAP</a></li>
+                            <li><a href="https://github.com/torredol/TORMES" target="_blank" class="text-gray-300 hover:text-green-500 transition">TORMES</a></li>
+                            <li><a href="https://github.com/gen-bio/BACANNOT" target="_blank" class="text-gray-300 hover:text-green-500 transition">BACANNOT</a></li>
+                            <li><a href="https://github.com/tseemann/nullarbor" target="_blank" class="text-gray-300 hover:text-green-500 transition">Nullarbor</a></li>
+                             <li><a href="https://www.cbs.dtu.dk/services/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Center for Genomic Epidemiology</a></li>
+                            <li><a href="https://github.com/katholt/Kaptive" target="_blank" class="text-gray-300 hover:text-green-500 transition">Kaptive</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-green-400 mb-4">Guias e Herramientas</h3>
+                        <ul class="space-y-2">
+                            <li><a href="https://www.ncbi.nlm.nih.gov/sra/docs/run-selector/" target="_blank" class="text-gray-300 hover:text-green-500 transition">SRA Run Selector</a></li>
+                            <li><a href="https://jsonformatter.org/" target="_blank" class="text-gray-300 hover:text-green-500 transition">Free Online JSON Formatter</a></li>
+                            <li><a href="https://www.browserling.com/tools/list-to-csv" target="_blank" class="text-gray-300 hover:text-green-500 transition">Convert List to CSV</a></li>
+                            <li><a href="https://www.textfixer.com/tools/remove-line-breaks.php" target="_blank" class="text-gray-300 hover:text-green-500 transition">Remove Line Breaks Tool</a></li>
+                            <li><a href="https://faster-r.com/" target="_blank" class="text-gray-300 hover:text-green-500 transition">fasteR: Learn R fast!</a></li>
+                            <li><a href="https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html" target="_blank" class="text-gray-300 hover:text-green-500 transition">Conda Cheatsheet</a></li>
+                            <li><a href="https://openwetware.org/wiki/Standard_operating_procedure_(SOP)" target="_blank" class="text-gray-300 hover:text-green-500 transition">OpenWetWare SOPs</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                <a href="../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:felipe.lei@unifesp.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Hable con nosotros por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <script>
+        // Menu mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        
+        // Ano atual no rodapé
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Lógica das ferramentas
+        // ... (manter a lógica existente para as ferramentas, se houver)
+    </script>
+
+</body>
+</html>
+
