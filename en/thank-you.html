@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About the Project | Logik Bioinfo</title>
-    <meta name="description" content="About the LogikBioinfo project, a platform of web tools and consultancy in bioinformatics.">
+    <title>Thank You | Logik Bioinfo</title>
+    <meta name="description" content="Thank you for contacting us. We'll get back to you soon.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,11 +14,6 @@
         body { font-family: 'Poppins', sans-serif; background-color: #111827; }
         .nav-link-hover:hover { color: #22c55e; }
         .nav-link-active { color: #22c55e; font-weight: 600; }
-        .section-title { border-bottom: 3px solid #22c55e; padding-bottom: 0.5rem; }
-        .content-card { background-color: #1f2937; }
-        input, textarea { background-color: #111827; border-color: #374151; }
-        input:focus, textarea:focus { border-color: #22c55e; outline: none; box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4); }
-        .hp-field { position: absolute; left: -9999px; }
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
             background-color: #25d366; color: #FFF; border-radius: 50px;
@@ -27,15 +22,6 @@
             align-items: center; justify-content: center;
         }
         .whatsapp-float:hover { transform: scale(1.1); }
-        .floating-mail {
-            position: fixed; right: 16px; bottom: 96px; width: 56px; height: 56px;
-            border-radius: 50%; background: #22c55e; color: #fff;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; text-decoration: none;
-            box-shadow: 0 8px 16px rgba(0,0,0,.15); z-index: 100;
-            transition: background 0.3s ease;
-        }
-        .floating-mail:hover { background: #16a34a; }
         .language-selector {
             display: flex;
             gap: 0.5rem;
@@ -74,82 +60,55 @@
                 <a href="portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
                 <a href="ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
                 <a href="orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
-                <a href="sobre.html" class="nav-link-hover transition duration-300 nav-link-active">About</a>
+                <a href="sobre.html" class="nav-link-hover transition duration-300">About</a>
                 <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Who Am I</a>
                 <div class="language-selector">
                     <span class="lang-divider">|</span>
-                    <a href="../sobre.html" class="lang-option" data-lang="pt">PT</a>
-                    <a href="sobre.html" class="lang-option active" data-lang="en">EN</a>
-                    <a href="../es/sobre.html" class="lang-option" data-lang="es">ES</a>
+                    <a href="../obrigado.html" class="lang-option" data-lang="pt">PT</a>
+                    <a href="thank-you.html" class="lang-option active" data-lang="en">EN</a>
+                    <a href="../es/gracias.html" class="lang-option" data-lang="es">ES</a>
                 </div>
             </div>
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-             <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+            <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
             <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
             <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
             <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
             <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
             <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
-            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">About</a>
+            <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
             <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who Am I</a>
         
             <div class="flex justify-center py-2 px-6 space-x-2">
-                <a href="../sobre.html" class="lang-option active text-sm" data-lang="pt">PT</a>
+                <a href="../obrigado.html" class="lang-option text-sm" data-lang="pt">PT</a>
                 <span class="text-gray-600">|</span>
-                <a href="sobre.html" class="lang-option text-sm" data-lang="en">EN</a>
+                <a href="thank-you.html" class="lang-option active text-sm" data-lang="en">EN</a>
                 <span class="text-gray-600">|</span>
-                <a href="../es/sobre.html" class="lang-option text-sm" data-lang="es">ES</a>
+                <a href="../es/gracias.html" class="lang-option text-sm" data-lang="es">ES</a>
             </div>
         </div>
     </header>
 
     <main class="pt-24">
-        <section id="about" class="py-20 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <div class="text-center mb-12">
-                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">About the Project</h2>
-                </div>
-                <div class="content-card p-8 rounded-lg shadow-lg">
-                   <p class="text-gray-300">The <strong>LogikBioinfo</strong> is a platform that offers web tools and scripts to optimize bacterial genome analysis, focusing on data d[...] </p>
-                   <h3 class="text-xl font-bold text-green-500 mt-6 mb-3">Main Features:</h3>
-                   <ul class="list-disc list-inside space-y-2 text-gray-300">
-                       <li>Intuitive and responsive web interface.</li>
-                       <li>Processing of files directly in the browser for security and privacy.</li>
-                       <li>Optimized scripts for WGS bacterial pipelines.</li>
-                       <li>Transparent budget calculator for project planning.</li>
-                   </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section id="contato" class="py-20 bg-gray-800">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Get in Touch</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">Have an idea, project or need a quote? Let's talk.</p>
-                </div>
-                <div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
-                    <form action="https://formspree.io/f/mkgqqrbw" method="POST" class="space-y-4">
-                        <input type="hidden" name="_subject" value="New message from contact form">
-                        <input type="hidden" name="_language" value="en">
-                        <input type="hidden" name="_redirect" value="https://logikbioinfo.com.br/en/thank-you.html">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-200">Name</label>
-                            <input id="name" name="name" type="text" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-200">Email</label>
-                            <input id="email" name="email" type="email" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-200">Message</label>
-                            <textarea id="message" name="message" rows="5" required class="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white px-3 py-2"></textarea>
-                        </div>
-                        <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off">
-                        <button type="submit" class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Send Message</button>
-                    </form>
+        <section class="py-20 bg-gray-900 min-h-[60vh] flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-2xl mx-auto">
+                    <div class="mb-8">
+                        <i class="fas fa-check-circle text-green-500 text-6xl mb-4"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Thank you for contacting us!</h1>
+                    <p class="text-xl text-gray-300 mb-8">We've received your message and will get back to you soon.</p>
+                    <p class="text-gray-400 mb-8">We typically respond within 24 hours on business days.</p>
+                    <div class="flex gap-4 justify-center flex-wrap">
+                        <a href="../index.html" class="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-lg transition duration-300">
+                            <i class="fas fa-home mr-2"></i>Back to Home
+                        </a>
+                        <a href="sobre.html" class="bg-gray-700 hover:bg-gray-600 text-white font-medium py-3 px-8 rounded-lg transition duration-300">
+                            <i class="fas fa-info-circle mr-2"></i>Learn More
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -175,14 +134,9 @@
         </div>
     </footer>
     
-    <!-- Botão Flutuante do WhatsApp -->
+    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contact us via WhatsApp">
         <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <!-- Floating Email Button -->
-    <a href="mailto:contato@logikbioinfo.com.br?subject=Contact – Logik Bioinfo" class="floating-mail" target="_blank" rel="noopener noreferrer" title="Send us an email">
-        ✉
     </a>
     
     <script>
