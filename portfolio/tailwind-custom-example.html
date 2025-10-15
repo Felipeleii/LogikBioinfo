@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Tailwind Custom | Logik Bioinfo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #111827; 
+        }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+        .carousel-navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+        .carousel-button {
+            background-color: rgba(34, 197, 94, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .carousel-button:hover {
+            background-color: rgba(34, 197, 94, 1);
+        }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 8px;
+        }
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4b5563;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .carousel-dot.active {
+            background-color: #22c55e;
+        }
+        .portfolio-card {
+            height: 100%;
+            background-color: #1f2937;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+        .card-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .lightbox-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        /* Responsive settings */
+        @media (min-width: 768px) {
+            .carousel-item {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-200 p-8">
+    <h1 class="text-3xl font-bold text-center mb-8">Exemplo de Carrossel Personalizado com Tailwind</h1>
+    
+    <div class="container mx-auto px-6">
+        <h3 class="text-2xl font-semibold text-green-400 mb-6">Gráficos</h3>
+        
+        <!-- Custom Carousel -->
+        <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+                <!-- Item 1 -->
+                <div class="carousel-item">
+                    <div class="portfolio-card">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Lollipop_Spike_G3.png" 
+                             alt="Lollipop Spike G3" 
+                             class="card-image" 
+                             onclick="openLightbox(this.src)">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="text-lg font-semibold text-white mb-2">Lollipop Spike G3</h4>
+                            <p class="text-gray-300 flex-grow">Visualização lollipop das mutações na proteína Spike do SARS-CoV-2, destacando as alterações encontradas na variante G3. Esta visualização facilita a identificação de regiões com alta densidade de mutações.</p>
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="text-sm text-green-400">Bioinformática</span>
+                                <span class="text-xs text-gray-400">Visualização de dados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="carousel-item">
+                    <div class="portfolio-card">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Graph_Gabi.png" 
+                             alt="Graph Gabi" 
+                             class="card-image" 
+                             onclick="openLightbox(this.src)">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="text-lg font-semibold text-white mb-2">Graph Gabi</h4>
+                            <p class="text-gray-300 flex-grow">Representação gráfica de resultados de análise filogenética, mostrando a distribuição de diferentes linhagens bacterianas e suas características associadas. Gerado com R e ggplot2.</p>
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="text-sm text-green-400">Análise de dados</span>
+                                <span class="text-xs text-gray-400">Filogenética</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="carousel-item">
+                    <div class="portfolio-card">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png" 
+                             alt="KPN Circular Final" 
+                             class="card-image" 
+                             onclick="openLightbox(this.src)">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="text-lg font-semibold text-white mb-2">KPN Circular Final</h4>
+                            <p class="text-gray-300 flex-grow">Visualização circular do genoma de Klebsiella pneumoniae, destacando genes de resistência, ilhas genômicas e outras características genéticas relevantes. Criado com Circos.</p>
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="text-sm text-green-400">Genômica</span>
+                                <span class="text-xs text-gray-400">Visualização de genoma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 4 - Duplicado para demonstração -->
+                <div class="carousel-item">
+                    <div class="portfolio-card">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Lollipop_Spike_G3.png" 
+                             alt="Lollipop Spike G3 (Duplicate)" 
+                             class="card-image" 
+                             onclick="openLightbox(this.src)">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h4 class="text-lg font-semibold text-white mb-2">Lollipop Spike G3</h4>
+                            <p class="text-gray-300 flex-grow">Outro exemplo de visualização lollipop para demonstrar o carrossel personalizado com múltiplas páginas. Podemos navegar entre os diferentes slides.</p>
+                            <div class="flex items-center justify-between mt-4">
+                                <span class="text-sm text-green-400">Bioinformática</span>
+                                <span class="text-xs text-gray-400">Visualização de dados</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-navigation">
+                <button class="carousel-button" id="prev-button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-button" id="next-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carousel-dots" id="carousel-dots">
+                <!-- Dots are generated by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+    
+    <script>
+        // Custom Carousel Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('carousel-track');
+            const items = track.querySelectorAll('.carousel-item');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const dotsContainer = document.getElementById('carousel-dots');
+            
+            let currentIndex = 0;
+            let itemsPerView = 1;
+            
+            // Create dots
+            items.forEach((_, index) => {
+                if (index % itemsPerView === 0) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => goToSlide(index));
+                    dotsContainer.appendChild(dot);
+                }
+            });
+            
+            // Update dots based on current position
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    const slideIndex = index * itemsPerView;
+                    if (slideIndex === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Get appropriate itemsPerView based on window width
+            function updateItemsPerView() {
+                if (window.innerWidth >= 1024) {
+                    itemsPerView = 3;
+                } else if (window.innerWidth >= 768) {
+                    itemsPerView = 2;
+                } else {
+                    itemsPerView = 1;
+                }
+                
+                // Update slides
+                goToSlide(currentIndex);
+                
+                // Clear and recreate dots
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < Math.ceil(items.length / itemsPerView); i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('carousel-dot');
+                    if (i * itemsPerView === currentIndex) {
+                        dot.classList.add('active');
+                    }
+                    dot.addEventListener('click', () => goToSlide(i * itemsPerView));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            // Go to specific slide
+            function goToSlide(index) {
+                // Ensure index is within bounds
+                const maxIndex = Math.max(0, items.length - itemsPerView);
+                currentIndex = Math.min(Math.max(0, index), maxIndex);
+                
+                // Calculate the translation amount
+                const itemWidth = items[0].offsetWidth;
+                const translateX = -currentIndex * itemWidth;
+                
+                track.style.transform = `translateX(${translateX}px)`;
+                updateDots();
+            }
+            
+            // Event listeners
+            prevButton.addEventListener('click', () => {
+                goToSlide(currentIndex - itemsPerView);
+            });
+            
+            nextButton.addEventListener('click', () => {
+                goToSlide(currentIndex + itemsPerView);
+            });
+            
+            // Respond to window resize
+            window.addEventListener('resize', updateItemsPerView);
+            
+            // Initialize view
+            updateItemsPerView();
+            
+            // Touch events for mobile swiping
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const threshold = 50; // Minimum distance required for a swipe
+                if (touchEndX < touchStartX - threshold) {
+                    // Swiped left
+                    goToSlide(currentIndex + itemsPerView);
+                }
+                if (touchEndX > touchStartX + threshold) {
+                    // Swiped right
+                    goToSlide(currentIndex - itemsPerView);
+                }
+            }
+        });
+        
+        // Lightbox functions
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        
+        function openLightbox(src) {
+            lightbox.style.display = 'block';
+            lightboxImg.src = src;
+        }
+        
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
