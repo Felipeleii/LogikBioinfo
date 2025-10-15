@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: K. pneumoniae ST17 Co-producing KPC/NDM | Logik Bioinfo</title>
+    <meta name="description" content="Genomic analysis of a critical Klebsiella pneumoniae ST17 isolate co-producing KPC-2 and NDM-1.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background-color: #111827; }
+        .nav-link-hover:hover { color: #22c55e; }
+        .nav-link-active { color: #22c55e; font-weight: 600; }
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 30px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+            z-index: 100; transition: transform 0.3s ease; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .lang-option {
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #9ca3af;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            color: #22c55e;
+        }
+        .lang-option.active {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .lang-divider {
+            color: #4b5563;
+        }
+        /* Post content styles */
+        .post-content h2 { font-size: 1.875rem; font-weight: 700; color: #22c55e; margin-top: 2rem; margin-bottom: 1rem; }
+        .post-content h3 { font-size: 1.5rem; font-weight: 600; color: #d1d5db; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .post-content p { margin-bottom: 1rem; line-height: 1.75; }
+        .post-content a { color: #22c55e; text-decoration: underline; }
+        .post-content a:hover { color: #16a34a; }
+        .post-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+        .post-content code { background-color: #1f2937; padding: 0.125rem 0.375rem; border-radius: 0.25rem; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../index.html" class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+             <div class="hidden md:flex space-x-6 items-center">
+                <a href="../../index.html" class="nav-link-hover transition duration-300">Home</a>
+                <a href="../servicos.html" class="nav-link-hover transition duration-300">Services</a>
+                <a href="../publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
+                <a href="../portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
+                <a href="../ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
+                <a href="../blog.html" class="nav-link-hover transition duration-300 nav-link-active">Blog</a>
+                <a href="../orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
+                <a href="../sobre.html" class="nav-link-hover transition duration-300">About</a>
+                <a href="../quem-sou-eu.html" class="nav-link-hover transition duration-300">Who I Am</a>
+            </div>
+            <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+             <a href="../../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+            <a href="../servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
+            <a href="../publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
+            <a href="../portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
+            <a href="../ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
+            <a href="../blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Blog</a>
+            <a href="../orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
+            <a href="../sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+            <a href="../quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who I Am</a>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <article class="py-20 bg-gray-900">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <!-- Title and Metadata -->
+                <header class="text-center mb-12">
+                    <p class="text-base font-semibold text-green-500">Case Study</p>
+                    <h1 class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">K. pneumoniae ST17 Co-producing KPC-2 and NDM-1</h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-400">Genomic analysis reveals a maximum-risk pathogen with resistance to nearly all available treatment options.</p>
+                     <div class="mt-4 text-sm text-gray-500">
+                        <span>By Felipe Alberto Lei</span> &bull; <span>October 12, 2025</span>
+                    </div>
+                </header>
+
+                <!-- Post Content -->
+                <div class="post-content text-gray-300">
+                    <h2>The Critical Threat</h2>
+                    <p>
+                        <em>Klebsiella pneumoniae</em> is one of the leading causes of hospital-acquired infections worldwide, and the emergence of carbapenemase-producing strains represents an unprecedented challenge for modern medicine. The isolate HGPE-001-KPN, belonging to the rare ST17 clone, goes even further: it co-produces two of the most feared carbapenemases - KPC-2 and NDM-1 - creating a therapeutic "hole" that compromises virtually all available treatment options.
+                    </p>
+
+                    <h2>Profile of the Hyper-Resistant Pathogen</h2>
+                    <p>
+                        Complete genomic analysis revealed alarming characteristics of this isolate:
+                    </p>
+                    <ul>
+                        <li><strong>Sequence Type ST17:</strong> A rare clone, but of extremely high risk due to its extreme resistance profile.</li>
+                        <li><strong>Dual carbapenemase production:</strong> Simultaneous presence of <code>bla<sub>KPC-2</sub></code> and <code>bla<sub>NDM-1</sub></code> genes, conferring resistance to different classes of β-lactams.</li>
+                        <li><strong>Unmatched genetic arsenal:</strong> 18 resistance genes in total, the highest number observed in the entire studied cohort, conferring resistance to multiple antibiotic classes.</li>
+                        <li><strong>Mobile genetic elements:</strong> Presence of plasmids and transposons that facilitate horizontal transfer of resistance genes to other bacteria.</li>
+                    </ul>
+
+                    <h3>Data Visualization</h3>
+                    <p>The graph below illustrates the complete resistome profile of this isolate, highlighting the diversity of resistance mechanisms present:</p>
+                    
+                    <div class="my-8 bg-gray-800 p-4 rounded-lg">
+                        <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png" alt="Circular plot of K. pneumoniae ST17 resistome" class="rounded-md shadow-lg mx-auto">
+                    </div>
+
+                    <h2>The Therapeutic Impasse</h2>
+                    <p>
+                        The co-production of KPC-2 and NDM-1 creates a particularly dangerous situation:
+                    </p>
+                    <ul>
+                        <li><strong>KPC-2</strong> confers resistance to carbapenems but can be partially inhibited by new β-lactamase inhibitors such as avibactam.</li>
+                        <li><strong>NDM-1</strong> is a metallo-β-lactamase that is not inhibited by traditional β-lactamase inhibitors and confers even broader resistance.</li>
+                        <li>The combination neutralizes the main treatment strategies, including combinations of last-resort antibiotics.</li>
+                    </ul>
+
+                    <h2>Public Health Implications</h2>
+                    <p>
+                        This case exemplifies the worst-case scenario of the post-antibiotic era: a common pathogen that has become virtually untreatable. The identification and characterization of these isolates through genomics is fundamental to:
+                    </p>
+                    <ul>
+                        <li>Implement rigorous infection control measures to prevent dissemination.</li>
+                        <li>Guide therapeutic decisions based on the molecular resistance profile.</li>
+                        <li>Develop new antimicrobial strategies and therapeutic targets.</li>
+                        <li>Monitor the emergence and dissemination of high-risk clones.</li>
+                    </ul>
+
+                    <h2>Conclusion</h2>
+                    <p>
+                        The genomic characterization of isolates like HGPE-001-KPN demonstrates the critical importance of bioinformatics and molecular surveillance in the era of antimicrobial resistance. Only through a deep understanding of the genetic mechanisms involved can we develop effective strategies to combat these emerging threats to global health.
+                    </p>
+                </div>
+                
+                <div class="mt-12 border-t border-gray-700 pt-8 text-center">
+                    <a href="../blog.html" class="text-green-500 hover:text-green-400 font-semibold">&larr; Back to Blog</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                <a href="../../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i> Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+            </div>
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:contato@logikbioinfo.com.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
