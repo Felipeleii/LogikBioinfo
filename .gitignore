@@ -1,3 +1,24 @@
+# Editor and IDE files
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node and package management
+/package.json
+/index.js
+node_modules/
+
+# Cache and temporary files
+.playwright-mcp/
+*.sqlite
+slnx.sqlite
+.prettierrc
+.prettierignore
+
+# Old/test files
 /port.html
 /tool.html
 /bioinfo.html
@@ -9,5 +30,3 @@
 /page5.html
 /page.html
 /Claude_readme.txt
-/package.json
-/index.js
