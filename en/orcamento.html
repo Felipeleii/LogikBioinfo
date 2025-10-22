@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget | Logik Bioinfo</title>
-    <meta name="description" content="Calculadora de orçamento para serviços de bioinformática. Gere uma estimativa instantânea para o seu projeto.">
+    <meta name="description" content="Budget calculator for bioinformatics services. Generate an instant estimate for your project.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -72,9 +72,9 @@
     <!-- Header -->
     <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../index.html" class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+            <a href="../en/index.html" class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
             <div class="hidden md:flex space-x-6 items-center">
-                <a href="../index.html" class="nav-link-hover transition duration-300">Home</a>
+                <a href="index.html" class="nav-link-hover transition duration-300">Home</a>
                 <a href="servicos.html" class="nav-link-hover transition duration-300">Services</a>
                 <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
                 <a href="portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
@@ -93,7 +93,7 @@
             <div class="md:hidden"><button id="mobile-menu-button" class="text-white focus:outline-none"><i class="fas fa-bars text-2xl"></i></button></div>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-             <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+             <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
             <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
             <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
             <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
@@ -117,33 +117,33 @@
         <section id="orcamento" class="py-20 bg-gray-900">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Calculadora de Budget</h2>
+                    <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">Budget Calculator</h2>
                 </div>
                 <div class="max-w-4xl mx-auto form-card p-8 rounded-lg shadow-lg">
-                    <p class="text-gray-400 mb-8 text-center">Selecione os serviços, informe o número de amostras e seus dados para gerar um orçamento instantâneo.</p>
+                    <p class="text-gray-400 mb-8 text-center">Select the services, enter the number of samples and your data to generate an instant quote.</p>
                     <form id="quote-form">
-                        <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">1. Detalhes do Projeto</h3>
+                        <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">1. Project Details</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                             <div><label for="numSamples" class="block text-sm font-medium text-gray-300 mb-1">Number of Samples *</label><input type="number" id="numSamples" min="1" value="1" required class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
-                            <div><label for="customerName" class="block text-sm font-medium text-gray-300 mb-1">Seu Nome / Instituição *</label><input type="text" id="customerName" required class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
-                            <div><label for="customerEmail" class="block text-sm font-medium text-gray-300 mb-1">Seu Email *</label><input type="email" id="customerEmail" required class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
-                            <div><label for="customerPhone" class="block text-sm font-medium text-gray-300 mb-1">Telefone (Opcional)</label><input type="tel" id="customerPhone" class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
+                            <div><label for="customerName" class="block text-sm font-medium text-gray-300 mb-1">Your Name / Institution *</label><input type="text" id="customerName" required class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
+                            <div><label for="customerEmail" class="block text-sm font-medium text-gray-300 mb-1">Your Email *</label><input type="email" id="customerEmail" required class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
+                            <div><label for="customerPhone" class="block text-sm font-medium text-gray-300 mb-1">Phone (Optional)</label><input type="tel" id="customerPhone" class="w-full p-2.5 rounded-lg border text-white text-sm"></div>
                         </div>
-                        <div class="mb-8"><label for="projectDescription" class="block text-sm font-medium text-gray-300 mb-1">Breve Descrição (Opcional)</label><textarea id="projectDescription" rows="3" placeholder="Descreva seus objetivos..." class="w-full p-2.5 rounded-lg border text-white text-sm"></textarea></div>
+                        <div class="mb-8"><label for="projectDescription" class="block text-sm font-medium text-gray-300 mb-1">Brief Description (Optional)</label><textarea id="projectDescription" rows="3" placeholder="Describe your goals..." class="w-full p-2.5 rounded-lg border text-white text-sm"></textarea></div>
 
-                        <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">2. Seleção de Services</h3>
+                        <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">2. Service Selection</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8" id="servicesGrid"></div>
                         
                         <div id="quoteResult" class="bg-gray-900 border border-gray-700 rounded-lg p-6 hidden">
-                            <h3 class="text-xl font-bold text-green-500 mb-4">Resumo do Budget</h3>
+                            <h3 class="text-xl font-bold text-green-500 mb-4">Budget Summary</h3>
                             <div id="quoteServicesList" class="space-y-2"></div>
                             <div class="text-right mt-6 border-t border-gray-700 pt-4">
-                                <p class="text-gray-400">Valor por Amostra: <span id="pricePerSample" class="font-semibold text-white">R$ 0,00</span></p>
-                                <p class="text-2xl font-bold text-green-500">Total Estimado: <span id="totalPrice">R$ 0,00</span></p>
+                                <p class="text-gray-400">Value per Sample: <span id="pricePerSample" class="font-semibold text-white">R$ 0,00</span></p>
+                                <p class="text-2xl font-bold text-green-500">Estimated Total: <span id="totalPrice">R$ 0,00</span></p>
                             </div>
                         </div>
 
-                        <div id="serviceWarning" class="hidden mt-4 p-4 text-sm text-yellow-300 bg-yellow-800/50 rounded-lg text-center">Para projetos com mais de 5 análises, o valor é uma estimativa. Entre em contato para um orçamento detalhado.</div>
+                        <div id="serviceWarning" class="hidden mt-4 p-4 text-sm text-yellow-300 bg-yellow-800/50 rounded-lg text-center">For projects with more than 5 analyses, the value is an estimate. Contact us for a detailed quote.</div>
 
                         <div class="text-center mt-8">
                              <button type="button" id="downloadPdfBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition disabled:bg-gray-500 disabled:cursor-not-allowed" disabled><i class="fas fa-file-pdf mr-2"></i> Download PDF</button>
@@ -158,7 +158,7 @@
     <footer class="bg-gray-800">
         <div class="container mx-auto px-6 py-8 text-center text-gray-400">
             <div class="mb-4">
-                 <a href="../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
+                 <a href="../en/index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2"><i class="fa-solid fa-dna text-green-500"></i>Logik Bioinfo</a>
                 <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
             </div>
             <div class="flex justify-center space-x-6 mb-4 text-2xl">
@@ -185,7 +185,7 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
         // Budget
-        const services = [ { id: 'qc', name: 'Controle de Qualidade (QC)', price: 50 }, { id: 'assembly', name: 'Assembly de Genoma', price: 200 }, { id: 'annotation', name: 'Anotação Funcional', price: 150 }, { id: 'amr', name: 'Análise de Resistência (AMR)', price: 100 }, { id: 'virulence', name: 'Fatores de Virulência', price: 80 }, { id: 'mlst', name: 'Tipagem Molecular (MLST)', price: 75 }, { id: 'phylogeny', name: 'Análise Filogenética', price: 250 }, { id: 'pangenome', name: 'Análise de Pangenoma', price: 300 }, { id: 'bactopia', name: 'Pipeline Bactopia Completo', price: 400 } ];
+        const services = [ { id: 'qc', name: 'Quality Control (QC)', price: 50 }, { id: 'assembly', name: 'Genome Assembly', price: 200 }, { id: 'annotation', name: 'Functional Annotation', price: 150 }, { id: 'amr', name: 'Resistance Analysis (AMR)', price: 100 }, { id: 'virulence', name: 'Virulence Factors', price: 80 }, { id: 'mlst', name: 'Molecular Typing (MLST)', price: 75 }, { id: 'phylogeny', name: 'Phylogenetic Analysis', price: 250 }, { id: 'pangenome', name: 'Pangenome Analysis', price: 300 }, { id: 'bactopia', name: 'Complete Bactopia Pipeline', price: 400 } ];
         let currentQuoteData = null;
         
         function renderServices() { document.getElementById('servicesGrid').innerHTML = services.map(s => `<label for="service_${s.id}" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition"><input type="checkbox" id="service_${s.id}" value="${s.id}" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500"><span><strong>${s.name}</strong><br><span class="text-green-400">R$${s.price.toFixed(2)}</span></span></label>`).join(''); }
@@ -242,15 +242,15 @@
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             doc.setFontSize(20); doc.setTextColor('#22c55e'); doc.text('LogikBioinfo - Budget', 14, 22);
-            doc.setFontSize(10); doc.setTextColor(150); doc.text(`Budget #${currentQuoteData.number} | Data: ${currentQuoteData.date}`, 14, 30);
-            doc.setFontSize(12); doc.setTextColor(50); doc.text('Para:', 14, 45); doc.text(currentQuoteData.customer.name, 14, 52); doc.text(currentQuoteData.customer.email, 14, 59);
+            doc.setFontSize(10); doc.setTextColor(150); doc.text(`Budget #${currentQuoteData.number} | Date: ${currentQuoteData.date}`, 14, 30);
+            doc.setFontSize(12); doc.setTextColor(50); doc.text('To:', 14, 45); doc.text(currentQuoteData.customer.name, 14, 52); doc.text(currentQuoteData.customer.email, 14, 59);
             let y = 75;
-            doc.setFontSize(10); doc.text('Serviço', 14, y); doc.text('Qtd. Amostras', 100, y); doc.text('Valor Unit.', 140, y); doc.text('Subtotal', 170, y);
+            doc.setFontSize(10); doc.text('Service', 14, y); doc.text('Qty. Samples', 100, y); doc.text('Unit Price', 140, y); doc.text('Subtotal', 170, y);
             y += 2; doc.line(14, y, 196, y); y += 8;
             currentQuoteData.services.forEach(service => { doc.text(service.name, 14, y); doc.text(currentQuoteData.numSamples.toString(), 110, y, { align: 'center' }); doc.text(`R$ ${service.price.toFixed(2)}`, 150, y, { align: 'center' }); doc.text(`R$ ${service.total.toFixed(2)}`, 183, y, { align: 'center' }); y += 7; });
             y += 5; doc.line(14, y, 196, y); y += 8;
-            doc.setFontSize(14); doc.text('Total do Budget:', 130, y); doc.setFont(undefined, 'bold'); doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 175, y);
-            doc.save(`orcamento-logikbioinfo-${currentQuoteData.number}.pdf`);
+            doc.setFontSize(14); doc.text('Budget Total:', 130, y); doc.setFont(undefined, 'bold'); doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 175, y);
+            doc.save(`budget-logikbioinfo-${currentQuoteData.number}.pdf`);
         });
 
         document.addEventListener('DOMContentLoaded', renderServices);
