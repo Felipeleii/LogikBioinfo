@@ -218,8 +218,395 @@
         </div>
       </section>
 
-      <!-- Tutoriais e Guias -->
-      <section id="tutorials" class="py-12 bg-gray-800">
+      <!-- Laboratory Tools -->
+      <section id="lab-tools" class="py-12 bg-gray-800">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
+              Laboratory Tools
+            </h2>
+          </div>
+
+          <!-- Tab Navigation -->
+          <div class="flex justify-center mb-8 flex-wrap gap-2">
+            <button
+              data-tab="stock-calc"
+              class="lab-tab-btn bg-green-600 text-white px-5 py-2 rounded-md font-medium transition-all hover:bg-green-700"
+            >
+              Stock Calculator
+            </button>
+            <button
+              data-tab="calc-guide"
+              class="lab-tab-btn bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-md font-medium transition-all"
+            >
+              Calculation Guide (SOP)
+            </button>
+            <button
+              data-tab="atcc-guide"
+              class="lab-tab-btn bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-md font-medium transition-all"
+            >
+              ATCC Strains Guide
+            </button>
+          </div>
+
+          <!-- Tab Content -->
+          <div class="max-w-6xl mx-auto">
+            <!-- Tab: Stock Calculator -->
+            <div id="lab-tab-stock-calc" class="lab-tab-content">
+              <div class="bg-gray-900 rounded-lg shadow-lg p-6 md:p-10">
+                <div class="w-full max-w-2xl mx-auto">
+                  <form id="stockCalcForm" class="space-y-6">
+                    <!-- Quick Drug Selection -->
+                    <div>
+                      <label
+                        for="farmacoSelect"
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
+                        1. Quick Drug Selection (Optional)
+                      </label>
+                      <p class="text-xs text-gray-400 mb-2">Select to auto-fill potency.</p>
+                      <select
+                        id="farmacoSelect"
+                        class="w-full rounded-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                      >
+                        <option value="">— Select a drug/brand —</option>
+                        <option value="858|ug_mg">
+                          Ceftazidime Pentahydrate (Kefadim® ABL) [Potency: 858 µg/mg]
+                        </option>
+                        <option value="943.4|ug_mg">
+                          Cephalothin Sodium (BioChimico) [Potency: 943.4 µg/mg]
+                        </option>
+                        <option value="943.2|ug_mg">
+                          Imipenem Monohydrate (BioChimico) [Potency: 943.2 µg/mg]
+                        </option>
+                        <option value="838.2|ug_mg">
+                          Ceftriaxone (ABL - Amplospec) [Potency: 838.2 µg/mg]
+                        </option>
+                        <option value="795|ug_mg">Ceftriaxone (INLAB) [Potency: 795 µg/mg]</option>
+                        <option value="590|ug_mg">
+                          Gentamicin Sulfate (INLAB) [Potency: 590 µg/mg]
+                        </option>
+                      </select>
+                    </div>
+
+                    <!-- Desired Concentration -->
+                    <div>
+                      <label
+                        for="concentracao"
+                        class="block text-sm font-medium text-gray-300 mb-2"
+                      >
+                        2. Desired Stock Concentration (C)
+                      </label>
+                      <div class="flex rounded-md shadow-sm">
+                        <input
+                          type="number"
+                          id="concentracao"
+                          required
+                          step="any"
+                          placeholder="e.g., 10000"
+                          class="flex-1 rounded-l-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                        />
+                        <select
+                          id="unidadeConc"
+                          class="rounded-r-md border-l-0 p-3 bg-gray-700 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                        >
+                          <option value="ug_ml">µg/mL</option>
+                          <option value="mg_ml">mg/mL</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Final Volume -->
+                    <div>
+                      <label for="volume" class="block text-sm font-medium text-gray-300 mb-2">
+                        3. Final Stock Volume (V)
+                      </label>
+                      <div class="flex rounded-md shadow-sm">
+                        <input
+                          type="number"
+                          id="volume"
+                          required
+                          step="any"
+                          placeholder="e.g., 10"
+                          class="flex-1 rounded-l-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                        />
+                        <select
+                          id="unidadeVol"
+                          class="rounded-r-md border-l-0 p-3 bg-gray-700 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                        >
+                          <option value="ml">mL</option>
+                          <option value="l">L</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Drug Potency -->
+                    <div>
+                      <label for="potencia" class="block text-sm font-medium text-gray-300 mb-2">
+                        4. Drug Potency (P)
+                      </label>
+                      <p class="text-xs text-gray-400 mb-2">
+                        Value provided by manufacturer (e.g., 858 µg/mg or 85.8% or 0.858).
+                      </p>
+                      <div class="flex rounded-md shadow-sm">
+                        <input
+                          type="number"
+                          id="potencia"
+                          required
+                          step="any"
+                          placeholder="e.g., 858"
+                          class="flex-1 rounded-l-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                        />
+                        <select
+                          id="unidadePot"
+                          class="rounded-r-md border-l-0 p-3 bg-gray-700 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500"
+                        >
+                          <option value="ug_mg">µg/mg</option>
+                          <option value="fracao">Fraction (e.g., 0.858)</option>
+                          <option value="porcentagem">% (e.g., 85.8)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                      <button
+                        type="button"
+                        id="limparCalc"
+                        class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition"
+                      >
+                        Clear
+                      </button>
+                      <button
+                        type="submit"
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition"
+                      >
+                        Calculate
+                      </button>
+                    </div>
+                  </form>
+
+                  <!-- Result -->
+                  <div id="calcResultado" class="hidden mt-6">
+                    <div
+                      class="bg-green-900/30 border-2 border-green-500 rounded-lg p-6 text-center"
+                    >
+                      <p class="text-lg font-medium text-green-400">You need to weigh:</p>
+                      <p class="text-4xl font-bold text-green-300 mt-2">
+                        <span id="massaResultado"></span>
+                        <span id="unidadeResultado" class="text-3xl"></span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Error -->
+                  <div id="calcErro" class="hidden mt-6">
+                    <div class="bg-red-900/30 border-2 border-red-500 rounded-lg p-4 text-center">
+                      <p class="text-base font-medium text-red-400" id="erroTexto"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab: Calculation Guide (SOP) -->
+            <div id="lab-tab-calc-guide" class="lab-tab-content hidden">
+              <div
+                class="bg-gray-900 rounded-lg shadow-lg p-6 md:p-10 text-gray-300 prose prose-invert max-w-none"
+              >
+                <h1 class="text-3xl font-bold text-white mb-4">
+                  Antibiotic Weighing Calculation (Simplified Version)
+                </h1>
+
+                <h2
+                  class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2"
+                >
+                  1. Objective
+                </h2>
+                <p class="mb-4">
+                  Standardize the calculation for weighing antimicrobial salts (powder) to prepare
+                  stock solutions at specific active drug (base) concentrations.
+                </p>
+                <p class="mb-4">
+                  This procedure corrects the mass to be weighed based on the
+                  <strong class="text-white">potency</strong>
+                  of the drug, which is the actual amount of active ingredient present in the salt.
+                </p>
+
+                <h2
+                  class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2"
+                >
+                  2. Key Concepts
+                </h2>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                  <li>
+                    <strong class="text-white">Active Drug (or Base):</strong>
+                    The pure substance with antimicrobial activity (e.g., Ceftazidime). This is the
+                    unit in which we express the desired final concentration (e.g., 2000 µg/mL).
+                  </li>
+                  <li>
+                    <strong class="text-white">Drug Salt (or Powder):</strong>
+                    The form in which the antibiotic is commercially supplied (e.g., Ceftazidime
+                    Pentahydrate). This is the powder we
+                    <em>actually</em>
+                    weigh on the balance.
+                    <strong class="text-white">
+                      The weight of the salt is not equal to the weight of the active drug.
+                    </strong>
+                  </li>
+                  <li>
+                    <strong class="text-white">Potency (P):</strong>
+                    The correction factor that tells us how much "Active Drug" exists in each
+                    milligram of "Salt".
+                  </li>
+                </ul>
+
+                <h2
+                  class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2"
+                >
+                  3. Formula and Calculation Steps
+                </h2>
+                <p class="mb-4">The general formula to find the mass of salt to be weighed is:</p>
+                <div class="bg-gray-800 rounded-lg p-4 text-center my-4">
+                  <p class="text-lg font-medium text-white">
+                    Mass to Weigh (mg) = Total Active Mass (µg) / Potency (µg/mg)
+                  </p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-green-300 mt-4 mb-2">
+                  Step 1: Calculate Total Active Mass (in µg)
+                </h3>
+                <p class="mb-2">
+                  <strong class="text-white">Formula:</strong>
+                  <br />
+                  <code class="bg-gray-800 px-2 py-1 rounded text-green-400">
+                    Active Mass (µg) = Desired Concentration (µg/mL) × Final Volume (mL)
+                  </code>
+                </p>
+
+                <h3 class="text-xl font-semibold text-green-300 mt-4 mb-2">
+                  Step 2: Find Potency (P) (in µg/mg)
+                </h3>
+                <p class="mb-2">Check the label or certificate of your antibiotic.</p>
+
+                <h3 class="text-xl font-semibold text-green-300 mt-4 mb-2">
+                  Step 3: Calculate Mass of Salt to Weigh (in mg)
+                </h3>
+                <p class="mb-2">
+                  <strong class="text-white">Formula:</strong>
+                  <br />
+                  <code class="bg-gray-800 px-2 py-1 rounded text-green-400">
+                    Mass to Weigh (mg) = Active Mass (µg) / Potency (µg/mg)
+                  </code>
+                </p>
+
+                <h2
+                  class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2"
+                >
+                  4. Practical Example
+                </h2>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                  <li>
+                    <strong class="text-white">Drug:</strong>
+                    Kefadim® 1g ABL (Ceftazidime)
+                  </li>
+                  <li>
+                    <strong class="text-white">Info:</strong>
+                    1.165 g of ceftazidime pentahydrate (Salt) equals 1 g of ceftazidime (Active)
+                  </li>
+                  <li>
+                    <strong class="text-white">Objective:</strong>
+                    Prepare 5 mL of stock solution at 2000 µg/mL
+                  </li>
+                </ul>
+                <p class="mb-4">
+                  <strong class="text-white">Conclusion:</strong>
+                  Weigh 11.655 mg of Kefadim® powder and dissolve in 5 mL of solvent to obtain a
+                  stock solution of 2000 µg/mL.
+                </p>
+              </div>
+            </div>
+
+            <!-- Tab: ATCC Strains Guide -->
+            <div id="lab-tab-atcc-guide" class="lab-tab-content hidden">
+              <div class="bg-gray-900 rounded-lg shadow-lg p-6 md:p-10 overflow-x-auto">
+                <h2 class="text-2xl font-semibold text-white mb-6">
+                  Quality Control (QC) Strains Guide - CLSI
+                </h2>
+                <table class="w-full text-sm border-collapse">
+                  <thead>
+                    <tr class="bg-gray-800">
+                      <th
+                        class="border border-gray-700 px-4 py-3 text-left text-gray-300 font-semibold"
+                      >
+                        Strain (Organism)
+                      </th>
+                      <th
+                        class="border border-gray-700 px-4 py-3 text-left text-gray-300 font-semibold"
+                      >
+                        Characteristics
+                      </th>
+                      <th
+                        class="border border-gray-700 px-4 py-3 text-left text-gray-300 font-semibold"
+                      >
+                        Main Uses
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-400">
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">
+                        Acinetobacter baumannii NCTC 13304
+                      </td>
+                      <td class="border border-gray-700 px-4 py-3">OXA-27 (carbapenemase)</td>
+                      <td class="border border-gray-700 px-4 py-3">
+                        Combination agents with β-lactams
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">Escherichia coli ATCC 25922</td>
+                      <td class="border border-gray-700 px-4 py-3">β-lactamase negative</td>
+                      <td class="border border-gray-700 px-4 py-3">
+                        Control for non-fastidious bacteria
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">
+                        Staphylococcus aureus ATCC 25923
+                      </td>
+                      <td class="border border-gray-700 px-4 py-3">β-lactamase positive</td>
+                      <td class="border border-gray-700 px-4 py-3">Control for Gram-positives</td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">
+                        Pseudomonas aeruginosa ATCC 27853
+                      </td>
+                      <td class="border border-gray-700 px-4 py-3">β-lactamase negative</td>
+                      <td class="border border-gray-700 px-4 py-3">
+                        Control for non-fastidious bacteria
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">
+                        Klebsiella pneumoniae ATCC 700603
+                      </td>
+                      <td class="border border-gray-700 px-4 py-3">SHV-18 (ESBL)</td>
+                      <td class="border border-gray-700 px-4 py-3">ESBL testing</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="text-gray-400 text-sm mt-4">
+                  Note: This is a simplified selection. Consult complete CLSI documents for the full
+                  list of strains.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tutorials and Guides -->
+      <section id="tutorials" class="py-12 bg-gray-900">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
@@ -594,8 +981,132 @@
       // Ano atual no rodapé
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
-      // Lógica das ferramentas
-      // ... (keep existing logic for the tools, if any)
+      // ===========================
+      // Laboratory Tools
+      // ===========================
+
+      // Tab System
+      const labTabButtons = document.querySelectorAll('.lab-tab-btn');
+      const labTabContents = document.querySelectorAll('.lab-tab-content');
+
+      labTabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetTab = btn.getAttribute('data-tab');
+
+          // Update buttons
+          labTabButtons.forEach((b) => {
+            b.classList.remove('bg-green-600', 'text-white');
+            b.classList.add('bg-gray-700', 'hover:bg-gray-600');
+          });
+          btn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+          btn.classList.add('bg-green-600', 'text-white');
+
+          // Update content
+          labTabContents.forEach((content) => {
+            content.classList.add('hidden');
+          });
+          document.getElementById(`lab-tab-${targetTab}`).classList.remove('hidden');
+        });
+      });
+
+      // Quick Drug Selection
+      const farmacoSelect = document.getElementById('farmacoSelect');
+      const potenciaInput = document.getElementById('potencia');
+      const unidadePotSelect = document.getElementById('unidadePot');
+
+      farmacoSelect.addEventListener('change', () => {
+        const valor = farmacoSelect.value;
+        if (valor) {
+          const [potencia, unidade] = valor.split('|');
+          potenciaInput.value = potencia;
+          unidadePotSelect.value = unidade;
+        }
+      });
+
+      // Stock Calculator
+      const formCalc = document.getElementById('stockCalcForm');
+      const limparBtn = document.getElementById('limparCalc');
+      const divResultado = document.getElementById('calcResultado');
+      const divErro = document.getElementById('calcErro');
+      const massaResultadoSpan = document.getElementById('massaResultado');
+      const unidadeResultadoSpan = document.getElementById('unidadeResultado');
+      const erroTextoP = document.getElementById('erroTexto');
+
+      // Clear form
+      limparBtn.addEventListener('click', () => {
+        formCalc.reset();
+        divResultado.classList.add('hidden');
+        divErro.classList.add('hidden');
+      });
+
+      // Calculate
+      formCalc.addEventListener('submit', (e) => {
+        e.preventDefault();
+        divResultado.classList.add('hidden');
+        divErro.classList.add('hidden');
+
+        // Get values
+        let C = parseFloat(document.getElementById('concentracao').value);
+        let V = parseFloat(document.getElementById('volume').value);
+        let P = parseFloat(document.getElementById('potencia').value);
+        const unidadeC = document.getElementById('unidadeConc').value;
+        const unidadeV = document.getElementById('unidadeVol').value;
+        const unidadeP = document.getElementById('unidadePot').value;
+
+        // Validate
+        if (isNaN(C) || isNaN(V) || isNaN(P) || C <= 0 || V <= 0 || P <= 0) {
+          erroTextoP.textContent = 'All values must be positive numbers greater than zero.';
+          divErro.classList.remove('hidden');
+          return;
+        }
+
+        // Convert C to µg/mL
+        if (unidadeC === 'mg_ml') {
+          C = C * 1000;
+        }
+
+        // Convert V to mL
+        if (unidadeV === 'l') {
+          V = V * 1000;
+        }
+
+        // Convert P to µg/mg
+        if (unidadeP === 'fracao') {
+          P = P * 1000;
+        } else if (unidadeP === 'porcentagem') {
+          P = (P / 100) * 1000;
+        }
+
+        // Validate potency
+        if (P <= 0 || P > 1000) {
+          erroTextoP.textContent = 'Invalid potency (must be between 0 and 1000 µg/mg).';
+          divErro.classList.remove('hidden');
+          return;
+        }
+
+        // Calculate
+        const massaAtiva = C * V; // µg
+        const massaSal = massaAtiva / P; // mg
+
+        if (!isFinite(massaSal) || massaSal <= 0) {
+          erroTextoP.textContent = 'Error in calculation. Please check the entered values.';
+          divErro.classList.remove('hidden');
+          return;
+        }
+
+        // Determine unit
+        let unidadeFinal = 'mg';
+        let massaExibir = massaSal;
+        if (massaSal >= 1000) {
+          massaExibir = massaSal / 1000;
+          unidadeFinal = 'g';
+        }
+
+        // Display result
+        massaResultadoSpan.textContent = massaExibir.toFixed(3);
+        unidadeResultadoSpan.textContent = unidadeFinal;
+        divResultado.classList.remove('hidden');
+      });
     </script>
   </body>
 </html>

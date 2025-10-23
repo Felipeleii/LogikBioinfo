@@ -222,8 +222,225 @@
         </div>
       </section>
 
+      <!-- Herramientas de Laboratorio -->
+      <section id="lab-tools" class="py-12 bg-gray-800">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12">
+            <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
+              Herramientas de Laboratorio
+            </h2>
+          </div>
+          
+          <!-- Navegación por Pestañas -->
+          <div class="flex justify-center mb-8 flex-wrap gap-2">
+            <button data-tab="stock-calc" class="lab-tab-btn bg-green-600 text-white px-5 py-2 rounded-md font-medium transition-all hover:bg-green-700">
+              Calculadora de Stock
+            </button>
+            <button data-tab="calc-guide" class="lab-tab-btn bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-md font-medium transition-all">
+              Guía de Cálculo (POP)
+            </button>
+            <button data-tab="atcc-guide" class="lab-tab-btn bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-md font-medium transition-all">
+              Guía de Cepas ATCC
+            </button>
+          </div>
+
+          <!-- Contenido de las Pestañas -->
+          <div class="max-w-6xl mx-auto">
+            
+            <!-- Pestaña: Calculadora de Stock -->
+            <div id="lab-tab-stock-calc" class="lab-tab-content">
+              <div class="bg-gray-900 rounded-lg shadow-lg p-6 md:p-10">
+                <div class="w-full max-w-2xl mx-auto">
+                  <form id="stockCalcForm" class="space-y-6">
+                    <!-- Selección Rápida de Fármaco -->
+                    <div>
+                      <label for="farmacoSelect" class="block text-sm font-medium text-gray-300 mb-2">
+                        1. Selección Rápida de Fármaco (Opcional)
+                      </label>
+                      <p class="text-xs text-gray-400 mb-2">Seleccione para rellenar la potencia automáticamente.</p>
+                      <select id="farmacoSelect" class="w-full rounded-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                        <option value="">— Seleccione un fármaco/marca —</option>
+                        <option value="858|ug_mg">Ceftazidima Pentahidratada (Kefadim® ABL) [Potencia: 858 µg/mg]</option>
+                        <option value="943.4|ug_mg">Cefalotina Sódica (BioChimico) [Potencia: 943.4 µg/mg]</option>
+                        <option value="943.2|ug_mg">Imipenem Monohidratado (BioChimico) [Potencia: 943.2 µg/mg]</option>
+                        <option value="838.2|ug_mg">Ceftriaxona (ABL - Amplospec) [Potencia: 838.2 µg/mg]</option>
+                        <option value="795|ug_mg">Ceftriaxona (INLAB) [Potencia: 795 µg/mg]</option>
+                        <option value="590|ug_mg">Gentamicina Sulfato (INLAB) [Potencia: 590 µg/mg]</option>
+                      </select>
+                    </div>
+
+                    <!-- Concentración Deseada -->
+                    <div>
+                      <label for="concentracao" class="block text-sm font-medium text-gray-300 mb-2">
+                        2. Concentración Stock Deseada (C)
+                      </label>
+                      <div class="flex rounded-md shadow-sm">
+                        <input type="number" id="concentracao" required step="any" placeholder="Ej: 10000"
+                               class="flex-1 rounded-l-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                        <select id="unidadeConc" class="rounded-r-md border-l-0 p-3 bg-gray-700 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                          <option value="ug_ml">µg/mL</option>
+                          <option value="mg_ml">mg/mL</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Volumen Final -->
+                    <div>
+                      <label for="volume" class="block text-sm font-medium text-gray-300 mb-2">
+                        3. Volumen Stock Final (V)
+                      </label>
+                      <div class="flex rounded-md shadow-sm">
+                        <input type="number" id="volume" required step="any" placeholder="Ej: 10"
+                               class="flex-1 rounded-l-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                        <select id="unidadeVol" class="rounded-r-md border-l-0 p-3 bg-gray-700 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                          <option value="ml">mL</option>
+                          <option value="l">L</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Potencia -->
+                    <div>
+                      <label for="potencia" class="block text-sm font-medium text-gray-300 mb-2">
+                        4. Potencia del Fármaco (P)
+                      </label>
+                      <p class="text-xs text-gray-400 mb-2">Valor proporcionado por el fabricante (ej: 858 µg/mg o 85.8% o 0.858).</p>
+                      <div class="flex rounded-md shadow-sm">
+                        <input type="number" id="potencia" required step="any" placeholder="Ej: 858"
+                               class="flex-1 rounded-l-md p-3 bg-gray-800 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                        <select id="unidadePot" class="rounded-r-md border-l-0 p-3 bg-gray-700 border-gray-600 text-gray-200 focus:border-green-500 focus:ring-green-500">
+                          <option value="ug_mg">µg/mg</option>
+                          <option value="fracao">Fracción (ej: 0.858)</option>
+                          <option value="porcentagem">% (ej: 85.8)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                      <button type="button" id="limparCalc" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition">
+                        Limpiar
+                      </button>
+                      <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                        Calcular
+                      </button>
+                    </div>
+                  </form>
+
+                  <!-- Resultado -->
+                  <div id="calcResultado" class="hidden mt-6">
+                    <div class="bg-green-900/30 border-2 border-green-500 rounded-lg p-6 text-center">
+                      <p class="text-lg font-medium text-green-400">Necesita pesar:</p>
+                      <p class="text-4xl font-bold text-green-300 mt-2">
+                        <span id="massaResultado"></span>
+                        <span id="unidadeResultado" class="text-3xl"></span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Error -->
+                  <div id="calcErro" class="hidden mt-6">
+                    <div class="bg-red-900/30 border-2 border-red-500 rounded-lg p-4 text-center">
+                      <p class="text-base font-medium text-red-400" id="erroTexto"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pestaña: Guía de Cálculo (POP) -->
+            <div id="lab-tab-calc-guide" class="lab-tab-content hidden">
+              <div class="bg-gray-900 rounded-lg shadow-lg p-6 md:p-10 text-gray-300 prose prose-invert max-w-none">
+                <h1 class="text-3xl font-bold text-white mb-4">Cálculo de Pesaje de Antibióticos (Versión Simplificada)</h1>
+
+                <h2 class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2">1. Objetivo</h2>
+                <p class="mb-4">Estandarizar el cálculo para el pesaje de sales antimicrobianas (polvo) para preparar soluciones stock en concentraciones de fármaco activo (base) específicas.</p>
+                <p class="mb-4">Este procedimiento corrige la masa a pesar según la <strong class="text-white">potencia</strong> del fármaco, que es la cantidad real de principio activo presente en la sal.</p>
+
+                <h2 class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2">2. Conceptos Clave</h2>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                  <li><strong class="text-white">Fármaco Activo (o Base):</strong> Es la sustancia pura con actividad antimicrobiana (ej: Ceftazidima). Es en esta unidad que expresamos la concentración final deseada (ej: 2000 µg/mL).</li>
+                  <li><strong class="text-white">Sal del Fármaco (o Polvo):</strong> Es la forma como se suministra comercialmente el antibiótico (ej: Ceftazidima Pentahidratada). Es el polvo que <em>de hecho</em> pesamos en la balanza. <strong class="text-white">El peso de la sal no es igual al peso del fármaco activo.</strong></li>
+                  <li><strong class="text-white">Potencia (P):</strong> Es el factor de corrección que nos indica cuánto de "Fármaco Activo" existe en cada miligramo de "Sal".</li>
+                </ul>
+
+                <h2 class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2">3. Fórmula y Pasos del Cálculo</h2>
+                <p class="mb-4">La fórmula general para encontrar la masa de sal a pesar es:</p>
+                <div class="bg-gray-800 rounded-lg p-4 text-center my-4">
+                  <p class="text-lg font-medium text-white">Masa a Pesar (mg) = Masa Activa Total (µg) / Potencia (µg/mg)</p>
+                </div>
+
+                <h3 class="text-xl font-semibold text-green-300 mt-4 mb-2">Paso 1: Calcular la Masa Activa Total (en µg)</h3>
+                <p class="mb-2"><strong class="text-white">Fórmula:</strong><br>
+                <code class="bg-gray-800 px-2 py-1 rounded text-green-400">Masa Activa (µg) = Concentración Deseada (µg/mL) × Volumen Final (mL)</code></p>
+
+                <h3 class="text-xl font-semibold text-green-300 mt-4 mb-2">Paso 2: Encontrar la Potencia (P) (en µg/mg)</h3>
+                <p class="mb-2">Verifique la etiqueta o certificado de su antibiótico.</p>
+
+                <h3 class="text-xl font-semibold text-green-300 mt-4 mb-2">Paso 3: Calcular la Masa de Sal a Pesar (en mg)</h3>
+                <p class="mb-2"><strong class="text-white">Fórmula:</strong><br>
+                <code class="bg-gray-800 px-2 py-1 rounded text-green-400">Masa a Pesar (mg) = Masa Activa (µg) / Potencia (µg/mg)</code></p>
+
+                <h2 class="text-2xl font-semibold text-green-400 mt-6 mb-3 border-b border-gray-700 pb-2">4. Ejemplo Práctico</h2>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                  <li><strong class="text-white">Fármaco:</strong> Kefadim® 1g ABL (Ceftazidima)</li>
+                  <li><strong class="text-white">Info:</strong> 1,165 g de ceftazidima pentahidratada (Sal) equivalen a 1 g de ceftazidima (Activo)</li>
+                  <li><strong class="text-white">Objetivo:</strong> Preparar 5 mL de solución stock a 2000 µg/mL</li>
+                </ul>
+                <p class="mb-4"><strong class="text-white">Conclusión:</strong> Pesar 11,655 mg del polvo de Kefadim® y disolver en 5 mL de solvente para obtener una solución stock de 2000 µg/mL.</p>
+              </div>
+            </div>
+
+            <!-- Pestaña: Guía de Cepas ATCC -->
+            <div id="lab-tab-atcc-guide" class="lab-tab-content hidden">
+              <div class="bg-gray-900 rounded-lg shadow-lg p-6 md:p-10 overflow-x-auto">
+                <h2 class="text-2xl font-semibold text-white mb-6">Guía de Cepas de Control de Calidad (QC) - CLSI</h2>
+                <table class="w-full text-sm border-collapse">
+                  <thead>
+                    <tr class="bg-gray-800">
+                      <th class="border border-gray-700 px-4 py-3 text-left text-gray-300 font-semibold">Cepa (Organismo)</th>
+                      <th class="border border-gray-700 px-4 py-3 text-left text-gray-300 font-semibold">Características</th>
+                      <th class="border border-gray-700 px-4 py-3 text-left text-gray-300 font-semibold">Usos Principales</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-400">
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">Acinetobacter baumannii NCTC 13304</td>
+                      <td class="border border-gray-700 px-4 py-3">OXA-27 (carbapenemasa)</td>
+                      <td class="border border-gray-700 px-4 py-3">Agentes de combinación con β-lactámicos</td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">Escherichia coli ATCC 25922</td>
+                      <td class="border border-gray-700 px-4 py-3">β-lactamasa negativa</td>
+                      <td class="border border-gray-700 px-4 py-3">Control para bacterias no fastidiosas</td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">Staphylococcus aureus ATCC 25923</td>
+                      <td class="border border-gray-700 px-4 py-3">β-lactamasa positiva</td>
+                      <td class="border border-gray-700 px-4 py-3">Control para Gram-positivos</td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">Pseudomonas aeruginosa ATCC 27853</td>
+                      <td class="border border-gray-700 px-4 py-3">β-lactamasa negativa</td>
+                      <td class="border border-gray-700 px-4 py-3">Control para no fastidiosas</td>
+                    </tr>
+                    <tr class="hover:bg-gray-800">
+                      <td class="border border-gray-700 px-4 py-3">Klebsiella pneumoniae ATCC 700603</td>
+                      <td class="border border-gray-700 px-4 py-3">SHV-18 (ESBL)</td>
+                      <td class="border border-gray-700 px-4 py-3">Pruebas de ESBL</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="text-gray-400 text-sm mt-4">Nota: Esta es una selección simplificada. Consulte los documentos CLSI completos para la lista completa de cepas.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <!-- Tutoriais e Guias -->
-      <section id="tutorials" class="py-12 bg-gray-800">
+      <section id="tutorials" class="py-12 bg-gray-900">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
@@ -598,8 +815,132 @@
       // Ano atual no rodapé
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
-      // Lógica das ferramentas
-      // ... (manter a lógica existente para as ferramentas, se houver)
+      // ===========================
+      // Herramientas de Laboratorio
+      // ===========================
+      
+      // Sistema de Pestañas
+      const labTabButtons = document.querySelectorAll('.lab-tab-btn');
+      const labTabContents = document.querySelectorAll('.lab-tab-content');
+      
+      labTabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetTab = btn.getAttribute('data-tab');
+          
+          // Actualizar botones
+          labTabButtons.forEach(b => {
+            b.classList.remove('bg-green-600', 'text-white');
+            b.classList.add('bg-gray-700', 'hover:bg-gray-600');
+          });
+          btn.classList.remove('bg-gray-700', 'hover:bg-gray-600');
+          btn.classList.add('bg-green-600', 'text-white');
+          
+          // Actualizar contenido
+          labTabContents.forEach(content => {
+            content.classList.add('hidden');
+          });
+          document.getElementById(`lab-tab-${targetTab}`).classList.remove('hidden');
+        });
+      });
+
+      // Selección Rápida de Fármaco
+      const farmacoSelect = document.getElementById('farmacoSelect');
+      const potenciaInput = document.getElementById('potencia');
+      const unidadePotSelect = document.getElementById('unidadePot');
+      
+      farmacoSelect.addEventListener('change', () => {
+        const valor = farmacoSelect.value;
+        if (valor) {
+          const [potencia, unidade] = valor.split('|');
+          potenciaInput.value = potencia;
+          unidadePotSelect.value = unidade;
+        }
+      });
+
+      // Calculadora de Stock
+      const formCalc = document.getElementById('stockCalcForm');
+      const limparBtn = document.getElementById('limparCalc');
+      const divResultado = document.getElementById('calcResultado');
+      const divErro = document.getElementById('calcErro');
+      const massaResultadoSpan = document.getElementById('massaResultado');
+      const unidadeResultadoSpan = document.getElementById('unidadeResultado');
+      const erroTextoP = document.getElementById('erroTexto');
+
+      // Limpiar formulario
+      limparBtn.addEventListener('click', () => {
+        formCalc.reset();
+        divResultado.classList.add('hidden');
+        divErro.classList.add('hidden');
+      });
+
+      // Calcular
+      formCalc.addEventListener('submit', (e) => {
+        e.preventDefault();
+        divResultado.classList.add('hidden');
+        divErro.classList.add('hidden');
+
+        // Obtener valores
+        let C = parseFloat(document.getElementById('concentracao').value);
+        let V = parseFloat(document.getElementById('volume').value);
+        let P = parseFloat(document.getElementById('potencia').value);
+        const unidadeC = document.getElementById('unidadeConc').value;
+        const unidadeV = document.getElementById('unidadeVol').value;
+        const unidadeP = document.getElementById('unidadePot').value;
+
+        // Validar
+        if (isNaN(C) || isNaN(V) || isNaN(P) || C <= 0 || V <= 0 || P <= 0) {
+          erroTextoP.textContent = 'Todos los valores deben ser números positivos mayores que cero.';
+          divErro.classList.remove('hidden');
+          return;
+        }
+
+        // Convertir C a µg/mL
+        if (unidadeC === 'mg_ml') {
+          C = C * 1000;
+        }
+
+        // Convertir V a mL
+        if (unidadeV === 'l') {
+          V = V * 1000;
+        }
+
+        // Convertir P a µg/mg
+        if (unidadeP === 'fracao') {
+          P = P * 1000;
+        } else if (unidadeP === 'porcentagem') {
+          P = (P / 100) * 1000;
+        }
+
+        // Validar potencia
+        if (P <= 0 || P > 1000) {
+          erroTextoP.textContent = 'Potencia inválida (debe estar entre 0 y 1000 µg/mg).';
+          divErro.classList.remove('hidden');
+          return;
+        }
+
+        // Calcular
+        const massaAtiva = C * V; // µg
+        const massaSal = massaAtiva / P; // mg
+
+        if (!isFinite(massaSal) || massaSal <= 0) {
+          erroTextoP.textContent = 'Error en el cálculo. Verifique los valores ingresados.';
+          divErro.classList.remove('hidden');
+          return;
+        }
+
+        // Determinar unidad
+        let unidadeFinal = 'mg';
+        let massaExibir = massaSal;
+        if (massaSal >= 1000) {
+          massaExibir = massaSal / 1000;
+          unidadeFinal = 'g';
+        }
+
+        // Mostrar resultado
+        massaResultadoSpan.textContent = massaExibir.toFixed(3);
+        unidadeResultadoSpan.textContent = unidadeFinal;
+        divResultado.classList.remove('hidden');
+      });
     </script>
   </body>
 </html>
