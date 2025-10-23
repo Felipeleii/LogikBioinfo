@@ -18,6 +18,27 @@ slnx.sqlite
 .prettierrc
 .prettierignore
 
+# Portfolio development scripts (not needed in repo)
+portfolio/convert_pages.py
+portfolio/convert_pdfs.py
+portfolio/watermark_images.py
+portfolio/watermark_tiled.py
+portfolio/tailwind-custom-example.html
+
+# Unused portfolio images (outdated versions)
+portfolio/CNPq_Descriptive_Flow.png
+portfolio/CNPq_Descriptive_Flow_p06.png
+portfolio/CNPq_Descriptive_Flow_p12.png
+portfolio/CNPq_Descriptive_Flow_p15.png
+portfolio/Covid_Tree.png
+portfolio/Lollipop_G5.png
+portfolio/Lollipop_Spike_G4.png
+portfolio/Figure_1_Final.tif
+
+# Personal files (not needed for website)
+FRENTE_cartaoLogik.pdf
+verso_cartaoLogik.pdf
+
 # Old/test files
 /port.html
 /tool.html
