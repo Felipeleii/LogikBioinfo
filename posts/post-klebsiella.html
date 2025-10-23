@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infográfico: A Ameaça Crítica da K. pneumoniae ST17 Coprodutora de KPC/NDM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F1F5F9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #E2E8F0;
+            padding: 12px;
+            text-align: center;
+        }
+        .comparison-table th {
+            background-color: #0E1C36;
+            color: white;
+        }
+    </style>
+</head>
+<body class="text-[#0E1C36]">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#0E1C36] mb-2">AMEAÇA CRÍTICA DETECTADA</h1>
+            <p class="text-xl md:text-2xl text-[#F34213] font-bold">Análise Genômica de um Isolado de *Klebsiella pneumoniae* ST17 Coprodutor de KPC-2 e NDM-1</p>
+        </header>
+
+        <section id="profile" class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">Perfil de um Patógeno Híper-Resistente</h2>
+                <p class="max-w-3xl mx-auto text-lg">A análise genômica do isolado HGPE-001-KPN revela um adversário de risco máximo. Ele pertence ao raro clone ST17 e carrega um arsenal genético que o torna resistente a quase todas as opções de tratamento disponíveis, representando o ápice da evolução da resistência antimicrobiana.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
+                    <span class="text-6xl font-black text-[#00A6FB]">ST17</span>
+                    <h3 class="text-xl font-bold mt-2">Sequence Type</h3>
+                    <p class="mt-1">Identificado como um clone raro, mas de altíssimo risco devido ao seu perfil de resistência extremo.</p>
+                </div>
+                
+                <div class="bg-red-50 border-2 border-red-500 rounded-lg shadow-lg p-6 lg:col-span-2">
+                    <h3 class="text-xl font-bold text-center mb-4 text-red-700">Dupla Ameaça: Coprodução de Carbapenemases</h3>
+                    <div class="flex items-center justify-center gap-4 text-center mt-4">
+                        <div class="bg-[#F34213] text-white p-4 rounded-lg shadow-md">
+                            <h4 class="text-2xl font-black">KPC-2</h4>
+                        </div>
+                        <div class="text-4xl font-black text-[#0E1C36]">+</div>
+                        <div class="bg-[#FFC914] text-[#0E1C36] p-4 rounded-lg shadow-md">
+                            <h4 class="text-2xl font-black">NDM-1</h4>
+                        </div>
+                    </div>
+                     <p class="text-center mt-4">Este é o achado mais crítico. A presença simultânea dos genes <code class="bg-gray-200 px-1 rounded">$bla_{KPC-2}$</code> e <code class="bg-gray-200 px-1 rounded">$bla_{NDM-1}$</code> cria um "buraco" na terapia, tornando o patógeno resistente tanto aos novos inibidores de β-lactamase quanto aos carbapenêmicos.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6 md:col-span-2 lg:col-span-3">
+                    <h3 class="text-xl font-bold text-center mb-2">O Resistoma Completo: Um Arsenal Genético Incomparável</h3>
+                    <p class="text-center max-w-3xl mx-auto mb-4">O isolado ST17 possui o maior número de genes de resistência (18 no total) de toda a coorte estudada. Este gráfico ilustra a diversidade de mecanismos que conferem resistência a múltiplas classes de antibióticos, explicando seu fenótipo de hiper-resistência.</p>
+                    <div class="chart-container max-w-4xl mx-auto h-96">
+                        <canvas id="resistomeBarChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenge" class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">O Impasse Terapêutico da Coprodução</h2>
+                <p class="max-w-3xl mx-auto text-lg">A coexistência de KPC-2 e NDM-1 em um único patógeno neutraliza as principais estratégias de tratamento para infecções por bactérias multirresistentes, criando um cenário de falha terapêutica em cascata.</p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6 overflow-x-auto">
+                <table class="w-full comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Antibiótico de Última Geração</th>
+                            <th>Ação contra KPC-2</th>
+                            <th>Ação contra NDM-1</th>
+                            <th class="bg-red-700">Resultado no Coprodutor (KPC+NDM)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-bold">Ceftazidima-Avibactam</td>
+                            <td class="text-green-600 font-bold text-3xl">✔</td>
+                            <td class="text-red-600 font-bold text-3xl">✘</td>
+                            <td class="text-red-600 font-bold text-3xl">✘ FALHA</td>
+                        </tr>
+                         <tr class="bg-gray-50">
+                            <td class="font-bold">Aztreonam</td>
+                            <td class="text-red-600 font-bold text-3xl">✘</td>
+                             <td class="text-green-600 font-bold text-3xl">✔</td>
+                            <td class="text-red-600 font-bold text-3xl">✘ FALHA</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mt-4 text-center text-sm">O Avibactam inibe a KPC, mas não a NDM. O Aztreonam não é afetado pela NDM, mas é destruído pela KPC. O resultado é a resistência a ambas as estratégias terapêuticas quando usadas isoladamente.</p>
+            </div>
+        </section>
+
+        <section id="context" class="mb-16">
+             <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">Contextualizando a Ameaça</h2>
+                <p class="max-w-3xl mx-auto text-lg">Embora o ST17 seja raro (apenas 1 isolado na coorte de 176), sua existência é um sinal de alerta da evolução contínua da resistência. Ele emerge de um cenário dominado por outros clones de alto risco, como o ST11.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-4">Distribuição de Clones na Coorte</h3>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="stDistributionPieChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 space-y-4">
+                     <h3 class="text-xl font-bold text-center mb-4">O Ecossistema da Resistência</h3>
+                     <div class="bg-[#00A6FB] bg-opacity-20 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg">ST11: O Clone Dominante</h4>
+                        <p>Representando 35.8% da coorte, o ST11 produtor de KPC é o "reservatório" endêmico. Ele estabelece a base para a resistência na região.</p>
+                    </div>
+                    <div class="bg-[#FFC914] bg-opacity-20 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg">Plasmídeos: Os Vetores da Resistência</h4>
+                        <p>Genes como <code class="bg-gray-200 px-1 rounded">$bla_{NDM-1}$</code> circulam em plasmídeos móveis, que podem ser transferidos para clones já estabelecidos, como o ST11.</p>
+                    </div>
+                     <div class="bg-[#F34213] bg-opacity-20 p-4 rounded-lg">
+                        <h4 class="font-bold text-lg">ST17: O Ponto de Convergência</h4>
+                        <p>O clone ST17 representa o resultado dessa convergência, onde múltiplos mecanismos de resistência se unem, criando uma superbactéria.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="action" class="mb-16">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold mb-2">Chamado à Ação: Vigilância e Controle</h2>
+                <p class="max-w-3xl mx-auto text-lg">A detecção de um isolado como o HGPE-001-KPN exige uma resposta imediata e coordenada, focada na contenção, no diagnóstico rápido e na vigilância genômica para prevenir a disseminação.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-5xl mb-4">🔬</div>
+                    <h3 class="text-xl font-bold mb-2">Vigilância Genômica</h3>
+                    <p>Implementar o sequenciamento de rotina para identificar rapidamente clones de alto risco e perfis de coprodução antes que causem surtos.</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="text-5xl mb-4">🏥</div>
+                    <h3 class="text-xl font-bold mb-2">Contenção Máxima</h3>
+                    <p>Isolamento de contato estrito, coortes de pacientes e investigação epidemiológica são mandatórios para qualquer paciente colonizado ou infectado com um coprodutor.</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                     <div class="text-5xl mb-4">💧</div>
+                    <h3 class="text-xl font-bold mb-2">Abordagem de Saúde Única</h3>
+                    <p>Monitorar águas residuais e o ambiente para detectar a presença e a disseminação desses patógenos fora dos hospitais, quebrando o ciclo de transmissão.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12 pt-8 border-t">
+            <p class="text-sm text-gray-500">Este infográfico é uma análise visual dos dados genômicos do isolado HGPE-001-KPN e sua contextualização epidemiológica.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const vibrantColors = {
+            blue: '#00A6FB',
+            red: '#F34213',
+            yellow: '#FFC914',
+            navy: '#0E1C36',
+            orange: '#FFA500',
+            gray: '#9CA3AF'
+        };
+
+        const resistomeData = {
+            'β-Lactâmicos': 4, 
+            'Aminoglicosídeos': 3, 
+            'Quinolonas': 2,
+            'Sulfonamidas': 2,
+            'Macrolídeos': 2,
+            'Fenicóis': 1,
+            'Tetraciclinas': 1,
+            'Rifamicina': 1,
+            'Fosfomicina': 1,
+            'Trimetoprim': 1
+        };
+        const resistomeLabels = Object.keys(resistomeData);
+        const resistomeValues = Object.values(resistomeData);
+        
+        new Chart(document.getElementById('resistomeBarChart'), {
+            type: 'bar',
+            data: {
+                labels: resistomeLabels,
+                datasets: [{
+                    label: 'Número de Genes de Resistência',
+                    data: resistomeValues,
+                    backgroundColor: [
+                        vibrantColors.blue, vibrantColors.red, vibrantColors.yellow, vibrantColors.orange, 
+                        vibrantColors.navy, vibrantColors.gray, '#4ade80', '#a78bfa', '#f472b6', '#22d3ee'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0)',
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        },
+                         title: {
+                            display: true,
+                            text: 'Contagem de Genes'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('stDistributionPieChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['ST11 (KPC)', 'ST16 (KPC)', 'ST258 (KPC)', 'ST17 (KPC+NDM)', 'Outros STs'],
+                datasets: [{
+                    label: 'Distribuição de Clones',
+                    data: [63, 51, 27, 1, 34], 
+                    backgroundColor: [vibrantColors.blue, vibrantColors.yellow, vibrantColors.orange, vibrantColors.red, vibrantColors.gray],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '50%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback,
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

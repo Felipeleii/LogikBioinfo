@@ -161,6 +161,390 @@
           </a>
         </div>
       </section>
+
+      <!-- Sección de Destacados del Portafolio -->
+      <section
+        id="portfolio-highlights"
+        class="py-20 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden"
+      >
+        <div class="absolute inset-0 opacity-5">
+          <div class="absolute top-20 left-10 w-72 h-72 bg-green-500 rounded-full blur-3xl"></div>
+          <div
+            class="absolute bottom-20 right-10 w-96 h-96 bg-blue-500 rounded-full blur-3xl"
+          ></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+          <div class="text-center mb-16">
+            <h2
+              class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4 flex items-center justify-center gap-3"
+            >
+              <span class="text-green-500"><i class="fas fa-images"></i></span>
+              Destacados del Portafolio
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+              Ejemplos de análisis y visualizaciones creadas para proyectos de microbiología,
+              virología y genómica bacteriana.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            <div class="gallery-item group cursor-pointer" onclick="openModal(0)">
+              <div
+                class="relative overflow-hidden rounded-xl shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-green-500/50 bg-white"
+              >
+                <div class="flex items-center justify-center h-64 lg:h-72 bg-white p-6">
+                  <img
+                    src="../img/portfolio/infografico_servicos.png"
+                    alt="Infográfico de servicios Logik Bioinfo"
+                    class="max-h-full max-w-full w-auto opacity-90 transition duration-300 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6 text-center z-10"
+                >
+                  <div class="w-full max-w-sm mx-auto">
+                    <h3
+                      class="text-white text-lg md:text-xl font-semibold tracking-wide uppercase mb-2"
+                    >
+                      Portafolio de Servicios
+                    </h3>
+                    <p class="text-gray-200 text-sm">Asesoría en Bioinformática</p>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-4 left-4 bg-green-500 text-white text-sm md:text-base font-semibold uppercase tracking-wide px-4 py-2 rounded-full shadow-xl z-20 flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-briefcase-medical"></i>
+                  Microbiología | Servicios Integrados
+                </div>
+                <div
+                  class="absolute top-4 right-4 bg-green-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                >
+                  <i class="fas fa-expand-alt"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery-item group cursor-pointer" onclick="openModal(1)">
+              <div
+                class="relative overflow-hidden rounded-xl shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-blue-500/50 bg-white"
+              >
+                <div class="flex items-center justify-center h-64 lg:h-72 bg-white p-6">
+                  <img
+                    src="../img/portfolio/analise_isabela.png"
+                    alt="Análisis genómico de resistencia antimicrobiana - ISAba1"
+                    class="max-h-full max-w-full w-auto opacity-90 transition duration-300 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6 text-center z-10"
+                >
+                  <div class="w-full max-w-sm mx-auto">
+                    <h3
+                      class="text-white text-lg md:text-xl font-semibold tracking-wide uppercase mb-2"
+                    >
+                      Análisis de Resistencia
+                    </h3>
+                    <p class="text-gray-200 text-sm">Mutaciones en genes ISAba1</p>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-4 left-4 bg-blue-500 text-white text-sm md:text-base font-semibold uppercase tracking-wide px-4 py-2 rounded-full shadow-xl z-20 flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-bacteria"></i>
+                  Microbiología | Bacteriología - Genómica
+                </div>
+                <div
+                  class="absolute top-4 right-4 bg-blue-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                >
+                  <i class="fas fa-expand-alt"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery-item group cursor-pointer" onclick="openModal(2)">
+              <div
+                class="relative overflow-hidden rounded-xl shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-purple-500/50 bg-white"
+              >
+                <div class="flex items-center justify-center h-64 lg:h-72 bg-white p-6">
+                  <img
+                    src="../img/portfolio/filogenia_linhagens.png"
+                    alt="Caracterización de linajes y relevancia clínica"
+                    class="max-h-full max-w-full w-auto opacity-90 transition duration-300 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6 text-center z-10"
+                >
+                  <div class="w-full max-w-sm mx-auto">
+                    <h3
+                      class="text-white text-lg md:text-xl font-semibold tracking-wide uppercase mb-2"
+                    >
+                      Análisis Filogenético
+                    </h3>
+                    <p class="text-gray-200 text-sm">Linajes vs. resistencia</p>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-4 left-4 bg-purple-500 text-white text-sm md:text-base font-semibold uppercase tracking-wide px-4 py-2 rounded-full shadow-xl z-20 flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-sitemap"></i>
+                  Microbiología | Filogenia Clínica
+                </div>
+                <div
+                  class="absolute top-4 right-4 bg-purple-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                >
+                  <i class="fas fa-expand-alt"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery-item group cursor-pointer" onclick="openModal(3)">
+              <div
+                class="relative overflow-hidden rounded-xl shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-green-500/50 bg-white"
+              >
+                <div class="flex items-center justify-center h-64 lg:h-72 bg-white p-6">
+                  <img
+                    src="../img/portfolio/covid_filogenia.png"
+                    alt="Análisis de filogenia y mutaciones del COVID-19"
+                    class="max-h-full max-w-full w-auto opacity-90 transition duration-300 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6 text-center z-10"
+                >
+                  <div class="w-full max-w-sm mx-auto">
+                    <h3
+                      class="text-white text-lg md:text-xl font-semibold tracking-wide uppercase mb-2"
+                    >
+                      Virología - SARS-CoV-2
+                    </h3>
+                    <p class="text-gray-200 text-sm">Filogenia y mutaciones del COVID-19</p>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-4 left-4 bg-amber-500 text-white text-sm md:text-base font-semibold uppercase tracking-wide px-4 py-2 rounded-full shadow-xl z-20 flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-virus"></i>
+                  Virología | SARS-CoV-2 - Filogenia
+                </div>
+                <div
+                  class="absolute top-4 right-4 bg-green-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                >
+                  <i class="fas fa-expand-alt"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery-item group cursor-pointer" onclick="openModal(4)">
+              <div
+                class="relative overflow-hidden rounded-xl shadow-2xl transform transition-all duration-300 group-hover:scale-105 group-hover:shadow-cyan-500/50 bg-white"
+              >
+                <div class="flex items-center justify-center h-64 lg:h-72 bg-white p-6">
+                  <img
+                    src="../img/portfolio/guias_microbiologia.png"
+                    alt="Guías ilustradas de procesamiento microbiológico"
+                    class="max-h-full max-w-full w-auto opacity-90 transition duration-300 group-hover:opacity-100"
+                    loading="lazy"
+                  />
+                </div>
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-6 text-center z-10"
+                >
+                  <div class="w-full max-w-sm mx-auto">
+                    <h3
+                      class="text-white text-lg md:text-xl font-semibold tracking-wide uppercase mb-2"
+                    >
+                      Guías Ilustradas
+                    </h3>
+                    <p class="text-gray-200 text-sm">Flujos de procesamiento microbiológico</p>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-4 left-4 bg-cyan-500 text-white text-sm md:text-base font-semibold uppercase tracking-wide px-4 py-2 rounded-full shadow-xl z-20 flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-diagram-project"></i>
+                  Microbiología | Flujos de Laboratorio
+                </div>
+                <div
+                  class="absolute top-4 right-4 bg-cyan-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                >
+                  <i class="fas fa-expand-alt"></i>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="gallery-item group cursor-pointer bg-gradient-to-br from-green-600 to-blue-600 rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105 flex items-center justify-center p-8 text-center"
+            >
+              <a
+                href="portfolio.html"
+                class="w-full h-full flex flex-col items-center justify-center"
+              >
+                <i class="fas fa-plus-circle text-6xl text-white mb-4"></i>
+                <h3 class="text-white font-bold text-2xl mb-2">Ver Portafolio Completo</h3>
+                <p class="text-gray-200 text-sm">Explora más ejemplos de nuestro trabajo</p>
+                <div class="mt-4 bg-white/20 px-6 py-2 rounded-full">
+                  <span class="text-white font-semibold">
+                    Acceder
+                    <i class="fas fa-arrow-right ml-2"></i>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div
+        id="imageModal"
+        class="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4"
+        onclick="closeModal()"
+      >
+        <button
+          onclick="closeModal()"
+          class="absolute top-4 right-4 text-white text-4xl bg-black/60 hover:bg-green-500/80 hover:text-white rounded-full p-3 shadow-2xl transition-colors z-60 focus:outline-none"
+          aria-label="Cerrar galería"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <button
+          onclick="prevImage(event)"
+          class="absolute left-4 text-white text-4xl bg-black/60 hover:bg-green-500/80 hover:text-white rounded-full p-3 shadow-2xl transition-colors z-60 focus:outline-none"
+          aria-label="Imagen anterior"
+        >
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button
+          onclick="nextImage(event)"
+          class="absolute right-4 text-white text-4xl bg-black/60 hover:bg-green-500/80 hover:text-white rounded-full p-3 shadow-2xl transition-colors z-60 focus:outline-none"
+          aria-label="Siguiente imagen"
+        >
+          <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="max-w-5xl w-full space-y-6" onclick="event.stopPropagation()">
+          <div class="bg-white rounded-2xl p-6 shadow-2xl">
+            <img
+              id="modalImage"
+              src=""
+              alt="Imagen del portafolio"
+              class="w-full h-auto max-h-[70vh] object-contain mx-auto"
+            />
+          </div>
+          <div class="text-center">
+            <p
+              id="modalCategory"
+              class="inline-block uppercase tracking-wide text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-lg mb-3"
+            ></p>
+            <h3 id="modalTitle" class="text-white text-2xl font-bold mb-2"></h3>
+            <p id="modalDescription" class="text-gray-300"></p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const galleryImages = [
+          {
+            src: '../img/portfolio/infografico_servicos.png',
+            title: 'Portafolio de Servicios',
+            description:
+              'Infográfico con una visión general de los servicios de bioinformática para proyectos académicos y aplicados',
+            category: 'Microbiología | Servicios Integrados',
+            badgeClass: 'bg-green-500 text-white',
+            badgeIcon: 'fa-briefcase-medical',
+          },
+          {
+            src: '../img/portfolio/analise_isabela.png',
+            title: 'Análisis de Resistencia Antimicrobiana',
+            description:
+              'Ilustración de mutaciones en genes de resistencia a antibióticos - ISAba1',
+            category: 'Microbiología | Bacteriología - Genómica',
+            badgeClass: 'bg-blue-500 text-white',
+            badgeIcon: 'fa-bacteria',
+          },
+          {
+            src: '../img/portfolio/filogenia_linhagens.png',
+            title: 'Análisis Filogenético y Epidemiológico',
+            description: 'Caracterización de linajes bacterianos y su relevancia clínica',
+            category: 'Microbiología | Filogenia Clínica',
+            badgeClass: 'bg-purple-500 text-white',
+            badgeIcon: 'fa-sitemap',
+          },
+          {
+            src: '../img/portfolio/covid_filogenia.png',
+            title: 'Virología - SARS-CoV-2',
+            description: 'Análisis de la filogenia y de las mutaciones del genoma del COVID-19',
+            category: 'Virología | SARS-CoV-2 - Filogenia',
+            badgeClass: 'bg-amber-500 text-white',
+            badgeIcon: 'fa-virus',
+          },
+          {
+            src: '../img/portfolio/guias_microbiologia.png',
+            title: 'Guías Ilustradas de Microbiología',
+            description: 'Material educativo para elaborar guías de procesamiento microbiológico',
+            category: 'Microbiología | Flujos de Laboratorio',
+            badgeClass: 'bg-cyan-500 text-white',
+            badgeIcon: 'fa-diagram-project',
+          },
+        ];
+
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+          currentImageIndex = index;
+          const modal = document.getElementById('imageModal');
+          const modalImg = document.getElementById('modalImage');
+          const modalTitle = document.getElementById('modalTitle');
+          const modalDescription = document.getElementById('modalDescription');
+          const modalCategory = document.getElementById('modalCategory');
+          const baseCategoryClasses =
+            'inline-block uppercase tracking-wide text-xs sm:text-sm font-semibold px-4 py-2 rounded-full shadow-lg mb-3';
+
+          modal.classList.remove('hidden');
+          modalImg.src = galleryImages[index].src;
+          modalTitle.textContent = galleryImages[index].title;
+          modalDescription.textContent = galleryImages[index].description;
+          modalCategory.innerHTML = `
+            <span class="inline-flex items-center gap-2">
+              <i class="fa-solid ${galleryImages[index].badgeIcon}"></i>
+              ${galleryImages[index].category}
+            </span>`;
+          modalCategory.className = `${baseCategoryClasses} ${galleryImages[index].badgeClass}`;
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+          const modal = document.getElementById('imageModal');
+          modal.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }
+
+        function nextImage(event) {
+          event.stopPropagation();
+          currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+          openModal(currentImageIndex);
+        }
+
+        function prevImage(event) {
+          event.stopPropagation();
+          currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+          openModal(currentImageIndex);
+        }
+
+        document.addEventListener('keydown', (e) => {
+          const modal = document.getElementById('imageModal');
+          if (!modal.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') nextImage(e);
+            if (e.key === 'ArrowLeft') prevImage(e);
+          }
+        });
+      </script>
     </main>
 
     <!-- Footer -->
@@ -180,6 +564,7 @@
           <a
             href="https://github.com/Felipeleii"
             target="_blank"
+            rel="noopener noreferrer"
             class="hover:text-green-400 transition-colors"
             title="GitHub"
           >
@@ -188,6 +573,7 @@
           <a
             href="https://www.linkedin.com/in/felipelei/"
             target="_blank"
+            rel="noopener noreferrer"
             class="hover:text-green-400 transition-colors"
             title="LinkedIn"
           >
@@ -196,6 +582,7 @@
           <a
             href="https://scholar.google.com/citations?user=0h7F7emPRFsC"
             target="_blank"
+            rel="noopener noreferrer"
             class="hover:text-green-400 transition-colors"
             title="Google Scholar"
           >
@@ -204,6 +591,7 @@
           <a
             href="https://wa.me/5511920045896"
             target="_blank"
+            rel="noopener noreferrer"
             class="hover:text-green-400 transition-colors"
             title="WhatsApp"
           >
