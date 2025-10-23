@@ -17,6 +17,7 @@ node_modules/
 slnx.sqlite
 .prettierrc
 .prettierignore
+.tmp.driveupload/
 
 # Portfolio development scripts (not needed in repo)
 portfolio/convert_pages.py
