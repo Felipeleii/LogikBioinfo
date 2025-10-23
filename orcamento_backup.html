@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="../favicon.png" />
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-    <title>Presupuesto | Logik Bioinfo</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Orçamento | Logik Bioinfo</title>
     <meta
       name="description"
       content="Calculadora de orçamento para serviços de bioinformática. Gere uma estimativa instantânea para o seu projeto."
@@ -48,27 +48,15 @@
         background-color: #1f2937;
       }
       input,
-      textarea,
-      select {
+      textarea {
         background-color: #111827;
         border-color: #374151;
-        color: #ffffff;
       }
       input:focus,
-      textarea:focus,
-      select:focus {
+      textarea:focus {
         border-color: #22c55e;
         outline: none;
         box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4);
-      }
-      /* Estilo para las opciones del select */
-      select option {
-        background-color: #1f2937;
-        color: #ffffff;
-        padding: 0.5rem;
-      }
-      select option:hover {
-        background-color: #374151;
       }
       .service-checkbox-label {
         background-color: #111827;
@@ -127,29 +115,27 @@
     <!-- Header -->
     <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
       <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="../index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+        <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-dna text-green-500"></i>
           Logik Bioinfo
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a href="../index.html" class="nav-link-hover transition duration-300">Inicio</a>
-          <a href="servicos.html" class="nav-link-hover transition duration-300">Servicios</a>
-          <a href="publicacoes.html" class="nav-link-hover transition duration-300">
-            Publicaciones
-          </a>
-          <a href="portfolio.html" class="nav-link-hover transition duration-300">Portafolio</a>
-          <a href="ferramentas.html" class="nav-link-hover transition duration-300">Herramientas</a>
+          <a href="index.html" class="nav-link-hover transition duration-300">Início</a>
+          <a href="servicos.html" class="nav-link-hover transition duration-300">Serviços</a>
+          <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publicações</a>
+          <a href="portfolio.html" class="nav-link-hover transition duration-300">Portfólio</a>
+          <a href="ferramentas.html" class="nav-link-hover transition duration-300">Ferramentas</a>
           <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
           <a href="orcamento.html" class="nav-link-hover transition duration-300 nav-link-active">
-            Presupuesto
+            Orçamento
           </a>
-          <a href="sobre.html" class="nav-link-hover transition duration-300">Acerca de</a>
-          <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quién Soy</a>
+          <a href="sobre.html" class="nav-link-hover transition duration-300">Sobre</a>
+          <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quem Sou Eu</a>
           <div class="language-selector">
             <span class="lang-divider">|</span>
-            <a href="../orcamento.html" class="lang-option" data-lang="pt">PT</a>
-            <a href="../en/orcamento.html" class="lang-option" data-lang="en">EN</a>
-            <a href="orcamento.html" class="lang-option active" data-lang="es">ES</a>
+            <a href="orcamento.html" class="lang-option active" data-lang="pt">PT</a>
+            <a href="en/orcamento.html" class="lang-option" data-lang="en">EN</a>
+            <a href="es/orcamento.html" class="lang-option" data-lang="es">ES</a>
           </div>
         </div>
         <div class="md:hidden">
@@ -159,28 +145,24 @@
         </div>
       </nav>
       <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-        <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Inicio</a>
-        <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Servicios</a>
-        <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
-          Publicaciones
-        </a>
-        <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portafolio</a>
-        <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
-          Herramientas
-        </a>
+        <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+        <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Serviços</a>
+        <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+        <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+        <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
         <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
         <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
-          Presupuesto
+          Orçamento
         </a>
-        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Acerca de</a>
-        <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quién Soy</a>
+        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+        <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quem Sou Eu</a>
 
         <div class="flex justify-center py-2 px-6 space-x-2">
-          <a href="../orcamento.html" class="lang-option text-sm" data-lang="pt">PT</a>
+          <a href="orcamento.html" class="lang-option active text-sm" data-lang="pt">PT</a>
           <span class="text-gray-600">|</span>
-          <a href="../en/orcamento.html" class="lang-option text-sm" data-lang="en">EN</a>
+          <a href="en/orcamento.html" class="lang-option text-sm" data-lang="en">EN</a>
           <span class="text-gray-600">|</span>
-          <a href="orcamento.html" class="lang-option active text-sm" data-lang="es">ES</a>
+          <a href="es/orcamento.html" class="lang-option text-sm" data-lang="es">ES</a>
         </div>
       </div>
     </header>
@@ -190,7 +172,7 @@
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
-              Calculadora de Presupuesto
+              Calculadora de Orçamento
             </h2>
           </div>
           <div class="max-w-4xl mx-auto form-card p-8 rounded-lg shadow-lg">
@@ -200,12 +182,12 @@
             </p>
             <form id="quote-form">
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
-                1. Detalles del Proyecto
+                1. Detalhes do Projeto
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label for="numSamples" class="block text-sm font-medium text-gray-300 mb-1">
-                    Número de Muestras *
+                    Número de Amostras *
                   </label>
                   <input
                     type="number"
@@ -218,24 +200,24 @@
                 </div>
                 <div>
                   <label for="projectType" class="block text-sm font-medium text-gray-300 mb-1">
-                    Tipo de Proyecto *
+                    Tipo de Projeto *
                   </label>
                   <select
                     id="projectType"
                     required
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   >
-                    <option value="">Seleccione...</option>
-                    <option value="academic">Académico (TFG, Maestría, Doctorado)</option>
-                    <option value="research">Investigación Científica</option>
-                    <option value="clinical">Análisis Clínico</option>
+                    <option value="">Selecione...</option>
+                    <option value="academic">Acadêmico (TCC, Mestrado, Doutorado)</option>
+                    <option value="research">Pesquisa Científica</option>
+                    <option value="clinical">Análise Clínica</option>
                     <option value="industrial">Industrial/Empresarial</option>
-                    <option value="other">Otro</option>
+                    <option value="other">Outro</option>
                   </select>
                 </div>
                 <div>
                   <label for="customerName" class="block text-sm font-medium text-gray-300 mb-1">
-                    Su Nombre / Institución *
+                    Seu Nome / Instituição *
                   </label>
                   <input
                     type="text"
@@ -246,7 +228,7 @@
                 </div>
                 <div>
                   <label for="customerEmail" class="block text-sm font-medium text-gray-300 mb-1">
-                    Su Email *
+                    Seu Email *
                   </label>
                   <input
                     type="email"
@@ -257,7 +239,7 @@
                 </div>
                 <div>
                   <label for="customerPhone" class="block text-sm font-medium text-gray-300 mb-1">
-                    Teléfono/WhatsApp *
+                    Telefone/WhatsApp *
                   </label>
                   <input
                     type="tel"
@@ -269,13 +251,13 @@
                 </div>
                 <div>
                   <label for="deadline" class="block text-sm font-medium text-gray-300 mb-1">
-                    Plazo Deseado
+                    Prazo Desejado
                   </label>
                   <select id="deadline" class="w-full p-2.5 rounded-lg border text-white text-sm">
-                    <option value="urgent">Urgente (hasta 7 días)</option>
-                    <option value="fast">Rápido (15 días)</option>
-                    <option value="normal" selected>Normal (30 días)</option>
-                    <option value="flexible">Flexible (45+ días)</option>
+                    <option value="urgent">Urgente (até 7 dias)</option>
+                    <option value="fast">Rápido (15 dias)</option>
+                    <option value="normal" selected>Normal (30 dias)</option>
+                    <option value="flexible">Flexível (45+ dias)</option>
                   </select>
                 </div>
               </div>
@@ -284,55 +266,43 @@
                   for="projectDescription"
                   class="block text-sm font-medium text-gray-300 mb-1"
                 >
-                  Descripción del Proyecto *
+                  Descrição do Projeto *
                 </label>
                 <textarea
                   id="projectDescription"
                   rows="4"
-                  placeholder="Describa sus objetivos, tipo de organismo, análisis esperados, etc..."
+                  placeholder="Descreva seus objetivos, tipo de organismo, análises esperadas, etc..."
                   required
                   class="w-full p-2.5 rounded-lg border text-white text-sm"
                 ></textarea>
               </div>
               <div class="mb-8">
                 <label for="dataAvailable" class="block text-sm font-medium text-gray-300 mb-1">
-                  Datos Disponibles
+                  Dados Disponíveis
                 </label>
                 <select
                   id="dataAvailable"
                   class="w-full p-2.5 rounded-lg border text-white text-sm"
                 >
-                  <option value="none">Aún no tengo datos</option>
-                  <option value="raw">Datos crudos (FASTQ)</option>
-                  <option value="assembled">Genomas ensamblados (FASTA)</option>
-                  <option value="analyzed">Datos ya analizados</option>
-                  <option value="other">Otro formato</option>
+                  <option value="none">Ainda não tenho dados</option>
+                  <option value="raw">Dados brutos (FASTQ)</option>
+                  <option value="assembled">Genomas montados (FASTA)</option>
+                  <option value="analyzed">Dados já analisados</option>
+                  <option value="other">Outro formato</option>
                 </select>
               </div>
 
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
-                2. Seleção de Servicios
+                2. Seleção de Serviços
               </h3>
-              <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"
-                id="servicesGrid"
-              ></div>
+              <div class="mb-8" id="servicesGrid"></div>
 
               <div
                 id="quoteResult"
                 class="bg-gray-900 border border-gray-700 rounded-lg p-6 hidden"
               >
-                <h3 class="text-xl font-bold text-green-500 mb-4">Resumen del Presupuesto</h3>
+                <h3 class="text-xl font-bold text-green-500 mb-4">Resumo do Orçamento</h3>
                 <div id="quoteServicesList" class="space-y-2"></div>
-                <div class="text-center mt-6 border-t border-gray-700 pt-4">
-                  <p class="text-gray-300 text-sm">
-                    Los valores serán informados después del análisis detallado del proyecto.
-                  </p>
-                  <p class="text-gray-300 text-sm mt-2">
-                    Contáctenos para recibir un presupuesto personalizado.
-                  </p>
-                </div>
-                <!-- Precios removidos temporalmente
                 <div class="text-right mt-6 border-t border-gray-700 pt-4">
                   <p class="text-gray-400">
                     Valor por Amostra:
@@ -343,7 +313,6 @@
                     <span id="totalPrice">R$ 0,00</span>
                   </p>
                 </div>
-                -->
               </div>
 
               <div
@@ -376,7 +345,7 @@
       <div class="container mx-auto px-6 py-8 text-center text-gray-400">
         <div class="mb-4">
           <a
-            href="../index.html"
+            href="index.html"
             class="text-xl font-bold text-white flex items-center justify-center gap-2"
           >
             <i class="fa-solid fa-dna text-green-500"></i>
@@ -428,7 +397,7 @@
         <p>
           &copy;
           <span id="current-year"></span>
-          Logik Bioinfo. Todos los derechos reservados.
+          Logik Bioinfo. Todos os direitos reservados.
         </p>
       </div>
     </footer>
@@ -439,7 +408,7 @@
       class="whatsapp-float"
       target="_blank"
       rel="noopener noreferrer"
-      title="Hable con nosotros por WhatsApp"
+      title="Fale conosco pelo WhatsApp"
     >
       <i class="fab fa-whatsapp"></i>
     </a>
@@ -453,155 +422,150 @@
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
-      // Presupuesto
+      // Orçamento
       const services = [
-        // Secuenciación
+        // Sequenciamento
         {
           id: 'seq_genomica',
-          name: 'Secuenciación - Genómica Completa',
+          name: 'Sequenciamento - Genômica Completa',
           price: 250,
-          category: 'Secuenciación',
+          category: 'Sequenciamento',
         },
         {
           id: 'seq_pangenoma',
-          name: 'Secuenciación - Pangenoma',
+          name: 'Sequenciamento - Pangenoma',
           price: 300,
-          category: 'Secuenciación',
+          category: 'Sequenciamento',
         },
         {
           id: 'seq_filogenia',
-          name: 'Secuenciación - Filogenia',
+          name: 'Sequenciamento - Filogenia',
           price: 250,
-          category: 'Secuenciación',
+          category: 'Sequenciamento',
         },
         {
           id: 'seq_metagenomics',
-          name: 'Secuenciación - Metagenómica',
+          name: 'Sequenciamento - Metagenômica',
           price: 350,
-          category: 'Secuenciación',
+          category: 'Sequenciamento',
         },
 
-        // Análisis Estadístico
+        // Análise Estatística
         {
           id: 'stat_r',
-          name: 'Análisis Estadístico en R',
+          name: 'Análise Estatística em R',
           price: 200,
-          category: 'Análisis Estadístico',
+          category: 'Análise Estatística',
         },
         {
           id: 'stat_hypothesis',
-          name: 'Pruebas de Hipótesis',
+          name: 'Testes de Hipóteses',
           price: 150,
-          category: 'Análisis Estadístico',
+          category: 'Análise Estatística',
         },
         {
           id: 'stat_modeling',
-          name: 'Modelado Estadístico',
+          name: 'Modelagem Estatística',
           price: 250,
-          category: 'Análisis Estadístico',
+          category: 'Análise Estatística',
         },
-        { id: 'stat_ml', name: 'Machine Learning', price: 300, category: 'Análisis Estadístico' },
+        { id: 'stat_ml', name: 'Machine Learning', price: 300, category: 'Análise Estatística' },
 
-        // Formateo y Referencias
-        { id: 'format_abnt', name: 'Formateo ABNT', price: 100, category: 'Formateo' },
-        { id: 'format_apa', name: 'Formateo APA', price: 100, category: 'Formateo' },
-        { id: 'format_zotero', name: 'Organización Zotero', price: 80, category: 'Formateo' },
-        { id: 'format_mendeley', name: 'Organización Mendeley', price: 80, category: 'Formateo' },
+        // Formatação e Referências
+        { id: 'format_abnt', name: 'Formatação ABNT', price: 100, category: 'Formatação' },
+        { id: 'format_apa', name: 'Formatação APA', price: 100, category: 'Formatação' },
+        { id: 'format_zotero', name: 'Organização Zotero', price: 80, category: 'Formatação' },
+        { id: 'format_mendeley', name: 'Organização Mendeley', price: 80, category: 'Formatação' },
 
-        // Envío de Datos
-        { id: 'submit_ncbi', name: 'Envío NCBI', price: 150, category: 'Envío de Datos' },
-        { id: 'submit_ena', name: 'Envío ENA', price: 150, category: 'Envío de Datos' },
+        // Submissão de Dados
+        { id: 'submit_ncbi', name: 'Submissão NCBI', price: 150, category: 'Submissão de Dados' },
+        { id: 'submit_ena', name: 'Submissão ENA', price: 150, category: 'Submissão de Dados' },
         {
           id: 'submit_public',
-          name: 'Envío Plataformas Públicas',
+          name: 'Submissão Plataformas Públicas',
           price: 120,
-          category: 'Envío de Datos',
+          category: 'Submissão de Dados',
         },
 
-        // Desarrollo de Pipelines
+        // Desenvolvimento de Pipelines
         {
           id: 'pipeline_custom',
-          name: 'Pipeline Personalizado',
+          name: 'Pipeline Customizado',
           price: 500,
-          category: 'Desarrollo',
+          category: 'Desenvolvimento',
         },
         {
           id: 'pipeline_automation',
-          name: 'Automatización de Análisis',
+          name: 'Automação de Análises',
           price: 400,
-          category: 'Desarrollo',
+          category: 'Desenvolvimento',
         },
         {
           id: 'pipeline_reproducible',
-          name: 'Pipeline Reproducible',
+          name: 'Pipeline Reprodutível',
           price: 350,
-          category: 'Desarrollo',
+          category: 'Desenvolvimento',
         },
 
-        // Preparación de Presentaciones
+        // Preparação de Apresentações
         {
           id: 'presentation_ppt',
-          name: 'Slides Profesionales PowerPoint',
+          name: 'Slides PowerPoint Profissionais',
           price: 200,
-          category: 'Presentaciones',
+          category: 'Apresentações',
         },
         {
           id: 'presentation_latex',
           name: 'Slides LaTeX (Beamer)',
           price: 250,
-          category: 'Presentaciones',
+          category: 'Apresentações',
         },
         {
           id: 'presentation_poster',
-          name: 'Póster Científico',
+          name: 'Pôster Científico',
           price: 180,
-          category: 'Presentaciones',
+          category: 'Apresentações',
         },
 
-        // Análisis Clásicos de Bioinformática
-        { id: 'qc', name: 'Control de Calidad (QC)', price: 50, category: 'Análisis Clásicos' },
-        { id: 'assembly', name: 'Ensamblaje de Genoma', price: 200, category: 'Análisis Clásicos' },
+        // Análises Clássicas de Bioinformática
+        { id: 'qc', name: 'Controle de Qualidade (QC)', price: 50, category: 'Análises Clássicas' },
+        { id: 'assembly', name: 'Assembly de Genoma', price: 200, category: 'Análises Clássicas' },
         {
           id: 'annotation',
-          name: 'Anotación Funcional',
+          name: 'Anotação Funcional',
           price: 150,
-          category: 'Análisis Clásicos',
+          category: 'Análises Clássicas',
         },
         {
           id: 'amr',
-          name: 'Análisis de Resistencia (AMR)',
+          name: 'Análise de Resistência (AMR)',
           price: 100,
-          category: 'Análisis Clásicos',
+          category: 'Análises Clássicas',
         },
         {
           id: 'virulence',
-          name: 'Factores de Virulencia',
+          name: 'Fatores de Virulência',
           price: 80,
-          category: 'Análisis Clásicos',
+          category: 'Análises Clássicas',
         },
-        {
-          id: 'mlst',
-          name: 'Tipificación Molecular (MLST)',
-          price: 75,
-          category: 'Análisis Clásicos',
-        },
+        { id: 'mlst', name: 'Tipagem Molecular (MLST)', price: 75, category: 'Análises Clássicas' },
         {
           id: 'phylogeny',
-          name: 'Análisis Filogenético',
+          name: 'Análise Filogenética',
           price: 250,
-          category: 'Análisis Clásicos',
+          category: 'Análises Clássicas',
         },
         {
           id: 'pangenome',
-          name: 'Análisis de Pangenoma',
+          name: 'Análise de Pangenoma',
           price: 300,
-          category: 'Análisis Clásicos',
+          category: 'Análises Clássicas',
         },
         {
           id: 'bactopia',
           name: 'Pipeline Bactopia Completo',
           price: 400,
-          category: 'Análisis Clásicos',
+          category: 'Análises Clássicas',
         },
       ];
       let currentQuoteData = null;
@@ -699,16 +663,16 @@
           selectedServices.size > 5 ? 'block' : 'none';
 
         currentQuoteData.number = 'LB' + Date.now().toString().slice(-6);
-        currentQuoteData.date = new Date().toLocaleDateString('es-ES');
+        currentQuoteData.date = new Date().toLocaleDateString('pt-BR');
         currentQuoteData.customer = {
           name: customerName,
           email: customerEmail,
           phone: customerPhone,
         };
+        currentQuoteData.numSamples = numSamples;
         currentQuoteData.projectType = projectType;
         currentQuoteData.deadline = document.getElementById('deadline').value;
         currentQuoteData.dataAvailable = document.getElementById('dataAvailable').value;
-        currentQuoteData.numSamples = numSamples;
         currentQuoteData.description = projectDescription;
         currentQuoteData.total = total;
       }
@@ -720,141 +684,116 @@
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        // Título
+        // Header
         doc.setFontSize(20);
-        doc.setTextColor('#22c55e');
-        doc.text('LogikBioinfo - Presupuesto', 14, 22);
+        doc.setTextColor(34, 197, 94);
+        doc.text('LogikBioinfo - Orçamento', 14, 22);
+
         doc.setFontSize(10);
         doc.setTextColor(150);
-        doc.text(
-          `Presupuesto #${currentQuoteData.number} | Fecha: ${currentQuoteData.date}`,
-          14,
-          30
-        );
+        doc.text(`Orçamento #${currentQuoteData.number} | Data: ${currentQuoteData.date}`, 14, 30);
 
-        // Información del Cliente
-        let y = 45;
-        doc.setFontSize(12);
+        // Customer Info
+        doc.setFontSize(11);
         doc.setTextColor(50);
-        doc.text('Cliente:', 14, y);
-        doc.setFontSize(10);
-        y += 7;
-        doc.text(`Nombre/Institución: ${currentQuoteData.customer.name}`, 14, y);
-        y += 6;
-        doc.text(`Email: ${currentQuoteData.customer.email}`, 14, y);
-        y += 6;
-        if (currentQuoteData.customer.phone) {
-          doc.text(`Teléfono: ${currentQuoteData.customer.phone}`, 14, y);
-          y += 6;
-        }
+        doc.setFont(undefined, 'bold');
+        doc.text('Cliente:', 14, 45);
+        doc.setFont(undefined, 'normal');
+        doc.text(currentQuoteData.customer.name, 14, 51);
+        doc.text(`Email: ${currentQuoteData.customer.email}`, 14, 57);
+        doc.text(`Telefone: ${currentQuoteData.customer.phone}`, 14, 63);
 
-        // Información del Proyecto
-        y += 5;
-        doc.setFontSize(12);
-        doc.setTextColor(50);
-        doc.text('Información del Proyecto:', 14, y);
-        doc.setFontSize(10);
-        y += 7;
-
+        // Project Info
         const projectTypeLabels = {
-          academic: 'Académico (TFG, Maestría, Doctorado)',
-          research: 'Investigación Científica',
-          clinical: 'Análisis Clínico',
+          academic: 'Acadêmico',
+          research: 'Pesquisa Científica',
+          clinical: 'Análise Clínica',
           industrial: 'Industrial/Empresarial',
-          other: 'Otro',
+          other: 'Outro',
         };
+        const deadlineLabels = {
+          urgent: 'Urgente (até 7 dias)',
+          fast: 'Rápido (15 dias)',
+          normal: 'Normal (30 dias)',
+          flexible: 'Flexível (45+ dias)',
+        };
+
+        doc.setFont(undefined, 'bold');
+        doc.text('Detalhes do Projeto:', 14, 75);
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(9);
         doc.text(
           `Tipo: ${
             projectTypeLabels[currentQuoteData.projectType] || currentQuoteData.projectType
           }`,
           14,
-          y
+          81
         );
-        y += 6;
+        doc.text(`Prazo: ${deadlineLabels[currentQuoteData.deadline]}`, 14, 86);
+        doc.text(`Amostras: ${currentQuoteData.numSamples}`, 14, 91);
 
-        const deadlineLabels = {
-          urgent: 'Urgente (hasta 7 días)',
-          fast: 'Rápido (15 días)',
-          normal: 'Normal (30 días)',
-          flexible: 'Flexible (45+ días)',
-        };
-        doc.text(
-          `Plazo: ${deadlineLabels[currentQuoteData.deadline] || currentQuoteData.deadline}`,
-          14,
-          y
-        );
-        y += 6;
+        // Description
+        doc.setFontSize(9);
+        const descLines = doc.splitTextToSize(`Descrição: ${currentQuoteData.description}`, 180);
+        doc.text(descLines, 14, 97);
 
-        doc.text(`Muestras: ${currentQuoteData.numSamples}`, 14, y);
-        y += 6;
-
-        if (currentQuoteData.description) {
-          doc.text('Descripción:', 14, y);
-          y += 6;
-          doc.setFontSize(9);
-          doc.setTextColor(80);
-          const descLines = doc.splitTextToSize(currentQuoteData.description, 180);
-          doc.text(descLines, 14, y);
-          y += descLines.length * 5 + 5;
-        }
-
-        // Verificar si necesita nueva página
-        if (y > 240) {
-          doc.addPage();
-          y = 20;
-        }
-
-        // Tabla de Servicios
-        y += 10;
-        doc.setFontSize(12);
-        doc.setTextColor(50);
-        doc.text('Servicios Solicitados:', 14, y);
-        y += 10;
-        doc.setFontSize(10);
-        doc.text('Servicio', 14, y);
-        doc.text('Cant.', 100, y);
-        doc.text('Valor Unit.', 140, y);
-        doc.text('Subtotal', 170, y);
-        y += 2;
-        doc.line(14, y, 196, y);
+        // Services Table
+        let y = 97 + descLines.length * 5 + 10;
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.text('Serviços Solicitados:', 14, y);
         y += 8;
 
+        doc.setFontSize(9);
+        doc.text('Serviço', 14, y);
+        doc.text('Qtd.', 110, y, { align: 'center' });
+        doc.text('Valor Unit.', 140, y, { align: 'center' });
+        doc.text('Subtotal', 180, y, { align: 'right' });
+        y += 2;
+        doc.line(14, y, 196, y);
+        y += 6;
+
+        doc.setFont(undefined, 'normal');
         currentQuoteData.services.forEach((service) => {
           if (y > 270) {
             doc.addPage();
             y = 20;
           }
-          doc.setFontSize(9);
-          doc.text(service.name, 14, y);
-          doc.text(currentQuoteData.numSamples.toString(), 105, y, { align: 'center' });
-          doc.text(`R$ ${service.price.toFixed(2)}`, 150, y, { align: 'center' });
-          doc.text(`R$ ${service.total.toFixed(2)}`, 183, y, { align: 'center' });
-          y += 7;
+          const serviceName = doc.splitTextToSize(service.name, 90);
+          doc.text(serviceName, 14, y);
+          doc.text(currentQuoteData.numSamples.toString(), 110, y, { align: 'center' });
+          doc.text(`R$ ${service.price.toFixed(2)}`, 140, y, { align: 'center' });
+          doc.text(`R$ ${service.total.toFixed(2)}`, 180, y, { align: 'right' });
+          y += serviceName.length * 5 + 3;
         });
 
-        y += 5;
+        // Total
+        y += 3;
         doc.line(14, y, 196, y);
         y += 8;
-        doc.setFontSize(12);
-        doc.setTextColor('#22c55e');
-        doc.text('TOTAL', 14, y);
-        doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 183, y, { align: 'center' });
+        doc.setFontSize(13);
+        doc.setFont(undefined, 'bold');
+        doc.text('Total do Orçamento:', 120, y);
+        doc.setTextColor(34, 197, 94);
+        doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 180, y, { align: 'right' });
 
-        // Pie de página
-        const pageCount = doc.internal.getNumberOfPages();
-        for (let i = 1; i <= pageCount; i++) {
-          doc.setPage(i);
-          doc.setFontSize(8);
-          doc.setTextColor(150);
-          doc.text(
-            'Asesoría en Bioinformática y Proyectos Académicos | contato@logikbioinfo.com.br | (11) 92004-5896',
-            105,
-            285,
-            { align: 'center' }
-          );
-        }
+        // Footer
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        doc.setFont(undefined, 'normal');
+        const footerY = 280;
+        doc.text(
+          'LogikBioinfo - Assessoria em Bioinformática e Projetos Acadêmicos',
+          105,
+          footerY,
+          { align: 'center' }
+        );
+        doc.text('contato@logikbioinfo.com.br | (11) 92004-5896', 105, footerY + 4, {
+          align: 'center',
+        });
+        doc.text('www.logikbioinfo.com.br', 105, footerY + 8, { align: 'center' });
 
-        doc.save(`presupuesto_logikbioinfo_${currentQuoteData.number}.pdf`);
+        doc.save(`orcamento-logikbioinfo-${currentQuoteData.number}.pdf`);
       });
 
       document.addEventListener('DOMContentLoaded', renderServices);

@@ -48,15 +48,27 @@
         background-color: #1f2937;
       }
       input,
-      textarea {
+      textarea,
+      select {
         background-color: #111827;
         border-color: #374151;
+        color: #ffffff;
       }
       input:focus,
-      textarea:focus {
+      textarea:focus,
+      select:focus {
         border-color: #22c55e;
         outline: none;
         box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4);
+      }
+      /* Estilo para as opções do select */
+      select option {
+        background-color: #1f2937;
+        color: #ffffff;
+        padding: 0.5rem;
+      }
+      select option:hover {
+        background-color: #374151;
       }
       .service-checkbox-label {
         background-color: #111827;
@@ -303,6 +315,15 @@
               >
                 <h3 class="text-xl font-bold text-green-500 mb-4">Resumo do Orçamento</h3>
                 <div id="quoteServicesList" class="space-y-2"></div>
+                <div class="text-center mt-6 border-t border-gray-700 pt-4">
+                  <p class="text-gray-300 text-sm">
+                    Os valores serão informados após análise detalhada do projeto.
+                  </p>
+                  <p class="text-gray-300 text-sm mt-2">
+                    Entre em contato conosco para receber um orçamento personalizado.
+                  </p>
+                </div>
+                <!-- Preços removidos temporariamente
                 <div class="text-right mt-6 border-t border-gray-700 pt-4">
                   <p class="text-gray-400">
                     Valor por Amostra:
@@ -313,6 +334,7 @@
                     <span id="totalPrice">R$ 0,00</span>
                   </p>
                 </div>
+                -->
               </div>
 
               <div
@@ -641,9 +663,8 @@
           if (selectedServices.has(service.id)) {
             pricePerSample += service.price;
             const serviceTotal = service.price * numSamples;
-            listHtml += `<div class="flex justify-between items-center text-sm"><span class="text-gray-300">${
-              service.name
-            }</span><span class="font-semibold">R$ ${serviceTotal.toFixed(2)}</span></div>`;
+            // Removido exibição de preços - somente lista de serviços
+            listHtml += `<div class="flex justify-between items-center text-sm"><span class="text-gray-300">${service.name}</span><span class="text-green-400"><i class="fas fa-check"></i></span></div>`;
             currentQuoteData.services.push({
               name: service.name,
               price: service.price,
@@ -654,8 +675,9 @@
 
         const total = pricePerSample * numSamples;
         document.getElementById('quoteServicesList').innerHTML = listHtml;
-        document.getElementById('pricePerSample').textContent = `R$ ${pricePerSample.toFixed(2)}`;
-        document.getElementById('totalPrice').textContent = `R$ ${total.toFixed(2)}`;
+        // Preços removidos temporariamente
+        // document.getElementById('pricePerSample').textContent = `R$ ${pricePerSample.toFixed(2)}`;
+        // document.getElementById('totalPrice').textContent = `R$ ${total.toFixed(2)}`;
         quoteResult.classList.remove('hidden');
         downloadBtn.disabled = false;
 
@@ -746,9 +768,7 @@
 
         doc.setFontSize(9);
         doc.text('Serviço', 14, y);
-        doc.text('Qtd.', 110, y, { align: 'center' });
-        doc.text('Valor Unit.', 140, y, { align: 'center' });
-        doc.text('Subtotal', 180, y, { align: 'right' });
+        doc.text('Qtd.', 140, y, { align: 'center' });
         y += 2;
         doc.line(14, y, 196, y);
         y += 6;
@@ -759,23 +779,25 @@
             doc.addPage();
             y = 20;
           }
-          const serviceName = doc.splitTextToSize(service.name, 90);
+          const serviceName = doc.splitTextToSize(service.name, 140);
           doc.text(serviceName, 14, y);
-          doc.text(currentQuoteData.numSamples.toString(), 110, y, { align: 'center' });
-          doc.text(`R$ ${service.price.toFixed(2)}`, 140, y, { align: 'center' });
-          doc.text(`R$ ${service.total.toFixed(2)}`, 180, y, { align: 'right' });
+          doc.text(currentQuoteData.numSamples.toString(), 140, y, { align: 'center' });
           y += serviceName.length * 5 + 3;
         });
 
-        // Total
-        y += 3;
+        // Nota sobre valores
+        y += 5;
         doc.line(14, y, 196, y);
         y += 8;
-        doc.setFontSize(13);
+        doc.setFontSize(10);
         doc.setFont(undefined, 'bold');
-        doc.text('Total do Orçamento:', 120, y);
         doc.setTextColor(34, 197, 94);
-        doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 180, y, { align: 'right' });
+        doc.text('Valores serão informados após análise detalhada', 14, y);
+        y += 6;
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(100);
+        doc.text('Entre em contato conosco para receber um orçamento personalizado.', 14, y);
 
         // Footer
         doc.setFontSize(8);

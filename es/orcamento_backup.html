@@ -48,27 +48,15 @@
         background-color: #1f2937;
       }
       input,
-      textarea,
-      select {
+      textarea {
         background-color: #111827;
         border-color: #374151;
-        color: #ffffff;
       }
       input:focus,
-      textarea:focus,
-      select:focus {
+      textarea:focus {
         border-color: #22c55e;
         outline: none;
         box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4);
-      }
-      /* Estilo para las opciones del select */
-      select option {
-        background-color: #1f2937;
-        color: #ffffff;
-        padding: 0.5rem;
-      }
-      select option:hover {
-        background-color: #374151;
       }
       .service-checkbox-label {
         background-color: #111827;
@@ -322,17 +310,8 @@
                 id="quoteResult"
                 class="bg-gray-900 border border-gray-700 rounded-lg p-6 hidden"
               >
-                <h3 class="text-xl font-bold text-green-500 mb-4">Resumen del Presupuesto</h3>
+                <h3 class="text-xl font-bold text-green-500 mb-4">Resumo do Presupuesto</h3>
                 <div id="quoteServicesList" class="space-y-2"></div>
-                <div class="text-center mt-6 border-t border-gray-700 pt-4">
-                  <p class="text-gray-300 text-sm">
-                    Los valores serán informados después del análisis detallado del proyecto.
-                  </p>
-                  <p class="text-gray-300 text-sm mt-2">
-                    Contáctenos para recibir un presupuesto personalizado.
-                  </p>
-                </div>
-                <!-- Precios removidos temporalmente
                 <div class="text-right mt-6 border-t border-gray-700 pt-4">
                   <p class="text-gray-400">
                     Valor por Amostra:
@@ -343,7 +322,6 @@
                     <span id="totalPrice">R$ 0,00</span>
                   </p>
                 </div>
-                -->
               </div>
 
               <div
