@@ -119,9 +119,109 @@
       .lang-divider {
         color: #4b5563;
       }
+      /* Animated DNA Background */
+      .dna-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.03;
+        pointer-events: none;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .dna-helix {
+        animation: rotate 60s linear infinite;
+      }
+      .bacteria {
+        animation: float 8s ease-in-out infinite;
+      }
     </style>
   </head>
   <body class="text-gray-200">
+    <!-- Animated DNA Background -->
+    <div class="dna-background">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="dna-pattern"
+            x="0"
+            y="0"
+            width="200"
+            height="200"
+            patternUnits="userSpaceOnUse"
+          >
+            <g class="dna-helix">
+              <circle cx="50" cy="50" r="8" fill="#22c55e" opacity="0.6" />
+              <circle cx="150" cy="50" r="8" fill="#3b82f6" opacity="0.6" />
+              <circle cx="100" cy="100" r="8" fill="#22c55e" opacity="0.6" />
+              <circle cx="50" cy="150" r="8" fill="#3b82f6" opacity="0.6" />
+              <circle cx="150" cy="150" r="8" fill="#22c55e" opacity="0.6" />
+              <line
+                x1="50"
+                y1="50"
+                x2="150"
+                y2="50"
+                stroke="#22c55e"
+                stroke-width="2"
+                opacity="0.4"
+              />
+              <line
+                x1="100"
+                y1="100"
+                x2="100"
+                y2="100"
+                stroke="#3b82f6"
+                stroke-width="2"
+                opacity="0.4"
+              />
+              <line
+                x1="50"
+                y1="150"
+                x2="150"
+                y2="150"
+                stroke="#22c55e"
+                stroke-width="2"
+                opacity="0.4"
+              />
+            </g>
+          </pattern>
+          <pattern
+            id="bacteria-pattern"
+            x="0"
+            y="0"
+            width="300"
+            height="300"
+            patternUnits="userSpaceOnUse"
+          >
+            <g class="bacteria">
+              <ellipse cx="80" cy="80" rx="25" ry="15" fill="#22c55e" opacity="0.5" />
+              <ellipse cx="220" cy="150" rx="20" ry="12" fill="#3b82f6" opacity="0.5" />
+              <ellipse cx="150" cy="250" rx="22" ry="14" fill="#10b981" opacity="0.5" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dna-pattern)" />
+        <rect width="100%" height="100%" fill="url(#bacteria-pattern)" />
+      </svg>
+    </div>
     <!-- Header -->
     <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
       <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -140,7 +240,6 @@
           <a href="sobre.html" class="nav-link-hover transition duration-300 nav-link-active">
             Sobre
           </a>
-          <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quem Sou Eu</a>
           <div class="language-selector">
             <span class="lang-divider">|</span>
             <a href="sobre.html" class="lang-option active" data-lang="pt">PT</a>
@@ -165,7 +264,6 @@
         <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
           Sobre
         </a>
-        <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quem Sou Eu</a>
 
         <div class="flex justify-center py-2 px-6 space-x-2">
           <a href="sobre.html" class="lang-option active text-sm" data-lang="pt">PT</a>
@@ -260,7 +358,7 @@
                 </p>
                 <p>
                   Atualmente sou
-                  <span class="text-purple-400 font-semibold">doutorando na UNIFESP</span>
+                  <span class="text-white font-semibold">doutorando na UNIFESP</span>
                   , vinculado ao Laboratório ALERTA, com foco em resistência antimicrobiana, e atuo
                   como Research Assistant no Clinical Virology Laboratory da mesma instituição.
                 </p>
