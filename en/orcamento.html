@@ -543,29 +543,37 @@
       let currentQuoteData = null;
 
       function renderServices() {
-        const categories = [...new Set(services.map(s => s.category))];
+        const categories = [...new Set(services.map((s) => s.category))];
         let html = '';
-        
-        categories.forEach(category => {
-          const categoryServices = services.filter(s => s.category === category);
+
+        categories.forEach((category) => {
+          const categoryServices = services.filter((s) => s.category === category);
           html += `<div class="col-span-full mb-6">
             <h4 class="text-lg font-bold text-green-400 mb-3 border-b border-gray-700 pb-2">
               ${category}
             </h4>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-              ${categoryServices.map(s => `
-                <label for="service_${s.id}" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
-                  <input type="checkbox" id="service_${s.id}" value="${s.id}" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
+              ${categoryServices
+                .map(
+                  (s) => `
+                <label for="service_${
+                  s.id
+                }" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
+                  <input type="checkbox" id="service_${s.id}" value="${
+                    s.id
+                  }" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
                   <span class="flex-1">
                     <strong class="text-sm">${s.name}</strong><br>
                     <span class="text-green-400 text-sm">R$ ${s.price.toFixed(2)}</span>
                   </span>
                 </label>
-              `).join('')}
+              `
+                )
+                .join('')}
             </div>
           </div>`;
         });
-        
+
         document.getElementById('servicesGrid').innerHTML = html;
       }
 
@@ -582,7 +590,15 @@
           Array.from(document.querySelectorAll('.service-checkbox:checked')).map((cb) => cb.value)
         );
 
-        if (selectedServices.size === 0 || numSamples < 1 || !customerName || !customerEmail || !customerPhone || !projectType || !projectDescription) {
+        if (
+          selectedServices.size === 0 ||
+          numSamples < 1 ||
+          !customerName ||
+          !customerEmail ||
+          !customerPhone ||
+          !projectType ||
+          !projectDescription
+        ) {
           quoteResult.classList.add('hidden');
           downloadBtn.disabled = true;
           currentQuoteData = null;
@@ -639,16 +655,16 @@
         if (!currentQuoteData) return;
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
-        
+
         // Header
         doc.setFontSize(20);
         doc.setTextColor(34, 197, 94);
         doc.text('LogikBioinfo - Budget', 14, 22);
-        
+
         doc.setFontSize(10);
         doc.setTextColor(150);
         doc.text(`Budget #${currentQuoteData.number} | Date: ${currentQuoteData.date}`, 14, 30);
-        
+
         // Customer Info
         doc.setFontSize(11);
         doc.setTextColor(50);
@@ -658,42 +674,48 @@
         doc.text(currentQuoteData.customer.name, 14, 51);
         doc.text(`Email: ${currentQuoteData.customer.email}`, 14, 57);
         doc.text(`Phone: ${currentQuoteData.customer.phone}`, 14, 63);
-        
+
         // Project Info
         const projectTypeLabels = {
-          'academic': 'Academic',
-          'research': 'Scientific Research',
-          'clinical': 'Clinical Analysis',
-          'industrial': 'Industrial/Business',
-          'other': 'Other'
+          academic: 'Academic',
+          research: 'Scientific Research',
+          clinical: 'Clinical Analysis',
+          industrial: 'Industrial/Business',
+          other: 'Other',
         };
         const deadlineLabels = {
-          'urgent': 'Urgent (up to 7 days)',
-          'fast': 'Fast (15 days)',
-          'normal': 'Normal (30 days)',
-          'flexible': 'Flexible (45+ days)'
+          urgent: 'Urgent (up to 7 days)',
+          fast: 'Fast (15 days)',
+          normal: 'Normal (30 days)',
+          flexible: 'Flexible (45+ days)',
         };
-        
+
         doc.setFont(undefined, 'bold');
         doc.text('Project Details:', 14, 75);
         doc.setFont(undefined, 'normal');
         doc.setFontSize(9);
-        doc.text(`Type: ${projectTypeLabels[currentQuoteData.projectType] || currentQuoteData.projectType}`, 14, 81);
+        doc.text(
+          `Type: ${
+            projectTypeLabels[currentQuoteData.projectType] || currentQuoteData.projectType
+          }`,
+          14,
+          81
+        );
         doc.text(`Deadline: ${deadlineLabels[currentQuoteData.deadline]}`, 14, 86);
         doc.text(`Samples: ${currentQuoteData.numSamples}`, 14, 91);
-        
+
         // Description
         doc.setFontSize(9);
         const descLines = doc.splitTextToSize(`Description: ${currentQuoteData.description}`, 180);
         doc.text(descLines, 14, 97);
-        
+
         // Services Table
-        let y = 97 + (descLines.length * 5) + 10;
+        let y = 97 + descLines.length * 5 + 10;
         doc.setFontSize(11);
         doc.setFont(undefined, 'bold');
         doc.text('Requested Services:', 14, y);
         y += 8;
-        
+
         doc.setFontSize(9);
         doc.text('Service', 14, y);
         doc.text('Qty.', 110, y, { align: 'center' });
@@ -702,7 +724,7 @@
         y += 2;
         doc.line(14, y, 196, y);
         y += 6;
-        
+
         doc.setFont(undefined, 'normal');
         currentQuoteData.services.forEach((service) => {
           if (y > 270) {
@@ -716,7 +738,7 @@
           doc.text(`R$ ${service.total.toFixed(2)}`, 180, y, { align: 'right' });
           y += serviceName.length * 5 + 3;
         });
-        
+
         // Total
         y += 3;
         doc.line(14, y, 196, y);
@@ -726,16 +748,20 @@
         doc.text('Budget Total:', 120, y);
         doc.setTextColor(34, 197, 94);
         doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 180, y, { align: 'right' });
-        
+
         // Footer
         doc.setFontSize(8);
         doc.setTextColor(100);
         doc.setFont(undefined, 'normal');
         const footerY = 280;
-        doc.text('LogikBioinfo - Bioinformatics Consulting and Academic Projects', 105, footerY, { align: 'center' });
-        doc.text('contato@logikbioinfo.com.br | (11) 92004-5896', 105, footerY + 4, { align: 'center' });
+        doc.text('LogikBioinfo - Bioinformatics Consulting and Academic Projects', 105, footerY, {
+          align: 'center',
+        });
+        doc.text('contato@logikbioinfo.com.br | (11) 92004-5896', 105, footerY + 4, {
+          align: 'center',
+        });
         doc.text('www.logikbioinfo.com.br', 105, footerY + 8, { align: 'center' });
-        
+
         doc.save(`budget-logikbioinfo-${currentQuoteData.number}.pdf`);
       });
 
