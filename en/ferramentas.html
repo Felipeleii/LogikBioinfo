@@ -1142,7 +1142,7 @@
 
           outputCode.textContent = combinedFasta;
           outputContainer.style.display = 'block';
-          
+
           // Create automatic download
           const blob = new Blob([combinedFasta], { type: 'text/plain' });
           const url = URL.createObjectURL(blob);
@@ -1166,7 +1166,7 @@
             return;
           }
 
-          const lines = sraData.split('\n').filter(line => line.trim());
+          const lines = sraData.split('\n').filter((line) => line.trim());
           let script = '#!/bin/bash\n\n';
           script += '# Automatically generated script for SRA data download\n';
           script += '# Make sure you have SRA Toolkit installed\n\n';
