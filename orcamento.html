@@ -199,6 +199,23 @@
                   />
                 </div>
                 <div>
+                  <label for="projectType" class="block text-sm font-medium text-gray-300 mb-1">
+                    Tipo de Projeto *
+                  </label>
+                  <select
+                    id="projectType"
+                    required
+                    class="w-full p-2.5 rounded-lg border text-white text-sm"
+                  >
+                    <option value="">Selecione...</option>
+                    <option value="academic">Acadêmico (TCC, Mestrado, Doutorado)</option>
+                    <option value="research">Pesquisa Científica</option>
+                    <option value="clinical">Análise Clínica</option>
+                    <option value="industrial">Industrial/Empresarial</option>
+                    <option value="other">Outro</option>
+                  </select>
+                </div>
+                <div>
                   <label for="customerName" class="block text-sm font-medium text-gray-300 mb-1">
                     Seu Nome / Instituição *
                   </label>
@@ -222,13 +239,29 @@
                 </div>
                 <div>
                   <label for="customerPhone" class="block text-sm font-medium text-gray-300 mb-1">
-                    Telefone (Opcional)
+                    Telefone/WhatsApp *
                   </label>
                   <input
                     type="tel"
                     id="customerPhone"
+                    placeholder="(11) 92004-5896"
+                    required
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   />
+                </div>
+                <div>
+                  <label for="deadline" class="block text-sm font-medium text-gray-300 mb-1">
+                    Prazo Desejado
+                  </label>
+                  <select
+                    id="deadline"
+                    class="w-full p-2.5 rounded-lg border text-white text-sm"
+                  >
+                    <option value="urgent">Urgente (até 7 dias)</option>
+                    <option value="fast">Rápido (15 dias)</option>
+                    <option value="normal" selected>Normal (30 dias)</option>
+                    <option value="flexible">Flexível (45+ dias)</option>
+                  </select>
                 </div>
               </div>
               <div class="mb-8">
@@ -236,23 +269,36 @@
                   for="projectDescription"
                   class="block text-sm font-medium text-gray-300 mb-1"
                 >
-                  Breve Descrição (Opcional)
+                  Descrição do Projeto *
                 </label>
                 <textarea
                   id="projectDescription"
-                  rows="3"
-                  placeholder="Descreva seus objetivos..."
+                  rows="4"
+                  placeholder="Descreva seus objetivos, tipo de organismo, análises esperadas, etc..."
+                  required
                   class="w-full p-2.5 rounded-lg border text-white text-sm"
                 ></textarea>
+              </div>
+              <div class="mb-8">
+                <label for="dataAvailable" class="block text-sm font-medium text-gray-300 mb-1">
+                  Dados Disponíveis
+                </label>
+                <select
+                  id="dataAvailable"
+                  class="w-full p-2.5 rounded-lg border text-white text-sm"
+                >
+                  <option value="none">Ainda não tenho dados</option>
+                  <option value="raw">Dados brutos (FASTQ)</option>
+                  <option value="assembled">Genomas montados (FASTA)</option>
+                  <option value="analyzed">Dados já analisados</option>
+                  <option value="other">Outro formato</option>
+                </select>
               </div>
 
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
                 2. Seleção de Serviços
               </h3>
-              <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"
-                id="servicesGrid"
-              ></div>
+              <div class="mb-8" id="servicesGrid"></div>
 
               <div
                 id="quoteResult"
@@ -381,35 +427,77 @@
 
       // Orçamento
       const services = [
-        { id: 'qc', name: 'Controle de Qualidade (QC)', price: 50 },
-        { id: 'assembly', name: 'Assembly de Genoma', price: 200 },
-        { id: 'annotation', name: 'Anotação Funcional', price: 150 },
-        { id: 'amr', name: 'Análise de Resistência (AMR)', price: 100 },
-        { id: 'virulence', name: 'Fatores de Virulência', price: 80 },
-        { id: 'mlst', name: 'Tipagem Molecular (MLST)', price: 75 },
-        { id: 'phylogeny', name: 'Análise Filogenética', price: 250 },
-        { id: 'pangenome', name: 'Análise de Pangenoma', price: 300 },
-        { id: 'bactopia', name: 'Pipeline Bactopia Completo', price: 400 },
+        // Sequenciamento
+        { id: 'seq_genomica', name: 'Sequenciamento - Genômica Completa', price: 250, category: 'Sequenciamento' },
+        { id: 'seq_pangenoma', name: 'Sequenciamento - Pangenoma', price: 300, category: 'Sequenciamento' },
+        { id: 'seq_filogenia', name: 'Sequenciamento - Filogenia', price: 250, category: 'Sequenciamento' },
+        { id: 'seq_metagenomics', name: 'Sequenciamento - Metagenômica', price: 350, category: 'Sequenciamento' },
+        
+        // Análise Estatística
+        { id: 'stat_r', name: 'Análise Estatística em R', price: 200, category: 'Análise Estatística' },
+        { id: 'stat_hypothesis', name: 'Testes de Hipóteses', price: 150, category: 'Análise Estatística' },
+        { id: 'stat_modeling', name: 'Modelagem Estatística', price: 250, category: 'Análise Estatística' },
+        { id: 'stat_ml', name: 'Machine Learning', price: 300, category: 'Análise Estatística' },
+        
+        // Formatação e Referências
+        { id: 'format_abnt', name: 'Formatação ABNT', price: 100, category: 'Formatação' },
+        { id: 'format_apa', name: 'Formatação APA', price: 100, category: 'Formatação' },
+        { id: 'format_zotero', name: 'Organização Zotero', price: 80, category: 'Formatação' },
+        { id: 'format_mendeley', name: 'Organização Mendeley', price: 80, category: 'Formatação' },
+        
+        // Submissão de Dados
+        { id: 'submit_ncbi', name: 'Submissão NCBI', price: 150, category: 'Submissão de Dados' },
+        { id: 'submit_ena', name: 'Submissão ENA', price: 150, category: 'Submissão de Dados' },
+        { id: 'submit_public', name: 'Submissão Plataformas Públicas', price: 120, category: 'Submissão de Dados' },
+        
+        // Desenvolvimento de Pipelines
+        { id: 'pipeline_custom', name: 'Pipeline Customizado', price: 500, category: 'Desenvolvimento' },
+        { id: 'pipeline_automation', name: 'Automação de Análises', price: 400, category: 'Desenvolvimento' },
+        { id: 'pipeline_reproducible', name: 'Pipeline Reprodutível', price: 350, category: 'Desenvolvimento' },
+        
+        // Preparação de Apresentações
+        { id: 'presentation_ppt', name: 'Slides PowerPoint Profissionais', price: 200, category: 'Apresentações' },
+        { id: 'presentation_latex', name: 'Slides LaTeX (Beamer)', price: 250, category: 'Apresentações' },
+        { id: 'presentation_poster', name: 'Pôster Científico', price: 180, category: 'Apresentações' },
+        
+        // Análises Clássicas de Bioinformática
+        { id: 'qc', name: 'Controle de Qualidade (QC)', price: 50, category: 'Análises Clássicas' },
+        { id: 'assembly', name: 'Assembly de Genoma', price: 200, category: 'Análises Clássicas' },
+        { id: 'annotation', name: 'Anotação Funcional', price: 150, category: 'Análises Clássicas' },
+        { id: 'amr', name: 'Análise de Resistência (AMR)', price: 100, category: 'Análises Clássicas' },
+        { id: 'virulence', name: 'Fatores de Virulência', price: 80, category: 'Análises Clássicas' },
+        { id: 'mlst', name: 'Tipagem Molecular (MLST)', price: 75, category: 'Análises Clássicas' },
+        { id: 'phylogeny', name: 'Análise Filogenética', price: 250, category: 'Análises Clássicas' },
+        { id: 'pangenome', name: 'Análise de Pangenoma', price: 300, category: 'Análises Clássicas' },
+        { id: 'bactopia', name: 'Pipeline Bactopia Completo', price: 400, category: 'Análises Clássicas' },
       ];
       let currentQuoteData = null;
 
       function renderServices() {
-        document.getElementById('servicesGrid').innerHTML = services
-          .map(
-            (s) =>
-              `<label for="service_${
-                s.id
-              }" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition"><input type="checkbox" id="service_${
-                s.id
-              }" value="${
-                s.id
-              }" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500"><span><strong>${
-                s.name
-              }</strong><br><span class="text-green-400">R$${s.price.toFixed(
-                2
-              )}</span></span></label>`
-          )
-          .join('');
+        const categories = [...new Set(services.map(s => s.category))];
+        let html = '';
+        
+        categories.forEach(category => {
+          const categoryServices = services.filter(s => s.category === category);
+          html += `<div class="col-span-full mb-6">
+            <h4 class="text-lg font-bold text-green-400 mb-3 border-b border-gray-700 pb-2">
+              ${category}
+            </h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              ${categoryServices.map(s => `
+                <label for="service_${s.id}" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
+                  <input type="checkbox" id="service_${s.id}" value="${s.id}" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
+                  <span class="flex-1">
+                    <strong class="text-sm">${s.name}</strong><br>
+                    <span class="text-green-400 text-sm">R$ ${s.price.toFixed(2)}</span>
+                  </span>
+                </label>
+              `).join('')}
+            </div>
+          </div>`;
+        });
+        
+        document.getElementById('servicesGrid').innerHTML = html;
       }
 
       function updateQuote() {
@@ -418,11 +506,14 @@
         const downloadBtn = document.getElementById('downloadPdfBtn');
         const customerName = document.getElementById('customerName').value;
         const customerEmail = document.getElementById('customerEmail').value;
+        const customerPhone = document.getElementById('customerPhone').value;
+        const projectType = document.getElementById('projectType').value;
+        const projectDescription = document.getElementById('projectDescription').value;
         const selectedServices = new Set(
           Array.from(document.querySelectorAll('.service-checkbox:checked')).map((cb) => cb.value)
         );
 
-        if (selectedServices.size === 0 || numSamples < 1 || !customerName || !customerEmail) {
+        if (selectedServices.size === 0 || numSamples < 1 || !customerName || !customerEmail || !customerPhone || !projectType || !projectDescription) {
           quoteResult.classList.add('hidden');
           downloadBtn.disabled = true;
           currentQuoteData = null;
@@ -463,10 +554,13 @@
         currentQuoteData.customer = {
           name: customerName,
           email: customerEmail,
-          phone: document.getElementById('customerPhone').value,
+          phone: customerPhone,
         };
         currentQuoteData.numSamples = numSamples;
-        currentQuoteData.description = document.getElementById('projectDescription').value;
+        currentQuoteData.projectType = projectType;
+        currentQuoteData.deadline = document.getElementById('deadline').value;
+        currentQuoteData.dataAvailable = document.getElementById('dataAvailable').value;
+        currentQuoteData.description = projectDescription;
         currentQuoteData.total = total;
       }
 
@@ -476,40 +570,103 @@
         if (!currentQuoteData) return;
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
+        
+        // Header
         doc.setFontSize(20);
-        doc.setTextColor('#22c55e');
+        doc.setTextColor(34, 197, 94);
         doc.text('LogikBioinfo - Orçamento', 14, 22);
+        
         doc.setFontSize(10);
         doc.setTextColor(150);
         doc.text(`Orçamento #${currentQuoteData.number} | Data: ${currentQuoteData.date}`, 14, 30);
-        doc.setFontSize(12);
+        
+        // Customer Info
+        doc.setFontSize(11);
         doc.setTextColor(50);
-        doc.text('Para:', 14, 45);
-        doc.text(currentQuoteData.customer.name, 14, 52);
-        doc.text(currentQuoteData.customer.email, 14, 59);
-        let y = 75;
-        doc.setFontSize(10);
+        doc.setFont(undefined, 'bold');
+        doc.text('Cliente:', 14, 45);
+        doc.setFont(undefined, 'normal');
+        doc.text(currentQuoteData.customer.name, 14, 51);
+        doc.text(`Email: ${currentQuoteData.customer.email}`, 14, 57);
+        doc.text(`Telefone: ${currentQuoteData.customer.phone}`, 14, 63);
+        
+        // Project Info
+        const projectTypeLabels = {
+          'academic': 'Acadêmico',
+          'research': 'Pesquisa Científica',
+          'clinical': 'Análise Clínica',
+          'industrial': 'Industrial/Empresarial',
+          'other': 'Outro'
+        };
+        const deadlineLabels = {
+          'urgent': 'Urgente (até 7 dias)',
+          'fast': 'Rápido (15 dias)',
+          'normal': 'Normal (30 dias)',
+          'flexible': 'Flexível (45+ dias)'
+        };
+        
+        doc.setFont(undefined, 'bold');
+        doc.text('Detalhes do Projeto:', 14, 75);
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(9);
+        doc.text(`Tipo: ${projectTypeLabels[currentQuoteData.projectType] || currentQuoteData.projectType}`, 14, 81);
+        doc.text(`Prazo: ${deadlineLabels[currentQuoteData.deadline]}`, 14, 86);
+        doc.text(`Amostras: ${currentQuoteData.numSamples}`, 14, 91);
+        
+        // Description
+        doc.setFontSize(9);
+        const descLines = doc.splitTextToSize(`Descrição: ${currentQuoteData.description}`, 180);
+        doc.text(descLines, 14, 97);
+        
+        // Services Table
+        let y = 97 + (descLines.length * 5) + 10;
+        doc.setFontSize(11);
+        doc.setFont(undefined, 'bold');
+        doc.text('Serviços Solicitados:', 14, y);
+        y += 8;
+        
+        doc.setFontSize(9);
         doc.text('Serviço', 14, y);
-        doc.text('Qtd. Amostras', 100, y);
-        doc.text('Valor Unit.', 140, y);
-        doc.text('Subtotal', 170, y);
+        doc.text('Qtd.', 110, y, { align: 'center' });
+        doc.text('Valor Unit.', 140, y, { align: 'center' });
+        doc.text('Subtotal', 180, y, { align: 'right' });
         y += 2;
         doc.line(14, y, 196, y);
-        y += 8;
+        y += 6;
+        
+        doc.setFont(undefined, 'normal');
         currentQuoteData.services.forEach((service) => {
-          doc.text(service.name, 14, y);
+          if (y > 270) {
+            doc.addPage();
+            y = 20;
+          }
+          const serviceName = doc.splitTextToSize(service.name, 90);
+          doc.text(serviceName, 14, y);
           doc.text(currentQuoteData.numSamples.toString(), 110, y, { align: 'center' });
-          doc.text(`R$ ${service.price.toFixed(2)}`, 150, y, { align: 'center' });
-          doc.text(`R$ ${service.total.toFixed(2)}`, 183, y, { align: 'center' });
-          y += 7;
+          doc.text(`R$ ${service.price.toFixed(2)}`, 140, y, { align: 'center' });
+          doc.text(`R$ ${service.total.toFixed(2)}`, 180, y, { align: 'right' });
+          y += serviceName.length * 5 + 3;
         });
-        y += 5;
+        
+        // Total
+        y += 3;
         doc.line(14, y, 196, y);
         y += 8;
-        doc.setFontSize(14);
-        doc.text('Total do Orçamento:', 130, y);
+        doc.setFontSize(13);
         doc.setFont(undefined, 'bold');
-        doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 175, y);
+        doc.text('Total do Orçamento:', 120, y);
+        doc.setTextColor(34, 197, 94);
+        doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 180, y, { align: 'right' });
+        
+        // Footer
+        doc.setFontSize(8);
+        doc.setTextColor(100);
+        doc.setFont(undefined, 'normal');
+        const footerY = 280;
+        doc.text('LogikBioinfo - Assessoria em Bioinformática e Projetos Acadêmicos', 105, footerY, { align: 'center' });
+        doc.text('contato@logikbioinfo.com.br | (11) 92004-5896', 105, footerY + 4, { align: 'center' });
+        doc.text('www.logikbioinfo.com.br', 105, footerY + 8, { align: 'center' });
+        
         doc.save(`orcamento-logikbioinfo-${currentQuoteData.number}.pdf`);
       });
 
