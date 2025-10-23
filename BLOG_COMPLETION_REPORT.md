@@ -8,22 +8,23 @@
 
 ## 📊 Project Metrics
 
-| Metric | Value |
-|--------|-------|
-| **Blog Posts Created** | 2 (Portuguese) |
+| Metric                      | Value                     |
+| --------------------------- | ------------------------- |
+| **Blog Posts Created**      | 2 (Portuguese)            |
 | **Total Language Versions** | 6 (2 posts × 3 languages) |
-| **Files Modified** | 9 |
-| **Files Created** | 7 |
-| **Lines of Code Added** | 5,949 |
-| **Git Commits** | 4 |
-| **Documentation Pages** | 1 |
-| **Testing Coverage** | 100% |
+| **Files Modified**          | 9                         |
+| **Files Created**           | 7                         |
+| **Lines of Code Added**     | 5,949                     |
+| **Git Commits**             | 4                         |
+| **Documentation Pages**     | 1                         |
+| **Testing Coverage**        | 100%                      |
 
 ---
 
 ## 📁 Project Structure
 
 ### Portuguese Posts (Root)
+
 ```
 posts/
 ├── post-kpn.html                 ✅ K. pneumoniae ST17 (680 lines)
@@ -34,6 +35,7 @@ posts/
 ```
 
 ### English Posts
+
 ```
 en/posts/
 ├── post-kpn.html                 ✅ K. pneumoniae ST17 (680 lines)
@@ -42,6 +44,7 @@ en/posts/
 ```
 
 ### Spanish Posts
+
 ```
 es/posts/
 ├── post-kpn.html                 ✅ K. pneumoniae ST17 (680 lines)
@@ -51,6 +54,7 @@ es/posts/
 ```
 
 ### Blog Index Pages
+
 ```
 blog.html                         ✅ Portuguese Blog Index (317 lines)
 en/blog.html                      ✅ English Blog Index (321 lines)
@@ -58,6 +62,7 @@ es/blog.html                      ✅ Spanish Blog Index (323 lines)
 ```
 
 ### Documentation
+
 ```
 BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 ```
@@ -67,6 +72,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 ## 🎯 Features Implemented
 
 ### ✅ Professional Blog Post Template
+
 - Fixed header with navigation and language selector
 - Breadcrumb navigation
 - Publication metadata (date, author, reading time)
@@ -80,6 +86,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Footer with social links
 
 ### ✅ Multilingual Support (3 Languages)
+
 - **Portuguese**: Root directory posts
 - **English**: `/en/posts/` directory
 - **Spanish**: `/es/posts/` directory
@@ -88,6 +95,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Blog index pages in all three languages
 
 ### ✅ Responsive Design
+
 - Mobile-first approach
 - Hamburger menu for mobile
 - Responsive image sizing
@@ -96,6 +104,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Dark theme matching main site
 
 ### ✅ Interactive Features
+
 - Auto-calculated reading time (200 WPM baseline)
 - Mobile menu toggle
 - Hover effects on navigation
@@ -103,6 +112,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Dynamic year in footer
 
 ### ✅ SEO Optimization
+
 - Proper page titles with keywords
 - Meta descriptions
 - Semantic HTML structure
@@ -115,9 +125,11 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 ## 📝 Blog Posts Published
 
 ### Post 1: K. pneumoniae ST17 Analysis
-**Portuguese Title**: *Ameaça Crítica Detectada: Análise Genômica de Klebsiella pneumoniae ST17 Coproductora de KPC-2 e NDM-1*
+
+**Portuguese Title**: _Ameaça Crítica Detectada: Análise Genômica de Klebsiella pneumoniae ST17 Coproductora de KPC-2 e NDM-1_
 
 **Key Metrics**:
+
 - Publication Date: October 22, 2025
 - Author: Felipe Lei
 - Reading Time: ~8 minutes
@@ -125,6 +137,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Charts: 2 (Resistome Bar Chart, ST Distribution Pie Chart)
 
 **Topics Covered**:
+
 - K. pneumoniae ST17 genomic profile
 - Dual carbapenemase production (KPC-2 & NDM-1)
 - Resistance arsenal inventory (18 genes)
@@ -133,6 +146,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Surveillance recommendations
 
 **File Sizes**:
+
 - Portuguese: 680 lines (~32 KB)
 - English: 680 lines (~32 KB)
 - Spanish: 680 lines (~32 KB)
@@ -140,9 +154,11 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 ---
 
 ### Post 2: Acinetobacter baumannii Analysis
-**Portuguese Title**: *Vigilância Molecular de Acinetobacter baumannii: Análise Clonal e Dinâmicas de Sustitução em Contexto Hospitalario*
+
+**Portuguese Title**: _Vigilância Molecular de Acinetobacter baumannii: Análise Clonal e Dinâmicas de Sustitução em Contexto Hospitalario_
 
 **Key Metrics**:
+
 - Publication Date: October 10, 2025
 - Author: Felipe Lei
 - Reading Time: ~10 minutes
@@ -150,6 +166,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Charts: 4 (Period, Gene, Clonal, Substitution)
 
 **Topics Covered**:
+
 - A. baumannii epidemiological profile
 - Intrinsic and acquired resistance mechanisms
 - Clonal dynamics analysis
@@ -158,6 +175,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 - Infection control recommendations
 
 **File Sizes**:
+
 - Portuguese: 750 lines (~35 KB)
 - English: 750 lines (~35 KB)
 - Spanish: 750 lines (~35 KB)
@@ -166,27 +184,27 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 
 ## 🛠️ Technology Stack
 
-| Component | Technology |
-|-----------|------------|
-| **Structure** | HTML5 |
-| **Styling** | Tailwind CSS (CDN) |
+| Component      | Technology                 |
+| -------------- | -------------------------- |
+| **Structure**  | HTML5                      |
+| **Styling**    | Tailwind CSS (CDN)         |
 | **JavaScript** | Vanilla JS (no frameworks) |
-| **Charts** | Chart.js |
-| **Icons** | Font Awesome 6.5.1 |
-| **Typography** | Google Fonts (Poppins) |
-| **Hosting** | GitHub Pages |
-| **CDN** | jsDelivr, Tailwind CDN |
+| **Charts**     | Chart.js                   |
+| **Icons**      | Font Awesome 6.5.1         |
+| **Typography** | Google Fonts (Poppins)     |
+| **Hosting**    | GitHub Pages               |
+| **CDN**        | jsDelivr, Tailwind CDN     |
 
 ---
 
 ## 📊 Git Commits Summary
 
-| # | Hash | Message | Changes |
-|---|------|---------|---------|
-| 1 | 63e1230 | Feat: Redesign blog posts with professional template | 3 files, +1862, -476 |
-| 2 | ab6c1d1 | Feat: Add English and Spanish translations for blog posts | 4 files, +2865, -1335 |
-| 3 | f67c0a3 | Feat: Update blog index pages with correct post links and metadata | 3 files, +14, -14 |
-| 4 | 82657a2 | Docs: Add comprehensive blog redesign documentation | 1 file, +384, -0 |
+| #   | Hash    | Message                                                            | Changes               |
+| --- | ------- | ------------------------------------------------------------------ | --------------------- |
+| 1   | 63e1230 | Feat: Redesign blog posts with professional template               | 3 files, +1862, -476  |
+| 2   | ab6c1d1 | Feat: Add English and Spanish translations for blog posts          | 4 files, +2865, -1335 |
+| 3   | f67c0a3 | Feat: Update blog index pages with correct post links and metadata | 3 files, +14, -14     |
+| 4   | 82657a2 | Docs: Add comprehensive blog redesign documentation                | 1 file, +384, -0      |
 
 **Total**: 11 files changed, 5,125 insertions, 1,825 deletions
 
@@ -195,6 +213,7 @@ BLOG_REDESIGN.md                  ✅ Comprehensive Guide (384 lines)
 ## 🎨 Design System
 
 ### Color Scheme
+
 ```
 Primary Green:    #22c55e  (Accent, CTAs)
 Dark Navy:        #111827  (Background)
@@ -207,12 +226,14 @@ Accent Yellow:    #FFC914  (Secondary accent)
 ```
 
 ### Typography
+
 - **Font**: Poppins (Google Fonts)
 - **Weights**: 300, 400, 500, 600, 700
 - **Base Size**: 16px
 - **Line Height**: 1.5 (relaxed)
 
 ### Responsive Breakpoints
+
 - **Mobile**: < 768px (Tailwind `md` breakpoint)
 - **Tablet**: 768px - 1024px
 - **Desktop**: > 1024px
@@ -224,6 +245,7 @@ Accent Yellow:    #FFC914  (Secondary accent)
 ### Testing Completed
 
 - [x] **Functionality**
+
   - Links work correctly (PT/EN/ES)
   - Language selectors functional
   - Mobile menu toggles properly
@@ -232,6 +254,7 @@ Accent Yellow:    #FFC914  (Secondary accent)
   - Form redirects work
 
 - [x] **Responsiveness**
+
   - Mobile viewport (320px-480px)
   - Tablet viewport (481px-768px)
   - Desktop viewport (769px+)
@@ -239,18 +262,21 @@ Accent Yellow:    #FFC914  (Secondary accent)
   - Navigation is accessible
 
 - [x] **Performance**
+
   - Page load time: < 3 seconds
   - Image CDN optimized
   - Minimal JS execution
   - CSS from Tailwind CDN
 
 - [x] **Accessibility**
+
   - Semantic HTML structure
   - Alt text on images
   - Keyboard navigation works
   - Color contrast meets WCAG AA
 
 - [x] **SEO**
+
   - Meta tags present and optimized
   - Heading hierarchy correct
   - Schema markup compatible
@@ -267,7 +293,9 @@ Accent Yellow:    #FFC914  (Secondary accent)
 ## 📚 Documentation Created
 
 ### BLOG_REDESIGN.md
+
 Comprehensive 384-line documentation covering:
+
 - Template architecture
 - Component breakdown
 - Multilingual support patterns
@@ -284,12 +312,14 @@ Comprehensive 384-line documentation covering:
 ## 🚀 Future Enhancements
 
 ### Short-Term (Next 1-2 months)
+
 - [ ] Post search functionality
 - [ ] Category/tag filtering
 - [ ] Related posts suggestions
 - [ ] Social media share buttons
 
 ### Medium-Term (Next 3-6 months)
+
 - [ ] Comments/discussion section
 - [ ] Post statistics (views, engagement)
 - [ ] Email newsletter subscription
@@ -297,6 +327,7 @@ Comprehensive 384-line documentation covering:
 - [ ] Additional blog posts (2-3 more)
 
 ### Long-Term (Next 6-12 months)
+
 - [ ] Full-text search across all posts
 - [ ] Advanced analytics integration
 - [ ] RSS feed for blog
@@ -322,12 +353,14 @@ Comprehensive 384-line documentation covering:
 ## 📌 Important Notes
 
 ### Maintained Compatibility
+
 - ✅ All existing links to old posts still work
 - ✅ Old post files preserved in directories
 - ✅ Navigation structure unchanged
 - ✅ Language selector same across site
 
 ### Best Practices Followed
+
 - ✅ Semantic HTML throughout
 - ✅ Mobile-first responsive design
 - ✅ Minimal JavaScript footprint
@@ -340,10 +373,11 @@ Comprehensive 384-line documentation covering:
 ## 🎓 Author Information
 
 **Felipe Alberto Lei**
+
 - **Role**: Bioinformatician & Researcher
 - **Expertise**: Genomic Analysis, NGS, Antimicrobial Resistance
 - **Contact**: contato@logikbioinfo.com.br
-- **Social**: 
+- **Social**:
   - GitHub: https://github.com/Felipeleii
   - LinkedIn: https://www.linkedin.com/in/felipelei/
   - Google Scholar: https://scholar.google.com/citations?user=0h7F7emPRFsC
@@ -353,6 +387,7 @@ Comprehensive 384-line documentation covering:
 ## 📞 Support & Maintenance
 
 For questions about the blog template or implementation:
+
 1. Refer to `BLOG_REDESIGN.md` for technical details
 2. Check blog post examples for implementation patterns
 3. Review git commits for historical context

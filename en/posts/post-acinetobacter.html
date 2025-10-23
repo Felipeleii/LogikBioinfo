@@ -1,640 +1,813 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../../favicon.png" />
     <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
-    <title>Blog | Acinetobacter baumannii - Molecular Surveillance and Clonal Analysis - Logik Bioinfo</title>
-    <meta name="description" content="Detailed analysis of Acinetobacter baumannii dissemination in a hospital setting, with assessment of resistance mechanisms and clonal dynamics.">
+    <title>
+      Blog | Acinetobacter baumannii - Molecular Surveillance and Clonal Analysis - Logik Bioinfo
+    </title>
+    <meta
+      name="description"
+      content="Detailed analysis of Acinetobacter baumannii dissemination in a hospital setting, with assessment of resistance mechanisms and clonal dynamics."
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #111827;
-        }
-        .nav-link-hover:hover {
-            color: #22c55e;
-        }
-        .nav-link-active {
-            color: #22c55e;
-            font-weight: 600;
-        }
-        .post-content {
-            background-color: #1f2937;
-        }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #111827;
+      }
+      .nav-link-hover:hover {
+        color: #22c55e;
+      }
+      .nav-link-active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .post-content {
+        background-color: #1f2937;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
         .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+          height: 350px;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #E2E8F0;
-            padding: 12px;
-            text-align: center;
-        }
-        .comparison-table th {
-            background-color: #0E1C36;
-            color: white;
-        }
-        .metadata {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-            color: #9ca3af;
-        }
-        .metadata-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .metadata-item i {
-            color: #22c55e;
-        }
-        .tag {
-            display: inline-block;
-            background-color: #374151;
-            color: #22c55e;
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .breadcrumb {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #9ca3af;
-            margin-bottom: 1.5rem;
-        }
-        .breadcrumb a {
-            color: #22c55e;
-            text-decoration: none;
-        }
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        .author-box {
-            background-color: rgba(34, 197, 94, 0.1);
-            border-left: 4px solid #22c55e;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 2rem 0;
-        }
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #fff;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-        .language-selector {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        .lang-option {
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #9ca3af;
-            font-weight: 500;
-            text-decoration: none;
-        }
-        .lang-option:hover {
-            color: #22c55e;
-        }
-        .lang-option.active {
-            color: #22c55e;
-            font-weight: 600;
-        }
-        .lang-divider {
-            color: #4b5563;
-        }
-        .post-nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #374151;
-        }
-        .post-nav a {
-            color: #22c55e;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-        }
-        .post-nav a:hover {
-            text-decoration: underline;
-        }
-        .highlight-box {
-            background-color: #00A0B0;
-            color: white;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 1.5rem 0;
-        }
+      }
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #e2e8f0;
+        padding: 12px;
+        text-align: center;
+      }
+      .comparison-table th {
+        background-color: #0e1c36;
+        color: white;
+      }
+      .metadata {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        color: #9ca3af;
+      }
+      .metadata-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .metadata-item i {
+        color: #22c55e;
+      }
+      .tag {
+        display: inline-block;
+        background-color: #374151;
+        color: #22c55e;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .breadcrumb {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #9ca3af;
+        margin-bottom: 1.5rem;
+      }
+      .breadcrumb a {
+        color: #22c55e;
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+      .author-box {
+        background-color: rgba(34, 197, 94, 0.1);
+        border-left: 4px solid #22c55e;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin: 2rem 0;
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+      .language-selector {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .lang-option {
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #9ca3af;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .lang-option:hover {
+        color: #22c55e;
+      }
+      .lang-option.active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .lang-divider {
+        color: #4b5563;
+      }
+      .post-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #374151;
+      }
+      .post-nav a {
+        color: #22c55e;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+      .post-nav a:hover {
+        text-decoration: underline;
+      }
+      .highlight-box {
+        background-color: #00a0b0;
+        color: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+      }
     </style>
-</head>
-<body class="text-gray-200">
+  </head>
+  <body class="text-gray-200">
     <!-- Header -->
     <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../en/index.html" class="text-2xl font-bold text-white flex items-center gap-2">
-                <i class="fa-solid fa-dna text-green-500"></i>
-                Logik Bioinfo
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="../../en/index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-dna text-green-500"></i>
+          Logik Bioinfo
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="../../en/index.html" class="nav-link-hover transition duration-300">Home</a>
+          <a href="../../en/servicos.html" class="nav-link-hover transition duration-300">
+            Services
+          </a>
+          <a href="../../en/publicacoes.html" class="nav-link-hover transition duration-300">
+            Publications
+          </a>
+          <a href="../../en/portfolio.html" class="nav-link-hover transition duration-300">
+            Portfolio
+          </a>
+          <a href="../../en/ferramentas.html" class="nav-link-hover transition duration-300">
+            Tools
+          </a>
+          <a
+            href="../../en/blog.html"
+            class="nav-link-hover transition duration-300 nav-link-active"
+          >
+            Blog
+          </a>
+          <a href="../../en/orcamento.html" class="nav-link-hover transition duration-300">
+            Budget
+          </a>
+          <a href="../../en/sobre.html" class="nav-link-hover transition duration-300">About</a>
+          <a href="../../en/quem-sou-eu.html" class="nav-link-hover transition duration-300">
+            Who I Am
+          </a>
+          <div class="language-selector">
+            <span class="lang-divider">|</span>
+            <a href="../../posts/post-acinetobacter.html" class="lang-option" data-lang="pt">PT</a>
+            <a href="post-acinetobacter.html" class="lang-option active" data-lang="en">EN</a>
+            <a href="../../es/posts/post-acinetobacter.html" class="lang-option" data-lang="es">
+              ES
             </a>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="../../en/index.html" class="nav-link-hover transition duration-300">Home</a>
-                <a href="../../en/servicos.html" class="nav-link-hover transition duration-300">Services</a>
-                <a href="../../en/publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
-                <a href="../../en/portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
-                <a href="../../en/ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
-                <a href="../../en/blog.html" class="nav-link-hover transition duration-300 nav-link-active">Blog</a>
-                <a href="../../en/orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
-                <a href="../../en/sobre.html" class="nav-link-hover transition duration-300">About</a>
-                <a href="../../en/quem-sou-eu.html" class="nav-link-hover transition duration-300">Who I Am</a>
-                <div class="language-selector">
-                    <span class="lang-divider">|</span>
-                    <a href="../../posts/post-acinetobacter.html" class="lang-option" data-lang="pt">PT</a>
-                    <a href="post-acinetobacter.html" class="lang-option active" data-lang="en">EN</a>
-                    <a href="../../es/posts/post-acinetobacter.html" class="lang-option" data-lang="es">ES</a>
-                </div>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-            <a href="../../en/index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
-            <a href="../../en/servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
-            <a href="../../en/publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
-            <a href="../../en/portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
-            <a href="../../en/ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
-            <a href="../../en/blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Blog</a>
-            <a href="../../en/orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
-            <a href="../../en/sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
-            <a href="../../en/quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who I Am</a>
-            <div class="flex justify-center py-2 px-6 space-x-2">
-                <a href="../../posts/post-acinetobacter.html" class="lang-option text-sm" data-lang="pt">PT</a>
-                <span class="text-gray-600">|</span>
-                <a href="post-acinetobacter.html" class="lang-option active text-sm" data-lang="en">EN</a>
-                <span class="text-gray-600">|</span>
-                <a href="../../es/posts/post-acinetobacter.html" class="lang-option text-sm" data-lang="es">ES</a>
-            </div>
+          </div>
         </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+        <a href="../../en/index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+        <a href="../../en/servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Services
+        </a>
+        <a href="../../en/publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Publications
+        </a>
+        <a href="../../en/portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Portfolio
+        </a>
+        <a href="../../en/ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Tools
+        </a>
+        <a
+          href="../../en/blog.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active"
+        >
+          Blog
+        </a>
+        <a href="../../en/orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Budget
+        </a>
+        <a href="../../en/sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+        <a href="../../en/quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Who I Am
+        </a>
+        <div class="flex justify-center py-2 px-6 space-x-2">
+          <a href="../../posts/post-acinetobacter.html" class="lang-option text-sm" data-lang="pt">
+            PT
+          </a>
+          <span class="text-gray-600">|</span>
+          <a href="post-acinetobacter.html" class="lang-option active text-sm" data-lang="en">EN</a>
+          <span class="text-gray-600">|</span>
+          <a
+            href="../../es/posts/post-acinetobacter.html"
+            class="lang-option text-sm"
+            data-lang="es"
+          >
+            ES
+          </a>
+        </div>
+      </div>
     </header>
 
     <main class="pt-24">
-        <!-- Breadcrumb -->
-        <div class="bg-gray-900 border-b border-gray-800">
-            <div class="container mx-auto px-6 py-4">
-                <div class="breadcrumb">
-                    <a href="../../en/blog.html"><i class="fa-solid fa-home"></i> Blog</a>
-                    <span>/</span>
-                    <span>Acinetobacter baumannii</span>
-                </div>
-            </div>
+      <!-- Breadcrumb -->
+      <div class="bg-gray-900 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+          <div class="breadcrumb">
+            <a href="../../en/blog.html">
+              <i class="fa-solid fa-home"></i>
+              Blog
+            </a>
+            <span>/</span>
+            <span>Acinetobacter baumannii</span>
+          </div>
         </div>
+      </div>
 
-        <!-- Post Content -->
-        <article class="py-12 md:py-20 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <!-- Post Header -->
-                <header class="mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Molecular Surveillance of <em>Acinetobacter baumannii</em>: Clonal Analysis and Substitution Dynamics in Hospital Setting
-                    </h1>
-                    
-                    <!-- Metadata -->
-                    <div class="metadata">
-                        <div class="metadata-item">
-                            <i class="fa-solid fa-calendar"></i>
-                            <span>October 10, 2025</span>
-                        </div>
-                        <div class="metadata-item">
-                            <i class="fa-solid fa-user"></i>
-                            <span>Felipe Lei</span>
-                        </div>
-                        <div class="metadata-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span id="reading-time">10 min read</span>
-                        </div>
-                    </div>
+      <!-- Post Content -->
+      <article class="py-12 md:py-20 bg-gray-900">
+        <div class="container mx-auto px-6 max-w-4xl">
+          <!-- Post Header -->
+          <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+              Molecular Surveillance of
+              <em>Acinetobacter baumannii</em>
+              : Clonal Analysis and Substitution Dynamics in Hospital Setting
+            </h1>
 
-                    <!-- Tags/Categories -->
-                    <div class="mt-4">
-                        <span class="tag">Antimicrobial Resistance</span>
-                        <span class="tag">Genomics</span>
-                        <span class="tag">Molecular Surveillance</span>
-                    </div>
-                </header>
-
-                <!-- Featured Image -->
-                <div class="mb-12 rounded-lg overflow-hidden">
-                    <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png" 
-                         alt="Genomic Analysis Acinetobacter baumannii" 
-                         class="w-full h-auto object-cover max-h-96">
-                </div>
-
-                <!-- Post Introduction -->
-                <section class="mb-12 text-gray-300 leading-relaxed">
-                    <p class="text-lg mb-4">
-                        <em>Acinetobacter baumannii</em> represents one of the most epidemiologically important pathogens in hospital environments, classified as a priority pathogen by the World Health Organization. This genomic and epidemiological analysis examines in detail the circulation of this pathogen in a specific hospital setting, revealing patterns of clonal substitution, resistance mechanisms, and dynamics that challenge both infection control protocols and available therapeutic strategies.
-                    </p>
-                </section>
-
-                <!-- Author Bio Box -->
-                <div class="author-box">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
-                            <i class="fa-solid fa-circle-user text-3xl text-green-500"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-white">Felipe Alberto Lei</h3>
-                            <p class="text-sm text-gray-400">
-                                Bioinformatician and researcher in genomic analysis. Specialized in next-generation sequencing and antimicrobial resistance analysis.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Main Content -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Epidemiological and Resistance Profile</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        <em>Acinetobacter baumannii</em> is a gram-negative non-fermenting bacillus that has emerged as a nosocomial pathogen of critical importance. Its increasing prevalence is directly associated with its ability to acquire multiple resistance mechanisms, often encoded on mobile genetic elements that facilitate its spread among different strains and clones.
-                    </p>
-
-                    <div class="highlight-box">
-                        <h4 class="text-xl font-bold mb-2">Epidemiological Impact</h4>
-                        <p>With a reported mortality rate of 56% in patients with multiresistant strain infections, <em>A. baumannii</em> represents a significant burden of hospital morbidity and mortality.</p>
-                    </div>
-                </section>
-
-                <!-- Period Chart -->
-                <section class="mb-12">
-                    <h3 class="text-2xl font-bold text-white mb-4">Temporal Distribution of Isolates</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Temporal analysis of <em>A. baumannii</em> isolates reveals circulation patterns suggestive of multiple introduction events followed by nosocomial transmission.
-                    </p>
-                    <div class="post-content rounded-lg p-6 mb-8">
-                        <div class="chart-container h-80">
-                            <canvas id="periodChart"></canvas>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Arsenal Genético -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Genetic Arsenal: Resistance Mechanisms</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Genomic analysis reveals multiple resistance genes distributed across the chromosome and plasmids. The simultaneous presence of multiple mechanisms explains the multiresistant phenotype observed in clinical isolates.
-                    </p>
-                    <div class="post-content rounded-lg p-6 mb-8">
-                        <div class="chart-container h-80">
-                            <canvas id="geneChart"></canvas>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold text-white mb-4 mt-8">Classification of Resistance Mechanisms</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
-                            <h5 class="font-bold text-white mb-2">Intrinsic Resistance</h5>
-                            <p class="text-gray-300 text-sm">Inherent to the species, including reduced permeability and chromosomal efflux pumps (Ade ABC).</p>
-                        </div>
-                        
-                        <div class="bg-orange-900/30 border-l-4 border-orange-500 p-4 rounded">
-                            <h5 class="font-bold text-white mb-2">Acquired Resistance</h5>
-                            <p class="text-gray-300 text-sm">Genes located on plasmids or integrons, such as <code class="bg-gray-700 px-2 py-1 rounded text-sm">bla<sub>OXA-23</sub></code> and <code class="bg-gray-700 px-2 py-1 rounded text-sm">bla<sub>NDM-1</sub></code>.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Dinâmica Clonal -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Clonal Dynamics: Substitution and Transmission</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Molecular typing analysis identifies the initial predominance of clone A (72% of isolates), followed by gradual substitution by clone B following infection control intervention, demonstrating the efficacy of implemented measures.
-                    </p>
-                    <div class="post-content rounded-lg p-6 mb-8">
-                        <div class="chart-container h-80">
-                            <canvas id="clonalChart"></canvas>
-                        </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold text-white mb-4 mt-8">Substitution Analysis</h3>
-                    <div class="post-content rounded-lg p-6">
-                        <div class="chart-container h-80">
-                            <canvas id="substitutionChart"></canvas>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Casos de Estudo -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Case Studies: Transmission Dynamics</h2>
-
-                    <div class="bg-gray-800 rounded-lg p-6 mb-6">
-                        <h3 class="text-lg font-bold text-white mb-3">Case 1: Intra-Hospital Transmission (Clone A)</h3>
-                        <p class="text-gray-300 mb-3">
-                            The 18 Clone A isolates, recovered between September and October 2024, originated from different departments (ICU, general medicine, surgery). Next-generation sequencing (NGS) analysis suggests a common ancestor with only 2-5 single nucleotide polymorphism (SNP) differences, indicating recent dissemination from a common introduction event.
-                        </p>
-                        <p class="text-gray-300">
-                            <strong>Implication:</strong> Failure of isolation measures or infection control between departments.
-                        </p>
-                    </div>
-
-                    <div class="bg-gray-800 rounded-lg p-6 mb-6">
-                        <h3 class="text-lg font-bold text-white mb-3">Case 2: Post-Intervention Substitution (Clone B)</h3>
-                        <p class="text-gray-300 mb-3">
-                            Following implementation of intensified infection control protocols (contact isolation, improved hand hygiene, daily environmental cleaning), Clone A gradually disappeared and was replaced by Clone B between November 2024 and January 2025.
-                        </p>
-                        <p class="text-gray-300 mb-3">
-                            Clone B maintains a similar resistance phenotype (OXA-23+, NDM-1-) but with significant genomic differences (>500 SNP, suggestive of a divergent lineage or new introduction).
-                        </p>
-                        <p class="text-gray-300">
-                            <strong>Implication:</strong> Partial success of control measures, but resurgence of another clone with similar resistance characteristics.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Conclusión -->
-                <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
-                    <h2 class="text-2xl font-bold text-white mb-4">Conclusions and Recommendations</h2>
-                    <p class="text-gray-300 leading-relaxed mb-4">
-                        This molecular surveillance analysis of <em>A. baumannii</em> in a hospital setting demonstrates the need for an integrated approach combining genomic sequencing, epidemiological surveillance, and infection control measures. Although interventions succeeded in reducing the prevalence of the initial dominant clone, the resurgence of alternative strains with similar resistance profiles underscores the importance of:
-                    </p>
-                    <ul class="text-gray-300 space-y-2 list-disc pl-6">
-                        <li>Sustained implementation of infection control measures</li>
-                        <li>Continuous genomic surveillance to detect epidemiological changes</li>
-                        <li>Regular evaluation of intervention efficacy</li>
-                        <li>Multidisciplinary communication between infectious diseases, microbiology, and infection control</li>
-                        <li>Development of alternative therapeutic strategies for non-susceptible cases</li>
-                    </ul>
-                </section>
-
-                <!-- Post Navigation -->
-                <div class="post-nav">
-                    <div>
-                        <a href="post-kpn.html">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Previous Post
-                        </a>
-                    </div>
-                    <div class="text-right">
-                        <a href="../../en/blog.html">
-                            Back to Blog
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+            <!-- Metadata -->
+            <div class="metadata">
+              <div class="metadata-item">
+                <i class="fa-solid fa-calendar"></i>
+                <span>October 10, 2025</span>
+              </div>
+              <div class="metadata-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Felipe Lei</span>
+              </div>
+              <div class="metadata-item">
+                <i class="fa-solid fa-clock"></i>
+                <span id="reading-time">10 min read</span>
+              </div>
             </div>
-        </article>
+
+            <!-- Tags/Categories -->
+            <div class="mt-4">
+              <span class="tag">Antimicrobial Resistance</span>
+              <span class="tag">Genomics</span>
+              <span class="tag">Molecular Surveillance</span>
+            </div>
+          </header>
+
+          <!-- Featured Image -->
+          <div class="mb-12 rounded-lg overflow-hidden">
+            <img
+              src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png"
+              alt="Genomic Analysis Acinetobacter baumannii"
+              class="w-full h-auto object-cover max-h-96"
+            />
+          </div>
+
+          <!-- Post Introduction -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <p class="text-lg mb-4">
+              <em>Acinetobacter baumannii</em>
+              represents one of the most epidemiologically important pathogens in hospital
+              environments, classified as a priority pathogen by the World Health Organization. This
+              genomic and epidemiological analysis examines in detail the circulation of this
+              pathogen in a specific hospital setting, revealing patterns of clonal substitution,
+              resistance mechanisms, and dynamics that challenge both infection control protocols
+              and available therapeutic strategies.
+            </p>
+          </section>
+
+          <!-- Author Bio Box -->
+          <div class="author-box">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <i class="fa-solid fa-circle-user text-3xl text-green-500"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white">Felipe Alberto Lei</h3>
+                <p class="text-sm text-gray-400">
+                  Bioinformatician and researcher in genomic analysis. Specialized in
+                  next-generation sequencing and antimicrobial resistance analysis.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Epidemiological and Resistance Profile
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              <em>Acinetobacter baumannii</em>
+              is a gram-negative non-fermenting bacillus that has emerged as a nosocomial pathogen
+              of critical importance. Its increasing prevalence is directly associated with its
+              ability to acquire multiple resistance mechanisms, often encoded on mobile genetic
+              elements that facilitate its spread among different strains and clones.
+            </p>
+
+            <div class="highlight-box">
+              <h4 class="text-xl font-bold mb-2">Epidemiological Impact</h4>
+              <p>
+                With a reported mortality rate of 56% in patients with multiresistant strain
+                infections,
+                <em>A. baumannii</em>
+                represents a significant burden of hospital morbidity and mortality.
+              </p>
+            </div>
+          </section>
+
+          <!-- Period Chart -->
+          <section class="mb-12">
+            <h3 class="text-2xl font-bold text-white mb-4">Temporal Distribution of Isolates</h3>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Temporal analysis of
+              <em>A. baumannii</em>
+              isolates reveals circulation patterns suggestive of multiple introduction events
+              followed by nosocomial transmission.
+            </p>
+            <div class="post-content rounded-lg p-6 mb-8">
+              <div class="chart-container h-80">
+                <canvas id="periodChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- Arsenal Genético -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Genetic Arsenal: Resistance Mechanisms
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Genomic analysis reveals multiple resistance genes distributed across the chromosome
+              and plasmids. The simultaneous presence of multiple mechanisms explains the
+              multiresistant phenotype observed in clinical isolates.
+            </p>
+            <div class="post-content rounded-lg p-6 mb-8">
+              <div class="chart-container h-80">
+                <canvas id="geneChart"></canvas>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-4 mt-8">
+              Classification of Resistance Mechanisms
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
+                <h5 class="font-bold text-white mb-2">Intrinsic Resistance</h5>
+                <p class="text-gray-300 text-sm">
+                  Inherent to the species, including reduced permeability and chromosomal efflux
+                  pumps (Ade ABC).
+                </p>
+              </div>
+
+              <div class="bg-orange-900/30 border-l-4 border-orange-500 p-4 rounded">
+                <h5 class="font-bold text-white mb-2">Acquired Resistance</h5>
+                <p class="text-gray-300 text-sm">
+                  Genes located on plasmids or integrons, such as
+                  <code class="bg-gray-700 px-2 py-1 rounded text-sm">
+                    bla
+                    <sub>OXA-23</sub>
+                  </code>
+                  and
+                  <code class="bg-gray-700 px-2 py-1 rounded text-sm">
+                    bla
+                    <sub>NDM-1</sub>
+                  </code>
+                  .
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Dinâmica Clonal -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Clonal Dynamics: Substitution and Transmission
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Molecular typing analysis identifies the initial predominance of clone A (72% of
+              isolates), followed by gradual substitution by clone B following infection control
+              intervention, demonstrating the efficacy of implemented measures.
+            </p>
+            <div class="post-content rounded-lg p-6 mb-8">
+              <div class="chart-container h-80">
+                <canvas id="clonalChart"></canvas>
+              </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-white mb-4 mt-8">Substitution Analysis</h3>
+            <div class="post-content rounded-lg p-6">
+              <div class="chart-container h-80">
+                <canvas id="substitutionChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- Casos de Estudo -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Case Studies: Transmission Dynamics
+            </h2>
+
+            <div class="bg-gray-800 rounded-lg p-6 mb-6">
+              <h3 class="text-lg font-bold text-white mb-3">
+                Case 1: Intra-Hospital Transmission (Clone A)
+              </h3>
+              <p class="text-gray-300 mb-3">
+                The 18 Clone A isolates, recovered between September and October 2024, originated
+                from different departments (ICU, general medicine, surgery). Next-generation
+                sequencing (NGS) analysis suggests a common ancestor with only 2-5 single nucleotide
+                polymorphism (SNP) differences, indicating recent dissemination from a common
+                introduction event.
+              </p>
+              <p class="text-gray-300">
+                <strong>Implication:</strong>
+                Failure of isolation measures or infection control between departments.
+              </p>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 mb-6">
+              <h3 class="text-lg font-bold text-white mb-3">
+                Case 2: Post-Intervention Substitution (Clone B)
+              </h3>
+              <p class="text-gray-300 mb-3">
+                Following implementation of intensified infection control protocols (contact
+                isolation, improved hand hygiene, daily environmental cleaning), Clone A gradually
+                disappeared and was replaced by Clone B between November 2024 and January 2025.
+              </p>
+              <p class="text-gray-300 mb-3">
+                Clone B maintains a similar resistance phenotype (OXA-23+, NDM-1-) but with
+                significant genomic differences (>500 SNP, suggestive of a divergent lineage or new
+                introduction).
+              </p>
+              <p class="text-gray-300">
+                <strong>Implication:</strong>
+                Partial success of control measures, but resurgence of another clone with similar
+                resistance characteristics.
+              </p>
+            </div>
+          </section>
+
+          <!-- Conclusión -->
+          <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
+            <h2 class="text-2xl font-bold text-white mb-4">Conclusions and Recommendations</h2>
+            <p class="text-gray-300 leading-relaxed mb-4">
+              This molecular surveillance analysis of
+              <em>A. baumannii</em>
+              in a hospital setting demonstrates the need for an integrated approach combining
+              genomic sequencing, epidemiological surveillance, and infection control measures.
+              Although interventions succeeded in reducing the prevalence of the initial dominant
+              clone, the resurgence of alternative strains with similar resistance profiles
+              underscores the importance of:
+            </p>
+            <ul class="text-gray-300 space-y-2 list-disc pl-6">
+              <li>Sustained implementation of infection control measures</li>
+              <li>Continuous genomic surveillance to detect epidemiological changes</li>
+              <li>Regular evaluation of intervention efficacy</li>
+              <li>
+                Multidisciplinary communication between infectious diseases, microbiology, and
+                infection control
+              </li>
+              <li>Development of alternative therapeutic strategies for non-susceptible cases</li>
+            </ul>
+          </section>
+
+          <!-- Post Navigation -->
+          <div class="post-nav">
+            <div>
+              <a href="post-kpn.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                Previous Post
+              </a>
+            </div>
+            <div class="text-right">
+              <a href="../../en/blog.html">
+                Back to Blog
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 border-t border-gray-700">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
-            <div class="mb-4">
-                <a href="../../en/index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-dna text-green-500"></i>
-                    Logik Bioinfo
-                </a>
-                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
-            </div>
-            <div class="flex justify-center space-x-6 mb-4 text-2xl">
-                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar">
-                    <i class="fas fa-graduation-cap"></i>
-                </a>
-                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="mailto:contato@logikbioinfo.com.br" class="hover:text-green-400 transition-colors" title="E-mail">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-            <p>&copy; <span id="current-year"></span> Logik Bioinfo. All rights reserved.</p>
+      <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+        <div class="mb-4">
+          <a
+            href="../../en/index.html"
+            class="text-xl font-bold text-white flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-dna text-green-500"></i>
+            Logik Bioinfo
+          </a>
+          <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
         </div>
+        <div class="flex justify-center space-x-6 mb-4 text-2xl">
+          <a
+            href="https://github.com/Felipeleii"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/felipelei/"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://scholar.google.com/citations?user=0h7F7emPRFsC"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="Google Scholar"
+          >
+            <i class="fas fa-graduation-cap"></i>
+          </a>
+          <a
+            href="https://wa.me/5511920045896"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a
+            href="mailto:contato@logikbioinfo.com.br"
+            class="hover:text-green-400 transition-colors"
+            title="E-mail"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p>
+          &copy;
+          <span id="current-year"></span>
+          Logik Bioinfo. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contact us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a
+      href="https://wa.me/5511920045896"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Contact us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
 
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+      // Set current year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Calculate reading time
-        function calculateReadingTime() {
-            const text = document.querySelector('main').innerText;
-            const wordsPerMinute = 200;
-            const words = text.split(/\s+/).length;
-            const minutes = Math.ceil(words / wordsPerMinute);
-            document.getElementById('reading-time').textContent = `${minutes} min read`;
+      // Calculate reading time
+      function calculateReadingTime() {
+        const text = document.querySelector('main').innerText;
+        const wordsPerMinute = 200;
+        const words = text.split(/\s+/).length;
+        const minutes = Math.ceil(words / wordsPerMinute);
+        document.getElementById('reading-time').textContent = `${minutes} min read`;
+      }
+      calculateReadingTime();
+
+      // Chart Configuration
+      const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(' ');
         }
-        calculateReadingTime();
+        return label;
+      };
 
-        // Chart Configuration
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
-
-        const periodCtx = document.getElementById('periodChart').getContext('2d');
-        new Chart(periodCtx, {
-            type: 'line',
-            data: {
-                labels: ['Sep 2024', 'Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025'],
-                datasets: [
-                    {
-                        label: 'Clone A',
-                        data: [8, 10, 4, 1, 0],
-                        borderColor: '#00A0B0',
-                        backgroundColor: 'rgba(0, 160, 176, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    },
-                    {
-                        label: 'Clone B',
-                        data: [0, 0, 3, 7, 9],
-                        borderColor: '#CC333F',
-                        backgroundColor: 'rgba(204, 51, 63, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }
-                ]
+      const periodCtx = document.getElementById('periodChart').getContext('2d');
+      new Chart(periodCtx, {
+        type: 'line',
+        data: {
+          labels: ['Sep 2024', 'Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025'],
+          datasets: [
+            {
+              label: 'Clone A',
+              data: [8, 10, 4, 1, 0],
+              borderColor: '#00A0B0',
+              backgroundColor: 'rgba(0, 160, 176, 0.1)',
+              tension: 0.4,
+              fill: true,
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 2
-                        }
-                    }
-                }
-            }
-        });
-
-        const geneCtx = document.getElementById('geneChart').getContext('2d');
-        new Chart(geneCtx, {
-            type: 'bar',
-            data: {
-                labels: ['OXA-23', 'OXA-51', 'adeABC', 'adeL', 'adeN', 'adeIJK'],
-                datasets: [{
-                    label: 'Gene Frequency',
-                    data: [23, 23, 20, 18, 16, 12],
-                    backgroundColor: [
-                        '#00A0B0', '#CC333F', '#FFC914', '#00A0B0',
-                        '#CC333F', '#FFC914'
-                    ]
-                }]
+            {
+              label: 'Clone B',
+              data: [0, 0, 3, 7, 9],
+              borderColor: '#CC333F',
+              backgroundColor: 'rgba(204, 51, 63, 0.1)',
+              tension: 0.4,
+              fill: true,
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        }
-                    }
-                }
-            }
-        });
-
-        const clonalCtx = document.getElementById('clonalChart').getContext('2d');
-        new Chart(clonalCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Clone A', 'Clone B', 'Unique Clones'],
-                datasets: [{
-                    label: 'Global Clonal Distribution',
-                    data: [18, 10, 4],
-                    backgroundColor: ['#00A0B0', '#CC333F', '#FFC914'],
-                    borderColor: '#1f2937',
-                    borderWidth: 3
-                }]
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '50%',
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-
-        const substitutionCtx = document.getElementById('substitutionChart').getContext('2d');
-        new Chart(substitutionCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Pre-Intervention Period', 'Post-Intervention Period'],
-                datasets: [
-                    {
-                        label: 'Clone A',
-                        data: [18, 1],
-                        backgroundColor: '#00A0B0'
-                    },
-                    {
-                        label: 'Clone B',
-                        data: [0, 16],
-                        backgroundColor: '#CC333F'
-                    }
-                ]
+            tooltip: {
+              callbacks: {
+                title: tooltipTitleCallback,
+              },
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: 'x',
-                scales: {
-                    x: {
-                        stacked: true,
-                    },
-                    y: {
-                        stacked: true,
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    }
-                }
-            }
-        });
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 2,
+              },
+            },
+          },
+        },
+      });
+
+      const geneCtx = document.getElementById('geneChart').getContext('2d');
+      new Chart(geneCtx, {
+        type: 'bar',
+        data: {
+          labels: ['OXA-23', 'OXA-51', 'adeABC', 'adeL', 'adeN', 'adeIJK'],
+          datasets: [
+            {
+              label: 'Gene Frequency',
+              data: [23, 23, 20, 18, 16, 12],
+              backgroundColor: ['#00A0B0', '#CC333F', '#FFC914', '#00A0B0', '#CC333F', '#FFC914'],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                title: tooltipTitleCallback,
+              },
+            },
+          },
+        },
+      });
+
+      const clonalCtx = document.getElementById('clonalChart').getContext('2d');
+      new Chart(clonalCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Clone A', 'Clone B', 'Unique Clones'],
+          datasets: [
+            {
+              label: 'Global Clonal Distribution',
+              data: [18, 10, 4],
+              backgroundColor: ['#00A0B0', '#CC333F', '#FFC914'],
+              borderColor: '#1f2937',
+              borderWidth: 3,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+          },
+        },
+      });
+
+      const substitutionCtx = document.getElementById('substitutionChart').getContext('2d');
+      new Chart(substitutionCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Pre-Intervention Period', 'Post-Intervention Period'],
+          datasets: [
+            {
+              label: 'Clone A',
+              data: [18, 1],
+              backgroundColor: '#00A0B0',
+            },
+            {
+              label: 'Clone B',
+              data: [0, 16],
+              backgroundColor: '#CC333F',
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'x',
+          scales: {
+            x: {
+              stacked: true,
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>
