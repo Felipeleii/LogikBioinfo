@@ -618,12 +618,8 @@
               ${categoryServices
                 .map(
                   (s) => `
-                <label for="service_${
-                  s.id
-                }" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
-                  <input type="checkbox" id="service_${s.id}" value="${
-                    s.id
-                  }" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
+                <label for="service_${s.id}" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
+                  <input type="checkbox" id="service_${s.id}" value="${s.id}" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
                   <span class="flex-1">
                     <strong class="text-sm">${s.name}</strong>
                   </span>
