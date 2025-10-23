@@ -1110,6 +1110,103 @@
         unidadeResultadoSpan.textContent = unidadeFinal;
         divResultado.classList.remove('hidden');
       });
+
+      // ===========================
+      // Ferramentas Web
+      // ===========================
+
+      // Gerador de MultiFASTA
+      const processFastaBtn = document.getElementById('processFastaBtn');
+      const fastaFilesInput = document.getElementById('fastaFiles');
+      const outputContainer = document.getElementById('output-container');
+      const outputCode = outputContainer.querySelector('code');
+
+      if (processFastaBtn) {
+        processFastaBtn.addEventListener('click', async () => {
+          const files = fastaFilesInput.files;
+          if (files.length === 0) {
+            alert('Por favor, selecione ao menos um arquivo FASTA.');
+            return;
+          }
+
+          let combinedFasta = '';
+          for (let file of files) {
+            const text = await file.text();
+            const fileName = file.name.replace(/\.(fasta|fa|fna)$/i, '');
+            const lines = text.split('\n');
+            for (let line of lines) {
+              if (line.startsWith('>')) {
+                combinedFasta += `>${fileName}_${line.substring(1)}\n`;
+              } else {
+                combinedFasta += line + '\n';
+              }
+            }
+          }
+
+          outputCode.textContent = combinedFasta;
+          outputContainer.style.display = 'block';
+          
+          // Criar download automático
+          const blob = new Blob([combinedFasta], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'combined_multifasta.fasta';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
+
+      // Gerador de Script SRA
+      const generateSraBtn = document.getElementById('generateSraBtn');
+      const sraDataTextarea = document.getElementById('sraData');
+
+      if (generateSraBtn) {
+        generateSraBtn.addEventListener('click', () => {
+          const sraData = sraDataTextarea.value.trim();
+          if (!sraData) {
+            alert('Por favor, insira os dados do SRA.');
+            return;
+          }
+
+          const lines = sraData.split('\n').filter(line => line.trim());
+          let script = '#!/bin/bash\n\n';
+          script += '# Script gerado automaticamente para download de dados SRA\n';
+          script += '# Certifique-se de ter o SRA Toolkit instalado\n\n';
+
+          for (let line of lines) {
+            const parts = line.trim().split(/\s+/);
+            if (parts.length >= 1) {
+              const srr = parts[0];
+              const id = parts.length > 1 ? parts[1] : srr;
+              script += `# Download ${id}\n`;
+              script += `echo "Baixando ${srr}..."\n`;
+              script += `fastq-dump --split-files --gzip ${srr} -O ./fastq_files/\n`;
+              script += `if [ $? -eq 0 ]; then\n`;
+              script += `    echo "Download de ${srr} concluído com sucesso"\n`;
+              script += `    mv ./fastq_files/${srr}_1.fastq.gz ./fastq_files/${id}_1.fastq.gz\n`;
+              script += `    mv ./fastq_files/${srr}_2.fastq.gz ./fastq_files/${id}_2.fastq.gz\n`;
+              script += `else\n`;
+              script += `    echo "Erro ao baixar ${srr}"\n`;
+              script += `fi\n\n`;
+            }
+          }
+
+          script += 'echo "Processamento concluído!"\n';
+
+          outputCode.textContent = script;
+          outputContainer.style.display = 'block';
+
+          // Criar download automático
+          const blob = new Blob([script], { type: 'text/plain' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'download_sra.sh';
+          a.click();
+          URL.revokeObjectURL(url);
+        });
+      }
     </script>
   </body>
 </html>
