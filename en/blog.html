@@ -66,6 +66,40 @@
       .whatsapp-float:hover {
         transform: scale(1.1);
       }
+      /* Animated DNA Background */
+      .dna-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.03;
+        pointer-events: none;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(5deg);
+        }
+      }
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .dna-helix {
+        animation: rotate 60s linear infinite;
+      }
+      .bacteria {
+        animation: float 8s ease-in-out infinite;
+      }
       .language-selector {
         display: flex;
         gap: 0.5rem;
@@ -92,6 +126,28 @@
     </style>
   </head>
   <body class="text-gray-200">
+    <!-- Animated DNA/Bacteria Background -->
+    <div class="dna-background">
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="dna-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <g class="dna-helix">
+              <circle cx="25" cy="25" r="4" fill="#22c55e" />
+              <circle cx="75" cy="75" r="4" fill="#3b82f6" />
+              <line x1="25" y1="25" x2="75" y2="75" stroke="#10b981" stroke-width="2" opacity="0.5" />
+            </g>
+          </pattern>
+          <pattern id="bacteria-pattern" x="0" y="0" width="150" height="150" patternUnits="userSpaceOnUse">
+            <g class="bacteria">
+              <ellipse cx="75" cy="75" rx="15" ry="8" fill="#22c55e" opacity="0.3" />
+              <ellipse cx="40" cy="110" rx="12" ry="6" fill="#3b82f6" opacity="0.3" />
+            </g>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dna-pattern)" />
+        <rect width="100%" height="100%" fill="url(#bacteria-pattern)" />
+      </svg>
+    </div>
     <!-- Header -->
     <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
       <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -110,7 +166,6 @@
           </a>
           <a href="orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
           <a href="sobre.html" class="nav-link-hover transition duration-300">About</a>
-          <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Who I Am</a>
           <div class="language-selector">
             <span class="lang-divider">|</span>
             <a href="../blog.html" class="lang-option" data-lang="pt">PT</a>
@@ -137,7 +192,6 @@
         </a>
         <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
         <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
-        <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who I Am</a>
 
         <div class="flex justify-center py-2 px-6 space-x-2">
           <a href="../blog.html" class="lang-option text-sm" data-lang="pt">PT</a>
