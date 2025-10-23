@@ -85,25 +85,29 @@ If you suspect a secret was committed:
 **Para habilitar branch protection mantendo acesso ao Copilot:**
 
 #### Passo 1: Ir para Settings → Branches
+
 1. Acesse seu repositório: https://github.com/Felipeleii/LogikBioinfo
 2. Clique em **Settings** (engrenagem no topo)
 3. Esquerda: clique em **Branches**
 4. Em "Branch protection rules", clique em **Add rule**
 
 #### Passo 2: Configurar a Rule
+
 - **Branch name pattern:** `main`
 - Habilite as seguintes opções:
   - ✅ Require a pull request before merging
   - ✅ Require status checks to pass before merging
   - ✅ Require branches to be up to date before merging
   - ✅ Include administrators (se quiser que as regras se apliquem a você também)
-  
+
 #### Passo 3: Configurações Opcionais (recomendadas)
+
 - ✅ Dismiss stale pull request approvals when new commits are pushed
 - ✅ Require code reviews from code owners (opcional)
 - ✅ Require approval of the most recent reviewers before deployment
 
 #### Como o Copilot Agent Continua Funcionando:
+
 1. O agent cria um **branch de trabalho** (ex: `copilot/fix-something`)
 2. Faz os commits neste branch
 3. Abre um **Pull Request** para `main`
@@ -113,6 +117,7 @@ If you suspect a secret was committed:
 5. Após tudo passar, você **aprova e faz merge**
 
 #### Workflow Recomendado para Copilot:
+
 ```bash
 # Copilot cria uma branch
 git checkout -b feature/your-feature
@@ -129,6 +134,7 @@ git push origin feature/your-feature
 ```
 
 #### GitHub Actions (Automação de Verificações)
+
 Para que o branch protection funcione melhor, crie um workflow:
 
 1. Crie arquivo `.github/workflows/security-check.yml`:
@@ -151,6 +157,7 @@ Para que o branch protection funcione melhor, crie um workflow:
 ### 10. **Alternativa: Cobot como Colaborador com Permissões**
 
 Se preferir que o Copilot trabalhe diretamente em `main`:
+
 1. Settings → Collaborators → Add people
 2. Dê permissão de "Maintain" ou "Admin" (se confiável)
 3. **Risco:** sem branch protection, mudanças vão direto para `main`
