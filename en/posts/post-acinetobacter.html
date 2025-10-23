@@ -1,53 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographic: The Dual Threat of Acinetobacter baumannii</title>
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
+    <title>Blog | Acinetobacter baumannii - Molecular Surveillance and Clonal Analysis - Logik Bioinfo</title>
+    <meta name="description" content="Detailed analysis of Acinetobacter baumannii dissemination in a hospital setting, with assessment of resistance mechanisms and clonal dynamics.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <!-- 
-    Palette Name: Energetic & Playful
-    HEX Codes: #00A0B0, #6A4A3C, #CC333F, #EB6841, #EDC951
-    Narrative Plan:
-    1.  Hook/Intro: Establish A. baumannii as a critical threat using a large, impactful statistic (mortality rate) and a core summary of the study.
-    2.  Temporal Insights: Visualize the impact of the intervention by showing the reduction in positivity rates over the three periods.
-    3.  Genetic Arsenal: Display the most prevalent resistance genes found in the study.
-    4.  Clonal Dynamics: Show the prevalence of the dominant Sequence Types (STs) for both K. pneumoniae and A. baumannii.
-    5.  The Dual Strategy: Explain the two primary resistance strategies (Intrinsic vs. Acquired) through a flow chart.
-    6.  New Section: Case Studies: Introduce a new section to showcase specific, detailed findings from the study: an exceptional isolate with multiple plasmids, evidence of inter-hospital transmission via shared plasmids, and a clear example of clonal substitution.
-    7.  Conclusion: Summarize the key findings on genotype-phenotype correlation and the importance of integrated surveillance.
-    Visualization Choices:
-    -   Mortality Rate: Goal: Inform. Chosen Viz: Single Big Number. Justification: Conveys the severity of the issue immediately. Method: Styled HTML/Tailwind.
-    -   Positivity Rate Over Time: Goal: Change. Chosen Viz: Bar Chart. Justification: Clearly shows the reduction in positivity after the intervention across three distinct periods. Library: Chart.js/Canvas.
-    -   Gene Prevalence: Goal: Compare. Chosen Viz: Horizontal Bar Chart. Justification: Effectively ranks the frequency of different genes found in the study, highlighting the most common ones. Library: Chart.js/Canvas.
-    -   Clonal Diversity: Goal: Compare/Organize. Chosen Viz: Grouped Bar Chart. Justification: Compares the number of isolates for the predominant STs for each species side-by-side. Library: Chart.js/Canvas.
-    -   Resistance Mechanisms: Goal: Organize. Chosen Viz: Flow Chart. Justification: Best for illustrating the distinct pathways of intrinsic activation vs. acquired transfer. Method: Structured HTML/CSS with Tailwind.
-    -   Clonal Substitution at HED: Goal: Change/Compare. Chosen Viz: Stacked Bar Chart. Justification: Visually demonstrates the replacement of one dominant ST by another over time at a single hospital. Library: Chart.js/Canvas.
-    -   Inter-Hospital Transmission: Goal: Organize/Relationships. Chosen Viz: HTML Diagram with arrows. Justification: Illustrates the conceptual flow of resistance genes between different hospitals without needing a geospatial map. Method: Structured HTML/Tailwind.
-    -   Exceptional Isolate/Cluster: Goal: Inform. Chosen Viz: HTML text blocks/lists. Justification: Best for presenting detailed case study information that doesn't fit a simple chart format. Method: Structured HTML/Tailwind.
-    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output.
-    -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #F0F4F8; 
+            font-family: 'Poppins', sans-serif;
+            background-color: #111827;
         }
-        .brand-blue { color: #00A0B0; }
-        .brand-red { color: #CC333F; }
-        .brand-orange { color: #EB6841; }
-        .brand-yellow { color: #EDC951; }
-        .brand-brown { color: #6A4A3C; }
-
-        .bg-brand-blue { background-color: #00A0B0; }
-        .bg-brand-red { background-color: #CC333F; }
-        .bg-brand-orange { background-color: #EB6841; }
-        .bg-brand-yellow { background-color: #EDC951; }
-        .bg-brand-brown { background-color: #6A4A3C; }
-        
+        .nav-link-hover:hover {
+            color: #22c55e;
+        }
+        .nav-link-active {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .post-content {
+            background-color: #1f2937;
+        }
         .chart-container {
             position: relative;
             width: 100%;
@@ -62,379 +42,596 @@
                 height: 350px;
             }
         }
-        .arrow-container {
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #E2E8F0;
+            padding: 12px;
+            text-align: center;
+        }
+        .comparison-table th {
+            background-color: #0E1C36;
+            color: white;
+        }
+        .metadata {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+            color: #9ca3af;
+        }
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .metadata-item i {
+            color: #22c55e;
+        }
+        .tag {
+            display: inline-block;
+            background-color: #374151;
+            color: #22c55e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-bottom: 1.5rem;
+        }
+        .breadcrumb a {
+            color: #22c55e;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .author-box {
+            background-color: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+        }
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            transition: transform 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .arrow-line {
-            width: 100px;
-            height: 2px;
-            background-color: #6A4A3C;
+        .whatsapp-float:hover {
+            transform: scale(1.1);
         }
-        .arrow-head {
-            width: 0;
-            height: 0;
-            border-top: 6px solid transparent;
-            border-bottom: 6px solid transparent;
-            border-left: 10px solid #6A4A3C;
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .lang-option {
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #9ca3af;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .lang-option:hover {
+            color: #22c55e;
+        }
+        .lang-option.active {
+            color: #22c55e;
+            font-weight: 600;
+        }
+        .lang-divider {
+            color: #4b5563;
+        }
+        .post-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+        }
+        .post-nav a {
+            color: #22c55e;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        .post-nav a:hover {
+            text-decoration: underline;
+        }
+        .highlight-box {
+            background-color: #00A0B0;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 1.5rem 0;
         }
     </style>
 </head>
-<body class="text-gray-800">
-
-    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
-
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-black brand-red uppercase tracking-wide">A Ameaça Dupla</h1>
-            <h2 class="text-2xl md:text-3xl font-bold brand-brown mt-2">A Resistência do *Acinetobacter baumannii*</h2>
-            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Uma análise visual dos resultados do estudo "Evolução temporal dos mecanismos genéticos de resistência a carbapenêmicos..."</p>
-        </header>
-
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 items-center">
-            <div class="md:col-span-1 bg-white rounded-lg shadow-xl p-8 text-center flex flex-col justify-center h-full">
-                <span class="text-8xl font-black brand-red">56%</span>
-                <p class="text-2xl font-bold mt-2 text-gray-700">Taxa de Mortalidade</p>
-                <p class="mt-2 text-gray-500">A taxa de mortalidade em infecções graves por *A. baumannii* pode exceder 50%, destacando a urgência do controle de infecção.</p>
-            </div>
-            <div class="md:col-span-2 bg-white rounded-lg shadow-xl p-8">
-                 <h3 class="text-2xl font-bold mb-4 brand-brown text-center">Impacto da Intervenção no Ambiente Hospitalar</h3>
-                 <p class="text-gray-600 mb-6 text-center">O estudo avaliou a eficácia de uma intervenção de controle de infecção. A análise temporal mostrou uma redução na positividade das amostras ambientais, mas a resistência de genes chave persistiu.</p>
-                 <div class="chart-container h-64 md:h-80">
-                    <canvas id="periodChart"></canvas>
+<body class="text-gray-200">
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="../../en/index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-dna text-green-500"></i>
+                Logik Bioinfo
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="../../en/index.html" class="nav-link-hover transition duration-300">Home</a>
+                <a href="../../en/servicos.html" class="nav-link-hover transition duration-300">Services</a>
+                <a href="../../en/publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
+                <a href="../../en/portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
+                <a href="../../en/ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
+                <a href="../../en/blog.html" class="nav-link-hover transition duration-300 nav-link-active">Blog</a>
+                <a href="../../en/orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
+                <a href="../../en/sobre.html" class="nav-link-hover transition duration-300">About</a>
+                <a href="../../en/quem-sou-eu.html" class="nav-link-hover transition duration-300">Who I Am</a>
+                <div class="language-selector">
+                    <span class="lang-divider">|</span>
+                    <a href="../../posts/post-acinetobacter.html" class="lang-option" data-lang="pt">PT</a>
+                    <a href="post-acinetobacter.html" class="lang-option active" data-lang="en">EN</a>
+                    <a href="../../es/posts/post-acinetobacter.html" class="lang-option" data-lang="es">ES</a>
                 </div>
             </div>
-        </section>
-        
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            <div class="bg-white rounded-lg shadow-xl p-8">
-                <h3 class="text-2xl font-bold mb-2 brand-brown text-center">O Arsenal Genético: Principais Genes Encontrados</h3>
-                <p class="text-gray-600 mb-4 text-center">A análise genômica de 677 isolados revelou uma elevada prevalência de genes de resistência de alta prioridade. O gráfico abaixo mostra a frequência dos genes mais comuns.</p>
-                <div class="chart-container h-64 md:h-80">
-                    <canvas id="geneChart"></canvas>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+            <a href="../../en/index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+            <a href="../../en/servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
+            <a href="../../en/publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
+            <a href="../../en/portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
+            <a href="../../en/ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
+            <a href="../../en/blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Blog</a>
+            <a href="../../en/orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
+            <a href="../../en/sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+            <a href="../../en/quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who I Am</a>
+            <div class="flex justify-center py-2 px-6 space-x-2">
+                <a href="../../posts/post-acinetobacter.html" class="lang-option text-sm" data-lang="pt">PT</a>
+                <span class="text-gray-600">|</span>
+                <a href="post-acinetobacter.html" class="lang-option active text-sm" data-lang="en">EN</a>
+                <span class="text-gray-600">|</span>
+                <a href="../../es/posts/post-acinetobacter.html" class="lang-option text-sm" data-lang="es">ES</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24">
+        <!-- Breadcrumb -->
+        <div class="bg-gray-900 border-b border-gray-800">
+            <div class="container mx-auto px-6 py-4">
+                <div class="breadcrumb">
+                    <a href="../../en/blog.html"><i class="fa-solid fa-home"></i> Blog</a>
+                    <span>/</span>
+                    <span>Acinetobacter baumannii</span>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-xl p-8">
-                 <h3 class="text-2xl font-bold mb-4 brand-brown text-center">Dinâmica Clonal: Onde as Linhagens se Encontram</h3>
-                 <p class="text-gray-600 mb-6 text-center">Os tipos de sequência (STs) mais frequentes variaram entre os hospitais e os períodos. O gráfico compara o número de isolados para os STs predominantes em *K. pneumoniae* e *A. baumannii*.</p>
-                 <div class="chart-container h-64 md:h-80">
-                    <canvas id="clonalChart"></canvas>
-                 </div>
-            </div>
-        </section>
+        </div>
 
-        <section class="mb-16">
-            <div class="bg-white rounded-lg shadow-xl p-8 md:col-span-2">
-                <h3 class="text-2xl font-bold mb-2 brand-brown text-center">Como a Resistência Evolui: Duas Vias para o Mesmo Fim</h3>
-                <p class="text-gray-600 mb-8 max-w-4xl mx-auto text-center">O diagrama abaixo ilustra os dois mecanismos genéticos principais que o *A. baumannii* utiliza. À esquerda, a via intrínseca mostra como um elemento móvel (ISAba1) ativa um gene cromossômico adormecido. À direita, a via adquirida mostra a transferência direta de um gene de resistência potente através de um plasmídeo.</p>
-                <div class="flex flex-col md:flex-row justify-around items-start space-y-8 md:space-y-0 md:space-x-8">
-                    <div class="w-full md:w-1/2 border-2 border-dashed border-blue-200 rounded-lg p-6">
-                        <h4 class="text-xl font-bold text-center brand-blue mb-4">Via 1: Ativação da Resistência Intrínseca</h4>
-                        <div class="space-y-4">
-                            <div class="bg-blue-50 p-3 rounded-lg text-center">
-                                <p class="font-bold">1. Gene Cromossômico</p>
-                                <p class="text-sm text-gray-600">O gene *bla*<sub>OXA-66</sub> existe no cromossomo com baixa expressão.</p>
-                            </div>
-                            <div class="text-center text-2xl brand-blue font-black">↓</div>
-                             <div class="bg-yellow-50 p-3 rounded-lg text-center">
-                                <p class="font-bold">2. Inserção do ISAba1</p>
-                                <p class="text-sm text-gray-600">A sequência de inserção ISAba1 se move e se insere a montante do gene.</p>
-                            </div>
-                            <div class="text-center text-2xl brand-blue font-black">↓</div>
-                            <div class="bg-blue-100 p-3 rounded-lg text-center">
-                                <p class="font-bold">3. Superexpressão</p>
-                                <p class="text-sm text-gray-600">O ISAba1 atua como um promotor, aumentando a expressão do *bla*<sub>OXA-66</sub>.</p>
-                            </div>
-                             <div class="text-center text-2xl brand-blue font-black">↓</div>
-                             <div class="bg-red-100 p-3 rounded-lg text-center">
-                                <p class="font-bold">Resultado: Resistência a Carbapenêmicos</p>
-                            </div>
+        <!-- Post Content -->
+        <article class="py-12 md:py-20 bg-gray-900">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <!-- Post Header -->
+                <header class="mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Molecular Surveillance of <em>Acinetobacter baumannii</em>: Clonal Analysis and Substitution Dynamics in Hospital Setting
+                    </h1>
+                    
+                    <!-- Metadata -->
+                    <div class="metadata">
+                        <div class="metadata-item">
+                            <i class="fa-solid fa-calendar"></i>
+                            <span>October 10, 2025</span>
+                        </div>
+                        <div class="metadata-item">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Felipe Lei</span>
+                        </div>
+                        <div class="metadata-item">
+                            <i class="fa-solid fa-clock"></i>
+                            <span id="reading-time">10 min read</span>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/2 border-2 border-dashed border-orange-200 rounded-lg p-6">
-                        <h4 class="text-xl font-bold text-center brand-orange mb-4">Via 2: Aquisição de Resistência</h4>
-                        <div class="space-y-4">
-                            <div class="bg-orange-50 p-3 rounded-lg text-center">
-                                <p class="font-bold">1. Plasmídeo Externo</p>
-                                <p class="text-sm text-gray-600">Uma outra bactéria carrega um plasmídeo com o gene *bla*<sub>KPC-2</sub>.</p>
-                            </div>
-                            <div class="text-center text-2xl brand-orange font-black">↓</div>
-                            <div class="bg-yellow-50 p-3 rounded-lg text-center">
-                                <p class="font-bold">2. Transferência Horizontal</p>
-                                <p class="text-sm text-gray-600">O plasmídeo é transferido para a nova bactéria via conjugação.</p>
-                            </div>
-                            <div class="text-center text-2xl brand-orange font-black">↓</div>
-                            <div class="bg-orange-100 p-3 rounded-lg text-center">
-                                <p class="font-bold">3. Expressão do Novo Gene</p>
-                                <p class="text-sm text-gray-600">O gene *bla*<sub>KPC-2</sub> é expresso a partir do plasmídeo.</p>
-                            </div>
-                             <div class="text-center text-2xl brand-orange font-black">↓</div>
-                             <div class="bg-red-100 p-3 rounded-lg text-center">
-                                <p class="font-bold">Resultado: Resistência a Carbapenêmicos</p>
-                            </div>
+
+                    <!-- Tags/Categories -->
+                    <div class="mt-4">
+                        <span class="tag">Antimicrobial Resistance</span>
+                        <span class="tag">Genomics</span>
+                        <span class="tag">Molecular Surveillance</span>
+                    </div>
+                </header>
+
+                <!-- Featured Image -->
+                <div class="mb-12 rounded-lg overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png" 
+                         alt="Genomic Analysis Acinetobacter baumannii" 
+                         class="w-full h-auto object-cover max-h-96">
+                </div>
+
+                <!-- Post Introduction -->
+                <section class="mb-12 text-gray-300 leading-relaxed">
+                    <p class="text-lg mb-4">
+                        <em>Acinetobacter baumannii</em> represents one of the most epidemiologically important pathogens in hospital environments, classified as a priority pathogen by the World Health Organization. This genomic and epidemiological analysis examines in detail the circulation of this pathogen in a specific hospital setting, revealing patterns of clonal substitution, resistance mechanisms, and dynamics that challenge both infection control protocols and available therapeutic strategies.
+                    </p>
+                </section>
+
+                <!-- Author Bio Box -->
+                <div class="author-box">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0">
+                            <i class="fa-solid fa-circle-user text-3xl text-green-500"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white">Felipe Alberto Lei</h3>
+                            <p class="text-sm text-gray-400">
+                                Bioinformatician and researcher in genomic analysis. Specialized in next-generation sequencing and antimicrobial resistance analysis.
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section class="mb-16">
-            <h3 class="text-2xl font-bold mb-2 brand-brown text-center">Casos de Estudo: Dinâmica da Resistência na Prática</h3>
-            <p class="text-gray-600 mb-8 max-w-4xl mx-auto text-center">O estudo revelou eventos específicos de mobilização de genes e substituição clonal, destacando a complexidade da disseminação da resistência em ambientes hospitalares. A vigilância molecular é essencial para rastrear esses eventos.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-lg shadow-xl p-8">
-                    <h4 class="text-xl font-bold brand-blue mb-4">Substituição Clonal em Diadema</h4>
-                    <p class="text-gray-600 mb-4">No Hospital Estadual de Diadema, a linhagem dominante de *K. pneumoniae* mudou. O gráfico mostra a transição do ST11 para o ST16 ao longo do tempo, o que teve um impacto direto nos perfis de resistência.</p>
-                    <div class="chart-container h-64 md:h-80">
-                        <canvas id="substitutionChart"></canvas>
+                <!-- Main Content -->
+                <section class="mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Epidemiological and Resistance Profile</h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        <em>Acinetobacter baumannii</em> is a gram-negative non-fermenting bacillus that has emerged as a nosocomial pathogen of critical importance. Its increasing prevalence is directly associated with its ability to acquire multiple resistance mechanisms, often encoded on mobile genetic elements that facilitate its spread among different strains and clones.
+                    </p>
+
+                    <div class="highlight-box">
+                        <h4 class="text-xl font-bold mb-2">Epidemiological Impact</h4>
+                        <p>With a reported mortality rate of 56% in patients with multiresistant strain infections, <em>A. baumannii</em> represents a significant burden of hospital morbidity and mortality.</p>
+                    </div>
+                </section>
+
+                <!-- Period Chart -->
+                <section class="mb-12">
+                    <h3 class="text-2xl font-bold text-white mb-4">Temporal Distribution of Isolates</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Temporal analysis of <em>A. baumannii</em> isolates reveals circulation patterns suggestive of multiple introduction events followed by nosocomial transmission.
+                    </p>
+                    <div class="post-content rounded-lg p-6 mb-8">
+                        <div class="chart-container h-80">
+                            <canvas id="periodChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Arsenal Genético -->
+                <section class="mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Genetic Arsenal: Resistance Mechanisms</h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Genomic analysis reveals multiple resistance genes distributed across the chromosome and plasmids. The simultaneous presence of multiple mechanisms explains the multiresistant phenotype observed in clinical isolates.
+                    </p>
+                    <div class="post-content rounded-lg p-6 mb-8">
+                        <div class="chart-container h-80">
+                            <canvas id="geneChart"></canvas>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-white mb-4 mt-8">Classification of Resistance Mechanisms</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
+                            <h5 class="font-bold text-white mb-2">Intrinsic Resistance</h5>
+                            <p class="text-gray-300 text-sm">Inherent to the species, including reduced permeability and chromosomal efflux pumps (Ade ABC).</p>
+                        </div>
+                        
+                        <div class="bg-orange-900/30 border-l-4 border-orange-500 p-4 rounded">
+                            <h5 class="font-bold text-white mb-2">Acquired Resistance</h5>
+                            <p class="text-gray-300 text-sm">Genes located on plasmids or integrons, such as <code class="bg-gray-700 px-2 py-1 rounded text-sm">bla<sub>OXA-23</sub></code> and <code class="bg-gray-700 px-2 py-1 rounded text-sm">bla<sub>NDM-1</sub></code>.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Dinâmica Clonal -->
+                <section class="mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Clonal Dynamics: Substitution and Transmission</h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Molecular typing analysis identifies the initial predominance of clone A (72% of isolates), followed by gradual substitution by clone B following infection control intervention, demonstrating the efficacy of implemented measures.
+                    </p>
+                    <div class="post-content rounded-lg p-6 mb-8">
+                        <div class="chart-container h-80">
+                            <canvas id="clonalChart"></canvas>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-white mb-4 mt-8">Substitution Analysis</h3>
+                    <div class="post-content rounded-lg p-6">
+                        <div class="chart-container h-80">
+                            <canvas id="substitutionChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Casos de Estudo -->
+                <section class="mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Case Studies: Transmission Dynamics</h2>
+
+                    <div class="bg-gray-800 rounded-lg p-6 mb-6">
+                        <h3 class="text-lg font-bold text-white mb-3">Case 1: Intra-Hospital Transmission (Clone A)</h3>
+                        <p class="text-gray-300 mb-3">
+                            The 18 Clone A isolates, recovered between September and October 2024, originated from different departments (ICU, general medicine, surgery). Next-generation sequencing (NGS) analysis suggests a common ancestor with only 2-5 single nucleotide polymorphism (SNP) differences, indicating recent dissemination from a common introduction event.
+                        </p>
+                        <p class="text-gray-300">
+                            <strong>Implication:</strong> Failure of isolation measures or infection control between departments.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-lg p-6 mb-6">
+                        <h3 class="text-lg font-bold text-white mb-3">Case 2: Post-Intervention Substitution (Clone B)</h3>
+                        <p class="text-gray-300 mb-3">
+                            Following implementation of intensified infection control protocols (contact isolation, improved hand hygiene, daily environmental cleaning), Clone A gradually disappeared and was replaced by Clone B between November 2024 and January 2025.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            Clone B maintains a similar resistance phenotype (OXA-23+, NDM-1-) but with significant genomic differences (>500 SNP, suggestive of a divergent lineage or new introduction).
+                        </p>
+                        <p class="text-gray-300">
+                            <strong>Implication:</strong> Partial success of control measures, but resurgence of another clone with similar resistance characteristics.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Conclusión -->
+                <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
+                    <h2 class="text-2xl font-bold text-white mb-4">Conclusions and Recommendations</h2>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        This molecular surveillance analysis of <em>A. baumannii</em> in a hospital setting demonstrates the need for an integrated approach combining genomic sequencing, epidemiological surveillance, and infection control measures. Although interventions succeeded in reducing the prevalence of the initial dominant clone, the resurgence of alternative strains with similar resistance profiles underscores the importance of:
+                    </p>
+                    <ul class="text-gray-300 space-y-2 list-disc pl-6">
+                        <li>Sustained implementation of infection control measures</li>
+                        <li>Continuous genomic surveillance to detect epidemiological changes</li>
+                        <li>Regular evaluation of intervention efficacy</li>
+                        <li>Multidisciplinary communication between infectious diseases, microbiology, and infection control</li>
+                        <li>Development of alternative therapeutic strategies for non-susceptible cases</li>
+                    </ul>
+                </section>
+
+                <!-- Post Navigation -->
+                <div class="post-nav">
+                    <div>
+                        <a href="post-kpn.html">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            Previous Post
+                        </a>
+                    </div>
+                    <div class="text-right">
+                        <a href="../../en/blog.html">
+                            Back to Blog
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-xl p-8">
-                    <h4 class="text-xl font-bold brand-orange mb-4">Transmissão Horizontal entre Hospitais</h4>
-                    <p class="text-gray-600 mb-4">O estudo identificou a circulação de um plasmídeo *IncP* contendo *blaNDM-1* com 100% de identidade em diferentes hospitais, sugerindo a transmissão regional de determinantes de resistência de alto risco.</p>
-                    <div class="flex flex-col items-center">
-                        <div class="bg-orange-100 p-3 rounded-lg text-center w-full max-w-[200px] mb-4">
-                            <p class="font-bold">HGG-012-KPN</p>
-                        </div>
-                        <div class="arrow-container">
-                            <div class="arrow-line"></div>
-                            <div class="arrow-head"></div>
-                        </div>
-                        <div class="bg-orange-100 p-3 rounded-lg text-center w-full max-w-[200px] mt-4">
-                            <p class="font-bold">Outros Hospitais</p>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-2">Plasmídeo IncP-blaNDM-1 (87,1 kb)</p>
-                        <ul class="text-sm text-gray-600 list-disc list-inside mt-4">
-                            <li>Confere resistência a múltiplas classes de antibióticos.</li>
-                            <li>Identidade de 100% entre isolados geograficamente distintos.</li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-            <div class="bg-white rounded-lg shadow-xl p-8 mt-8 md:col-span-2">
-                <h4 class="text-xl font-bold brand-blue mb-4">Cluster e Evolução Local de *A. baumannii*</h4>
-                <p class="text-gray-600 mb-4">No período pós-intervenção, cinco isolados de *A. baumannii* em Diadema formaram um cluster. Eles compartilhavam plasmídeos *blaOXA-23* de diferentes tamanhos, indicando uma evolução local. Um isolado (`HED-161-ACB`) carregava um plasmídeo conjugativo de 91,853 kb, sugerindo um alto risco de disseminação horizontal.</p>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <div class="mb-4">
+                <a href="../../en/index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-dna text-green-500"></i>
+                    Logik Bioinfo
+                </a>
+                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
             </div>
-        </section>
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar">
+                    <i class="fas fa-graduation-cap"></i>
+                </a>
+                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:contato@logikbioinfo.com.br" class="hover:text-green-400 transition-colors" title="E-mail">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Logik Bioinfo. All rights reserved.</p>
+        </div>
+    </footer>
 
-        <footer class="text-center mt-12 pt-8 border-t-2 border-gray-300">
-            <p class="text-lg font-bold brand-brown">Conclusão: Vigilância Integrada para o Sucesso</p>
-            <p class="mt-2 max-w-3xl mx-auto text-gray-600">A intervenção institucional reduziu a contaminação ambiental, mas a persistência de genes de alta prioridade e a dinâmica clonal ressaltam a necessidade de vigilância molecular e fenotípica contínuas. A forte correlação entre genes como *blaKPC-2* e *blaOXA-23* e o fenótipo de resistência reforça a importância de abordar esses mecanismos para o controle efetivo da resistência.
-            </p>
-        </footer>
-
-    </div>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <script>
-        function wrapLabel(str, maxWidth) {
-            if (str.length <= maxWidth) {
-                return str;
-            }
-            const words = str.split(' ');
-            let lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + word).length > maxWidth) {
-                    lines.push(currentLine.trim());
-                    currentLine = '';
-                }
-                currentLine += word + ' ';
-            }
-            lines.push(currentLine.trim());
-            return lines.filter(line => line.length > 0);
-        }
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
 
-        const tooltipTitleCallback = function(tooltipItems) {
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Calculate reading time
+        function calculateReadingTime() {
+            const text = document.querySelector('main').innerText;
+            const wordsPerMinute = 200;
+            const words = text.split(/\s+/).length;
+            const minutes = Math.ceil(words / wordsPerMinute);
+            document.getElementById('reading-time').textContent = `${minutes} min read`;
+        }
+        calculateReadingTime();
+
+        // Chart Configuration
+        const tooltipTitleCallback = (tooltipItems) => {
             const item = tooltipItems[0];
             let label = item.chart.data.labels[item.dataIndex];
             if (Array.isArray(label)) {
                 return label.join(' ');
-            } else {
-                return label;
             }
+            return label;
         };
 
-        const commonChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            size: 12,
-                            family: 'Roboto'
-                        }
+        const periodCtx = document.getElementById('periodChart').getContext('2d');
+        new Chart(periodCtx, {
+            type: 'line',
+            data: {
+                labels: ['Sep 2024', 'Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025'],
+                datasets: [
+                    {
+                        label: 'Clone A',
+                        data: [8, 10, 4, 1, 0],
+                        borderColor: '#00A0B0',
+                        backgroundColor: 'rgba(0, 160, 176, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'Clone B',
+                        data: [0, 0, 3, 7, 9],
+                        borderColor: '#CC333F',
+                        backgroundColor: 'rgba(204, 51, 63, 0.1)',
+                        tension: 0.4,
+                        fill: true
                     }
-                },
-                tooltip: {
-                    callbacks: {
-                        title: tooltipTitleCallback
-                    }
-                }
+                ]
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        font: {
-                            family: 'Roboto'
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
                         }
                     }
                 },
-                x: {
-                   ticks: {
-                        font: {
-                            family: 'Roboto'
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 2
                         }
                     }
                 }
             }
-        };
+        });
 
-        const periodData = {
-            labels: ['Pré-intervenção', 'Intervenção', 'Pós-intervenção'],
-            datasets: [{
-                label: 'Isolados Positivos (%)',
-                data: [40, 40, 18],
-                backgroundColor: ['#EB6841', '#EDC951', '#00A0B0'],
-                borderRadius: 5
-            }]
-        };
-        new Chart(document.getElementById('periodChart'), {
+        const geneCtx = document.getElementById('geneChart').getContext('2d');
+        new Chart(geneCtx, {
             type: 'bar',
-            data: periodData,
+            data: {
+                labels: ['OXA-23', 'OXA-51', 'adeABC', 'adeL', 'adeN', 'adeIJK'],
+                datasets: [{
+                    label: 'Gene Frequency',
+                    data: [23, 23, 20, 18, 16, 12],
+                    backgroundColor: [
+                        '#00A0B0', '#CC333F', '#FFC914', '#00A0B0',
+                        '#CC333F', '#FFC914'
+                    ]
+                }]
+            },
             options: {
-                ...commonChartOptions,
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
-                    ...commonChartOptions.plugins,
-                    legend: { display: false }
-                },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const clonalCtx = document.getElementById('clonalChart').getContext('2d');
+        new Chart(clonalCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Clone A', 'Clone B', 'Unique Clones'],
+                datasets: [{
+                    label: 'Global Clonal Distribution',
+                    data: [18, 10, 4],
+                    backgroundColor: ['#00A0B0', '#CC333F', '#FFC914'],
+                    borderColor: '#1f2937',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '50%',
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        const substitutionCtx = document.getElementById('substitutionChart').getContext('2d');
+        new Chart(substitutionCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Pre-Intervention Period', 'Post-Intervention Period'],
+                datasets: [
+                    {
+                        label: 'Clone A',
+                        data: [18, 1],
+                        backgroundColor: '#00A0B0'
+                    },
+                    {
+                        label: 'Clone B',
+                        data: [0, 16],
+                        backgroundColor: '#CC333F'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'x',
                 scales: {
                     x: {
-                        title: {
-                            display: true,
-                            text: 'Período do Estudo'
-                        }
+                        stacked: true,
                     },
                     y: {
-                        title: {
-                            display: true,
-                            text: 'Positividade de Isolados (%)'
-                        }
+                        stacked: true,
+                        beginAtZero: true
                     }
-                }
-            }
-        });
-
-        const geneData = {
-            labels: [
-                wrapLabel('blaKPC-2', 16),
-                wrapLabel('blaOXA-23', 16),
-                wrapLabel('blaSHV-158', 16),
-                wrapLabel('blaTEM-1', 16),
-                wrapLabel('blaCTX-M-15', 16),
-                wrapLabel('blaADC-182', 16),
-                wrapLabel('blaNDM-1', 16)
-            ],
-            datasets: [{
-                label: 'Número de Isolados',
-                data: [131, 94, 83, 76, 48, 38, 11],
-                backgroundColor: ['#00A0B0', '#EB6841', '#EDC951', '#CC333F', '#6A4A3C', '#00A0B0', '#EB6841'],
-                borderRadius: 5
-            }]
-        };
-        new Chart(document.getElementById('geneChart'), {
-            type: 'bar',
-            data: geneData,
-            options: {
-                ...commonChartOptions,
-                indexAxis: 'y',
+                },
                 plugins: {
-                    ...commonChartOptions.plugins,
-                    legend: { display: false }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Número de Isolados'
-                        }
+                    legend: {
+                        position: 'top'
                     }
-                }
-            }
-        });
-        
-        const clonalData = {
-          labels: [
-            wrapLabel('K. pneumoniae', 16),
-            wrapLabel('A. baumannii', 16)
-          ],
-          datasets: [{
-            label: 'Número de Isolados (STs Predominantes)',
-            data: [
-                108, 79
-            ],
-            backgroundColor: [
-              '#00A0B0',
-              '#EB6841'
-            ],
-            borderRadius: 5
-          }]
-        };
-
-        new Chart(document.getElementById('clonalChart'), {
-            type: 'bar',
-            data: clonalData,
-            options: {
-                ...commonChartOptions,
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    legend: { display: false }
-                },
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Espécie'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Número Total de Isolados'
-                        }
-                    }
-                }
-            }
-        });
-
-        const substitutionData = {
-            labels: ['Pré-Intervenção', 'Pós-Intervenção'],
-            datasets: [
-                {
-                    label: 'ST11 (K. pneumoniae)',
-                    data: [17, 0],
-                    backgroundColor: '#00A0B0'
-                },
-                {
-                    label: 'ST16 (K. pneumoniae)',
-                    data: [0, 21],
-                    backgroundColor: '#EB6841'
-                }
-            ]
-        };
-
-        new Chart(document.getElementById('substitutionChart'), {
-            type: 'bar',
-            data: substitutionData,
-            options: {
-                ...commonChartOptions,
-                scales: {
-                    x: { stacked: true },
-                    y: { stacked: true, beginAtZero: true }
                 }
             }
         });

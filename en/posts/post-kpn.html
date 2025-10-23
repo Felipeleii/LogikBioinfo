@@ -1,629 +1,789 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../../favicon.png" />
     <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
     <title>Blog | K. pneumoniae ST17 Co-producing KPC/NDM - Logik Bioinfo</title>
-    <meta name="description" content="Genomic analysis of a critical Klebsiella pneumoniae ST17 isolate co-producing carbapenemases KPC-2 and NDM-1.">
+    <meta
+      name="description"
+      content="Genomic analysis of a critical Klebsiella pneumoniae ST17 isolate co-producing carbapenemases KPC-2 and NDM-1."
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #111827;
-        }
-        .nav-link-hover:hover {
-            color: #22c55e;
-        }
-        .nav-link-active {
-            color: #22c55e;
-            font-weight: 600;
-        }
-        .post-content {
-            background-color: #1f2937;
-        }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #111827;
+      }
+      .nav-link-hover:hover {
+        color: #22c55e;
+      }
+      .nav-link-active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .post-content {
+        background-color: #1f2937;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
         .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
+          height: 350px;
         }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #E2E8F0;
-            padding: 12px;
-            text-align: center;
-        }
-        .comparison-table th {
-            background-color: #0E1C36;
-            color: white;
-        }
-        .metadata {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            font-size: 0.95rem;
-            color: #9ca3af;
-        }
-        .metadata-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .metadata-item i {
-            color: #22c55e;
-        }
-        .tag {
-            display: inline-block;
-            background-color: #374151;
-            color: #22c55e;
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .breadcrumb {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #9ca3af;
-            margin-bottom: 1.5rem;
-        }
-        .breadcrumb a {
-            color: #22c55e;
-            text-decoration: none;
-        }
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        .author-box {
-            background-color: rgba(34, 197, 94, 0.1);
-            border-left: 4px solid #22c55e;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 2rem 0;
-        }
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
-            color: #fff;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-        .language-selector {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        .lang-option {
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #9ca3af;
-            font-weight: 500;
-            text-decoration: none;
-        }
-        .lang-option:hover {
-            color: #22c55e;
-        }
-        .lang-option.active {
-            color: #22c55e;
-            font-weight: 600;
-        }
-        .lang-divider {
-            color: #4b5563;
-        }
-        .post-nav {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid #374151;
-        }
-        .post-nav a {
-            color: #22c55e;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-        }
-        .post-nav a:hover {
-            text-decoration: underline;
-        }
+      }
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #e2e8f0;
+        padding: 12px;
+        text-align: center;
+      }
+      .comparison-table th {
+        background-color: #0e1c36;
+        color: white;
+      }
+      .metadata {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        color: #9ca3af;
+      }
+      .metadata-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .metadata-item i {
+        color: #22c55e;
+      }
+      .tag {
+        display: inline-block;
+        background-color: #374151;
+        color: #22c55e;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .breadcrumb {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #9ca3af;
+        margin-bottom: 1.5rem;
+      }
+      .breadcrumb a {
+        color: #22c55e;
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+      .author-box {
+        background-color: rgba(34, 197, 94, 0.1);
+        border-left: 4px solid #22c55e;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin: 2rem 0;
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+      .language-selector {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .lang-option {
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #9ca3af;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .lang-option:hover {
+        color: #22c55e;
+      }
+      .lang-option.active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .lang-divider {
+        color: #4b5563;
+      }
+      .post-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #374151;
+      }
+      .post-nav a {
+        color: #22c55e;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+      .post-nav a:hover {
+        text-decoration: underline;
+      }
     </style>
-</head>
-<body class="text-gray-200">
+  </head>
+  <body class="text-gray-200">
     <!-- Header -->
     <header class="bg-gray-900/80 backdrop-blur-sm fixed w-full top-0 z-50 shadow-lg">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="../../index.html" class="text-2xl font-bold text-white flex items-center gap-2">
-                <i class="fa-solid fa-dna text-green-500"></i>
-                Logik Bioinfo
-            </a>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="../../en/index.html" class="nav-link-hover transition duration-300">Home</a>
-                <a href="../../en/servicos.html" class="nav-link-hover transition duration-300">Services</a>
-                <a href="../../en/publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
-                <a href="../../en/portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
-                <a href="../../en/ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
-                <a href="../../en/blog.html" class="nav-link-hover transition duration-300 nav-link-active">Blog</a>
-                <a href="../../en/orcamento.html" class="nav-link-hover transition duration-300">Quote</a>
-                <a href="../../en/sobre.html" class="nav-link-hover transition duration-300">About</a>
-                <a href="../../en/quem-sou-eu.html" class="nav-link-hover transition duration-300">Who I Am</a>
-                <div class="language-selector">
-                    <span class="lang-divider">|</span>
-                    <a href="../../posts/post-kpn.html" class="lang-option" data-lang="pt">PT</a>
-                    <a href="post-kpn.html" class="lang-option active" data-lang="en">EN</a>
-                    <a href="../../es/posts/post-kpn.html" class="lang-option" data-lang="es">ES</a>
-                </div>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
-            <a href="../../en/index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
-            <a href="../../en/servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
-            <a href="../../en/publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publications</a>
-            <a href="../../en/portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
-            <a href="../../en/ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
-            <a href="../../en/blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Blog</a>
-            <a href="../../en/orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quote</a>
-            <a href="../../en/sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
-            <a href="../../en/quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Who I Am</a>
-            <div class="flex justify-center py-2 px-6 space-x-2">
-                <a href="../../posts/post-kpn.html" class="lang-option text-sm" data-lang="pt">PT</a>
-                <span class="text-gray-600">|</span>
-                <a href="post-kpn.html" class="lang-option active text-sm" data-lang="en">EN</a>
-                <span class="text-gray-600">|</span>
-                <a href="../../es/posts/post-kpn.html" class="lang-option text-sm" data-lang="es">ES</a>
-            </div>
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="../../index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-dna text-green-500"></i>
+          Logik Bioinfo
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="../../en/index.html" class="nav-link-hover transition duration-300">Home</a>
+          <a href="../../en/servicos.html" class="nav-link-hover transition duration-300">
+            Services
+          </a>
+          <a href="../../en/publicacoes.html" class="nav-link-hover transition duration-300">
+            Publications
+          </a>
+          <a href="../../en/portfolio.html" class="nav-link-hover transition duration-300">
+            Portfolio
+          </a>
+          <a href="../../en/ferramentas.html" class="nav-link-hover transition duration-300">
+            Tools
+          </a>
+          <a
+            href="../../en/blog.html"
+            class="nav-link-hover transition duration-300 nav-link-active"
+          >
+            Blog
+          </a>
+          <a href="../../en/orcamento.html" class="nav-link-hover transition duration-300">Quote</a>
+          <a href="../../en/sobre.html" class="nav-link-hover transition duration-300">About</a>
+          <a href="../../en/quem-sou-eu.html" class="nav-link-hover transition duration-300">
+            Who I Am
+          </a>
+          <div class="language-selector">
+            <span class="lang-divider">|</span>
+            <a href="../../posts/post-kpn.html" class="lang-option" data-lang="pt">PT</a>
+            <a href="post-kpn.html" class="lang-option active" data-lang="en">EN</a>
+            <a href="../../es/posts/post-kpn.html" class="lang-option" data-lang="es">ES</a>
+          </div>
         </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900">
+        <a href="../../en/index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
+        <a href="../../en/servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Services
+        </a>
+        <a href="../../en/publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Publications
+        </a>
+        <a href="../../en/portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Portfolio
+        </a>
+        <a href="../../en/ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Tools
+        </a>
+        <a
+          href="../../en/blog.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active"
+        >
+          Blog
+        </a>
+        <a href="../../en/orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Quote
+        </a>
+        <a href="../../en/sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+        <a href="../../en/quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Who I Am
+        </a>
+        <div class="flex justify-center py-2 px-6 space-x-2">
+          <a href="../../posts/post-kpn.html" class="lang-option text-sm" data-lang="pt">PT</a>
+          <span class="text-gray-600">|</span>
+          <a href="post-kpn.html" class="lang-option active text-sm" data-lang="en">EN</a>
+          <span class="text-gray-600">|</span>
+          <a href="../../es/posts/post-kpn.html" class="lang-option text-sm" data-lang="es">ES</a>
+        </div>
+      </div>
     </header>
 
     <main class="pt-24">
-        <!-- Breadcrumb -->
-        <div class="bg-gray-900 border-b border-gray-800">
-            <div class="container mx-auto px-6 py-4">
-                <div class="breadcrumb">
-                    <a href="../../en/blog.html"><i class="fa-solid fa-home"></i> Blog</a>
-                    <span>/</span>
-                    <span>K. pneumoniae ST17</span>
-                </div>
-            </div>
+      <!-- Breadcrumb -->
+      <div class="bg-gray-900 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+          <div class="breadcrumb">
+            <a href="../../en/blog.html">
+              <i class="fa-solid fa-home"></i>
+              Blog
+            </a>
+            <span>/</span>
+            <span>K. pneumoniae ST17</span>
+          </div>
         </div>
+      </div>
 
-        <!-- Post Content -->
-        <article class="py-12 md:py-20 bg-gray-900">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <!-- Post Header -->
-                <header class="mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Critical Threat Detected: Genomic Analysis of <em>Klebsiella pneumoniae</em> ST17 Co-producing KPC-2 and NDM-1
-                    </h1>
-                    
-                    <!-- Metadata -->
-                    <div class="metadata">
-                        <div class="metadata-item">
-                            <i class="fa-solid fa-calendar"></i>
-                            <span>October 22, 2025</span>
-                        </div>
-                        <div class="metadata-item">
-                            <i class="fa-solid fa-user"></i>
-                            <span>Felipe Lei</span>
-                        </div>
-                        <div class="metadata-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span id="reading-time">8 min read</span>
-                        </div>
-                    </div>
+      <!-- Post Content -->
+      <article class="py-12 md:py-20 bg-gray-900">
+        <div class="container mx-auto px-6 max-w-4xl">
+          <!-- Post Header -->
+          <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+              Critical Threat Detected: Genomic Analysis of
+              <em>Klebsiella pneumoniae</em>
+              ST17 Co-producing KPC-2 and NDM-1
+            </h1>
 
-                    <!-- Tags/Categorias -->
-                    <div class="mt-4">
-                        <span class="tag">Antimicrobial Resistance</span>
-                        <span class="tag">Genomics</span>
-                        <span class="tag">Epidemiological Analysis</span>
-                    </div>
-                </header>
-
-                <!-- Featured Image -->
-                <div class="mb-12 rounded-lg overflow-hidden">
-                    <img src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png" 
-                         alt="Genomic Analysis K. pneumoniae ST17" 
-                         class="w-full h-auto object-cover max-h-96">
-                </div>
-
-                <!-- Post Introduction -->
-                <section class="mb-12 text-gray-300 leading-relaxed">
-                    <p class="text-lg mb-4">
-                        The genomic analysis of the HGPE-001-KPN isolate reveals an adversary of maximum risk. This pathogen belongs to the rare ST17 clone and carries a genetic arsenal that makes it resistant to almost all available treatment options, representing the pinnacle of antimicrobial resistance evolution. This article presents a visual and technical analysis of the genomic data from this critical isolate.
-                    </p>
-                </section>
-
-                <!-- Author Bio Box -->
-                <div class="author-box">
-                    <div class="flex items-start gap-4">
-                        <div class="flex-shrink-0">
-                            <i class="fa-solid fa-circle-user text-3xl text-green-500"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-white">Felipe Alberto Lei</h3>
-                            <p class="text-sm text-gray-400">
-                                Bioinformatician and genomic analysis researcher. Specialized in next-generation sequencing and antimicrobial resistance analysis.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Main Content -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Profile of a Hyper-Resistant Pathogen</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        The genomic analysis of the HGPE-001-KPN isolate reveals multiple resistance mechanisms highly concentrated in a single microorganism. This isolate belongs to the rare ST17 clone and carries a genetic arsenal that makes it resistant to almost all available treatment options.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div class="bg-gray-800 rounded-lg p-6 text-center">
-                            <div class="text-5xl font-bold text-green-500 mb-2">ST17</div>
-                            <h4 class="text-lg font-bold text-white">Sequence Type</h4>
-                            <p class="text-gray-400 text-sm mt-2">Rare clone, but of the highest risk due to extreme resistance profile.</p>
-                        </div>
-                        
-                        <div class="bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center">
-                            <h4 class="text-lg font-bold text-white mb-3">Dual Threat</h4>
-                            <div class="flex items-center justify-center gap-3 mb-3">
-                                <div class="bg-red-500 text-white px-3 py-2 rounded font-bold">KPC-2</div>
-                                <div class="text-white font-bold">+</div>
-                                <div class="bg-yellow-500 text-gray-900 px-3 py-2 rounded font-bold">NDM-1</div>
-                            </div>
-                            <p class="text-gray-300 text-sm">Co-production of carbapenemases</p>
-                        </div>
-
-                        <div class="bg-gray-800 rounded-lg p-6 text-center">
-                            <div class="text-5xl font-bold text-green-500 mb-2">18</div>
-                            <h4 class="text-lg font-bold text-white">Resistance Genes</h4>
-                            <p class="text-gray-400 text-sm mt-2">The highest number in the entire studied cohort.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Chart Section -->
-                <section class="mb-12">
-                    <h3 class="text-2xl font-bold text-white mb-4">The Complete Resistome: An Incomparable Genetic Arsenal</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        The ST17 isolate possesses the highest number of resistance genes (18 in total) in the entire studied cohort. This graph illustrates the diversity of mechanisms that confer resistance to multiple antibiotic classes, explaining its hyper-resistance phenotype.
-                    </p>
-                    <div class="post-content rounded-lg p-6 mb-8">
-                        <div class="chart-container h-96">
-                            <canvas id="resistomeBarChart"></canvas>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Clinical Challenge Section -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">The Therapeutic Impasse of Co-Production</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        The coexistence of KPC-2 and NDM-1 in a single pathogen neutralizes the main treatment strategies for infections by multidrug-resistant bacteria, creating a scenario of cascading therapeutic failure.
-                    </p>
-                    
-                    <div class="post-content rounded-lg p-6 overflow-x-auto">
-                        <table class="w-full comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Last-Generation Antibiotic</th>
-                                    <th>Action against KPC-2</th>
-                                    <th>Action against NDM-1</th>
-                                    <th class="bg-red-700">Result in Co-Producer</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-gray-800">
-                                <tr>
-                                    <td class="font-bold">Ceftazidime-Avibactam</td>
-                                    <td class="text-green-400 font-bold text-2xl">✓</td>
-                                    <td class="text-red-400 font-bold text-2xl">✗</td>
-                                    <td class="text-red-400 font-bold">✗ FAILURE</td>
-                                </tr>
-                                <tr class="bg-gray-700">
-                                    <td class="font-bold">Aztreonam</td>
-                                    <td class="text-red-400 font-bold text-2xl">✗</td>
-                                    <td class="text-green-400 font-bold text-2xl">✓</td>
-                                    <td class="text-red-400 font-bold">✗ FAILURE</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="text-gray-400 text-sm mt-4">
-                            Avibactam inhibits KPC but not NDM. Aztreonam is not affected by NDM but is destroyed by KPC. The result is resistance to both therapeutic strategies.
-                        </p>
-                    </div>
-                </section>
-
-                <!-- Context Section -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Contextualizing the Threat</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Although ST17 is rare (only 1 isolate in a cohort of 176), its existence is a warning signal of continuous resistance evolution. It emerges from a scenario dominated by other high-risk clones, such as ST11.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="post-content rounded-lg p-6">
-                            <h4 class="text-xl font-bold text-white mb-4 text-center">Clone Distribution in Cohort</h4>
-                            <div class="chart-container h-80">
-                                <canvas id="stDistributionPieChart"></canvas>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <h4 class="text-xl font-bold text-white mb-4">The Ecosystem of Resistance</h4>
-                            
-                            <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
-                                <h5 class="font-bold text-white mb-2">ST11: The Dominant Clone</h5>
-                                <p class="text-gray-300 text-sm">Representing 35.8% of the cohort, ST11-KPC is the endemic "reservoir," establishing the foundation for resistance in the region.</p>
-                            </div>
-                            
-                            <div class="bg-yellow-900/30 border-l-4 border-yellow-500 p-4 rounded">
-                                <h5 class="font-bold text-white mb-2">Plasmids: Vectors of Resistance</h5>
-                                <p class="text-gray-300 text-sm">Genes like <code class="bg-gray-700 px-2 py-1 rounded text-sm">bla<sub>NDM-1</sub></code> circulate in mobile plasmids, transferred to already established clones.</p>
-                            </div>
-                            
-                            <div class="bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
-                                <h5 class="font-bold text-white mb-2">ST17: The Point of Convergence</h5>
-                                <p class="text-gray-300 text-sm">Represents the result of this convergence, where multiple resistance mechanisms unite, creating a superbacteria.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Action Section -->
-                <section class="mb-12">
-                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">Call to Action: Surveillance and Control</h2>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Detection of an isolate like HGPE-001-KPN requires an immediate and coordinated response, focused on containment, rapid diagnosis, and genomic surveillance.
-                    </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="post-content rounded-lg p-6 text-center">
-                            <div class="text-4xl mb-3">🔬</div>
-                            <h4 class="text-lg font-bold text-white mb-2">Genomic Surveillance</h4>
-                            <p class="text-gray-300 text-sm">Implement routine sequencing to rapidly identify high-risk clones.</p>
-                        </div>
-                        
-                        <div class="post-content rounded-lg p-6 text-center">
-                            <div class="text-4xl mb-3">🏥</div>
-                            <h4 class="text-lg font-bold text-white mb-2">Maximum Containment</h4>
-                            <p class="text-gray-300 text-sm">Strict contact isolation and epidemiological investigation are mandatory.</p>
-                        </div>
-                        
-                        <div class="post-content rounded-lg p-6 text-center">
-                            <div class="text-4xl mb-3">💧</div>
-                            <h4 class="text-lg font-bold text-white mb-2">One Health Approach</h4>
-                            <p class="text-gray-300 text-sm">Monitor wastewater to detect presence of these pathogens.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Conclusion -->
-                <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
-                    <h2 class="text-2xl font-bold text-white mb-4">Conclusion</h2>
-                    <p class="text-gray-300 leading-relaxed">
-                        This visual analysis of the genomic data from the HGPE-001-KPN isolate and its epidemiological contextualization demonstrates the growing complexity of antimicrobial resistance. The co-production of KPC-2 and NDM-1, combined with the genetic arsenal of ST17, represents one of the most challenging cases in terms of therapeutic options. Integrated surveillance and preventive action are essential to prevent the spread of such highly resistant clones.
-                    </p>
-                </section>
-
-                <!-- Post Navigation -->
-                <div class="post-nav">
-                    <div>
-                        <a href="post-acinetobacter.html">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            Previous Post
-                        </a>
-                    </div>
-                    <div class="text-right">
-                        <a href="../../en/blog.html">
-                            Back to Blog
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+            <!-- Metadata -->
+            <div class="metadata">
+              <div class="metadata-item">
+                <i class="fa-solid fa-calendar"></i>
+                <span>October 22, 2025</span>
+              </div>
+              <div class="metadata-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Felipe Lei</span>
+              </div>
+              <div class="metadata-item">
+                <i class="fa-solid fa-clock"></i>
+                <span id="reading-time">8 min read</span>
+              </div>
             </div>
-        </article>
+
+            <!-- Tags/Categorias -->
+            <div class="mt-4">
+              <span class="tag">Antimicrobial Resistance</span>
+              <span class="tag">Genomics</span>
+              <span class="tag">Epidemiological Analysis</span>
+            </div>
+          </header>
+
+          <!-- Featured Image -->
+          <div class="mb-12 rounded-lg overflow-hidden">
+            <img
+              src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png"
+              alt="Genomic Analysis K. pneumoniae ST17"
+              class="w-full h-auto object-cover max-h-96"
+            />
+          </div>
+
+          <!-- Post Introduction -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <p class="text-lg mb-4">
+              The genomic analysis of the HGPE-001-KPN isolate reveals an adversary of maximum risk.
+              This pathogen belongs to the rare ST17 clone and carries a genetic arsenal that makes
+              it resistant to almost all available treatment options, representing the pinnacle of
+              antimicrobial resistance evolution. This article presents a visual and technical
+              analysis of the genomic data from this critical isolate.
+            </p>
+          </section>
+
+          <!-- Author Bio Box -->
+          <div class="author-box">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <i class="fa-solid fa-circle-user text-3xl text-green-500"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white">Felipe Alberto Lei</h3>
+                <p class="text-sm text-gray-400">
+                  Bioinformatician and genomic analysis researcher. Specialized in next-generation
+                  sequencing and antimicrobial resistance analysis.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Profile of a Hyper-Resistant Pathogen
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              The genomic analysis of the HGPE-001-KPN isolate reveals multiple resistance
+              mechanisms highly concentrated in a single microorganism. This isolate belongs to the
+              rare ST17 clone and carries a genetic arsenal that makes it resistant to almost all
+              available treatment options.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-5xl font-bold text-green-500 mb-2">ST17</div>
+                <h4 class="text-lg font-bold text-white">Sequence Type</h4>
+                <p class="text-gray-400 text-sm mt-2">
+                  Rare clone, but of the highest risk due to extreme resistance profile.
+                </p>
+              </div>
+
+              <div class="bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center">
+                <h4 class="text-lg font-bold text-white mb-3">Dual Threat</h4>
+                <div class="flex items-center justify-center gap-3 mb-3">
+                  <div class="bg-red-500 text-white px-3 py-2 rounded font-bold">KPC-2</div>
+                  <div class="text-white font-bold">+</div>
+                  <div class="bg-yellow-500 text-gray-900 px-3 py-2 rounded font-bold">NDM-1</div>
+                </div>
+                <p class="text-gray-300 text-sm">Co-production of carbapenemases</p>
+              </div>
+
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-5xl font-bold text-green-500 mb-2">18</div>
+                <h4 class="text-lg font-bold text-white">Resistance Genes</h4>
+                <p class="text-gray-400 text-sm mt-2">
+                  The highest number in the entire studied cohort.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Chart Section -->
+          <section class="mb-12">
+            <h3 class="text-2xl font-bold text-white mb-4">
+              The Complete Resistome: An Incomparable Genetic Arsenal
+            </h3>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              The ST17 isolate possesses the highest number of resistance genes (18 in total) in the
+              entire studied cohort. This graph illustrates the diversity of mechanisms that confer
+              resistance to multiple antibiotic classes, explaining its hyper-resistance phenotype.
+            </p>
+            <div class="post-content rounded-lg p-6 mb-8">
+              <div class="chart-container h-96">
+                <canvas id="resistomeBarChart"></canvas>
+              </div>
+            </div>
+          </section>
+
+          <!-- Clinical Challenge Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              The Therapeutic Impasse of Co-Production
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              The coexistence of KPC-2 and NDM-1 in a single pathogen neutralizes the main treatment
+              strategies for infections by multidrug-resistant bacteria, creating a scenario of
+              cascading therapeutic failure.
+            </p>
+
+            <div class="post-content rounded-lg p-6 overflow-x-auto">
+              <table class="w-full comparison-table">
+                <thead>
+                  <tr>
+                    <th>Last-Generation Antibiotic</th>
+                    <th>Action against KPC-2</th>
+                    <th>Action against NDM-1</th>
+                    <th class="bg-red-700">Result in Co-Producer</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-gray-800">
+                  <tr>
+                    <td class="font-bold">Ceftazidime-Avibactam</td>
+                    <td class="text-green-400 font-bold text-2xl">✓</td>
+                    <td class="text-red-400 font-bold text-2xl">✗</td>
+                    <td class="text-red-400 font-bold">✗ FAILURE</td>
+                  </tr>
+                  <tr class="bg-gray-700">
+                    <td class="font-bold">Aztreonam</td>
+                    <td class="text-red-400 font-bold text-2xl">✗</td>
+                    <td class="text-green-400 font-bold text-2xl">✓</td>
+                    <td class="text-red-400 font-bold">✗ FAILURE</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-gray-400 text-sm mt-4">
+                Avibactam inhibits KPC but not NDM. Aztreonam is not affected by NDM but is
+                destroyed by KPC. The result is resistance to both therapeutic strategies.
+              </p>
+            </div>
+          </section>
+
+          <!-- Context Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Contextualizing the Threat
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Although ST17 is rare (only 1 isolate in a cohort of 176), its existence is a warning
+              signal of continuous resistance evolution. It emerges from a scenario dominated by
+              other high-risk clones, such as ST11.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="post-content rounded-lg p-6">
+                <h4 class="text-xl font-bold text-white mb-4 text-center">
+                  Clone Distribution in Cohort
+                </h4>
+                <div class="chart-container h-80">
+                  <canvas id="stDistributionPieChart"></canvas>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h4 class="text-xl font-bold text-white mb-4">The Ecosystem of Resistance</h4>
+
+                <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
+                  <h5 class="font-bold text-white mb-2">ST11: The Dominant Clone</h5>
+                  <p class="text-gray-300 text-sm">
+                    Representing 35.8% of the cohort, ST11-KPC is the endemic "reservoir,"
+                    establishing the foundation for resistance in the region.
+                  </p>
+                </div>
+
+                <div class="bg-yellow-900/30 border-l-4 border-yellow-500 p-4 rounded">
+                  <h5 class="font-bold text-white mb-2">Plasmids: Vectors of Resistance</h5>
+                  <p class="text-gray-300 text-sm">
+                    Genes like
+                    <code class="bg-gray-700 px-2 py-1 rounded text-sm">
+                      bla
+                      <sub>NDM-1</sub>
+                    </code>
+                    circulate in mobile plasmids, transferred to already established clones.
+                  </p>
+                </div>
+
+                <div class="bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
+                  <h5 class="font-bold text-white mb-2">ST17: The Point of Convergence</h5>
+                  <p class="text-gray-300 text-sm">
+                    Represents the result of this convergence, where multiple resistance mechanisms
+                    unite, creating a superbacteria.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Action Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Call to Action: Surveillance and Control
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Detection of an isolate like HGPE-001-KPN requires an immediate and coordinated
+              response, focused on containment, rapid diagnosis, and genomic surveillance.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="post-content rounded-lg p-6 text-center">
+                <div class="text-4xl mb-3">🔬</div>
+                <h4 class="text-lg font-bold text-white mb-2">Genomic Surveillance</h4>
+                <p class="text-gray-300 text-sm">
+                  Implement routine sequencing to rapidly identify high-risk clones.
+                </p>
+              </div>
+
+              <div class="post-content rounded-lg p-6 text-center">
+                <div class="text-4xl mb-3">🏥</div>
+                <h4 class="text-lg font-bold text-white mb-2">Maximum Containment</h4>
+                <p class="text-gray-300 text-sm">
+                  Strict contact isolation and epidemiological investigation are mandatory.
+                </p>
+              </div>
+
+              <div class="post-content rounded-lg p-6 text-center">
+                <div class="text-4xl mb-3">💧</div>
+                <h4 class="text-lg font-bold text-white mb-2">One Health Approach</h4>
+                <p class="text-gray-300 text-sm">
+                  Monitor wastewater to detect presence of these pathogens.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Conclusion -->
+          <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
+            <h2 class="text-2xl font-bold text-white mb-4">Conclusion</h2>
+            <p class="text-gray-300 leading-relaxed">
+              This visual analysis of the genomic data from the HGPE-001-KPN isolate and its
+              epidemiological contextualization demonstrates the growing complexity of antimicrobial
+              resistance. The co-production of KPC-2 and NDM-1, combined with the genetic arsenal of
+              ST17, represents one of the most challenging cases in terms of therapeutic options.
+              Integrated surveillance and preventive action are essential to prevent the spread of
+              such highly resistant clones.
+            </p>
+          </section>
+
+          <!-- Post Navigation -->
+          <div class="post-nav">
+            <div>
+              <a href="post-acinetobacter.html">
+                <i class="fa-solid fa-arrow-left"></i>
+                Previous Post
+              </a>
+            </div>
+            <div class="text-right">
+              <a href="../../en/blog.html">
+                Back to Blog
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 border-t border-gray-700">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
-            <div class="mb-4">
-                <a href="../../en/index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-dna text-green-500"></i>
-                    Logik Bioinfo
-                </a>
-                <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
-            </div>
-            <div class="flex justify-center space-x-6 mb-4 text-2xl">
-                <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar">
-                    <i class="fas fa-graduation-cap"></i>
-                </a>
-                <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp">
-                    <i class="fab fa-whatsapp"></i>
-                </a>
-                <a href="mailto:contato@logikbioinfo.com.br" class="hover:text-green-400 transition-colors" title="E-mail">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-            <p>&copy; <span id="current-year"></span> Logik Bioinfo. All rights reserved.</p>
+      <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+        <div class="mb-4">
+          <a
+            href="../../en/index.html"
+            class="text-xl font-bold text-white flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-dna text-green-500"></i>
+            Logik Bioinfo
+          </a>
+          <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
         </div>
+        <div class="flex justify-center space-x-6 mb-4 text-2xl">
+          <a
+            href="https://github.com/Felipeleii"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/felipelei/"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://scholar.google.com/citations?user=0h7F7emPRFsC"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="Google Scholar"
+          >
+            <i class="fas fa-graduation-cap"></i>
+          </a>
+          <a
+            href="https://wa.me/5511920045896"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a
+            href="mailto:contato@logikbioinfo.com.br"
+            class="hover:text-green-400 transition-colors"
+            title="E-mail"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p>
+          &copy;
+          <span id="current-year"></span>
+          Logik Bioinfo. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Talk to us on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+    <a
+      href="https://wa.me/5511920045896"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Talk to us on WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+      // Mobile menu toggle
+      document.getElementById('mobile-menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
 
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+      // Set current year
+      document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Calculate reading time
-        function calculateReadingTime() {
-            const text = document.querySelector('main').innerText;
-            const wordsPerMinute = 200;
-            const words = text.split(/\s+/).length;
-            const minutes = Math.ceil(words / wordsPerMinute);
-            document.getElementById('reading-time').textContent = `${minutes} min read`;
+      // Calculate reading time
+      function calculateReadingTime() {
+        const text = document.querySelector('main').innerText;
+        const wordsPerMinute = 200;
+        const words = text.split(/\s+/).length;
+        const minutes = Math.ceil(words / wordsPerMinute);
+        document.getElementById('reading-time').textContent = `${minutes} min read`;
+      }
+      calculateReadingTime();
+
+      // Chart Configuration (same as Portuguese version)
+      const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(' ');
         }
-        calculateReadingTime();
+        return label;
+      };
 
-        // Chart Configuration (same as Portuguese version)
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-                return label.join(' ');
-            }
-            return label;
-        };
+      const vibrantColors = {
+        blue: '#00A6FB',
+        red: '#F34213',
+        yellow: '#FFC914',
+        navy: '#0E1C36',
+        orange: '#FFA500',
+        gray: '#9CA3AF',
+      };
 
-        const vibrantColors = {
-            blue: '#00A6FB',
-            red: '#F34213',
-            yellow: '#FFC914',
-            navy: '#0E1C36',
-            orange: '#FFA500',
-            gray: '#9CA3AF'
-        };
+      const resistomeData = {
+        'β-Lactams': 4,
+        Aminoglycosides: 3,
+        Quinolones: 2,
+        Sulfonamides: 2,
+        Macrolides: 2,
+        Phenicols: 1,
+        Tetracyclines: 1,
+        Rifamycins: 1,
+        Fosfomycin: 1,
+        Trimethoprim: 1,
+      };
+      const resistomeLabels = Object.keys(resistomeData);
+      const resistomeValues = Object.values(resistomeData);
 
-        const resistomeData = {
-            'β-Lactams': 4, 
-            'Aminoglycosides': 3, 
-            'Quinolones': 2,
-            'Sulfonamides': 2,
-            'Macrolides': 2,
-            'Phenicols': 1,
-            'Tetracyclines': 1,
-            'Rifamycins': 1,
-            'Fosfomycin': 1,
-            'Trimethoprim': 1
-        };
-        const resistomeLabels = Object.keys(resistomeData);
-        const resistomeValues = Object.values(resistomeData);
-        
-        new Chart(document.getElementById('resistomeBarChart'), {
-            type: 'bar',
-            data: {
-                labels: resistomeLabels,
-                datasets: [{
-                    label: 'Number of Resistance Genes',
-                    data: resistomeValues,
-                    backgroundColor: [
-                        vibrantColors.blue, vibrantColors.red, vibrantColors.yellow, vibrantColors.orange, 
-                        vibrantColors.navy, vibrantColors.gray, '#4ade80', '#a78bfa', '#f472b6', '#22d3ee'
-                    ],
-                    borderColor: 'rgba(255, 255, 255, 0)',
-                    borderWidth: 1,
-                    borderRadius: 4
-                }]
+      new Chart(document.getElementById('resistomeBarChart'), {
+        type: 'bar',
+        data: {
+          labels: resistomeLabels,
+          datasets: [
+            {
+              label: 'Number of Resistance Genes',
+              data: resistomeValues,
+              backgroundColor: [
+                vibrantColors.blue,
+                vibrantColors.red,
+                vibrantColors.yellow,
+                vibrantColors.orange,
+                vibrantColors.navy,
+                vibrantColors.gray,
+                '#4ade80',
+                '#a78bfa',
+                '#f472b6',
+                '#22d3ee',
+              ],
+              borderColor: 'rgba(255, 255, 255, 0)',
+              borderWidth: 1,
+              borderRadius: 4,
             },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        },
-                        title: {
-                            display: true,
-                            text: 'Gene Count'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback
-                        }
-                    }
-                }
-            }
-        });
-
-        new Chart(document.getElementById('stDistributionPieChart'), {
-            type: 'doughnut',
-            data: {
-                labels: ['ST11 (KPC)', 'ST16 (KPC)', 'ST258 (KPC)', 'ST17 (KPC+NDM)', 'Other STs'],
-                datasets: [{
-                    label: 'Clone Distribution',
-                    data: [63, 51, 27, 1, 34], 
-                    backgroundColor: [vibrantColors.blue, vibrantColors.yellow, vibrantColors.orange, vibrantColors.red, vibrantColors.gray],
-                    borderColor: '#1f2937',
-                    borderWidth: 3,
-                }]
+          ],
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+              },
+              title: {
+                display: true,
+                text: 'Gene Count',
+              },
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '50%',
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            title: tooltipTitleCallback,
-                        }
-                    }
-                }
-            }
-        });
+          },
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              callbacks: {
+                title: tooltipTitleCallback,
+              },
+            },
+          },
+        },
+      });
+
+      new Chart(document.getElementById('stDistributionPieChart'), {
+        type: 'doughnut',
+        data: {
+          labels: ['ST11 (KPC)', 'ST16 (KPC)', 'ST258 (KPC)', 'ST17 (KPC+NDM)', 'Other STs'],
+          datasets: [
+            {
+              label: 'Clone Distribution',
+              data: [63, 51, 27, 1, 34],
+              backgroundColor: [
+                vibrantColors.blue,
+                vibrantColors.yellow,
+                vibrantColors.orange,
+                vibrantColors.red,
+                vibrantColors.gray,
+              ],
+              borderColor: '#1f2937',
+              borderWidth: 3,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '50%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            tooltip: {
+              callbacks: {
+                title: tooltipTitleCallback,
+              },
+            },
+          },
+        },
+      });
     </script>
-</body>
+  </body>
 </html>

@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../../favicon.png" />
     <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
-    <title>
-      Blog | Acinetobacter baumannii - Vigilancia Molecular y Análisis Clonal - Logik Bioinfo
-    </title>
+    <title>Blog | K. pneumoniae ST17 Coproductora de KPC/NDM - Logik Bioinfo</title>
     <meta
       name="description"
-      content="Análisis detallado de la diseminación de Acinetobacter baumannii en un contexto hospitalario, con evaluación de mecanismos de resistencia y dinámica clonal."
+      content="Análisis genómico de un aislado crítico de Klebsiella pneumoniae ST17 coproductor de las carbapenemasas KPC-2 y NDM-1."
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -173,13 +171,6 @@
       .post-nav a:hover {
         text-decoration: underline;
       }
-      .highlight-box {
-        background-color: #00a0b0;
-        color: white;
-        padding: 1.5rem;
-        border-radius: 0.5rem;
-        margin: 1.5rem 0;
-      }
     </style>
   </head>
   <body class="text-gray-200">
@@ -219,11 +210,9 @@
           </a>
           <div class="language-selector">
             <span class="lang-divider">|</span>
-            <a href="../../posts/post-acinetobacter.html" class="lang-option" data-lang="pt">PT</a>
-            <a href="../../en/posts/post-acinetobacter.html" class="lang-option" data-lang="en">
-              EN
-            </a>
-            <a href="post-acinetobacter.html" class="lang-option active" data-lang="es">ES</a>
+            <a href="../../posts/post-kpn.html" class="lang-option" data-lang="pt">PT</a>
+            <a href="../../en/posts/post-kpn.html" class="lang-option" data-lang="en">EN</a>
+            <a href="post-kpn.html" class="lang-option active" data-lang="es">ES</a>
           </div>
         </div>
         <div class="md:hidden">
@@ -262,19 +251,11 @@
           Quién Soy
         </a>
         <div class="flex justify-center py-2 px-6 space-x-2">
-          <a href="../../posts/post-acinetobacter.html" class="lang-option text-sm" data-lang="pt">
-            PT
-          </a>
+          <a href="../../posts/post-kpn.html" class="lang-option text-sm" data-lang="pt">PT</a>
           <span class="text-gray-600">|</span>
-          <a
-            href="../../en/posts/post-acinetobacter.html"
-            class="lang-option text-sm"
-            data-lang="en"
-          >
-            EN
-          </a>
+          <a href="../../en/posts/post-kpn.html" class="lang-option text-sm" data-lang="en">EN</a>
           <span class="text-gray-600">|</span>
-          <a href="post-acinetobacter.html" class="lang-option active text-sm" data-lang="es">ES</a>
+          <a href="post-kpn.html" class="lang-option active text-sm" data-lang="es">ES</a>
         </div>
       </div>
     </header>
@@ -289,7 +270,7 @@
               Blog
             </a>
             <span>/</span>
-            <span>Acinetobacter baumannii</span>
+            <span>K. pneumoniae ST17</span>
           </div>
         </div>
       </div>
@@ -300,16 +281,16 @@
           <!-- Post Header -->
           <header class="mb-12">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-              Vigilancia Molecular de
-              <em>Acinetobacter baumannii</em>
-              : Análisis Clonal y Dinámicas de Sustitución en Contexto Hospitalario
+              Amenaza Crítica Detectada: Análisis Genómico de
+              <em>Klebsiella pneumoniae</em>
+              ST17 Coproductora de KPC-2 y NDM-1
             </h1>
 
             <!-- Metadata -->
             <div class="metadata">
               <div class="metadata-item">
                 <i class="fa-solid fa-calendar"></i>
-                <span>10 de Octubre de 2025</span>
+                <span>22 de Octubre de 2025</span>
               </div>
               <div class="metadata-item">
                 <i class="fa-solid fa-user"></i>
@@ -317,7 +298,7 @@
               </div>
               <div class="metadata-item">
                 <i class="fa-solid fa-clock"></i>
-                <span id="reading-time">10 min lectura</span>
+                <span id="reading-time">8 min lectura</span>
               </div>
             </div>
 
@@ -325,15 +306,15 @@
             <div class="mt-4">
               <span class="tag">Resistencia Antimicrobiana</span>
               <span class="tag">Genómica</span>
-              <span class="tag">Vigilancia Molecular</span>
+              <span class="tag">Análisis Epidemiológico</span>
             </div>
           </header>
 
           <!-- Featured Image -->
           <div class="mb-12 rounded-lg overflow-hidden">
             <img
-              src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/Infographic_Acinetobacter.png"
-              alt="Análisis Genómico Acinetobacter baumannii"
+              src="https://raw.githubusercontent.com/Felipeleii/LogikBioinfo/main/portfolio/KPN_Circular_Final.png"
+              alt="Análisis Genómico K. pneumoniae ST17"
               class="w-full h-auto object-cover max-h-96"
             />
           </div>
@@ -341,13 +322,11 @@
           <!-- Post Introduction -->
           <section class="mb-12 text-gray-300 leading-relaxed">
             <p class="text-lg mb-4">
-              <em>Acinetobacter baumannii</em>
-              representa uno de los patógenos de mayor interés epidemiológico en entornos
-              hospitalarios, clasificado como patógeno prioritario por la Organización Mundial de la
-              Salud. Este análisis genómico y epidemiológico examina en detalle la circulación de
-              este patógeno en un contexto hospitalario específico, revelando patrones de
-              sustitución clonal, mecanismos de resistencia y dinámicas que desafían tanto los
-              protocolos de control como las estrategias terapéuticas disponibles.
+              El análisis genómico del aislado HGPE-001-KPN revela un adversario de máximo riesgo.
+              Este patógeno pertenece al raro clon ST17 y lleva un arsenal genético que lo hace
+              resistente a casi todas las opciones de tratamiento disponibles, representando el
+              apogeo de la evolución de la resistencia antimicrobiana. Este artículo presenta un
+              análisis visual y técnico de los datos genómicos de este aislado crítico.
             </p>
           </section>
 
@@ -370,192 +349,216 @@
           <!-- Main Content -->
           <section class="mb-12">
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-              Perfil Epidemiológico y de Resistencia
+              Perfil de un Patógeno Hiper-Resistente
             </h2>
             <p class="text-gray-300 mb-6 leading-relaxed">
-              <em>Acinetobacter baumannii</em>
-              es un bacilo gramnegativo no fermentador que ha emergido como un patógeno nosocomial
-              de importancia crítica. Su prevalencia creciente está directamente asociada con su
-              capacidad de adquirir múltiples mecanismos de resistencia, a menudo codificados en
-              elementos genéticos móviles que facilitan su propagación entre cepas y clones
-              diferentes.
+              El análisis genómico del aislado HGPE-001-KPN revela múltiples mecanismos de
+              resistencia altamente concentrados en un único microorganismo. Este aislado pertenece
+              al raro clon ST17 y lleva un arsenal genético que lo hace resistente a casi todas las
+              opciones de tratamiento disponibles.
             </p>
 
-            <div class="highlight-box">
-              <h4 class="text-xl font-bold mb-2">Impacto Epidemiológico</h4>
-              <p>
-                Con una tasa de mortalidad reportada de 56% en pacientes con infecciones por cepas
-                multiresistentes,
-                <em>A. baumannii</em>
-                representa una carga significativa de morbilidad y mortalidad hospitalaria.
-              </p>
-            </div>
-          </section>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-5xl font-bold text-green-500 mb-2">ST17</div>
+                <h4 class="text-lg font-bold text-white">Tipo de Secuencia</h4>
+                <p class="text-gray-400 text-sm mt-2">
+                  Clon raro, pero de altísimo riesgo debido al perfil extremo de resistencia.
+                </p>
+              </div>
 
-          <!-- Period Chart -->
-          <section class="mb-12">
-            <h3 class="text-2xl font-bold text-white mb-4">Distribución Temporal de Aislados</h3>
-            <p class="text-gray-300 mb-6 leading-relaxed">
-              El análisis temporal de los aislados de
-              <em>A. baumannii</em>
-              revela patrones de circulación que sugieren múltiples eventos de introducción seguidos
-              de transmisión nosocomial.
-            </p>
-            <div class="post-content rounded-lg p-6 mb-8">
-              <div class="chart-container h-80">
-                <canvas id="periodChart"></canvas>
+              <div class="bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center">
+                <h4 class="text-lg font-bold text-white mb-3">Amenaza Dual</h4>
+                <div class="flex items-center justify-center gap-3 mb-3">
+                  <div class="bg-red-500 text-white px-3 py-2 rounded font-bold">KPC-2</div>
+                  <div class="text-white font-bold">+</div>
+                  <div class="bg-yellow-500 text-gray-900 px-3 py-2 rounded font-bold">NDM-1</div>
+                </div>
+                <p class="text-gray-300 text-sm">Coproducción de carbapenemasas</p>
+              </div>
+
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-5xl font-bold text-green-500 mb-2">18</div>
+                <h4 class="text-lg font-bold text-white">Genes de Resistencia</h4>
+                <p class="text-gray-400 text-sm mt-2">
+                  El número más alto en toda la cohorte estudiada.
+                </p>
               </div>
             </div>
           </section>
 
-          <!-- Arsenal Genético -->
+          <!-- Chart Section -->
           <section class="mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-              Arsenal Genético: Mecanismos de Resistencia
-            </h2>
-            <p class="text-gray-300 mb-6 leading-relaxed">
-              El análisis genómico revela múltiples genes de resistencia distribuidos entre el
-              cromosoma y plásmidos. La presencia simultánea de múltiples mecanismos explica la
-              fenotipo de multirresistencia observado en los aislados clínicos.
-            </p>
-            <div class="post-content rounded-lg p-6 mb-8">
-              <div class="chart-container h-80">
-                <canvas id="geneChart"></canvas>
-              </div>
-            </div>
-
-            <h3 class="text-xl font-bold text-white mb-4 mt-8">
-              Clasificación de Mecanismos de Resistencia
+            <h3 class="text-2xl font-bold text-white mb-4">
+              El Resistoma Completo: Un Arsenal Genético Incomparable
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
-                <h5 class="font-bold text-white mb-2">Resistencia Intrínseca</h5>
-                <p class="text-gray-300 text-sm">
-                  Inherente a la especie, incluyendo permeabilidad reducida y bombas de eflujo
-                  cromosómicas (Ade ABC).
-                </p>
-              </div>
-
-              <div class="bg-orange-900/30 border-l-4 border-orange-500 p-4 rounded">
-                <h5 class="font-bold text-white mb-2">Resistencia Adquirida</h5>
-                <p class="text-gray-300 text-sm">
-                  Genes localizados en plásmidos o integrones, tales como
-                  <code class="bg-gray-700 px-2 py-1 rounded text-sm">
-                    bla
-                    <sub>OXA-23</sub>
-                  </code>
-                  y
-                  <code class="bg-gray-700 px-2 py-1 rounded text-sm">
-                    bla
-                    <sub>NDM-1</sub>
-                  </code>
-                  .
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <!-- Dinâmica Clonal -->
-          <section class="mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-              Dinámicas Clonales: Sustitución y Transmisión
-            </h2>
             <p class="text-gray-300 mb-6 leading-relaxed">
-              El análisis de tipificación molecular identifica el predominio inicial del clon A (72%
-              de los aislados), seguido de una sustitución gradual por el clon B a partir de la
-              intervención de control de infecciones, demostrando la eficacia de las medidas
-              implementadas.
+              El aislado ST17 posee el mayor número de genes de resistencia (18 en total) en toda la
+              cohorte estudiada. Este gráfico ilustra la diversidad de mecanismos que confieren
+              resistencia a múltiples clases de antibióticos, explicando su fenotipo de
+              hiper-resistencia.
             </p>
             <div class="post-content rounded-lg p-6 mb-8">
-              <div class="chart-container h-80">
-                <canvas id="clonalChart"></canvas>
-              </div>
-            </div>
-
-            <h3 class="text-xl font-bold text-white mb-4 mt-8">Análisis de Sustitución</h3>
-            <div class="post-content rounded-lg p-6">
-              <div class="chart-container h-80">
-                <canvas id="substitutionChart"></canvas>
+              <div class="chart-container h-96">
+                <canvas id="resistomeBarChart"></canvas>
               </div>
             </div>
           </section>
 
-          <!-- Casos de Estudio -->
+          <!-- Clinical Challenge Section -->
           <section class="mb-12">
             <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
-              Casos de Estudio: Dinámicas de Transmisión
+              El Callejón Terapéutico de la Coproducción
             </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              La coexistencia de KPC-2 y NDM-1 en un solo patógeno neutraliza las principales
+              estrategias de tratamiento para infecciones por bacterias multirresistentes, creando
+              un escenario de fallo terapéutico en cascada.
+            </p>
 
-            <div class="bg-gray-800 rounded-lg p-6 mb-6">
-              <h3 class="text-lg font-bold text-white mb-3">
-                Caso 1: Transmisión Intra-Hospitalaria (Clon A)
-              </h3>
-              <p class="text-gray-300 mb-3">
-                Los 18 aislados del Clon A, recuperados entre septiembre y octubre de 2024,
-                provenían de diferentes servicios (UCI, medicina general, cirugía). El análisis de
-                secuenciación de próxima generación (NGS) sugiere un ancestro común con únicamente
-                2-5 diferencias de polimorfismo de un solo nucleótido (SNP), indicando una
-                diseminación reciente a partir de un evento común de introducción.
-              </p>
-              <p class="text-gray-300">
-                <strong>Implicación:</strong>
-                Fallo de las medidas de aislamiento o control de infecciones entre servicios.
-              </p>
-            </div>
-
-            <div class="bg-gray-800 rounded-lg p-6 mb-6">
-              <h3 class="text-lg font-bold text-white mb-3">
-                Caso 2: Sustitución Post-Intervención (Clon B)
-              </h3>
-              <p class="text-gray-300 mb-3">
-                Tras la implementación de protocolos intensificados de control de infecciones
-                (aislamiento de contacto, higiene de manos mejorada, limpieza ambiental diaria), el
-                Clon A desapareció gradualmente y fue reemplazado por el Clon B entre noviembre de
-                2024 y enero de 2025.
-              </p>
-              <p class="text-gray-300 mb-3">
-                El Clon B mantiene un fenotipo de resistencia similar (OXA-23+, NDM-1-) pero con
-                diferencias genómicas significativas (>500 SNP, sugerente de un linaje divergente o
-                una introducción nueva).
-              </p>
-              <p class="text-gray-300">
-                <strong>Implicación:</strong>
-                Éxito parcial de las medidas de control, pero resurgencia de otro clon con
-                características similares de resistencia.
+            <div class="post-content rounded-lg p-6 overflow-x-auto">
+              <table class="w-full comparison-table">
+                <thead>
+                  <tr>
+                    <th>Antibiótico de Última Generación</th>
+                    <th>Acción contra KPC-2</th>
+                    <th>Acción contra NDM-1</th>
+                    <th class="bg-red-700">Resultado en Coproductor</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-gray-800">
+                  <tr>
+                    <td class="font-bold">Ceftazidima-Avibactam</td>
+                    <td class="text-green-400 font-bold text-2xl">✓</td>
+                    <td class="text-red-400 font-bold text-2xl">✗</td>
+                    <td class="text-red-400 font-bold">✗ FALLO</td>
+                  </tr>
+                  <tr class="bg-gray-700">
+                    <td class="font-bold">Aztreonam</td>
+                    <td class="text-red-400 font-bold text-2xl">✗</td>
+                    <td class="text-green-400 font-bold text-2xl">✓</td>
+                    <td class="text-red-400 font-bold">✗ FALLO</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="text-gray-400 text-sm mt-4">
+                El Avibactam inhibe la KPC pero no la NDM. El Aztreonam no es afectado por la NDM
+                pero es destruido por la KPC. El resultado es la resistencia a ambas estrategias
+                terapéuticas.
               </p>
             </div>
           </section>
 
-          <!-- Conclusión -->
-          <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
-            <h2 class="text-2xl font-bold text-white mb-4">Conclusiones y Recomendaciones</h2>
-            <p class="text-gray-300 leading-relaxed mb-4">
-              Este análisis de vigilancia molecular de
-              <em>A. baumannii</em>
-              en contexto hospitalario demuestra la necesidad de un enfoque integrado que combine
-              secuenciación genómica, vigilancia epidemiológica y medidas de control de infecciones.
-              Aunque las intervenciones lograron reducir la prevalencia del clon dominante inicial,
-              la resurgencia de cepas alternativas con perfiles similares de resistencia subraya la
-              importancia de:
+          <!-- Context Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Contextualizando la Amenaza
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              Aunque el ST17 es raro (solo 1 aislado en una cohorte de 176), su existencia es una
+              señal de alerta de la evolución continua de la resistencia. Emerge de un escenario
+              dominado por otros clones de alto riesgo, como el ST11.
             </p>
-            <ul class="text-gray-300 space-y-2 list-disc pl-6">
-              <li>Implementación sostenida de medidas de control de infecciones</li>
-              <li>Vigilancia genómica continua para detectar cambios epidemiológicos</li>
-              <li>Evaluación regular de la eficacia de las intervenciones</li>
-              <li>
-                Comunicación multidisciplinaria entre infectología, microbiología y control de
-                infecciones
-              </li>
-              <li>
-                Desarrollo de estrategias terapéuticas alternativas para casos no susceptibles
-              </li>
-            </ul>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="post-content rounded-lg p-6">
+                <h4 class="text-xl font-bold text-white mb-4 text-center">
+                  Distribución de Clones en Cohorte
+                </h4>
+                <div class="chart-container h-80">
+                  <canvas id="stDistributionPieChart"></canvas>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                <h4 class="text-xl font-bold text-white mb-4">El Ecosistema de Resistencia</h4>
+
+                <div class="bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded">
+                  <h5 class="font-bold text-white mb-2">ST11: El Clon Dominante</h5>
+                  <p class="text-gray-300 text-sm">
+                    Representando 35.8% de la cohorte, el ST11 productor de KPC es el "reservorio"
+                    endémico, estableciendo la base para la resistencia en la región.
+                  </p>
+                </div>
+
+                <div class="bg-yellow-900/30 border-l-4 border-yellow-500 p-4 rounded">
+                  <h5 class="font-bold text-white mb-2">Plásmidos: Vectores de Resistencia</h5>
+                  <p class="text-gray-300 text-sm">
+                    Genes como
+                    <code class="bg-gray-700 px-2 py-1 rounded text-sm">
+                      bla
+                      <sub>NDM-1</sub>
+                    </code>
+                    circulan en plásmidos móviles, transferidos a clones ya establecidos.
+                  </p>
+                </div>
+
+                <div class="bg-red-900/30 border-l-4 border-red-500 p-4 rounded">
+                  <h5 class="font-bold text-white mb-2">ST17: Punto de Convergencia</h5>
+                  <p class="text-gray-300 text-sm">
+                    Representa el resultado de esta convergencia, donde múltiples mecanismos de
+                    resistencia se unen, creando una superbacteria.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Action Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              Llamado a la Acción: Vigilancia y Control
+            </h2>
+            <p class="text-gray-300 mb-6 leading-relaxed">
+              La detección de un aislado como el HGPE-001-KPN requiere una respuesta inmediata y
+              coordinada, enfocada en la contención, diagnóstico rápido y vigilancia genómica.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="post-content rounded-lg p-6 text-center">
+                <div class="text-4xl mb-3">🔬</div>
+                <h4 class="text-lg font-bold text-white mb-2">Vigilancia Genómica</h4>
+                <p class="text-gray-300 text-sm">
+                  Implementar secuenciación rutinaria para identificar rápidamente clones de alto
+                  riesgo.
+                </p>
+              </div>
+
+              <div class="post-content rounded-lg p-6 text-center">
+                <div class="text-4xl mb-3">🏥</div>
+                <h4 class="text-lg font-bold text-white mb-2">Contención Máxima</h4>
+                <p class="text-gray-300 text-sm">
+                  Aislamiento de contacto estricto e investigación epidemiológica son mandatorios.
+                </p>
+              </div>
+
+              <div class="post-content rounded-lg p-6 text-center">
+                <div class="text-4xl mb-3">💧</div>
+                <h4 class="text-lg font-bold text-white mb-2">Enfoque de Salud Única</h4>
+                <p class="text-gray-300 text-sm">
+                  Monitorear aguas residuales para detectar presencia de estos patógenos.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Conclusion -->
+          <section class="mb-12 post-content rounded-lg p-8 border-l-4 border-green-500">
+            <h2 class="text-2xl font-bold text-white mb-4">Conclusión</h2>
+            <p class="text-gray-300 leading-relaxed">
+              Este análisis visual de los datos genómicos del aislado HGPE-001-KPN y su
+              contextualización epidemiológica demuestran la complejidad creciente de la resistencia
+              antimicrobiana. La coproducción de KPC-2 y NDM-1, combinada con el arsenal genético
+              del ST17, representa uno de los casos más desafiantes en términos de opciones
+              terapéuticas. La vigilancia integrada y la acción preventiva son esenciales para
+              evitar la diseminación de clones tan altamente resistentes.
+            </p>
           </section>
 
           <!-- Post Navigation -->
           <div class="post-nav">
             <div>
-              <a href="post-kpn.html">
+              <a href="post-acinetobacter.html">
                 <i class="fa-solid fa-arrow-left"></i>
                 Post Anterior
               </a>
@@ -673,70 +676,72 @@
         return label;
       };
 
-      const periodCtx = document.getElementById('periodChart').getContext('2d');
-      new Chart(periodCtx, {
-        type: 'line',
-        data: {
-          labels: ['Sep 2024', 'Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025'],
-          datasets: [
-            {
-              label: 'Clon A',
-              data: [8, 10, 4, 1, 0],
-              borderColor: '#00A0B0',
-              backgroundColor: 'rgba(0, 160, 176, 0.1)',
-              tension: 0.4,
-              fill: true,
-            },
-            {
-              label: 'Clon B',
-              data: [0, 0, 3, 7, 9],
-              borderColor: '#CC333F',
-              backgroundColor: 'rgba(204, 51, 63, 0.1)',
-              tension: 0.4,
-              fill: true,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'top',
-            },
-            tooltip: {
-              callbacks: {
-                title: tooltipTitleCallback,
-              },
-            },
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                stepSize: 2,
-              },
-            },
-          },
-        },
-      });
+      const vibrantColors = {
+        blue: '#00A6FB',
+        red: '#F34213',
+        yellow: '#FFC914',
+        navy: '#0E1C36',
+        orange: '#FFA500',
+        gray: '#9CA3AF',
+      };
 
-      const geneCtx = document.getElementById('geneChart').getContext('2d');
-      new Chart(geneCtx, {
+      const resistomeData = {
+        'β-Lactámicos': 4,
+        Aminoglicósidos: 3,
+        Quinolonas: 2,
+        Sulfonamidas: 2,
+        Macrólidos: 2,
+        Fenicoles: 1,
+        Tetraciclinas: 1,
+        Rifamicinas: 1,
+        Fosfomicina: 1,
+        Trimetoprima: 1,
+      };
+      const resistomeLabels = Object.keys(resistomeData);
+      const resistomeValues = Object.values(resistomeData);
+
+      new Chart(document.getElementById('resistomeBarChart'), {
         type: 'bar',
         data: {
-          labels: ['OXA-23', 'OXA-51', 'adeABC', 'adeL', 'adeN', 'adeIJK'],
+          labels: resistomeLabels,
           datasets: [
             {
-              label: 'Frecuencia de Genes',
-              data: [23, 23, 20, 18, 16, 12],
-              backgroundColor: ['#00A0B0', '#CC333F', '#FFC914', '#00A0B0', '#CC333F', '#FFC914'],
+              label: 'Número de Genes de Resistencia',
+              data: resistomeValues,
+              backgroundColor: [
+                vibrantColors.blue,
+                vibrantColors.red,
+                vibrantColors.yellow,
+                vibrantColors.orange,
+                vibrantColors.navy,
+                vibrantColors.gray,
+                '#4ade80',
+                '#a78bfa',
+                '#f472b6',
+                '#22d3ee',
+              ],
+              borderColor: 'rgba(255, 255, 255, 0)',
+              borderWidth: 1,
+              borderRadius: 4,
             },
           ],
         },
         options: {
+          indexAxis: 'y',
           responsive: true,
           maintainAspectRatio: false,
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+              },
+              title: {
+                display: true,
+                text: 'Conteo de Genes',
+              },
+            },
+          },
           plugins: {
             legend: {
               display: false,
@@ -750,16 +755,21 @@
         },
       });
 
-      const clonalCtx = document.getElementById('clonalChart').getContext('2d');
-      new Chart(clonalCtx, {
+      new Chart(document.getElementById('stDistributionPieChart'), {
         type: 'doughnut',
         data: {
-          labels: ['Clon A', 'Clon B', 'Clones Únicos'],
+          labels: ['ST11 (KPC)', 'ST16 (KPC)', 'ST258 (KPC)', 'ST17 (KPC+NDM)', 'Otros STs'],
           datasets: [
             {
-              label: 'Distribución Clonal Global',
-              data: [18, 10, 4],
-              backgroundColor: ['#00A0B0', '#CC333F', '#FFC914'],
+              label: 'Distribución de Clones',
+              data: [63, 51, 27, 1, 34],
+              backgroundColor: [
+                vibrantColors.blue,
+                vibrantColors.yellow,
+                vibrantColors.orange,
+                vibrantColors.red,
+                vibrantColors.gray,
+              ],
               borderColor: '#1f2937',
               borderWidth: 3,
             },
@@ -773,44 +783,10 @@
             legend: {
               position: 'bottom',
             },
-          },
-        },
-      });
-
-      const substitutionCtx = document.getElementById('substitutionChart').getContext('2d');
-      new Chart(substitutionCtx, {
-        type: 'bar',
-        data: {
-          labels: ['Período Pre-Intervención', 'Período Post-Intervención'],
-          datasets: [
-            {
-              label: 'Clon A',
-              data: [18, 1],
-              backgroundColor: '#00A0B0',
-            },
-            {
-              label: 'Clon B',
-              data: [0, 16],
-              backgroundColor: '#CC333F',
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          indexAxis: 'x',
-          scales: {
-            x: {
-              stacked: true,
-            },
-            y: {
-              stacked: true,
-              beginAtZero: true,
-            },
-          },
-          plugins: {
-            legend: {
-              position: 'top',
+            tooltip: {
+              callbacks: {
+                title: tooltipTitleCallback,
+              },
             },
           },
         },
