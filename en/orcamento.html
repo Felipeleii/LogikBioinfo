@@ -18,9 +18,10 @@
     ></script>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      integrity="sha512-DTOQO9RWCH3H+F/FgQbeevkYFNiJ+PBLVtQefZpXaNwRbl8c/N1DGAckUJQC4TofNQkWQsConfMBT56nxkqQ7A=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -290,7 +291,7 @@
                   class="w-full p-2.5 rounded-lg border text-white text-sm"
                 ></textarea>
               </div>
-              <div class="mb-8">
+              <div class="mb-6">
                 <label for="dataAvailable" class="block text-sm font-medium text-gray-300 mb-1">
                   Data Available
                 </label>
@@ -304,6 +305,17 @@
                   <option value="analyzed">Already analyzed data</option>
                   <option value="other">Other format</option>
                 </select>
+              </div>
+              <div class="mb-8">
+                <label for="dataDetails" class="block text-sm font-medium text-gray-300 mb-1">
+                  Data Details (Optional)
+                </label>
+                <textarea
+                  id="dataDetails"
+                  rows="2"
+                  placeholder="Example: NCBI BioProject accession (PRJNA123456), SRA accession, project link, or format details..."
+                  class="w-full p-2.5 rounded-lg border text-white text-sm"
+                ></textarea>
               </div>
 
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
@@ -578,15 +590,10 @@
               ${categoryServices
                 .map(
                   (s) => `
-                <label for="service_${
-                  s.id
-                }" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
-                  <input type="checkbox" id="service_${s.id}" value="${
-                    s.id
-                  }" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
+                <label for="service_${s.id}" class="service-checkbox-label flex items-center gap-3 p-3 rounded-lg cursor-pointer transition">
+                  <input type="checkbox" id="service_${s.id}" value="${s.id}" class="service-checkbox h-4 w-4 rounded bg-gray-700 border-gray-600 text-green-600 focus:ring-green-500">
                   <span class="flex-1">
-                    <strong class="text-sm">${s.name}</strong><br>
-                    <span class="text-green-400 text-sm">R$ ${s.price.toFixed(2)}</span>
+                    <strong class="text-sm">${s.name}</strong>
                   </span>
                 </label>
               `
