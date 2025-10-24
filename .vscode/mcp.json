@@ -1,12 +1,4 @@
 {
-  "inputs": [
-    {
-      "type": "promptString",
-      "id": "github_mcp_pat",
-      "description": "GitHub Personal Access Token used by the GitHub MCP Server",
-      "password": true
-    }
-  ],
   "servers": {
     "github": {
       "command": "docker",
@@ -19,7 +11,7 @@
         "ghcr.io/github/github-mcp-server"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_mcp_pat}"
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PERSONAL_ACCESS_TOKEN}"
       }
     }
   }

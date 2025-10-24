@@ -4,21 +4,26 @@
 
 ### 🔌 Tooling
 
-#### Added
-- `.vscode/mcp.json` configuration to run the official GitHub MCP Server container with a workspace-specific PAT prompt.
+#### Added (Tooling)
+
+- `.vscode/mcp.json` configuration to run the official GitHub MCP Server container using the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
 - `MCP_SETUP.md` with Docker, token, and toolset guidance for using MCP in Copilot Agent mode.
 
 #### Modified
+
 - `.gitignore` now excludes `.env` files used for storing sensitive MCP credentials.
+- `MCP_SETUP.md` now documents the environment-variable workflow and includes shell examples for priming the token.
 
 ### ✅ Notes
+
 - The setup enables Copilot (and other MCP hosts) to access GitHub context via Docker without committing secrets.
 
 ## Version 1.0 - October 11, 2025
 
 ### 🌐 Internationalization
 
-#### Added
+#### Added (Internationalization)
+
 - Language selector to all HTML pages (PT, EN, ES)
 - English translation of homepage (`en/index.html`)
 - Spanish translation of homepage (`es/index.html`)
@@ -29,6 +34,7 @@
 - `es/README.md` - Spanish translation guidelines
 
 #### Modified (11 files)
+
 - `index.html` - Added language selector
 - `servicos.html` - Added language selector
 - `publicacoes.html` - Added language selector
@@ -43,6 +49,7 @@
 ### 🧹 Repository Cleanup
 
 #### Archived
+
 - `Portfolio.html` → `unused_files/Portfolio.html`
   - Duplicate file with different carousel implementation
 - `post-acinetobacter.html` → `unused_files/post-acinetobacter.html`
@@ -50,7 +57,8 @@
 
 ### 📝 Documentation
 
-#### Added
+#### Added (Documentation)
+
 - `LINT_REPORT.md` - Comprehensive repository analysis
   - File structure documentation
   - Duplicate files identification
@@ -61,16 +69,21 @@
 ### 🎨 CSS Enhancements
 
 #### Added Styles
+
 ```css
 .language-selector    /* Container for language options */
+/* Container for language options */
+/* Container for language options */
+/* Container for language options */
 .lang-option         /* Language link styling */
 .lang-option.active  /* Active language highlight */
-.lang-divider        /* Separator styling */
+.lang-divider; /* Separator styling */
 ```
 
 ### 🧪 Testing
 
 #### Verified
+
 - ✅ All language selector links functional
 - ✅ Portuguese (PT) default language working
 - ✅ English (EN) translation working

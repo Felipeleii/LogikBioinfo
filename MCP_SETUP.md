@@ -18,13 +18,21 @@ This project is preconfigured to run GitHub's Model Context Protocol (MCP) serve
 1. Open this workspace in VS Code 1.101 or later.
 2. Make sure Docker is running locally.
 3. When Copilot prompts for MCP servers (or when you open the Model Context Protocol settings), point it to `.vscode/mcp.json` located in this repo.
-4. When asked, paste your GitHub PAT. The configuration runs the official Docker image `ghcr.io/github/github-mcp-server` with your token injected through the `GITHUB_PERSONAL_ACCESS_TOKEN` environment variable.
+4. **Before starting a session, set the environment variable `GITHUB_PERSONAL_ACCESS_TOKEN` in your shell**. The JSON configuration reads that variable and injects it into the Docker container so the official image `ghcr.io/github/github-mcp-server` can authenticate.
 
-The server exits after each session (`--rm`), so the token is not persisted inside the container.
+The server exits after each session (`--rm`), so the token is not persisted inside the container. Example commands to prime the variable for the current shell session:
 
-### Optional: using environment variables
+```bash
+# PowerShell (current session)
+$env:GITHUB_PERSONAL_ACCESS_TOKEN = "ghp_yourToken"
 
-Instead of typing the PAT each time, set an environment variable in your shell (e.g. `export GITHUB_MCP_PAT=ghp_...`) and replace the `"${input:github_mcp_pat}"` value in `.vscode/mcp.json` with `"${env:GITHUB_MCP_PAT}"`.
+# Bash / zsh (current session)
+export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_yourToken"
+```
+
+### Optional: prompt for the PAT instead
+
+If you prefer to type the token each time, replace the value in `.vscode/mcp.json` with `"${input:github_mcp_pat}"`. Copilot will prompt for the PAT and pass it through to the container for that session only.
 
 ## Selecting toolsets
 
@@ -46,7 +54,7 @@ By default the server exposes the "context", "repos", "issues", "pull_requests" 
         "ghcr.io/github/github-mcp-server"
       ],
       "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${input:github_mcp_pat}",
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PERSONAL_ACCESS_TOKEN}",
         "GITHUB_TOOLSETS": "repos,issues,pull_requests,actions"
       }
     }
