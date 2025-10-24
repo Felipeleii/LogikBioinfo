@@ -11,11 +11,6 @@
       content="Budget calculator for bioinformatics services. Generate an instant estimate for your project."
     />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-      integrity="sha512-qZOrpmhoKj2eZ50pNcelliji6q9DgImpwwnHpmNIMzUyIIM4gkVyYGclement9z0BazpmInEFXuIw2zkxT7vccvg=="
-      crossorigin="anonymous"
-    ></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -122,6 +117,10 @@
       .lang-divider {
         color: #4b5563;
       }
+      .hp-field {
+        position: absolute;
+        left: -9999px;
+      }
     </style>
   </head>
   <body class="text-gray-200">
@@ -192,10 +191,23 @@
           </div>
           <div class="max-w-4xl mx-auto form-card p-8 rounded-lg shadow-lg">
             <p class="text-gray-400 mb-8 text-center">
-              Select the services, enter the number of samples and your data to generate an instant
-              quote.
+              Select the services, enter the number of samples and your data to send your budget
+              request.
             </p>
-            <form id="quote-form">
+            <form
+              id="quote-form"
+              action="https://formspree.io/f/mkgqqrbw"
+              method="POST"
+              accept-charset="UTF-8"
+            >
+              <input type="hidden" name="_subject" value="Budget Request - Logik Bioinfo" />
+              <input type="hidden" name="_language" value="en" />
+              <input
+                type="hidden"
+                name="_redirect"
+                value="https://logikbioinfo.com.br/en/thank-you.html"
+              />
+              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" />
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
                 1. Project Details
               </h3>
@@ -207,6 +219,7 @@
                   <input
                     type="number"
                     id="numSamples"
+                    name="number_of_samples"
                     min="1"
                     value="1"
                     required
@@ -219,15 +232,18 @@
                   </label>
                   <select
                     id="projectType"
+                    name="project_type"
                     required
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   >
                     <option value="">Select...</option>
-                    <option value="academic">Academic (TCC, Masters, PhD)</option>
-                    <option value="research">Scientific Research</option>
-                    <option value="clinical">Clinical Analysis</option>
-                    <option value="industrial">Industrial/Business</option>
-                    <option value="other">Other</option>
+                    <option value="Academic (TCC, Masters, PhD)">
+                      Academic (TCC, Masters, PhD)
+                    </option>
+                    <option value="Scientific Research">Scientific Research</option>
+                    <option value="Clinical Analysis">Clinical Analysis</option>
+                    <option value="Industrial/Business">Industrial/Business</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
                 <div>
@@ -237,6 +253,7 @@
                   <input
                     type="text"
                     id="customerName"
+                    name="name"
                     required
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   />
@@ -248,6 +265,7 @@
                   <input
                     type="email"
                     id="customerEmail"
+                    name="email"
                     required
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   />
@@ -259,6 +277,7 @@
                   <input
                     type="tel"
                     id="customerPhone"
+                    name="phone"
                     placeholder="(11) 92004-5896"
                     required
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
@@ -268,11 +287,15 @@
                   <label for="deadline" class="block text-sm font-medium text-gray-300 mb-1">
                     Desired Deadline
                   </label>
-                  <select id="deadline" class="w-full p-2.5 rounded-lg border text-white text-sm">
-                    <option value="urgent">Urgent (up to 7 days)</option>
-                    <option value="fast">Fast (15 days)</option>
-                    <option value="normal" selected>Normal (30 days)</option>
-                    <option value="flexible">Flexible (45+ days)</option>
+                  <select
+                    id="deadline"
+                    name="deadline"
+                    class="w-full p-2.5 rounded-lg border text-white text-sm"
+                  >
+                    <option value="Urgent (up to 7 days)">Urgent (up to 7 days)</option>
+                    <option value="Fast (15 days)">Fast (15 days)</option>
+                    <option value="Normal (30 days)" selected>Normal (30 days)</option>
+                    <option value="Flexible (45+ days)">Flexible (45+ days)</option>
                   </select>
                 </div>
               </div>
@@ -285,6 +308,7 @@
                 </label>
                 <textarea
                   id="projectDescription"
+                  name="project_description"
                   rows="4"
                   placeholder="Describe your goals, organism type, expected analyses, etc..."
                   required
@@ -297,13 +321,14 @@
                 </label>
                 <select
                   id="dataAvailable"
+                  name="data_available"
                   class="w-full p-2.5 rounded-lg border text-white text-sm"
                 >
-                  <option value="none">No data yet</option>
-                  <option value="raw">Raw data (FASTQ)</option>
-                  <option value="assembled">Assembled genomes (FASTA)</option>
-                  <option value="analyzed">Already analyzed data</option>
-                  <option value="other">Other format</option>
+                  <option value="No data yet">No data yet</option>
+                  <option value="Raw data (FASTQ)">Raw data (FASTQ)</option>
+                  <option value="Assembled genomes (FASTA)">Assembled genomes (FASTA)</option>
+                  <option value="Already analyzed data">Already analyzed data</option>
+                  <option value="Other format">Other format</option>
                 </select>
               </div>
               <div class="mb-8">
@@ -312,6 +337,7 @@
                 </label>
                 <textarea
                   id="dataDetails"
+                  name="data_details"
                   rows="2"
                   placeholder="Example: NCBI BioProject accession (PRJNA123456), SRA accession, project link, or format details..."
                   class="w-full p-2.5 rounded-lg border text-white text-sm"
@@ -321,6 +347,7 @@
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
                 2. Service Selection
               </h3>
+              <input type="hidden" id="selectedServicesHidden" name="selected_services" value="" />
               <div class="mb-8" id="servicesGrid"></div>
 
               <div
@@ -361,13 +388,13 @@
 
               <div class="text-center mt-8">
                 <button
-                  type="button"
-                  id="downloadPdfBtn"
+                  type="submit"
+                  id="submitQuoteBtn"
                   class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition disabled:bg-gray-500 disabled:cursor-not-allowed"
                   disabled
                 >
-                  <i class="fas fa-file-pdf mr-2"></i>
-                  Download PDF
+                  <i class="fas fa-paper-plane mr-2"></i>
+                  Send Budget Request
                 </button>
               </div>
             </form>
@@ -574,7 +601,6 @@
           category: 'Classic Analyses',
         },
       ];
-      let currentQuoteData = null;
 
       function renderServices() {
         const categories = [...new Set(services.map((s) => s.category))];
@@ -609,7 +635,7 @@
       function updateQuote() {
         const numSamples = parseInt(document.getElementById('numSamples').value) || 0;
         const quoteResult = document.getElementById('quoteResult');
-        const downloadBtn = document.getElementById('downloadPdfBtn');
+        const submitBtn = document.getElementById('submitQuoteBtn');
         const customerName = document.getElementById('customerName').value;
         const customerEmail = document.getElementById('customerEmail').value;
         const customerPhone = document.getElementById('customerPhone').value;
@@ -618,6 +644,15 @@
         const selectedServices = new Set(
           Array.from(document.querySelectorAll('.service-checkbox:checked')).map((cb) => cb.value)
         );
+
+        // Update hidden field with selected services
+        const selectedServiceNames = [];
+        services.forEach((service) => {
+          if (selectedServices.has(service.id)) {
+            selectedServiceNames.push(service.name);
+          }
+        });
+        document.getElementById('selectedServicesHidden').value = selectedServiceNames.join(', ');
 
         if (
           selectedServices.size === 0 ||
@@ -629,170 +664,27 @@
           !projectDescription
         ) {
           quoteResult.classList.add('hidden');
-          downloadBtn.disabled = true;
-          currentQuoteData = null;
+          submitBtn.disabled = true;
           return;
         }
 
-        let pricePerSample = 0;
         let listHtml = '';
-        currentQuoteData = { services: [] };
 
         services.forEach((service) => {
           if (selectedServices.has(service.id)) {
-            pricePerSample += service.price;
-            const serviceTotal = service.price * numSamples;
-            listHtml += `<div class="flex justify-between items-center text-sm"><span class="text-gray-300">${
-              service.name
-            }</span><span class="font-semibold">R$ ${serviceTotal.toFixed(2)}</span></div>`;
-            currentQuoteData.services.push({
-              name: service.name,
-              price: service.price,
-              total: serviceTotal,
-            });
+            listHtml += `<div class="flex justify-between items-center text-sm"><span class="text-gray-300">${service.name}</span><span class="text-green-400"><i class="fas fa-check"></i></span></div>`;
           }
         });
 
-        const total = pricePerSample * numSamples;
         document.getElementById('quoteServicesList').innerHTML = listHtml;
-        document.getElementById('pricePerSample').textContent = `R$ ${pricePerSample.toFixed(2)}`;
-        document.getElementById('totalPrice').textContent = `R$ ${total.toFixed(2)}`;
         quoteResult.classList.remove('hidden');
-        downloadBtn.disabled = false;
+        submitBtn.disabled = false;
 
         document.getElementById('serviceWarning').style.display =
           selectedServices.size > 5 ? 'block' : 'none';
-
-        currentQuoteData.number = 'LB' + Date.now().toString().slice(-6);
-        currentQuoteData.date = new Date().toLocaleDateString('en-US');
-        currentQuoteData.customer = {
-          name: customerName,
-          email: customerEmail,
-          phone: customerPhone,
-        };
-        currentQuoteData.numSamples = numSamples;
-        currentQuoteData.projectType = projectType;
-        currentQuoteData.deadline = document.getElementById('deadline').value;
-        currentQuoteData.dataAvailable = document.getElementById('dataAvailable').value;
-        currentQuoteData.description = projectDescription;
-        currentQuoteData.total = total;
       }
 
       document.getElementById('quote-form').addEventListener('input', updateQuote);
-
-      document.getElementById('downloadPdfBtn').addEventListener('click', function () {
-        if (!currentQuoteData) return;
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        // Header
-        doc.setFontSize(20);
-        doc.setTextColor(34, 197, 94);
-        doc.text('LogikBioinfo - Budget', 14, 22);
-
-        doc.setFontSize(10);
-        doc.setTextColor(150);
-        doc.text(`Budget #${currentQuoteData.number} | Date: ${currentQuoteData.date}`, 14, 30);
-
-        // Customer Info
-        doc.setFontSize(11);
-        doc.setTextColor(50);
-        doc.setFont(undefined, 'bold');
-        doc.text('Client:', 14, 45);
-        doc.setFont(undefined, 'normal');
-        doc.text(currentQuoteData.customer.name, 14, 51);
-        doc.text(`Email: ${currentQuoteData.customer.email}`, 14, 57);
-        doc.text(`Phone: ${currentQuoteData.customer.phone}`, 14, 63);
-
-        // Project Info
-        const projectTypeLabels = {
-          academic: 'Academic',
-          research: 'Scientific Research',
-          clinical: 'Clinical Analysis',
-          industrial: 'Industrial/Business',
-          other: 'Other',
-        };
-        const deadlineLabels = {
-          urgent: 'Urgent (up to 7 days)',
-          fast: 'Fast (15 days)',
-          normal: 'Normal (30 days)',
-          flexible: 'Flexible (45+ days)',
-        };
-
-        doc.setFont(undefined, 'bold');
-        doc.text('Project Details:', 14, 75);
-        doc.setFont(undefined, 'normal');
-        doc.setFontSize(9);
-        doc.text(
-          `Type: ${
-            projectTypeLabels[currentQuoteData.projectType] || currentQuoteData.projectType
-          }`,
-          14,
-          81
-        );
-        doc.text(`Deadline: ${deadlineLabels[currentQuoteData.deadline]}`, 14, 86);
-        doc.text(`Samples: ${currentQuoteData.numSamples}`, 14, 91);
-
-        // Description
-        doc.setFontSize(9);
-        const descLines = doc.splitTextToSize(`Description: ${currentQuoteData.description}`, 180);
-        doc.text(descLines, 14, 97);
-
-        // Services Table
-        let y = 97 + descLines.length * 5 + 10;
-        doc.setFontSize(11);
-        doc.setFont(undefined, 'bold');
-        doc.text('Requested Services:', 14, y);
-        y += 8;
-
-        doc.setFontSize(9);
-        doc.text('Service', 14, y);
-        doc.text('Qty.', 110, y, { align: 'center' });
-        doc.text('Unit Price', 140, y, { align: 'center' });
-        doc.text('Subtotal', 180, y, { align: 'right' });
-        y += 2;
-        doc.line(14, y, 196, y);
-        y += 6;
-
-        doc.setFont(undefined, 'normal');
-        currentQuoteData.services.forEach((service) => {
-          if (y > 270) {
-            doc.addPage();
-            y = 20;
-          }
-          const serviceName = doc.splitTextToSize(service.name, 90);
-          doc.text(serviceName, 14, y);
-          doc.text(currentQuoteData.numSamples.toString(), 110, y, { align: 'center' });
-          doc.text(`R$ ${service.price.toFixed(2)}`, 140, y, { align: 'center' });
-          doc.text(`R$ ${service.total.toFixed(2)}`, 180, y, { align: 'right' });
-          y += serviceName.length * 5 + 3;
-        });
-
-        // Total
-        y += 3;
-        doc.line(14, y, 196, y);
-        y += 8;
-        doc.setFontSize(13);
-        doc.setFont(undefined, 'bold');
-        doc.text('Budget Total:', 120, y);
-        doc.setTextColor(34, 197, 94);
-        doc.text(`R$ ${currentQuoteData.total.toFixed(2)}`, 180, y, { align: 'right' });
-
-        // Footer
-        doc.setFontSize(8);
-        doc.setTextColor(100);
-        doc.setFont(undefined, 'normal');
-        const footerY = 280;
-        doc.text('LogikBioinfo - Bioinformatics Consulting and Academic Projects', 105, footerY, {
-          align: 'center',
-        });
-        doc.text('contato@logikbioinfo.com.br | (11) 92004-5896', 105, footerY + 4, {
-          align: 'center',
-        });
-        doc.text('www.logikbioinfo.com.br', 105, footerY + 8, { align: 'center' });
-
-        doc.save(`budget-logikbioinfo-${currentQuoteData.number}.pdf`);
-      });
 
       document.addEventListener('DOMContentLoaded', renderServices);
     </script>
