@@ -198,16 +198,24 @@
               Seleccione los servicios, indique el número de muestras y sus datos para enviar su
               solicitud de presupuesto.
             </p>
-            <form 
-              id="quote-form" 
-              action="https://formspree.io/f/mkgqqrbw" 
-              method="POST" 
+            <form
+              id="quote-form"
+              action="https://formspree.io/f/mkgqqrbw"
+              method="POST"
               accept-charset="UTF-8"
             >
-              <input type="hidden" name="_subject" value="Solicitud de Presupuesto - Logik Bioinfo" />
+              <input
+                type="hidden"
+                name="_subject"
+                value="Solicitud de Presupuesto - Logik Bioinfo"
+              />
               <input type="hidden" name="_language" value="es" />
-              <input type="hidden" name="_redirect" value="https://logikbioinfo.com.br/es/gracias.html" />
-              <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" />
+              <input
+                type="hidden"
+                name="_redirect"
+                value="https://logikbioinfo.com.br/es/gracias.html"
+              />
+              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" />
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
                 1. Detalles del Proyecto
               </h3>
@@ -237,7 +245,9 @@
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   >
                     <option value="">Seleccione...</option>
-                    <option value="Académico (TFG, Maestría, Doctorado)">Académico (TFG, Maestría, Doctorado)</option>
+                    <option value="Académico (TFG, Maestría, Doctorado)">
+                      Académico (TFG, Maestría, Doctorado)
+                    </option>
                     <option value="Investigación Científica">Investigación Científica</option>
                     <option value="Análisis Clínico">Análisis Clínico</option>
                     <option value="Industrial/Empresarial">Industrial/Empresarial</option>
@@ -285,7 +295,11 @@
                   <label for="deadline" class="block text-sm font-medium text-gray-300 mb-1">
                     Plazo Deseado
                   </label>
-                  <select id="deadline" name="plazo" class="w-full p-2.5 rounded-lg border text-white text-sm">
+                  <select
+                    id="deadline"
+                    name="plazo"
+                    class="w-full p-2.5 rounded-lg border text-white text-sm"
+                  >
                     <option value="Urgente (hasta 7 días)">Urgente (hasta 7 días)</option>
                     <option value="Rápido (15 días)">Rápido (15 días)</option>
                     <option value="Normal (30 días)" selected>Normal (30 días)</option>
@@ -341,7 +355,12 @@
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
                 2. Selección de Servicios
               </h3>
-              <input type="hidden" id="selectedServicesHidden" name="servicios_seleccionados" value="" />
+              <input
+                type="hidden"
+                id="selectedServicesHidden"
+                name="servicios_seleccionados"
+                value=""
+              />
               <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"
                 id="servicesGrid"

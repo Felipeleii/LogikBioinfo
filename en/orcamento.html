@@ -194,16 +194,20 @@
               Select the services, enter the number of samples and your data to send your budget
               request.
             </p>
-            <form 
-              id="quote-form" 
-              action="https://formspree.io/f/mkgqqrbw" 
-              method="POST" 
+            <form
+              id="quote-form"
+              action="https://formspree.io/f/mkgqqrbw"
+              method="POST"
               accept-charset="UTF-8"
             >
               <input type="hidden" name="_subject" value="Budget Request - Logik Bioinfo" />
               <input type="hidden" name="_language" value="en" />
-              <input type="hidden" name="_redirect" value="https://logikbioinfo.com.br/en/thank-you.html" />
-              <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" />
+              <input
+                type="hidden"
+                name="_redirect"
+                value="https://logikbioinfo.com.br/en/thank-you.html"
+              />
+              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" />
               <h3 class="text-xl font-bold text-green-500 mb-4 border-b border-gray-700 pb-2">
                 1. Project Details
               </h3>
@@ -233,7 +237,9 @@
                     class="w-full p-2.5 rounded-lg border text-white text-sm"
                   >
                     <option value="">Select...</option>
-                    <option value="Academic (TCC, Masters, PhD)">Academic (TCC, Masters, PhD)</option>
+                    <option value="Academic (TCC, Masters, PhD)">
+                      Academic (TCC, Masters, PhD)
+                    </option>
                     <option value="Scientific Research">Scientific Research</option>
                     <option value="Clinical Analysis">Clinical Analysis</option>
                     <option value="Industrial/Business">Industrial/Business</option>
@@ -281,7 +287,11 @@
                   <label for="deadline" class="block text-sm font-medium text-gray-300 mb-1">
                     Desired Deadline
                   </label>
-                  <select id="deadline" name="deadline" class="w-full p-2.5 rounded-lg border text-white text-sm">
+                  <select
+                    id="deadline"
+                    name="deadline"
+                    class="w-full p-2.5 rounded-lg border text-white text-sm"
+                  >
                     <option value="Urgent (up to 7 days)">Urgent (up to 7 days)</option>
                     <option value="Fast (15 days)">Fast (15 days)</option>
                     <option value="Normal (30 days)" selected>Normal (30 days)</option>
