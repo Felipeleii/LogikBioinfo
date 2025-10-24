@@ -1,5 +1,19 @@
 # Changelog - Internationalization and Repository Cleanup
 
+## Version 1.1 - October 24, 2025
+
+### 🔌 Tooling
+
+#### Added
+- `.vscode/mcp.json` configuration to run the official GitHub MCP Server container with a workspace-specific PAT prompt.
+- `MCP_SETUP.md` with Docker, token, and toolset guidance for using MCP in Copilot Agent mode.
+
+#### Modified
+- `.gitignore` now excludes `.env` files used for storing sensitive MCP credentials.
+
+### ✅ Notes
+- The setup enables Copilot (and other MCP hosts) to access GitHub context via Docker without committing secrets.
+
 ## Version 1.0 - October 11, 2025
 
 ### 🌐 Internationalization
