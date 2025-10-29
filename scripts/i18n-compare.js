@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 /*
- I18N HTML comparator
+ I18N HTML comparator (Security-fixed version)
  - Scans Portuguese (root), English (en/), Spanish (es/) html files
  - Maps equivalent pages (handling obrigado/thank-you/gracias alias)
  - Detects missing pages per language
  - Compares structure-only fingerprints (tags only, no text/attrs/scripts/styles)
  - Outputs a Markdown report to stdout
+ 
+ Security fixes:
+ - Fixed ReDoS vulnerability in stripBetween function
+ - Added input validation and size limits
+ - Improved regex patterns to prevent catastrophic backtracking
 */
 
 const fs = require('fs');
@@ -13,6 +18,9 @@ const path = require('path');
 const crypto = require('crypto');
 
 const repoRoot = path.resolve(__dirname, '..');
+
+// Security: Maximum file size to process (5MB)
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const LANGS = [
   { code: 'pt', base: repoRoot },
@@ -29,16 +37,22 @@ function isHtml(file) {
 function walk(dir, options = {}) {
   const { excludeTop = new Set() } = options;
   let results = [];
-  const list = fs.readdirSync(dir, { withFileTypes: true });
-  for (const dirent of list) {
-    const full = path.join(dir, dirent.name);
-    if (dirent.isDirectory()) {
-      if (dir === repoRoot && excludeTop.has(dirent.name)) continue;
-      results = results.concat(walk(full, options));
-    } else if (dirent.isFile()) {
-      if (isHtml(dirent.name)) results.push(full);
+  
+  try {
+    const list = fs.readdirSync(dir, { withFileTypes: true });
+    for (const dirent of list) {
+      const full = path.join(dir, dirent.name);
+      if (dirent.isDirectory()) {
+        if (dir === repoRoot && excludeTop.has(dirent.name)) continue;
+        results = results.concat(walk(full, options));
+      } else if (dirent.isFile()) {
+        if (isHtml(dirent.name)) results.push(full);
+      }
     }
+  } catch (err) {
+    console.error(`Warning: Cannot read directory ${dir}: ${err.message}`);
   }
+  
   return results;
 }
 
@@ -69,7 +83,6 @@ function collectFiles() {
     if (!fs.existsSync(base)) continue;
     const files = code === 'pt' ? walk(base, { excludeTop: PT_EXCLUDE_DIRS }) : walk(base);
     for (const file of files) {
-      // Ignore files inside en/ or es/ when scanning pt (already excluded at top)
       const key = relKeyFor(code, file);
       if (!pages.has(key)) pages.set(key, {});
       pages.get(key)[code] = file;
@@ -79,37 +92,124 @@ function collectFiles() {
 }
 
 function read(file) {
+  // Security: Check file size before reading
+  const stats = fs.statSync(file);
+  if (stats.size > MAX_FILE_SIZE) {
+    console.warn(`Warning: File ${file} exceeds ${MAX_FILE_SIZE} bytes, skipping`);
+    return '';
+  }
   return fs.readFileSync(file, 'utf8');
 }
 
+/**
+ * SECURITY FIX: Improved stripBetween function to prevent ReDoS
+ * Instead of using [\\s\\S]*? which can cause catastrophic backtracking,
+ * we use a more specific and safer approach with chunked processing
+ */
 function stripBetween(text, startTag, endTag) {
-  // remove occurrences of blocks like <script ...>...</script>
-  const regex = new RegExp(`${startTag}[\\s\\S]*?${endTag}`, 'gi');
-  return text.replace(regex, '');
+  if (!text || typeof text !== 'string') return '';
+  
+  // Escape regex special characters in tags
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const safeStart = escapeRegex(startTag);
+  const safeEnd = escapeRegex(endTag);
+  
+  let result = text;
+  let maxIterations = 1000; // Safety limit to prevent infinite loops
+  let iterations = 0;
+  
+  // Use a safer approach: find and remove one block at a time
+  while (iterations < maxIterations) {
+    // Create a regex that matches the opening tag, then uses a negated character class
+    // or a lazy quantifier with a reasonable limit
+    const regex = new RegExp(`${safeStart}(?:(?!${safeEnd}).){0,50000}?${safeEnd}`, 'i');
+    const match = result.match(regex);
+    
+    if (!match) break;
+    
+    result = result.slice(0, match.index) + result.slice(match.index + match[0].length);
+    iterations++;
+  }
+  
+  if (iterations >= maxIterations) {
+    console.warn('Warning: stripBetween reached iteration limit, possible malformed HTML');
+  }
+  
+  return result;
+}
+
+/**
+ * Alternative safer implementation using indexOf for better performance
+ */
+function stripBetweenSafe(text, startTag, endTag) {
+  if (!text || typeof text !== 'string') return '';
+  
+  let result = '';
+  let pos = 0;
+  let searchStart = 0;
+  let iterations = 0;
+  const maxIterations = 1000;
+  
+  while (iterations < maxIterations) {
+    const startIndex = text.indexOf(startTag, searchStart);
+    if (startIndex === -1) {
+      result += text.slice(pos);
+      break;
+    }
+    
+    result += text.slice(pos, startIndex);
+    
+    const endIndex = text.indexOf(endTag, startIndex + startTag.length);
+    if (endIndex === -1) {
+      // Malformed: no closing tag found, skip the rest
+      break;
+    }
+    
+    pos = endIndex + endTag.length;
+    searchStart = pos;
+    iterations++;
+  }
+  
+  if (iterations >= maxIterations) {
+    console.warn('Warning: stripBetweenSafe reached iteration limit');
+  }
+  
+  return result;
 }
 
 function normalizeStructure(html) {
+  if (!html || typeof html !== 'string') return '';
+  
   let s = html;
+  
   // Remove BOM if any
   s = s.replace(/^\uFEFF/, '');
-  // Remove comments
-  s = s.replace(/<!--([\s\S]*?)-->/g, '');
-  // Remove script and style blocks entirely
-  s = stripBetween(s, '<script[^>]*?>', '<\\/script>');
-  s = stripBetween(s, '<style[^>]*?>', '<\\/style>');
-  // Remove text between tags while preserving tags. Replace text nodes with nothing.
-  // Strategy: collapse sequences like ">text<" into "><"
-  s = s.replace(/>([^<]+)</g, (m, text) => '><');
+  
+  // Remove comments (with length limit to prevent ReDoS)
+  s = s.replace(/<!--[\s\S]{0,10000}?-->/g, '');
+  
+  // Remove script and style blocks using the safe function
+  s = stripBetweenSafe(s, '<script', '</script>');
+  s = stripBetweenSafe(s, '<style', '</style>');
+  
+  // Remove text between tags while preserving tags
+  s = s.replace(/>([^<]{0,1000})</g, '><');
+  
   // Remove attributes: turn <tag attr="..."> into <tag>
-  s = s.replace(/<([a-zA-Z0-9\-]+)(\s+[^>]*?)>/g, '<$1>');
+  s = s.replace(/<([a-zA-Z0-9\-]+)(\s+[^>]{0,500}?)>/g, '<$1>');
+  
   // Lowercase tag names
-  s = s.replace(/<\/?([A-Z0-9\-]+)>/g, (m, name) => m.toLowerCase());
+  s = s.replace(/<\/?([A-Z0-9\-]+)>/g, (m) => m.toLowerCase());
+  
   // Remove doctype
-  s = s.replace(/<!doctype[^>]*>/gi, '');
+  s = s.replace(/<!doctype[^>]{0,200}>/gi, '');
+  
   // Collapse whitespace
   s = s.replace(/\s+/g, ' ');
+  
   // Trim
   s = s.trim();
+  
   return s;
 }
 
@@ -119,18 +219,22 @@ function fingerprint(structure) {
 
 function countTags(html) {
   const counts = Object.create(null);
-  const re = /<\/?([a-z0-9\-]+)[^>]*>/gi;
+  const re = /<\/?([a-z0-9\-]+)[^>]{0,500}>/gi;
   let m;
-  while ((m = re.exec(html))) {
+  let iterations = 0;
+  const maxIterations = 100000;
+  
+  while ((m = re.exec(html)) && iterations < maxIterations) {
     const name = m[1].toLowerCase();
     if (!counts[name]) counts[name] = 0;
     counts[name]++;
+    iterations++;
   }
+  
   return counts;
 }
 
 function formatCountsDiff(countsByLang) {
-  // Union of tag names
   const names = new Set();
   for (const lang of Object.keys(countsByLang)) {
     Object.keys(countsByLang[lang]).forEach(n => names.add(n));
@@ -152,7 +256,7 @@ function main() {
   const now = new Date();
   const dt = now.toISOString();
   let out = '';
-  out += `# I18N HTML Comparison Report\n\n`;
+  out += `# I18N HTML Comparison Report (Security-Fixed)\n\n`;
   out += `Generated: ${dt}\n\n`;
   out += `Languages: pt (root), en (/en), es (/es)\n\n`;
 
@@ -176,7 +280,6 @@ function main() {
   let diffCount = 0;
   for (const key of keys) {
     const entry = pages.get(key);
-    // Only compare if at least two languages present
     const presentLangs = LANGS.map(l => l.code).filter(code => !!entry[code]);
     if (presentLangs.length < 2) continue;
 
@@ -185,6 +288,8 @@ function main() {
     const counts = {};
     for (const lang of presentLangs) {
       const html = read(entry[lang]);
+      if (!html) continue; // Skip if file was too large or couldn't be read
+      
       const structure = normalizeStructure(html);
       structs[lang] = structure;
       fps[lang] = fingerprint(structure);
@@ -192,20 +297,26 @@ function main() {
     }
 
     const fpValues = Object.values(fps);
+    if (fpValues.length < 2) continue; // Skip if we couldn't process enough files
+    
     const allEqual = fpValues.every(v => v === fpValues[0]);
     if (!allEqual) {
       diffCount++;
       out += `### ${key}\n\n`;
       out += `Files:\n`;
       for (const lang of presentLangs) {
-        out += `- ${lang}: ${path.relative(repoRoot, entry[lang]).replace(/\\\\/g, '/')} (fp ${fps[lang]})\n`;
+        if (fps[lang]) {
+          out += `- ${lang}: ${path.relative(repoRoot, entry[lang]).replace(/\\\\/g, '/')} (fp ${fps[lang]})\n`;
+        }
       }
       out += `\nTag counts comparison:\n\n`;
       out += formatCountsDiff(counts) + '\n\n';
       out += `Structure preview (first 300 chars per language):\n\n`;
       for (const lang of presentLangs) {
-        const prev = structs[lang].slice(0, 300).replace(/\n/g, ' ');
-        out += `- ${lang}: ${prev}\n`;
+        if (structs[lang]) {
+          const prev = structs[lang].slice(0, 300).replace(/\n/g, ' ');
+          out += `- ${lang}: ${prev}\n`;
+        }
       }
       out += `\n`;
     }
@@ -221,6 +332,7 @@ if (require.main === module) {
     main();
   } catch (err) {
     console.error('Error:', err.message);
+    console.error(err.stack);
     process.exit(1);
   }
 }
