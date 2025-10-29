@@ -98,10 +98,10 @@
       /* Mobile menu button enhanced visibility */
       #mobile-menu-button {
         position: relative;
-        z-index: 60;
+        z-index: 1000 !important;
         min-width: 44px;
         min-height: 44px;
-        display: flex;
+        display: flex !important;
         align-items: center;
         justify-content: center;
         background-color: #1f2937;
@@ -120,6 +120,10 @@
       #mobile-menu-button i {
         color: #ffffff;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+      /* Mobile menu z-index fix */
+      #mobile-menu {
+        z-index: 999;
       }
       /* Enhanced header for mobile */
       @media (max-width: 768px) {
@@ -1016,7 +1020,24 @@
         mobileMenu.classList.toggle('hidden');
       });
 
-      // Ano atual no rodapé
+      // Fechar menu mobile ao clicar em qualquer link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+
+      // Fechar menu mobile ao clicar fora dele
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.classList.contains('hidden') &&
+            !mobileMenu.contains(e.target) &&
+            !mobileMenuButton.contains(e.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+
+      // Año actual en el pie de página
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
       // ===========================
