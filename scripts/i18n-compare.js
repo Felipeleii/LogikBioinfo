@@ -186,7 +186,12 @@ function normalizeStructure(html) {
   s = s.replace(/^\uFEFF/, '');
   
   // Remove comments (with length limit to prevent ReDoS)
-  s = s.replace(/<!--[\s\S]{0,10000}?-->/g, '');
+  // Fix: Remove HTML comments repeatedly until none remain to ensure full sanitization
+  let prev;
+  do {
+    prev = s;
+    s = s.replace(/<!--[\s\S]{0,10000}?-->/g, '');
+  } while (s !== prev);
   
   // Remove script and style blocks using the safe function
   s = stripBetweenSafe(s, '<script', '</script>');
