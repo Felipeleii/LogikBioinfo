@@ -59,6 +59,8 @@
 - [ ] All resources use HTTPS URLs
 - [ ] No dynamic server requirements
 - [ ] Site works on GitHub Pages
+- [x] `.nojekyll` file present in root (required for GitHub Pages)
+- [ ] `CNAME` file configured with custom domain (if using)
 
 ### Security
 - [ ] No API keys or credentials in repository
