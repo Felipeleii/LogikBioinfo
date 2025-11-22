@@ -25,35 +25,8 @@ slnx.sqlite
 .tmp.driveupload/
 .env
 
-# Portfolio development scripts (not needed in repo)
-portfolio/convert_pages.py
-portfolio/convert_pdfs.py
-portfolio/watermark_images.py
-portfolio/watermark_tiled.py
-portfolio/tailwind-custom-example.html
-
-# Unused portfolio images (outdated versions)
-portfolio/CNPq_Descriptive_Flow.png
-portfolio/CNPq_Descriptive_Flow_p06.png
-portfolio/CNPq_Descriptive_Flow_p12.png
-portfolio/CNPq_Descriptive_Flow_p15.png
-portfolio/Covid_Tree.png
-portfolio/Lollipop_G5.png
-portfolio/Lollipop_Spike_G4.png
-portfolio/Figure_1_Final.tif
-
-# Portfolio source images (already copied to img/portfolio/)
-portfolio/Analise da filogenia e das mutacoes do COVID19.png
-portfolio/Analise de mutacoes no genoma bacteriano ISAbal.png
-portfolio/Caracterizacao de linhagens e relevancia clinica.png
-portfolio/Guias ilustrados de processamento microbiologico.png
-portfolio/Infografico de Serviços Logik Bioinfo.png
-portfolio/Prancheta 1insta.png
-portfolio/Sem título-4.png
-
-# Personal files (not needed for website)
-FRENTE_cartaoLogik.pdf
-verso_cartaoLogik.pdf
+# Unused files archive
+unused_files/
 
 # Old/test files
 /port.html
@@ -67,3 +40,4 @@ verso_cartaoLogik.pdf
 /page5.html
 /page.html
 /Claude_readme.txt
+
