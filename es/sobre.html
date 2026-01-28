@@ -149,7 +149,78 @@
           background-color: transparent;
         }
       }
-  </style>
+  
+      /* Theme Toggle */
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        margin-left: 0.5rem;
+      }
+      .theme-toggle button {
+        background: transparent;
+        border: 1px solid #374151;
+        border-radius: 0.375rem;
+        padding: 0.375rem 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #9ca3af;
+      }
+      .theme-toggle button:hover {
+        border-color: #22c55e;
+        color: #22c55e;
+      }
+      /* Light mode styles */
+      html.light body {
+        background-color: #f3f4f6;
+        color: #1f2937;
+      }
+      html.light .bg-gray-900 {
+        background-color: #ffffff !important;
+      }
+      html.light .bg-gray-800 {
+        background-color: #f9fafb !important;
+      }
+      html.light .text-gray-200, html.light .text-gray-300, html.light .text-gray-400 {
+        color: #374151 !important;
+      }
+      html.light .text-white {
+        color: #111827 !important;
+      }
+      html.light .border-gray-700 {
+        border-color: #e5e7eb !important;
+      }
+      html.light .content-card, html.light .icon-card {
+        background-color: #ffffff !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      }
+      html.light header {
+        background-color: #ffffff !important;
+        border-color: #e5e7eb !important;
+      }
+      html.light #mobile-menu {
+        background-color: #ffffff !important;
+      }
+      html.light #mobile-menu-button {
+        background-color: #f3f4f6;
+        border-color: #d1d5db;
+      }
+      html.light #mobile-menu-button i {
+        color: #374151;
+      }
+      html.light .lang-option {
+        color: #6b7280;
+      }
+      html.light .lang-option:hover, html.light .lang-option.active {
+        color: #16a34a;
+      }
+      html.light .lang-divider {
+        color: #d1d5db;
+      }
+      html.light footer {
+        background-color: #f9fafb !important;
+      }
+
+    </style>
  </head>
  <body class="text-gray-200">
   <!-- Header -->
@@ -185,23 +256,20 @@
      <a class="nav-link-hover transition duration-300 nav-link-active" href="sobre.html">
       Acerca de
      </a>
-     <a class="nav-link-hover transition duration-300" href="quem-sou-eu.html">
-      Quién Soy
-     </a>
      <div class="language-selector">
       <span class="lang-divider">
        |
       </span>
-      <a class="lang-option" data-lang="pt" href="../sobre.html">
-       PT
-      </a>
-      <a class="lang-option" data-lang="en" href="../en/sobre.html">
-       EN
-      </a>
-      <a class="lang-option active" data-lang="es" href="sobre.html">
-       ES
-      </a>
-     </div>
+      <a class="lang-option" data-lang="pt" href="../sobre.html">🇧🇷 PT</a>
+      <a class="lang-option" data-lang="en" href="../en/sobre.html">🇬🇧 EN</a>
+      <a class="lang-option active" data-lang="es" href="sobre.html">🇪🇸 ES</a>
+     
+          <div class="theme-toggle">
+            <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
+              <i class="fas fa-sun theme-toggle-icon"></i>
+            </button>
+          </div>
+        </div>
     </div>
     <div class="md:hidden">
      <button class="text-white focus:outline-none" id="mobile-menu-button">
@@ -235,26 +303,24 @@
     <a class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active" href="sobre.html">
      Acerca de
     </a>
-    <a class="block py-2 px-6 text-sm hover:bg-gray-800" href="quem-sou-eu.html">
-     Quién Soy
-    </a>
     <div class="flex justify-center py-2 px-6 space-x-2">
-     <a class="lang-option text-sm" data-lang="pt" href="../sobre.html">
-      PT
-     </a>
+     <a class="lang-option text-sm" data-lang="pt" href="../sobre.html">🇧🇷 PT</a>
      <span class="text-gray-600">
       |
      </span>
-     <a class="lang-option text-sm" data-lang="en" href="../en/sobre.html">
-      EN
-     </a>
+     <a class="lang-option text-sm" data-lang="en" href="../en/sobre.html">🇬🇧 EN</a>
      <span class="text-gray-600">
       |
      </span>
-     <a class="lang-option active text-sm" data-lang="es" href="sobre.html">
-      ES
-     </a>
-    </div>
+     <a class="lang-option active text-sm" data-lang="es" href="sobre.html">🇪🇸 ES</a>
+    
+        <div class="flex justify-center py-2 px-6">
+          <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun theme-toggle-icon"></i>
+            <span class="ml-2 text-sm">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
    </div>
   </header>
   <main class="pt-24">
@@ -312,7 +378,7 @@
         Felipe Alberto Lei
        </h3>
        <p class="text-green-400 font-medium">
-        Bioinformata e Consultor de TI
+        Bioinformático y Consultor de TI
        </p>
       </div>
       <div class="md:w-2/3">
@@ -321,21 +387,13 @@
        </h2>
        <div class="space-y-4 text-gray-300">
         <p>
-         Sou um profissional apaixonado por tecnologia e ciência, com formação em Ciências
-                  Biológicas e Mestrado em Infectologia pela Universidade Federal de São Paulo
-                  (UNIFESP). Minha carreira é dedicada a aplicar a computação para resolver
-                  problemas complexos no campo da biologia, especialmente em genômica bacteriana.
+         Soy un profesional apasionado por la tecnología y la ciencia, con formación en Ciencias Biológicas y una Maestría en Infectología de la Universidad Federal de São Paulo (UNIFESP). Mi carrera está dedicada a aplicar la computación para resolver problemas complejos en el campo de la biología, especialmente en genómica bacteriana.
         </p>
         <p>
-         Com a Logik Bioinfo, meu objetivo é oferecer serviços de alta qualidade que unem
-                  meu conhecimento acadêmico em bioinformática com habilidades práticas em
-                  tecnologia da informação, ajudando pesquisadores, estudantes e pequenas empresas a
-                  alcançarem seus objetivos.
+         Con Logik Bioinfo, mi objetivo es ofrecer servicios de alta calidad que combinen mi conocimiento académico en bioinformática con habilidades prácticas en tecnología de la información, ayudando a investigadores, estudiantes y pequeñas empresas a alcanzar sus objetivos.
         </p>
         <p>
-         Atualmente sou doutorando na UNIFESP, vinculado ao Laboratório ALERTA, com foco em
-                  resistência antimicrobiana, e atuo como Research Assistant no Clinical Virology
-                  Laboratory da mesma instituição.
+         Actualmente soy doctorando en UNIFESP, vinculado al Laboratorio ALERTA, con enfoque en resistencia antimicrobiana, y trabajo como Asistente de Investigación en el Clinical Virology Laboratory de la misma institución.
         </p>
        </div>
        <div class="mt-6 border-l-4 border-green-500 pl-4">
@@ -452,5 +510,35 @@
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
- </body>
+ 
+    <!-- Theme Toggle Script -->
+    <script>
+      // Theme toggle functionality
+      function initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.classList.toggle('light', savedTheme === 'light');
+        updateThemeIcon(savedTheme);
+      }
+      
+      function toggleTheme() {
+        const isLight = document.documentElement.classList.toggle('light');
+        const newTheme = isLight ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+      }
+      
+      function updateThemeIcon(theme) {
+        const icons = document.querySelectorAll('.theme-toggle-icon');
+        icons.forEach(icon => {
+          icon.className = theme === 'light' 
+            ? 'fas fa-moon theme-toggle-icon' 
+            : 'fas fa-sun theme-toggle-icon';
+        });
+      }
+      
+      // Initialize theme on page load
+      initTheme();
+    </script>
+
+  </body>
 </html>
