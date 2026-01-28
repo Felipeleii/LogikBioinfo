@@ -117,78 +117,10 @@
           background-color: transparent;
         }
       }
-    
-      /* Theme Toggle */
-      .theme-toggle {
-        display: flex;
-        align-items: center;
-        margin-left: 0.5rem;
-      }
-      .theme-toggle button {
-        background: transparent;
-        border: 1px solid #374151;
-        border-radius: 0.375rem;
-        padding: 0.375rem 0.5rem;
-        cursor: pointer;
-        transition: all 0.3s;
-        color: #9ca3af;
-      }
-      .theme-toggle button:hover {
-        border-color: #22c55e;
-        color: #22c55e;
-      }
-      /* Light mode styles */
-      html.light body {
-        background-color: #f3f4f6;
-        color: #1f2937;
-      }
-      html.light .bg-gray-900 {
-        background-color: #ffffff !important;
-      }
-      html.light .bg-gray-800 {
-        background-color: #f9fafb !important;
-      }
-      html.light .text-gray-200, html.light .text-gray-300, html.light .text-gray-400 {
-        color: #374151 !important;
-      }
-      html.light .text-white {
-        color: #111827 !important;
-      }
-      html.light .border-gray-700 {
-        border-color: #e5e7eb !important;
-      }
-      html.light .content-card, html.light .icon-card {
-        background-color: #ffffff !important;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      }
-      html.light header {
-        background-color: #ffffff !important;
-        border-color: #e5e7eb !important;
-      }
-      html.light #mobile-menu {
-        background-color: #ffffff !important;
-      }
-      html.light #mobile-menu-button {
-        background-color: #f3f4f6;
-        border-color: #d1d5db;
-      }
-      html.light #mobile-menu-button i {
-        color: #374151;
-      }
-      html.light .lang-option {
-        color: #6b7280;
-      }
-      html.light .lang-option:hover, html.light .lang-option.active {
-        color: #16a34a;
-      }
-      html.light .lang-divider {
-        color: #d1d5db;
-      }
-      html.light footer {
-        background-color: #f9fafb !important;
-      }
 
     </style>
+  
+    <link rel="stylesheet" href="../js/theme-toggle.css">
   </head>
   <body class="text-gray-200">
     <!-- Header -->
@@ -387,35 +319,8 @@
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
-  
-    <!-- Theme Toggle Script -->
-    <script>
-      // Theme toggle functionality
-      function initTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.documentElement.classList.toggle('light', savedTheme === 'light');
-        updateThemeIcon(savedTheme);
-      }
-      
-      function toggleTheme() {
-        const isLight = document.documentElement.classList.toggle('light');
-        const newTheme = isLight ? 'light' : 'dark';
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-      }
-      
-      function updateThemeIcon(theme) {
-        const icons = document.querySelectorAll('.theme-toggle-icon');
-        icons.forEach(icon => {
-          icon.className = theme === 'light' 
-            ? 'fas fa-moon theme-toggle-icon' 
-            : 'fas fa-sun theme-toggle-icon';
-        });
-      }
-      
-      // Initialize theme on page load
-      initTheme();
-    </script>
 
+  
+    <script src="../js/theme-toggle.js"></script>
   </body>
 </html>
