@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -23,7 +23,7 @@
     />
     <style>
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         background-color: #111827;
       }
       .nav-link-hover:hover {
@@ -37,14 +37,7 @@
         border-bottom: 3px solid #22c55e;
         padding-bottom: 0.5rem;
       }
-      .icon-card {
-        background-color: #1f2937; /* bg-gray-800 */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .icon-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-      }
+      /* icon-card styles moved to js/theme-toggle.css for consistency */
       .whatsapp-float {
         position: fixed;
         width: 60px;
@@ -125,42 +118,82 @@
           background-color: transparent;
         }
       }
-
     </style>
-  
-    <link rel="stylesheet" href="../js/theme-toggle.css">
+    <link rel="stylesheet" href="../js/theme-toggle.css" />
   </head>
   <body class="text-gray-200">
     <!-- Header -->
-    <header class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700">
-      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="../en/index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+    <header
+      class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="../en/index.html"
+          class="text-2xl font-bold text-white flex items-center gap-2"
+        >
           <i class="fa-solid fa-dna text-green-500"></i>
           Logik Bioinfo
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a href="index.html" class="nav-link-hover transition duration-300">Home</a>
-          <a href="servicos.html" class="nav-link-hover transition duration-300 nav-link-active">
+          <a href="index.html" class="nav-link-hover transition duration-300"
+            >Home</a
+          >
+          <a
+            href="servicos.html"
+            class="nav-link-hover transition duration-300 nav-link-active"
+          >
             Services
           </a>
-          <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publications</a>
-          <a href="portfolio.html" class="nav-link-hover transition duration-300">Portfolio</a>
-          <a href="ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
-          <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
-          <a href="orcamento.html" class="nav-link-hover transition duration-300">Budget</a>
-          <a href="sobre.html" class="nav-link-hover transition duration-300">About</a>
+          <a
+            href="publicacoes.html"
+            class="nav-link-hover transition duration-300"
+            >Publications</a
+          >
+          <a
+            href="portfolio.html"
+            class="nav-link-hover transition duration-300"
+            >Portfolio</a
+          >
+          <a
+            href="ferramentas.html"
+            class="nav-link-hover transition duration-300"
+            >Tools</a
+          >
+          <a href="blog.html" class="nav-link-hover transition duration-300"
+            >Blog</a
+          >
+          <a
+            href="orcamento.html"
+            class="nav-link-hover transition duration-300"
+            >Budget</a
+          >
+          <a href="sobre.html" class="nav-link-hover transition duration-300"
+            >About</a
+          >
           <div class="language-selector">
             <span class="lang-divider">|</span>
-            <a href="../servicos.html" class="lang-option" data-lang="pt">🇧🇷 PT</a>
-            <a href="servicos.html" class="lang-option active" data-lang="en">🇬🇧 EN</a>
-            <a href="../es/servicos.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
-          
-          <div class="theme-toggle">
-            <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
-              <i class="fas fa-sun theme-toggle-icon"></i>
-            </button>
+            <a href="../servicos.html" class="lang-option" data-lang="pt"
+              >🇧🇷 PT</a
+            >
+            <a href="servicos.html" class="lang-option active" data-lang="en"
+              >🇬🇧 EN</a
+            >
+            <a href="../es/servicos.html" class="lang-option" data-lang="es"
+              >🇪🇸 ES</a
+            >
+
+            <div class="theme-toggle">
+              <button
+                onclick="toggleTheme()"
+                title="Toggle theme"
+                aria-label="Toggle dark/light mode"
+              >
+                <i class="fas fa-sun theme-toggle-icon"></i>
+              </button>
+            </div>
           </div>
-        </div>
         </div>
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -168,33 +201,77 @@
           </button>
         </div>
       </nav>
-      <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl">
-        <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
-        <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl"
+      >
+        <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Home</a
+        >
+        <a
+          href="servicos.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active"
+        >
           Services
         </a>
-        <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+        <a
+          href="publicacoes.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+        >
           Publications
         </a>
-        <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
-        <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
-        <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
-        <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Budget</a>
-        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
+        <a
+          href="portfolio.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Portfolio</a
+        >
+        <a
+          href="ferramentas.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Tools</a
+        >
+        <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Blog</a
+        >
+        <a
+          href="orcamento.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Budget</a
+        >
+        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >About</a
+        >
         <div class="flex justify-center py-2 px-6 space-x-2">
-          <a href="../servicos.html" class="lang-option text-sm" data-lang="pt">🇧🇷 PT</a>
+          <a href="../servicos.html" class="lang-option text-sm" data-lang="pt"
+            >🇧🇷 PT</a
+          >
           <span class="text-gray-600">|</span>
-          <a href="servicos.html" class="lang-option active text-sm" data-lang="en">🇬🇧 EN</a>
+          <a
+            href="servicos.html"
+            class="lang-option active text-sm"
+            data-lang="en"
+            >🇬🇧 EN</a
+          >
           <span class="text-gray-600">|</span>
-          <a href="../es/servicos.html" class="lang-option text-sm" data-lang="es">🇪🇸 ES</a>
-        
-        <div class="flex justify-center py-2 px-6">
-          <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
-            <i class="fas fa-sun theme-toggle-icon"></i>
-            <span class="ml-2 text-sm">Toggle Theme</span>
-          </button>
+          <a
+            href="../es/servicos.html"
+            class="lang-option text-sm"
+            data-lang="es"
+            >🇪🇸 ES</a
+          >
+
+          <div class="flex justify-center py-2 px-6">
+            <button
+              onclick="toggleTheme()"
+              class="text-gray-400 hover:text-green-500 transition-colors"
+              title="Toggle theme"
+              aria-label="Toggle dark/light mode"
+            >
+              <i class="fas fa-sun theme-toggle-icon"></i>
+              <span class="ml-2 text-sm">Toggle Theme</span>
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </header>
 
@@ -202,56 +279,79 @@
       <section id="servicos" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16">
-            <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
+            <h2
+              class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4"
+            >
               My Services
             </h2>
             <p class="text-gray-400 max-w-3xl mx-auto">
-              Complete solutions to boost your research, from raw data analysis to publishing your
-              article.
+              Complete solutions to boost your research, from raw data analysis
+              to publishing your article.
             </p>
           </div>
 
           <!-- Section 1: Bioinformatics -->
           <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">
+            <h3
+              class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center"
+            >
               Bioinformatics and Data Analysis
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-dna"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Complete Genomics</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-dna"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Complete Genomics
+                </h4>
                 <p class="text-gray-400">
-                  WGS, pangenome, phylogeny, metagenomics (16S/shotgun) analyses and more.
+                  WGS, pangenome, phylogeny, metagenomics (16S/shotgun) analyses
+                  and more.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-magnifying-glass-chart"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Transcriptomics (RNA-Seq)</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Transcriptomics (RNA-Seq)
+                </h4>
                 <p class="text-gray-400">
-                  Differential expression analysis, pathway enrichment and functional annotation.
+                  Differential expression analysis, pathway enrichment and
+                  functional annotation.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-chart-pie"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Statistical Analysis</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Statistical Analysis
+                </h4>
                 <p class="text-gray-400">
-                  Hypothesis testing, statistical modeling and machine learning algorithms.
+                  Hypothesis testing, statistical modeling and machine learning
+                  algorithms.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-chart-bar"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Data Visualization</h4>
-                <p class="text-gray-400">Creating charts with R (ggplot2) and Python (seaborn).</p>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Data Visualization
+                </h4>
+                <p class="text-gray-400">
+                  Creating charts with R (ggplot2) and Python (seaborn).
+                </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-gears"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Pipeline Development</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-gears"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Pipeline Development
+                </h4>
                 <p class="text-gray-400">
                   Analysis automation to ensure consistency and reproducibility.
                 </p>
@@ -260,9 +360,12 @@
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Data Submission</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Data Submission
+                </h4>
                 <p class="text-gray-400">
-                  Support in submitting data to public platforms such as NCBI (SRA) and ENA.
+                  Support in submitting data to public platforms such as NCBI
+                  (SRA) and ENA.
                 </p>
               </div>
             </div>
@@ -270,36 +373,55 @@
 
           <!-- Section 2: Academic Support -->
           <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">
+            <h3
+              class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center"
+            >
               Academic and Scientific Support
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-file-pen"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Scientific Writing Guidance</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-file-pen"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Scientific Writing Guidance
+                </h4>
                 <p class="text-gray-400">
-                  Support in writing articles, undergraduate theses, dissertations and theses.
+                  Support in writing articles, undergraduate theses,
+                  dissertations and theses.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-book"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Formatting and References</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-book"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Formatting and References
+                </h4>
                 <p class="text-gray-400">
-                  Standards (ABNT, APA) and library organization (Zotero, Mendeley).
+                  Standards (ABNT, APA) and library organization (Zotero,
+                  Mendeley).
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-language"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Technical Translation</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-language"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Technical Translation
+                </h4>
                 <p class="text-gray-400">
-                  Portuguese ↔ English translation for articles, abstracts and presentations.
+                  Portuguese ↔ English translation for articles, abstracts and
+                  presentations.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-person-chalkboard"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Presentation Preparation</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Presentation Preparation
+                </h4>
                 <p class="text-gray-400">
                   Creating professional slides in PowerPoint or LaTeX (Beamer).
                 </p>
@@ -308,22 +430,33 @@
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-newspaper"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Publication Consulting</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Publication Consulting
+                </h4>
                 <p class="text-gray-400">
-                  Support in choosing journals, submission and responding to reviewers.
+                  Support in choosing journals, submission and responding to
+                  reviewers.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-award"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Grants and Calls Guidance</h4>
-                <p class="text-gray-400">Support in preparing proposals and research projects.</p>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Grants and Calls Guidance
+                </h4>
+                <p class="text-gray-400">
+                  Support in preparing proposals and research projects.
+                </p>
               </div>
             </div>
           </div>
 
           <!-- Section 3: Support and Consulting -->
           <div>
-            <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">
+            <h3
+              class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center"
+            >
               Additional Support and Consulting
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -331,9 +464,12 @@
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-chalkboard-user"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Workshops and Mini-courses</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Workshops and Mini-courses
+                </h4>
                 <p class="text-gray-400">
-                  Practical courses in statistics, bioinformatics and scientific writing.
+                  Practical courses in statistics, bioinformatics and scientific
+                  writing.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
@@ -342,14 +478,17 @@
                 </div>
                 <h4 class="text-xl font-bold text-white mb-2">Digital Tools</h4>
                 <p class="text-gray-400">
-                  Creating libraries in Zotero, Mendeley, and introduction to LaTeX.
+                  Creating libraries in Zotero, Mendeley, and introduction to
+                  LaTeX.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-diagram-project"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Project Consulting</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Project Consulting
+                </h4>
                 <p class="text-gray-400">
                   Specialized support to structure and develop your projects.
                 </p>
@@ -371,7 +510,9 @@
             <i class="fa-solid fa-dna text-green-500"></i>
             Logik Bioinfo
           </a>
-          <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+          <p class="text-sm mt-2">
+            Felipe Alberto Lei - CNPJ: 61.474.591/0001-23
+          </p>
         </div>
         <div class="flex justify-center space-x-6 mb-4 text-2xl">
           <a
@@ -434,15 +575,14 @@
     </a>
 
     <script>
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
       });
-      document.getElementById('current-year').textContent = new Date().getFullYear();
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
     </script>
-
-  
     <script src="../js/theme-toggle.js"></script>
   </body>
 </html>

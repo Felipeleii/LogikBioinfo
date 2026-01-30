@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"tailwindCSS.includeLanguages": {
+			"html": "html",
+			"javascript": "javascript",
+			"plaintext": "html"
+		}
+	}
+}
