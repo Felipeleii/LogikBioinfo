@@ -117,7 +117,9 @@
           background-color: transparent;
         }
       }
+
     </style>
+    <link rel="stylesheet" href="../js/theme-toggle.css">
   </head>
   <body class="text-gray-200">
     <!-- Header -->
@@ -142,7 +144,13 @@
             <span class="lang-divider">|</span>
             <a href="../quem-sou-eu.html" class="lang-option" data-lang="pt">🇧🇷 PT</a>
             <a href="../en/quem-sou-eu.html" class="lang-option" data-lang="en">🇬🇧 EN</a>
-            </div>
+            
+          <div class="theme-toggle">
+            <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
+              <i class="fas fa-sun theme-toggle-icon"></i>
+            </button>
+          </div>
+        </div>
         </div>
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -168,7 +176,14 @@
           <span class="text-gray-600">|</span>
           <a href="../en/quem-sou-eu.html" class="lang-option text-sm" data-lang="en">🇬🇧 EN</a>
           <span class="text-gray-600">|</span>
-          </div>
+          
+        <div class="flex justify-center py-2 px-6">
+          <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun theme-toggle-icon"></i>
+            <span class="ml-2 text-sm">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
       </div>
     </header>
 
@@ -303,5 +318,6 @@
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+    <script src="../js/theme-toggle.js"></script>
   </body>
 </html>

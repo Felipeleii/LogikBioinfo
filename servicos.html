@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
@@ -23,7 +23,7 @@
     />
     <style>
       body {
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         background-color: #111827;
       }
       .nav-link-hover:hover {
@@ -37,14 +37,7 @@
         border-bottom: 3px solid #22c55e;
         padding-bottom: 0.5rem;
       }
-      .icon-card {
-        background-color: #1f2937; /* bg-gray-800 */
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .icon-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-      }
+      /* icon-card styles moved to js/theme-toggle.css for consistency */
       .whatsapp-float {
         position: fixed;
         width: 60px;
@@ -126,31 +119,80 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="js/theme-toggle.css" />
   </head>
   <body class="text-gray-200">
     <!-- Header -->
-    <header class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700">
-      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+    <header
+      class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700"
+    >
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold text-white flex items-center gap-2"
+        >
           <i class="fa-solid fa-dna text-green-500"></i>
           Logik Bioinfo
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a href="index.html" class="nav-link-hover transition duration-300">Início</a>
-          <a href="servicos.html" class="nav-link-hover transition duration-300 nav-link-active">
+          <a href="index.html" class="nav-link-hover transition duration-300"
+            >Início</a
+          >
+          <a
+            href="servicos.html"
+            class="nav-link-hover transition duration-300 nav-link-active"
+          >
             Serviços
           </a>
-          <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publicações</a>
-          <a href="portfolio.html" class="nav-link-hover transition duration-300">Portfólio</a>
-          <a href="ferramentas.html" class="nav-link-hover transition duration-300">Ferramentas</a>
-          <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
-          <a href="orcamento.html" class="nav-link-hover transition duration-300">Orçamento</a>
-          <a href="sobre.html" class="nav-link-hover transition duration-300">Sobre</a>
+          <a
+            href="publicacoes.html"
+            class="nav-link-hover transition duration-300"
+            >Publicações</a
+          >
+          <a
+            href="portfolio.html"
+            class="nav-link-hover transition duration-300"
+            >Portfólio</a
+          >
+          <a
+            href="ferramentas.html"
+            class="nav-link-hover transition duration-300"
+            >Ferramentas</a
+          >
+          <a href="blog.html" class="nav-link-hover transition duration-300"
+            >Blog</a
+          >
+          <a
+            href="orcamento.html"
+            class="nav-link-hover transition duration-300"
+            >Orçamento</a
+          >
+          <a href="sobre.html" class="nav-link-hover transition duration-300"
+            >Sobre</a
+          >
           <div class="language-selector">
             <span class="lang-divider">|</span>
-            <a href="servicos.html" class="lang-option active" data-lang="pt">🇧🇷 PT</a>
-            <a href="en/servicos.html" class="lang-option" data-lang="en">🇬🇧 EN</a>
-            <a href="es/servicos.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
+            <a href="servicos.html" class="lang-option active" data-lang="pt"
+              >🇧🇷 PT</a
+            >
+            <a href="en/servicos.html" class="lang-option" data-lang="en"
+              >🇬🇧 EN</a
+            >
+            <a href="es/servicos.html" class="lang-option" data-lang="es"
+              >🇪🇸 ES</a
+            >
+
+            <div class="theme-toggle">
+              <button
+                onclick="toggleTheme()"
+                title="Toggle theme"
+                aria-label="Toggle dark/light mode"
+              >
+                <i class="fas fa-sun theme-toggle-icon"></i>
+              </button>
+            </div>
           </div>
         </div>
         <div class="md:hidden">
@@ -159,24 +201,73 @@
           </button>
         </div>
       </nav>
-      <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl">
-        <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
-        <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl"
+      >
+        <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Início</a
+        >
+        <a
+          href="servicos.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active"
+        >
           Serviços
         </a>
-        <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
-        <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
-        <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Ferramentas</a>
-        <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
-        <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
-        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+        <a
+          href="publicacoes.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Publicações</a
+        >
+        <a
+          href="portfolio.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Portfólio</a
+        >
+        <a
+          href="ferramentas.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Ferramentas</a
+        >
+        <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Blog</a
+        >
+        <a
+          href="orcamento.html"
+          class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Orçamento</a
+        >
+        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800"
+          >Sobre</a
+        >
 
         <div class="flex justify-center py-2 px-6 space-x-2">
-          <a href="servicos.html" class="lang-option active text-sm" data-lang="pt">🇧🇷 PT</a>
+          <a
+            href="servicos.html"
+            class="lang-option active text-sm"
+            data-lang="pt"
+            >🇧🇷 PT</a
+          >
           <span class="text-gray-600">|</span>
-          <a href="en/servicos.html" class="lang-option text-sm" data-lang="en">🇬🇧 EN</a>
+          <a href="en/servicos.html" class="lang-option text-sm" data-lang="en"
+            >🇬🇧 EN</a
+          >
           <span class="text-gray-600">|</span>
-          <a href="es/servicos.html" class="lang-option text-sm" data-lang="es">🇪🇸 ES</a>
+          <a href="es/servicos.html" class="lang-option text-sm" data-lang="es"
+            >🇪🇸 ES</a
+          >
+
+          <div class="flex justify-center py-2 px-6">
+            <button
+              onclick="toggleTheme()"
+              class="text-gray-400 hover:text-green-500 transition-colors"
+              title="Toggle theme"
+              aria-label="Toggle dark/light mode"
+            >
+              <i class="fas fa-sun theme-toggle-icon"></i>
+              <span class="ml-2 text-sm">Toggle Theme</span>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -185,67 +276,94 @@
       <section id="servicos" class="py-20 bg-gray-900">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16">
-            <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
+            <h2
+              class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4"
+            >
               Meus Serviços
             </h2>
             <p class="text-gray-400 max-w-3xl mx-auto">
-              Soluções completas para impulsionar sua pesquisa, desde a análise de dados brutos até
-              a publicação do seu artigo.
+              Soluções completas para impulsionar sua pesquisa, desde a análise
+              de dados brutos até a publicação do seu artigo.
             </p>
           </div>
 
           <!-- Seção 1: Bioinformática -->
           <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">
+            <h3
+              class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center"
+            >
               Bioinformática e Análise de Dados
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-dna"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Genômica Completa</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-dna"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Genômica Completa
+                </h4>
                 <p class="text-gray-400">
-                  Análises de WGS, pangenoma, filogenia, metagenômica (16S/shotgun) e mais.
+                  Análises de WGS, pangenoma, filogenia, metagenômica
+                  (16S/shotgun) e mais.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-magnifying-glass-chart"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Transcriptômica (RNA-Seq)</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Transcriptômica (RNA-Seq)
+                </h4>
                 <p class="text-gray-400">
-                  Análise de expressão diferencial, enriquecimento de vias e anotação funcional.
+                  Análise de expressão diferencial, enriquecimento de vias e
+                  anotação funcional.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-chart-pie"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Análise Estatística</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Análise Estatística
+                </h4>
                 <p class="text-gray-400">
-                  Testes de hipóteses, modelagem estatística e algoritmos de machine learning.
+                  Testes de hipóteses, modelagem estatística e algoritmos de
+                  machine learning.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-chart-bar"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Visualização de Dados</h4>
-                <p class="text-gray-400">Criação de gráficos com R (ggplot2) e Python (seaborn).</p>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Visualização de Dados
+                </h4>
+                <p class="text-gray-400">
+                  Criação de gráficos com R (ggplot2) e Python (seaborn).
+                </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-gears"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Desenvolvimento de Pipelines</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-gears"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Desenvolvimento de Pipelines
+                </h4>
                 <p class="text-gray-400">
-                  Automação de análises para garantir consistência e reprodutibilidade.
+                  Automação de análises para garantir consistência e
+                  reprodutibilidade.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-cloud-arrow-up"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Submissão de Dados</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Submissão de Dados
+                </h4>
                 <p class="text-gray-400">
-                  Apoio na submissão de dados em plataformas públicas como NCBI (SRA) e ENA.
+                  Apoio na submissão de dados em plataformas públicas como NCBI
+                  (SRA) e ENA.
                 </p>
               </div>
             </div>
@@ -253,52 +371,78 @@
 
           <!-- Seção 2: Apoio Acadêmico -->
           <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">
+            <h3
+              class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center"
+            >
               Apoio Acadêmico e Científico
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-file-pen"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Orientação em Escrita Científica</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-file-pen"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Orientação em Escrita Científica
+                </h4>
                 <p class="text-gray-400">
                   Apoio na redação de artigos, TCCs, dissertações e teses.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-book"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Formatação e Referências</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-book"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Formatação e Referências
+                </h4>
                 <p class="text-gray-400">
-                  Normas (ABNT, APA) e organização de bibliotecas (Zotero, Mendeley).
+                  Normas (ABNT, APA) e organização de bibliotecas (Zotero,
+                  Mendeley).
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-language"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Tradução Técnica</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-language"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Tradução Técnica
+                </h4>
                 <p class="text-gray-400">
-                  Tradução Português ↔ Inglês para artigos, resumos e apresentações.
+                  Tradução Português ↔ Inglês para artigos, resumos e
+                  apresentações.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-person-chalkboard"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Preparação de Apresentações</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Preparação de Apresentações
+                </h4>
                 <p class="text-gray-400">
-                  Criação de slides profissionais em PowerPoint ou LaTeX (Beamer).
+                  Criação de slides profissionais em PowerPoint ou LaTeX
+                  (Beamer).
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-newspaper"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Consultoria em Publicação</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Consultoria em Publicação
+                </h4>
                 <p class="text-gray-400">
-                  Apoio na escolha de periódicos, submissão e resposta aos revisores.
+                  Apoio na escolha de periódicos, submissão e resposta aos
+                  revisores.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
-                <div class="text-5xl text-green-500 mb-4"><i class="fa-solid fa-award"></i></div>
-                <h4 class="text-xl font-bold text-white mb-2">Orientação em Bolsas e Editais</h4>
+                <div class="text-5xl text-green-500 mb-4">
+                  <i class="fa-solid fa-award"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Orientação em Bolsas e Editais
+                </h4>
                 <p class="text-gray-400">
                   Apoio na preparação de propostas e projetos de pesquisa.
                 </p>
@@ -308,7 +452,9 @@
 
           <!-- Seção 3: Suporte e Consultoria -->
           <div>
-            <h3 class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center">
+            <h3
+              class="text-2xl md:text-3xl font-bold text-green-500 mb-8 text-center"
+            >
               Suporte e Consultoria Adicional
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -316,27 +462,36 @@
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-chalkboard-user"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Workshops e Minicursos</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Workshops e Minicursos
+                </h4>
                 <p class="text-gray-400">
-                  Cursos práticos em estatística, bioinformática e escrita científica.
+                  Cursos práticos em estatística, bioinformática e escrita
+                  científica.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-laptop-code"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Ferramentas Digitais</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Ferramentas Digitais
+                </h4>
                 <p class="text-gray-400">
-                  Criação de bibliotecas em Zotero, Mendeley, e introdução ao LaTeX.
+                  Criação de bibliotecas em Zotero, Mendeley, e introdução ao
+                  LaTeX.
                 </p>
               </div>
               <div class="icon-card p-8 rounded-lg shadow-lg text-center">
                 <div class="text-5xl text-green-500 mb-4">
                   <i class="fa-solid fa-diagram-project"></i>
                 </div>
-                <h4 class="text-xl font-bold text-white mb-2">Consultoria em Projetos</h4>
+                <h4 class="text-xl font-bold text-white mb-2">
+                  Consultoria em Projetos
+                </h4>
                 <p class="text-gray-400">
-                  Apoio especializado para estruturar e desenvolver seus projetos.
+                  Apoio especializado para estruturar e desenvolver seus
+                  projetos.
                 </p>
               </div>
             </div>
@@ -356,7 +511,9 @@
             <i class="fa-solid fa-dna text-green-500"></i>
             Logik Bioinfo
           </a>
-          <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+          <p class="text-sm mt-2">
+            Felipe Alberto Lei - CNPJ: 61.474.591/0001-23
+          </p>
         </div>
         <div class="flex justify-center space-x-6 mb-4 text-2xl">
           <a
@@ -419,12 +576,14 @@
     </a>
 
     <script>
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
       });
-      document.getElementById('current-year').textContent = new Date().getFullYear();
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
     </script>
+    <script src="js/theme-toggle.js"></script>
   </body>
 </html>

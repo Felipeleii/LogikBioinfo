@@ -226,8 +226,10 @@
           background-color: transparent;
         }
       }
-  </style>
- </head>
+
+    </style>
+    <link rel="stylesheet" href="../js/theme-toggle.css">
+  </head>
  <body class="text-gray-200">
   <!-- Animated DNA/Bacteria Background -->
   <div class="dna-background">
@@ -295,16 +297,16 @@
       <span class="lang-divider">
        |
       </span>
-      <a class="lang-option" data-lang="pt" href="../sobre.html">
-       PT
-      </a>
-      <a class="lang-option active" data-lang="en" href="sobre.html">
-       EN
-      </a>
-      <a class="lang-option" data-lang="es" href="../es/sobre.html">
-       ES
-      </a>
-     </div>
+      <a class="lang-option" data-lang="pt" href="../sobre.html">🇧🇷 PT</a>
+      <a class="lang-option active" data-lang="en" href="sobre.html">🇬🇧 EN</a>
+      <a class="lang-option" data-lang="es" href="../es/sobre.html">🇪🇸 ES</a>
+     
+          <div class="theme-toggle">
+            <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
+              <i class="fas fa-sun theme-toggle-icon"></i>
+            </button>
+          </div>
+        </div>
     </div>
     <div class="md:hidden">
      <button class="text-white focus:outline-none" id="mobile-menu-button">
@@ -339,22 +341,23 @@
      About
     </a>
     <div class="flex justify-center py-2 px-6 space-x-2">
-     <a class="lang-option text-sm" data-lang="pt" href="../sobre.html">
-      PT
-     </a>
+     <a class="lang-option text-sm" data-lang="pt" href="../sobre.html">🇧🇷 PT</a>
      <span class="text-gray-600">
       |
      </span>
-     <a class="lang-option active text-sm" data-lang="en" href="sobre.html">
-      EN
-     </a>
+     <a class="lang-option active text-sm" data-lang="en" href="sobre.html">🇬🇧 EN</a>
      <span class="text-gray-600">
       |
      </span>
-     <a class="lang-option text-sm" data-lang="es" href="../es/sobre.html">
-      ES
-     </a>
-    </div>
+     <a class="lang-option text-sm" data-lang="es" href="../es/sobre.html">🇪🇸 ES</a>
+    
+        <div class="flex justify-center py-2 px-6">
+          <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun theme-toggle-icon"></i>
+            <span class="ml-2 text-sm">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
    </div>
   </header>
   <main class="pt-24">
@@ -552,5 +555,6 @@
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
- </body>
+    <script src="../js/theme-toggle.js"></script>
+  </body>
 </html>
