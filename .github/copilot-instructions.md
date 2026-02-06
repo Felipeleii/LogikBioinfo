@@ -9,7 +9,7 @@ LogikBioinfo is a multilingual bioinformatics services website built as a static
 - **HTML5**: Semantic HTML with proper DOCTYPE declarations
 - **CSS**: Tailwind CSS via CDN + inline `<style>` blocks for custom styling
 - **JavaScript**: Vanilla JS (no jQuery), minimal inline scripts
-- **Icons**: Font Awesome 6.4.0/6.5.1 via CDN
+- **Icons**: Font Awesome via CDN (6.5.1 preferred; some legacy pages still reference 6.4.0)
 - **Typography**: Google Fonts (Poppins family)
 - **Forms**: Formspree integration for static form handling
 - **Hosting**: GitHub Pages
@@ -99,7 +99,7 @@ LogikBioinfo is a multilingual bioinformatics services website built as a static
    ```html
    <div class="language-selector">
        <span class="lang-divider">|</span>
-       <a href="#" class="lang-option active" data-lang="pt">🇧🇷 PT</a>
+       <a href="index.html" class="lang-option active" data-lang="pt">🇧🇷 PT</a>
        <a href="en/index.html" class="lang-option" data-lang="en">🇬🇧 EN</a>
        <a href="es/index.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
    </div>
@@ -194,6 +194,7 @@ Always include honeypot field `.hp-field` with CSS:
 ```css
 .hp-field { position: absolute; left: -9999px; }
 ```
+Current forms use a `website` honeypot field (instead of the older `_gotcha` name); keep this naming consistent across languages.
 
 ## File Naming Conventions
 
