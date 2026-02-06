@@ -32,7 +32,7 @@ LogikBioinfo is a multilingual bioinformatics services website built as a static
 ├── img/                Images
 ├── portfolio/          Portfolio images
 ├── js/                 JavaScript utilities
-├── scripts/            Node.js helpers (e.g., i18n comparison)
+├── scripts/            Helper scripts (Node.js and Python; e.g., i18n comparison)
 └── docs/               Documentation (deployment, forms, etc.)
 
 /en/                     English translations
@@ -104,6 +104,7 @@ LogikBioinfo is a multilingual bioinformatics services website built as a static
        <a href="es/index.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
    </div>
    ```
+   Use real URLs for the active language link (some legacy pages still use `#`; migrate them to self-links for consistency).
    Mobile menu version mirrors the same links and active state.
 
 4. **Semantic HTML** - Use `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>` and maintain proper heading hierarchy (h1 → h2 → h3).
@@ -122,7 +123,7 @@ LogikBioinfo is a multilingual bioinformatics services website built as a static
    - Dark backgrounds: `bg-gray-900`, `bg-gray-800`
    - Text colors: `text-white`, `text-gray-300`, `text-gray-400`
 
-4. **No external CSS files** - Keep styles inline or in `<style>` blocks.
+4. **External CSS usage** - Prefer inline `<style>` blocks, but small shared utility stylesheets in `/js` (e.g., `js/theme-toggle.css`) are allowed for cross-page features. Avoid adding new standalone CSS files or large external frameworks.
 
 ### JavaScript
 
@@ -194,7 +195,7 @@ Always include honeypot field `.hp-field` with CSS:
 ```css
 .hp-field { position: absolute; left: -9999px; }
 ```
-Current forms use a `website` honeypot field (instead of the older `_gotcha` name); keep this naming consistent across languages.
+Standard contact-style forms use a `website` honeypot field, while the budget calculator forms (`orcamento.html`, `en/orcamento.html`, `es/orcamento.html`) still use `_gotcha`; keep each form type's honeypot name consistent across languages.
 
 ## File Naming Conventions
 
@@ -275,7 +276,7 @@ Before deploying changes:
 ## Don't Do
 
 - ❌ Don't add jQuery or heavy frameworks.
-- ❌ Don't create external CSS files (use inline or `<style>` blocks).
+- ❌ Don't add new external CSS files; prefer inline or `<style>` blocks. Existing shared stylesheets (e.g., `js/theme-toggle.css`) are allowed but should not be duplicated.
 - ❌ Don't hardcode email addresses outside Formspree configuration.
 - ❌ Don't skip the language selector on any page.
 - ❌ Don't break consistent navigation structure.
