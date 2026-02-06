@@ -124,12 +124,10 @@
           background-color: transparent;
         }
       }
-
     </style>
     <link rel="stylesheet" href="../js/theme-toggle.css">
   </head>
   <body class="text-gray-200">
-    <!-- Header -->
     <header class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700">
       <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
         <a href="../en/index.html" class="text-2xl font-bold text-white flex items-center gap-2">
@@ -153,12 +151,12 @@
             <a href="publicacoes.html" class="lang-option active" data-lang="en">🇬🇧 EN</a>
             <a href="../es/publicacoes.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
           
-          <div class="theme-toggle">
-            <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
-              <i class="fas fa-sun theme-toggle-icon"></i>
-            </button>
+            <div class="theme-toggle">
+              <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
+                <i class="fas fa-sun theme-toggle-icon"></i>
+              </button>
+            </div>
           </div>
-        </div>
         </div>
         <div class="md:hidden">
           <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -169,10 +167,7 @@
       <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl">
         <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Home</a>
         <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Services</a>
-        <a
-          href="publicacoes.html"
-          class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active"
-        >
+        <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
           Publications
         </a>
         <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfolio</a>
@@ -187,13 +182,13 @@
           <span class="text-gray-600">|</span>
           <a href="../es/publicacoes.html" class="lang-option text-sm" data-lang="es">🇪🇸 ES</a>
         
-        <div class="flex justify-center py-2 px-6">
-          <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
-            <i class="fas fa-sun theme-toggle-icon"></i>
-            <span class="ml-2 text-sm">Toggle Theme</span>
-          </button>
+          <div class="flex justify-center py-2 px-6">
+            <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
+              <i class="fas fa-sun theme-toggle-icon"></i>
+              <span class="ml-2 text-sm">Toggle Theme</span>
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </header>
 
@@ -206,446 +201,204 @@
             </h2>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Cards de publicação -->
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/blaADC.jpg"
                   alt="ISAba1 study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-dna text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'>This study describes the effects of the insertion of <i>ISAba1</i> in the intrinsic <i>bla</i>ADC gene of an <i>Acinetobacter baumannii</i> isolate showing co-resistance to carbapenems and colistin. Isolate 52971 showed low ceftazidime MIC values due to the disruption of <i>bla</i>ADC-195 by this insertion sequence.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    This study describes the effects of the insertion of
-                    <i>ISAba1</i>
-                    in the intrinsic
-                    <i>bla</i>
-                    ADC gene of an
-                    <i>Acinetobacter baumannii</i>
-                    isolate showing co-resistance to carbapenems and colistin. Isolate 52971 showed
-                    low ceftazidime MIC values due to the disruption of
-                    <i>bla</i>
-                    ADC-195 by this insertion sequence.
+                    This study describes the effects of the insertion of <i>ISAba1</i> in the intrinsic <i>bla</i>ADC gene of an <i>Acinetobacter baumannii</i> isolate showing co-resistance to carbapenems and colistin. Isolate 52971 showed low ceftazidime MIC values due to the disruption of <i>bla</i>ADC-195 by this insertion sequence.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
                 <h4 class="text-lg font-bold text-white mb-2">
-                  <i>ISAba1</i>
-                  -mediated
-                  <i>bla</i>
-                  ADC disruption restores third-generation cephalosporin susceptibility in a
-                  clinical
-                  <i>Acinetobacter baumannii</i>
-                  isolate
+                  <i>ISAba1</i>-mediated <i>bla</i>ADC disruption restores third-generation cephalosporin susceptibility in a clinical <i>Acinetobacter baumannii</i> isolate
                 </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Carolina S. Nodari, Felipe Alberto-Lei, et al.
-                </p>
-                <p class="text-md text-green-400 font-semibold mb-4">
-                  Antimicrobial Agents and Chemotherapy, 2025
-                </p>
+                <p class="text-sm text-gray-400 italic mb-2">Carolina S. Nodari, Felipe Alberto-Lei, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Antimicrobial Agents and Chemotherapy, 2025</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://doi.org/10.1128/aac.00707-25"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1VFytusQP5MGfo2LlJqMuvnXcKJYdD5l9"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://doi.org/10.1128/aac.00707-25" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1VFytusQP5MGfo2LlJqMuvnXcKJYdD5l9" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
-              </div> </div>
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+              </div>
+            </div>
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/sepi.jpg"
                   alt="S. epidermidis study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-bacteria text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'><i>Staphylococcus epidermidis</i> is an opportunistic commensal cutaneous biofilm-producing agent frequently causing musculoskeletal infections (MSI) with/without implants. This study was designed to evaluate phenotypic and genomic relatedness between commensal skin and infection-associated isolates.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    <i>Staphylococcus epidermidis</i>
-                    is an opportunistic commensal cutaneous biofilm-producing agent frequently
-                    causing musculoskeletal infections (MSI) with/without implants. This study was
-                    designed to evaluate phenotypic and genomic relatedness between commensal skin
-                    and infection-associated isolates.
+                    <i>Staphylococcus epidermidis</i> is an opportunistic commensal cutaneous biofilm-producing agent frequently causing musculoskeletal infections (MSI) with/without implants. This study was designed to evaluate phenotypic and genomic relatedness between commensal skin and infection-associated isolates.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  Comparative genomic analysis of resistance and virulence genes in
-                  <i>Staphylococcus epidermidis</i>
-                  ...
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Ingrid Nayara Marcelino Santos, Felipe Alberto-Lei, et al.
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2">Comparative genomic analysis of resistance and virulence genes in <i>Staphylococcus epidermidis</i>...</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Ingrid Nayara Marcelino Santos, Felipe Alberto-Lei, et al.</p>
                 <p class="text-md text-green-400 font-semibold mb-4">Scientific Reports, 2025</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://www.nature.com/articles/s41598-025-09061-4"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1kP8h8FzN0k5laCYMKeaRE_sxkBIu2prt"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://www.nature.com/articles/s41598-025-09061-4" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1kP8h8FzN0k5laCYMKeaRE_sxkBIu2prt" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/klebsiella.jpg"
                   alt="Klebsiella study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-virus text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'><i>Klebsiella pneumoniae</i> is an important pathogen that causes several human infections, which is currently among the main bacterial species of clinical importance. This study detected virulent strains causing intestinal and extraintestinal infections.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    <i>Klebsiella pneumoniae</i>
-                    is an important pathogen that causes several human infections, which is
-                    currently among the main bacterial species of clinical importance. This study
-                    detected virulent strains causing intestinal and extraintestinal infections.
+                    <i>Klebsiella pneumoniae</i> is an important pathogen that causes several human infections, which is currently among the main bacterial species of clinical importance. This study detected virulent strains causing intestinal and extraintestinal infections.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  Detection of virulent
-                  <i>Klebsiella pneumoniae</i>
-                  strains causing intestinal and extraintestinal infections...
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Tiago Barcelos Valiatti, Pedro Henrique Soares Nunes, et al.
-                </p>
-                <p class="text-md text-green-400 font-semibold mb-4">
-                  Brazilian Journal of Microbiology, 2024
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2">Detection of virulent <i>Klebsiella pneumoniae</i> strains causing intestinal and extraintestinal infections...</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Tiago Barcelos Valiatti, Pedro Henrique Soares Nunes, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Brazilian Journal of Microbiology, 2024</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://link.springer.com/article/10.1007/s42770-024-01502-y"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1I4aEGVg2PuINUUHLCvp2p30mutbnE30E"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://link.springer.com/article/10.1007/s42770-024-01502-y" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1I4aEGVg2PuINUUHLCvp2p30mutbnE30E" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/influenza.jpg"
                   alt="Influenza study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-child-reaching text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'>This retrospective study aimed to investigate the impact of the emergence of new variants and the epidemiological scenario on hospitalization rates of unvaccinated children (0-12 years) in Brazil. The death rate was 1.9%, with comorbidities playing a significant role.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    This retrospective study aimed to investigate the impact of the emergence of new
-                    variants and the epidemiological scenario on hospitalization rates of
-                    unvaccinated children (0-12 years) in Brazil. The death rate was 1.9%, with
-                    comorbidities playing a significant role.
+                    This retrospective study aimed to investigate the impact of the emergence of new variants and the epidemiological scenario on hospitalization rates of unvaccinated children (0-12 years) in Brazil. The death rate was 1.9%, with comorbidities playing a significant role.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  Impact of Variants, Epidemiological Trends, and Comorbidities on Hospitalization
-                  Rates...
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Danielle Dias Conte, Rai André Silva Watanabe, et al.
-                </p>
-                <p class="text-md text-green-400 font-semibold mb-4">
-                  Influenza and Other Respiratory Viruses, 2024
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2">Impact of Variants, Epidemiological Trends, and Comorbidities on Hospitalization Rates...</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Danielle Dias Conte, Rai André Silva Watanabe, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Influenza and Other Respiratory Viruses, 2024</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://onlinelibrary.wiley.com/doi/10.1111/irv.70011"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1B-AtOA_Ik7Q7P0WyELXD0h3gpKz7PkZu"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://onlinelibrary.wiley.com/doi/10.1111/irv.70011" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1B-AtOA_Ik7Q7P0WyELXD0h3gpKz7PkZu" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/respiratory.jpg"
                   alt="Respiratory virus study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-lungs-virus text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'>This study aims to report the most common signs and symptoms in children infected by seasonal respiratory viruses and those infected by COVID-19, providing information about the signs and symptoms to healthcare professionals.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    This study aims to report the most common signs and symptoms in children
-                    infected by seasonal respiratory viruses and those infected by COVID-19,
-                    providing information about the signs and symptoms to healthcare professionals.
+                    This study aims to report the most common signs and symptoms in children infected by seasonal respiratory viruses and those infected by COVID-19, providing information about the signs and symptoms to healthcare professionals.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  Respiratory virus detection among healthcare professionals with signs and symptoms
-                  of COVID-19...
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  G. Barbosa, F. Alberto-Lei, A.P.C. Chaves, et al.
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2">Respiratory virus detection among healthcare professionals with signs and symptoms of COVID-19...</h4>
+                <p class="text-sm text-gray-400 italic mb-2">G. Barbosa, F. Alberto-Lei, A.P.C. Chaves, et al.</p>
                 <p class="text-md text-green-400 font-semibold mb-4">Public Health, 2024</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://doi.org/10.1016/j.puhe.2023.11.021"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1iU3ljFf_yS45CoBfuMD78zBjc9vDN0xb"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://doi.org/10.1016/j.puhe.2023.11.021" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1iU3ljFf_yS45CoBfuMD78zBjc9vDN0xb" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/bim1.jpg"
                   alt="BIM-1 study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-vial-virus text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'>Objectives: To characterize a novel acquired MBL, BIM-1, in a <i>Pseudomonas</i> #2 (subgroup <i>P. guariconensis</i>) strain isolated from the Aurá river located in the Brazilian Amazon hydrographic basin. WGS analysis revealed a novel acquired MBL-encoding gene, <i>bla</i>BIM-1.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    Objectives: To characterize a novel acquired MBL, BIM-1, in a
-                    <i>Pseudomonas</i>
-                    #2 (subgroup
-                    <i>P. guariconensis</i>
-                    ) strain isolated from the Aurá river located in the Brazilian Amazon
-                    hydrographic basin. WGS analysis revealed a novel acquired MBL-encoding gene,
-                    <i>bla</i>
-                    BIM-1.
+                    Objectives: To characterize a novel acquired MBL, BIM-1, in a <i>Pseudomonas</i> #2 (subgroup <i>P. guariconensis</i>) strain isolated from the Aurá river located in the Brazilian Amazon hydrographic basin. WGS analysis revealed a novel acquired MBL-encoding gene, <i>bla</i>BIM-1.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  Genetic and biochemical characterization of BIM-1, a novel acquired subgroup B1
-                  metallo-β-lactamase...
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Cintya O. Souza, Rodrigo Cayô, et al.
-                </p>
-                <p class="text-md text-green-400 font-semibold mb-4">
-                  Journal of Antimicrobial Chemotherapy, 2023
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2">Genetic and biochemical characterization of BIM-1, a novel acquired subgroup B1 metallo-β-lactamase...</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Cintya O. Souza, Rodrigo Cayô, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Journal of Antimicrobial Chemotherapy, 2023</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://doi.org/10.1093/jac/dkad077"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1U0w3y_Ogmk2xUkV9WQIGpKkfU7BWkYve"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://doi.org/10.1093/jac/dkad077" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1U0w3y_Ogmk2xUkV9WQIGpKkfU7BWkYve" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/bkc1.jpg"
                   alt="BKC-1 study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-microscope text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'>Since its first report, the class A Brazilian Klebsiella carbapenemase (BKC) has been detected only among <i>Enterobacterales</i> isolates from Brazilian hospitals. In this study, we characterized a multidrug-resistant <i>Pseudomonas juntendi</i> clinical isolate and identified a 43.3-kb plasmid carrying <i>bla</i>BKC-1.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    Since its first report, the class A Brazilian Klebsiella carbapenemase (BKC) has
-                    been detected only among
-                    <i>Enterobacterales</i>
-                    isolates from Brazilian hospitals. In this study, we characterized a
-                    multidrug-resistant
-                    <i>Pseudomonas juntendi</i>
-                    clinical isolate and identified a 43.3-kb plasmid carrying
-                    <i>bla</i>
-                    BKC-1.
+                    Since its first report, the class A Brazilian Klebsiella carbapenemase (BKC) has been detected only among <i>Enterobacterales</i> isolates from Brazilian hospitals. In this study, we characterized a multidrug-resistant <i>Pseudomonas juntendi</i> clinical isolate and identified a 43.3-kb plasmid carrying <i>bla</i>BKC-1.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  Characterization of a Carbapenem-Resistant BKC-1-Producing...
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Felipe Alberto-Lei, Carolina S. Nodari, et al.
-                </p>
-                <p class="text-md text-green-400 font-semibold mb-4">
-                  Antimicrobial Agents and Chemotherapy, 2022
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2">Characterization of a Carbapenem-Resistant BKC-1-Producing...</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Felipe Alberto-Lei, Carolina S. Nodari, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Antimicrobial Agents and Chemotherapy, 2022</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://doi.org/10.1128/aac.00839-22"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1r-s6pj_zZhGrooQMY8IFB5FiFMxfu8Gs"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://doi.org/10.1128/aac.00839-22" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1r-s6pj_zZhGrooQMY8IFB5FiFMxfu8Gs" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
-            <div
-              class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300"
-            >
-              <!-- Thumbnail & Abstract -->
-              <div
-                class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center"
-              >
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
                 <img
                   src="../img/publications/asahii.jpg"
                   alt="Trichosporon asahii study figure"
                   class="w-full h-full object-cover opacity-80 group-hover:opacity-20 transition-opacity duration-300"
                   onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fa-solid fa-disease text-6xl text-gray-600 group-hover:scale-110 transition-transform duration-300\'></i><div class=\'absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center\'><p class=\'text-sm text-gray-300 text-justify\'>Trichosporon spp. are constituents of the normal flora of humans that can cause both superficial and invasive infections, mainly in immunocompromised and immunocompetent hosts, respectively. Here, we report a case of <i>Trichosporon asahii</i> causing subcutaneous fungal infection (SFI) in an immunocompetent patient after carpal tunnel surgery.</p></div>';"
                 />
-                <div
-                  class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center"
-                >
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
                   <p class="text-sm text-gray-300 text-justify">
-                    Trichosporon spp. are constituents of the normal flora of humans that can cause
-                    both superficial and invasive infections, mainly in immunocompromised and
-                    immunocompetent hosts, respectively. Here, we report a case of
-                    <i>Trichosporon asahii</i>
-                    causing subcutaneous fungal infection (SFI) in an immunocompetent patient after
-                    carpal tunnel surgery.
+                    Trichosporon spp. are constituents of the normal flora of humans that can cause both superficial and invasive infections, mainly in immunocompromised and immunocompetent hosts, respectively. Here, we report a case of <i>Trichosporon asahii</i> causing subcutaneous fungal infection (SFI) in an immunocompetent patient after carpal tunnel surgery.
                   </p>
                 </div>
               </div>
               <div class="p-6 flex flex-col flex-grow">
-                <h4 class="text-lg font-bold text-white mb-2">
-                  <i>Trichosporon asahii</i>
-                  causing subcutaneous mycoses in an immunocompetent patient: case report and a
-                  minireview
-                </h4>
-                <p class="text-sm text-gray-400 italic mb-2">
-                  Wdson Luis Lima Kruschewsky, Felipe Alberto-Lei, et al.
-                </p>
-                <p class="text-md text-green-400 font-semibold mb-4">
-                  Brazilian Journal of Microbiology, 2022
-                </p>
+                <h4 class="text-lg font-bold text-white mb-2"><i>Trichosporon asahii</i> causing subcutaneous mycoses in an immunocompetent patient: case report and a minireview</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Wdson Luis Lima Kruschewsky, Felipe Alberto-Lei, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Brazilian Journal of Microbiology, 2022</p>
                 <div class="mt-auto flex gap-4">
-                  <a
-                    href="https://doi.org/10.1007/s42770-022-00737-x"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    View Article
-                  </a>
-                  <a
-                    href="https://drive.google.com/uc?export=download&id=1VnPpqglNHscd9TacAh2hl3u92cyunyH_"
-                    class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition"
-                  >
-                    Download PDF
-                  </a>
+                  <a href="https://doi.org/10.1007/s42770-022-00737-x" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://drive.google.com/uc?export=download&id=1VnPpqglNHscd9TacAh2hl3u92cyunyH_" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
                 </div>
               </div>
             </div>
@@ -654,76 +407,27 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800">
       <div class="container mx-auto px-6 py-8 text-center text-gray-400">
         <div class="mb-4">
-          <a
-            href="../index.html"
-            class="text-xl font-bold text-white flex items-center justify-center gap-2"
-          >
+          <a href="../index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
             <i class="fa-solid fa-dna text-green-500"></i>
             Logik Bioinfo
           </a>
           <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
         </div>
         <div class="flex justify-center space-x-6 mb-4 text-2xl">
-          <a
-            href="https://github.com/Felipeleii"
-            target="_blank"
-            class="hover:text-green-400 transition-colors"
-            title="GitHub"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/felipelei/"
-            target="_blank"
-            class="hover:text-green-400 transition-colors"
-            title="LinkedIn"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a
-            href="https://scholar.google.com/citations?user=0h7F7emPRFsC"
-            target="_blank"
-            class="hover:text-green-400 transition-colors"
-            title="Google Scholar"
-          >
-            <i class="fas fa-graduation-cap"></i>
-          </a>
-          <a
-            href="https://wa.me/5511920045896"
-            target="_blank"
-            class="hover:text-green-400 transition-colors"
-            title="WhatsApp"
-          >
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a
-            href="mailto:contato@logikbioinfo.com.br"
-            class="hover:text-green-400 transition-colors"
-            title="E-mail"
-          >
-            <i class="fas fa-envelope"></i>
-          </a>
+          <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://scholar.google.com/citations?user=0h7F7emPRFsC" target="_blank" class="hover:text-green-400 transition-colors" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+          <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:contato@logikbioinfo.com.br" class="hover:text-green-400 transition-colors" title="E-mail"><i class="fas fa-envelope"></i></a>
         </div>
-        <p>
-          &copy;
-          <span id="current-year"></span>
-          Logik Bioinfo. All rights reserved.
-        </p>
+        <p>&copy; <span id="current-year"></span> Logik Bioinfo. All rights reserved.</p>
       </div>
     </footer>
 
-    <!-- Botão Flutuante do WhatsApp -->
-    <a
-      href="https://wa.me/5511920045896"
-      class="whatsapp-float"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="Chat with us on WhatsApp"
-    >
+    <a href="https://wa.me/5511920045896" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
 
