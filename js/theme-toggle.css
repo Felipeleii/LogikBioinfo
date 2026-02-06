@@ -605,6 +605,34 @@ html.light .summary-box {
 }
 
 /* ==========================================
+   Correções para Seções com Gradiente (Index.html)
+   ========================================== */
+html.light #portfolio-highlights {
+  background: #ffffff !important;
+}
+
+html.light #portfolio-highlights h2,
+html.light #portfolio-highlights p {
+  color: #111827 !important;
+}
+
+/* ==========================================
+   Correção para Galeria (Texto no Hover)
+   ========================================== */
+html.light .gallery-item .absolute .text-white {
+  color: #ffffff !important;
+}
+
+html.light .gallery-item .absolute .text-gray-200 {
+  color: #e5e7eb !important;
+}
+
+html.light .gallery-item > div {
+  background-color: #f9fafb !important;
+  border: 1px solid #e5e7eb;
+}
+
+/* ==========================================
    Additional Global Light Mode Fixes
    ========================================== */
 /* Ensure all divs with bg-gray-800 class get proper light mode */
