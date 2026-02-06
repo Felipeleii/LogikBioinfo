@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="../favicon.png" />
     <link rel="icon" type="image/x-icon" href="../favicon.ico" />
-    <title>Budget | Logik Bioinfo</title>
+    <title>Quote | Logik Bioinfo</title>
     <meta
       name="description"
-      content="Budget calculator for bioinformatics services. Generate an instant estimate for your project."
+      content="Quote calculator for bioinformatics services. Generate an instant estimate for your project."
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -177,7 +177,7 @@
           <a href="ferramentas.html" class="nav-link-hover transition duration-300">Tools</a>
           <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
           <a href="orcamento.html" class="nav-link-hover transition duration-300 nav-link-active">
-            Budget
+            Quote
           </a>
           <a href="sobre.html" class="nav-link-hover transition duration-300">About</a>
           <div class="language-selector">
@@ -209,7 +209,7 @@
         <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Tools</a>
         <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
         <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
-          Budget
+          Quote
         </a>
         <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">About</a>
         <div class="flex justify-center py-2 px-6 space-x-2">
@@ -234,12 +234,12 @@
         <div class="container mx-auto px-6">
           <div class="text-center mb-12">
             <h2 class="inline-block text-3xl md:text-4xl font-bold text-white section-title mb-4">
-              Budget Calculator
+              Quote Calculator
             </h2>
           </div>
           <div class="max-w-4xl mx-auto form-card p-8 rounded-lg shadow-lg">
             <p class="text-gray-400 mb-8 text-center">
-              Select the services, enter the number of samples and your data to send your budget
+              Select the services, enter the number of samples and your data to send your quote
               request.
             </p>
             <form
@@ -248,7 +248,7 @@
               method="POST"
               accept-charset="UTF-8"
             >
-              <input type="hidden" name="_subject" value="Budget Request - Logik Bioinfo" />
+              <input type="hidden" name="_subject" value="Quote Request - Logik Bioinfo" />
               <input type="hidden" name="_language" value="en" />
               <input
                 type="hidden"
@@ -402,7 +402,7 @@
                 id="quoteResult"
                 class="bg-gray-900 border border-gray-700 rounded-lg p-6 hidden"
               >
-                <h3 class="text-xl font-bold text-green-500 mb-4">Budget Summary</h3>
+                <h3 class="text-xl font-bold text-green-500 mb-4">Quote Summary</h3>
                 <div id="quoteServicesList" class="space-y-2"></div>
                 <div class="text-center mt-6 border-t border-gray-700 pt-4">
                   <p class="text-gray-300 text-sm">
@@ -442,7 +442,7 @@
                   disabled
                 >
                   <i class="fas fa-paper-plane mr-2"></i>
-                  Send Budget Request
+                  Send Quote Request
                 </button>
               </div>
             </form>
@@ -533,7 +533,7 @@
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
 
-      // Budget
+      // Quote
       const services = [
         // Sequencing
         {

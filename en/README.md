@@ -14,7 +14,7 @@ All main pages have been fully translated and are ready for use.
 - `portfolio.html` - Portfolio page (Translated ✓)
 - `ferramentas.html` - Tools page (Translated ✓)
 - `blog.html` - Blog page (Translated ✓)
-- `orcamento.html` - Budget calculator page (Translated ✓)
+- `orcamento.html` - Quote calculator page (Translated ✓)
 - `sobre.html` - About page (Translated ✓)
 - `quem-sou-eu.html` - About me page (Translated ✓)
 - `posts/` - Blog posts directory (To be translated as needed)
