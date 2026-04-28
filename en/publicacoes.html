@@ -200,6 +200,21 @@
               Publications
             </h2>
           </div>
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button
+              onclick="exportDOIs()"
+              class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-lg transition"
+            >
+              <i class="fas fa-file-export"></i> Export DOIs
+            </button>
+            <button
+              onclick="downloadAllPDFs()"
+              class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-lg transition"
+            >
+              <i class="fas fa-file-pdf"></i> Download All PDFs
+            </button>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
               <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
@@ -402,6 +417,26 @@
                 </div>
               </div>
             </div>
+
+            <div class="publication-card group relative rounded-lg shadow-lg overflow-hidden flex flex-col transition-all duration-300">
+              <div class="h-48 bg-gray-800 relative overflow-hidden flex items-center justify-center">
+                <i class="fa-solid fa-dna text-6xl text-gray-600"></i>
+                <div class="absolute inset-0 bg-gray-900/95 p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-y-auto flex flex-col justify-center">
+                  <p class="text-sm text-gray-300 text-justify">
+                    Genomic analysis of carbapenem-resistant <i>Acinetobacter baumannii</i> (CRAB) clinical isolates belonging to the major endemic clones in South America.
+                  </p>
+                </div>
+              </div>
+              <div class="p-6 flex flex-col flex-grow">
+                <h4 class="text-lg font-bold text-white mb-2">Genomic Analysis of Carbapenem-Resistant <i>Acinetobacter baumannii</i> Isolates Belonging to Major Endemic Clones in South America</h4>
+                <p class="text-sm text-gray-400 italic mb-2">Carolina Silva Nodari, Rodrigo Cayô, Ana Paula Streling, Felipe Lei, et al.</p>
+                <p class="text-md text-green-400 font-semibold mb-4">Frontiers in Microbiology, 2020</p>
+                <div class="mt-auto flex gap-4">
+                  <a href="https://doi.org/10.3389/fmicb.2020.584603" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition">View Article</a>
+                  <a href="https://www.frontiersin.org/articles/10.3389/fmicb.2020.584603/pdf" target="_blank" rel="noopener noreferrer" class="w-full text-center bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition">Download PDF</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -438,6 +473,35 @@
         mobileMenu.classList.toggle('hidden');
       });
       document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      function exportDOIs() {
+        const links = Array.from(
+          document.querySelectorAll('.publication-card .mt-auto a.bg-gray-700')
+        ).map(a => a.href);
+        const blob = new Blob([links.join('\n')], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'publications_dois.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      function downloadAllPDFs() {
+        const links = Array.from(
+          document.querySelectorAll('.publication-card .mt-auto a.bg-green-600')
+        ).map(a => a.href);
+        if (
+          !confirm(
+            'This will open ' + links.length + ' tabs in your browser to download the PDFs. Do you want to continue?'
+          )
+        ) return;
+        links.forEach(function (link, i) {
+          setTimeout(function () { window.open(link, '_blank'); }, i * 800);
+        });
+      }
     </script>
     <script src="../js/theme-toggle.js"></script>
   </body>
