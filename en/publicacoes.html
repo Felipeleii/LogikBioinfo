@@ -557,6 +557,7 @@
             return;
           }
         } catch (error) {
+          console.error('Clipboard API failed:', error);
           fallbackCopyDOI(doi, btn);
           return;
         }
