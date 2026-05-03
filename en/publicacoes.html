@@ -539,21 +539,40 @@
         });
       }
 
+      function showCopySuccess(btn) {
+        btn.innerHTML = '<i class="fas fa-check text-green-400"></i>';
+        setTimeout(function () {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+        }, 1500);
+      }
+
+      function fallbackCopyDOI(doi, btn) {
+        var el = document.createElement('textarea');
+        el.value = doi;
+        el.setAttribute('style', 'position:absolute;left:-9999px;');
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        showCopySuccess(btn);
+      }
+
       function copyDOI(doi, btn) {
-        navigator.clipboard.writeText(doi).then(function () {
-          btn.innerHTML = '<i class="fas fa-check text-green-400"></i>';
-          setTimeout(function () { btn.innerHTML = '<i class="far fa-copy"></i>'; }, 1500);
-        }).catch(function () {
-          var el = document.createElement('textarea');
-          el.value = doi;
-          el.setAttribute('style', 'position:absolute;left:-9999px;');
-          document.body.appendChild(el);
-          el.select();
-          document.execCommand('copy');
-          document.body.removeChild(el);
-          btn.innerHTML = '<i class="fas fa-check text-green-400"></i>';
-          setTimeout(function () { btn.innerHTML = '<i class="far fa-copy"></i>'; }, 1500);
-        });
+        try {
+          if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard.writeText(doi).then(function () {
+              showCopySuccess(btn);
+            }).catch(function () {
+              fallbackCopyDOI(doi, btn);
+            });
+            return;
+          }
+        } catch (error) {
+          fallbackCopyDOI(doi, btn);
+          return;
+        }
+
+        fallbackCopyDOI(doi, btn);
       }
     </script>
     <script src="../js/theme-toggle.js"></script>
