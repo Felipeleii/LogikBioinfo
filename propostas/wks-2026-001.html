@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="pdf-filename" content="Proposta_LogikBioinfo_WKS-2026-001.pdf">
+    <title>Proposta LogikBioinfo - Curso de Bioinformática (WKS-2026-001)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --brand-navy: #0f172a;
+            --brand-blue: #1d4ed8;
+            --brand-cyan: #0ea5e9;
+            --brand-emerald: #059669;
+            --brand-amber: #d97706;
+            --brand-rose: #be123c;
+            --brand-violet: #6d28d9;
+            --page-bg: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(14, 165, 233, 0.18), transparent 28%),
+                radial-gradient(circle at top right, rgba(29, 78, 216, 0.16), transparent 24%),
+                linear-gradient(180deg, #eff6ff 0%, var(--page-bg) 100%);
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .container {
+                box-shadow: none !important;
+                margin: 0 !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+        }
+
+        .hero-panel {
+            background: linear-gradient(135deg, var(--brand-navy) 0%, #172554 52%, var(--brand-blue) 100%);
+        }
+
+        .topbar-glow:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 28px -16px rgba(29, 78, 216, 0.65);
+        }
+
+        .module-thumb-1 { background: radial-gradient(circle at 100% 100%, #1d4ed8 0, #0f172a 55%, #020617 100%); }
+        .module-thumb-2 { background: radial-gradient(circle at 0 0, #047857 0, #0f172a 55%, #020617 100%); }
+        .module-thumb-3 { background: radial-gradient(circle at 100% 0, #be123c 0, #0f172a 55%, #020617 100%); }
+        .module-thumb-4 { background: radial-gradient(circle at 0 100%, #d97706 0, #0f172a 55%, #020617 100%); }
+        .module-thumb-5 { background: radial-gradient(circle at 50% 50%, #6d28d9 0, #0f172a 55%, #020617 100%); }
+
+        .badge-package { background: #dcfce7; color: #166534; }
+        .badge-extra { background: #fee2e2; color: #991b1b; }
+        .badge-optional { background: #fef3c7; color: #92400e; }
+
+        .price-bar-blue { border-left: 4px solid #1d4ed8; }
+        .price-bar-indigo { border-left: 4px solid #4f46e5; }
+        .price-bar-red { border-left: 4px solid #dc2626; }
+        .price-bar-amber { border-left: 4px solid #d97706; }
+    </style>
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto my-10 max-w-6xl rounded-3xl bg-white p-6 shadow-2xl md:p-10">
+        <div class="no-print mb-8 flex flex-col gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:flex-row md:items-center md:justify-between">
+            <a href="https://logikbioinfo.com.br/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-900 transition-transform duration-200 topbar-glow">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200/80">
+                    <i class="fa-solid fa-dna text-xl"></i>
+                </div>
+                <div>
+                    <div class="text-lg font-extrabold tracking-tight">LogikBioinfo</div>
+                    <div class="text-xs text-slate-500">Capacitação aplicada em bioinformática</div>
+                </div>
+            </a>
+
+            <div class="flex flex-wrap gap-3">
+                <a href="https://logikbioinfo.com.br/" target="_blank" rel="noopener noreferrer" class="topbar-glow inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:bg-emerald-700">
+                    <i class="fa-solid fa-globe"></i>
+                    Visitar o site
+                </a>
+                <button onclick="window.print()" class="topbar-glow inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-bold text-white transition-all duration-200 hover:bg-blue-700">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    Gerar PDF
+                </button>
+            </div>
+        </div>
+
+        <header class="mb-12 text-center">
+            <div class="mb-4 inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-blue-700">
+                Proposta Comercial Nº WKS-2026-001
+            </div>
+            <h1 class="mb-3 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Curso de Bioinformática</h1>
+            <p class="mx-auto mb-8 max-w-3xl text-lg text-slate-500 md:text-xl">Genômica bacteriana aplicada, do sequenciamento até a preparação de figuras para publicação científica.</p>
+
+            <div class="hero-panel overflow-hidden rounded-3xl p-8 text-white shadow-2xl">
+                <div class="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
+                    <div class="text-left">
+                        <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-100">
+                            <i class="fa-solid fa-microscope"></i>
+                            Capacitação prática
+                        </div>
+                        <p class="text-lg leading-relaxed text-blue-50 md:text-xl">
+                            Proposta estruturada para capacitar duas pesquisadoras a conduzir análises genômicas bacterianas com dados Illumina paired-end da Neoprospecta, começando com um lote inicial de 20 amostras e deixando o fluxo pronto para expansão até 100 isolados.
+                        </p>
+                    </div>
+                    <div class="grid gap-3 text-left text-sm">
+                        <div class="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                            <div class="text-xs uppercase tracking-[0.18em] text-blue-200">Escopo</div>
+                            <div class="mt-1 font-semibold">QC, montagem, AMR, virulência, pangenoma, filogenia e iTOL</div>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                            <div class="text-xs uppercase tracking-[0.18em] text-blue-200">Formato</div>
+                            <div class="mt-1 font-semibold">Encontros síncronos, material complementar e automação aplicada</div>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                            <div class="text-xs uppercase tracking-[0.18em] text-blue-200">Referência</div>
+                            <div class="mt-1 font-semibold">https://logikbioinfo.com.br/</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                <h2 class="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3 text-base font-bold text-slate-900">
+                    <i class="fa-regular fa-folder-open text-blue-600"></i>
+                    Informações do curso
+                </h2>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex justify-between gap-4"><span class="text-slate-500">Público-alvo</span><span class="text-right font-semibold">02 pesquisadoras</span></li>
+                    <li class="flex justify-between gap-4"><span class="text-slate-500">Tecnologia</span><span class="text-right font-semibold">Illumina (PE) - WGS</span></li>
+                    <li class="flex justify-between gap-4"><span class="text-slate-500">Provedor dos dados</span><span class="text-right font-semibold">Neoprospecta</span></li>
+                    <li class="flex justify-between gap-4"><span class="text-slate-500">Formato</span><span class="text-right font-semibold">Online, síncrono e aplicado</span></li>
+                    <li class="flex justify-between gap-4"><span class="text-slate-500">Data da proposta</span><span class="text-right font-semibold">Maio / 2026</span></li>
+                    <li class="flex justify-between gap-4"><span class="text-slate-500">Validade</span><span class="text-right font-semibold">30 dias</span></li>
+                </ul>
+            </div>
+
+            <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6">
+                <h2 class="mb-4 flex items-center gap-2 border-b border-blue-200 pb-3 text-base font-bold text-blue-950">
+                    <i class="fa-solid fa-microscope text-blue-600"></i>
+                    Contexto biológico
+                </h2>
+                <div class="space-y-4 text-sm">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check mt-0.5 text-blue-500"></i>
+                        <div>
+                            <div class="font-semibold text-slate-900">Escala inicial e final</div>
+                            <p class="mt-1 text-slate-600">Uso de 20 genomas sequenciados como base didática e preparação de pipeline escalável para 100 isolados.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check mt-0.5 text-blue-500"></i>
+                        <div>
+                            <div class="font-semibold text-slate-900">Diversidade taxonômica</div>
+                            <p class="mt-1 text-slate-600"><em>P. aeruginosa, S. aureus, K. pneumoniae, E. coli, P. mirabilis</em> e possíveis amostras mistas ou contaminadas.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-check mt-0.5 text-blue-500"></i>
+                        <div>
+                            <div class="font-semibold text-slate-900">Metodologia hands-on</div>
+                            <p class="mt-1 text-slate-600">As análises são conduzidas com os dados reais já gerados, conectando teoria, execução no terminal e preparação de resultados para publicação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="mb-6 text-center text-2xl font-bold text-slate-950">Material didático e entregáveis inclusos</h2>
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                <article class="rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-blue-50 p-5">
+                    <div class="mb-3 flex items-center gap-3">
+                        <div class="rounded-xl bg-indigo-600 p-2 text-white"><i class="fa-solid fa-video"></i></div>
+                        <h3 class="font-bold text-slate-900">Videoaulas complementares</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Cinco vídeos adicionais, com duração aproximada de 10 minutos cada, focados na revisão prática dos fluxos executados durante o curso.</p>
+                </article>
+
+                <article class="rounded-2xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-teal-50 p-5">
+                    <div class="mb-3 flex items-center gap-3">
+                        <div class="rounded-xl bg-emerald-600 p-2 text-white"><i class="fa-solid fa-terminal"></i></div>
+                        <h3 class="font-bold text-slate-900">Banco de comandos e scripts</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Documentação estruturada com contexto analítico, comandos comentados e scripts necessários para reproduzir cada etapa do treinamento.</p>
+                </article>
+
+                <article class="rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50 to-yellow-50 p-5">
+                    <div class="mb-3 flex items-center gap-3">
+                        <div class="rounded-xl bg-amber-500 p-2 text-white"><i class="fa-solid fa-file-pdf"></i></div>
+                        <h3 class="font-bold text-slate-900">Handouts em PDF</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Cinco materiais de apoio visuais, um por módulo, preparados para consulta digital rápida ou impressão durante a execução das análises.</p>
+                </article>
+
+                <article class="rounded-2xl border border-rose-200 bg-gradient-to-br from-rose-50 to-pink-50 p-5">
+                    <div class="mb-3 flex items-center gap-3">
+                        <div class="rounded-xl bg-rose-600 p-2 text-white"><i class="fa-solid fa-gears"></i></div>
+                        <h3 class="font-bold text-slate-900">Pipeline automatizado</h3>
+                    </div>
+                    <p class="text-sm text-slate-600">Scripts em Shell e Python testados no conjunto de dados do curso para permitir o processamento em lote de até 100 amostras.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="mb-2 text-center text-2xl font-bold text-slate-950">Mapa visual do curso</h2>
+            <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-slate-500">Resumo do percurso completo de capacitação, desde a preparação dos arquivos brutos até a construção das figuras finais para publicação.</p>
+
+            <figure class="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <div class="relative">
+                    <div class="absolute left-16 right-16 top-10 hidden border-t-2 border-dashed border-blue-200 md:block"></div>
+
+                    <div class="relative grid grid-cols-1 gap-4 md:grid-cols-5">
+                        <article class="rounded-2xl border border-blue-200 bg-white p-4 shadow-sm">
+                            <div class="mb-3 flex items-center justify-between">
+                                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-sm font-bold text-white">01</span>
+                                <i class="fa-solid fa-flask-vial text-xl text-blue-600"></i>
+                            </div>
+                            <h3 class="mb-2 text-sm font-bold text-slate-900">QC inicial</h3>
+                            <p class="text-xs leading-relaxed text-slate-600">FastQ, FastQC, MultiQC, trimming e organização do lote para processamento em série.</p>
+                        </article>
+
+                        <article class="rounded-2xl border border-emerald-200 bg-white p-4 shadow-sm">
+                            <div class="mb-3 flex items-center justify-between">
+                                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-600 text-sm font-bold text-white">02</span>
+                                <i class="fa-solid fa-cubes-stacked text-xl text-emerald-600"></i>
+                            </div>
+                            <h3 class="mb-2 text-sm font-bold text-slate-900">Montagem e métricas</h3>
+                            <p class="text-xs leading-relaxed text-slate-600">Assembly, N50, scaffolds, GC e triagem das amostras que exigem recuperação adicional.</p>
+                        </article>
+
+                        <article class="rounded-2xl border border-rose-200 bg-white p-4 shadow-sm">
+                            <div class="mb-3 flex items-center justify-between">
+                                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-rose-600 text-sm font-bold text-white">03</span>
+                                <i class="fa-solid fa-shield-virus text-xl text-rose-600"></i>
+                            </div>
+                            <h3 class="mb-2 text-sm font-bold text-slate-900">AMR e virulência</h3>
+                            <p class="text-xs leading-relaxed text-slate-600">Anotação estrutural e geração de tabelas consolidadas para resistência e fatores de virulência.</p>
+                        </article>
+
+                        <article class="rounded-2xl border border-amber-200 bg-white p-4 shadow-sm">
+                            <div class="mb-3 flex items-center justify-between">
+                                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-500 text-sm font-bold text-white">04</span>
+                                <i class="fa-solid fa-diagram-project text-xl text-amber-600"></i>
+                            </div>
+                            <h3 class="mb-2 text-sm font-bold text-slate-900">Mobiloma e pangenoma</h3>
+                            <p class="text-xs leading-relaxed text-slate-600">Plasmídeos, core genome, accessory genome e preparação das matrizes para clonalidade.</p>
+                        </article>
+
+                        <article class="rounded-2xl border border-violet-200 bg-white p-4 shadow-sm">
+                            <div class="mb-3 flex items-center justify-between">
+                                <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-violet-600 text-sm font-bold text-white">05</span>
+                                <i class="fa-solid fa-share-nodes text-xl text-violet-600"></i>
+                            </div>
+                            <h3 class="mb-2 text-sm font-bold text-slate-900">Filogenia e iTOL</h3>
+                            <p class="text-xs leading-relaxed text-slate-600">Árvores, integração de metadados e preparação de figuras finais para manuscritos e apresentações.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <figcaption class="mt-5 rounded-2xl bg-white px-4 py-3 text-center text-xs text-slate-500 shadow-sm">
+                    Fluxo resumido do curso: do lote inicial de sequenciamento à construção de resultados comparativos e figuras científicas prontas para publicação.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+            <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700">
+                    <i class="fa-solid fa-chart-column"></i>
+                    Prévia do lote inicial
+                </div>
+                <h2 class="mb-3 text-2xl font-bold text-slate-950">QC inicial incorporado à proposta</h2>
+                <p class="mb-4 text-sm leading-relaxed text-slate-600">A etapa inicial do curso parte de um panorama real do lote já sequenciado. Isso permite começar o treinamento com dados concretos de qualidade, diversidade taxonômica e pontos críticos de montagem que já orientam as decisões dos módulos 1 e 2.</p>
+                <div class="rounded-2xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
+                    <strong>Como esse recorte é usado nas aulas:</strong> o QC deixa de ser apenas conceitual e passa a ser ancorado no comportamento observado nas amostras reais, priorizando limpeza, interpretação de N50 e estratégias para resgate de isolados problemáticos.
+                </div>
+            </div>
+
+            <div class="rounded-3xl border border-blue-200 bg-gradient-to-br from-blue-50 to-slate-50 p-6 shadow-sm">
+                <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    <div class="rounded-2xl bg-white p-4 text-center shadow-sm">
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Amostras</div>
+                        <div class="mt-2 text-3xl font-black text-slate-900">20</div>
+                        <p class="mt-1 text-xs text-slate-500">isolados avaliados no lote inicial</p>
+                    </div>
+                    <div class="rounded-2xl bg-white p-4 text-center shadow-sm">
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Espécies</div>
+                        <div class="mt-2 text-3xl font-black text-emerald-600">6</div>
+                        <p class="mt-1 text-xs text-slate-500">diversidade taxonômica observada</p>
+                    </div>
+                    <div class="rounded-2xl bg-white p-4 text-center shadow-sm">
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Inconclusivas</div>
+                        <div class="mt-2 text-3xl font-black text-rose-600">1</div>
+                        <p class="mt-1 text-xs text-slate-500">amostra com mistura/contaminação</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <article class="rounded-2xl border border-emerald-200 bg-white p-4 shadow-sm">
+                        <div class="mb-2 flex items-center gap-2 text-sm font-bold text-emerald-700">
+                            <i class="fa-solid fa-circle-check"></i>
+                            Referência de qualidade
+                        </div>
+                        <p class="text-sm text-slate-600">O recorte técnico do lote inicial usa <strong>N50 &gt; 110.000 pb</strong> como referência de boa contiguidade para as montagens bacterianas.</p>
+                        <p class="mt-2 text-xs text-emerald-700"><strong>17 de 20</strong> amostras ficaram confortavelmente acima desse patamar.</p>
+                    </article>
+
+                    <article class="rounded-2xl border border-amber-200 bg-white p-4 shadow-sm">
+                        <div class="mb-2 flex items-center gap-2 text-sm font-bold text-amber-700">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            Pontos de atenção
+                        </div>
+                        <p class="text-sm text-slate-600">Duas montagens fragmentadas e uma amostra inconclusiva já fornecem casos reais para discutir cobertura, contaminação e necessidade de binning no treinamento.</p>
+                        <p class="mt-2 text-xs text-amber-700">Esse material entra diretamente na prática de QC, montagem e recuperação de genomas.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-break mb-12">
+            <h2 class="mb-2 text-center text-2xl font-bold text-slate-950">Estrutura dos 5 módulos</h2>
+            <p class="mx-auto mb-8 max-w-3xl text-center text-sm text-slate-500">Carga horária estimada de 15 a 18 horas, com sugestão de 1 encontro online de 3 horas por semana, apoiado por materiais complementares e rotinas prontas para replicação.</p>
+
+            <div class="space-y-5">
+                <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md md:flex">
+                    <div class="module-thumb-1 relative flex h-36 items-center justify-center border-b border-slate-200 md:h-auto md:w-56 md:border-b-0 md:border-r">
+                        <div class="rounded-full border border-white/30 bg-white/15 p-4 text-white backdrop-blur-sm"><i class="fa-solid fa-play text-xl"></i></div>
+                        <div class="absolute bottom-3 right-3 rounded bg-black/70 px-2 py-1 text-[10px] font-bold text-white">12:45</div>
+                    </div>
+                    <div class="flex-1 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-slate-900">Módulo 01: Setup e controle de qualidade</h3>
+                        <p class="mb-3 text-sm text-slate-600">Organização de arquivos FastQ, fundamentos de terminal Linux, uso de FastQC e MultiQC, limpeza e trimming adaptativo, além de processamento em lote.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-blue-700">
+                            <span class="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1">Conda</span>
+                            <span class="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1">FastQC</span>
+                            <span class="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1">MultiQC</span>
+                            <span class="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1">fastp / Trimmomatic</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md md:flex">
+                    <div class="module-thumb-2 relative flex h-36 items-center justify-center border-b border-slate-200 md:h-auto md:w-56 md:border-b-0 md:border-r">
+                        <div class="rounded-full border border-white/30 bg-white/15 p-4 text-white backdrop-blur-sm"><i class="fa-solid fa-play text-xl"></i></div>
+                        <div class="absolute bottom-3 right-3 rounded bg-black/70 px-2 py-1 text-[10px] font-bold text-white">15:20</div>
+                    </div>
+                    <div class="flex-1 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-slate-900">Módulo 02: Montagem de genomas</h3>
+                        <p class="mb-3 text-sm text-slate-600">Montagem <em>de novo</em>, interpretação de métricas como N50, scaffolds e GC, recuperação de genomas de baixa qualidade e manejo de contaminação.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-emerald-700">
+                            <span class="rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1">Shovill</span>
+                            <span class="rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1">SPAdes</span>
+                            <span class="rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1">QUAST</span>
+                            <span class="rounded-full border border-emerald-100 bg-emerald-50 px-2.5 py-1">Kraken2 / CheckM</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md md:flex">
+                    <div class="module-thumb-3 relative flex h-36 items-center justify-center border-b border-slate-200 md:h-auto md:w-56 md:border-b-0 md:border-r">
+                        <div class="rounded-full border border-white/30 bg-white/15 p-4 text-white backdrop-blur-sm"><i class="fa-solid fa-play text-xl"></i></div>
+                        <div class="absolute bottom-3 right-3 rounded bg-black/70 px-2 py-1 text-[10px] font-bold text-white">11:05</div>
+                    </div>
+                    <div class="flex-1 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-slate-900">Módulo 03: Resistência e virulência</h3>
+                        <p class="mb-3 text-sm text-slate-600">Anotação estrutural, identificação de genes de resistência antimicrobiana e fatores de virulência, além da consolidação dos resultados para a coorte.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-rose-700">
+                            <span class="rounded-full border border-rose-100 bg-rose-50 px-2.5 py-1">Bakta</span>
+                            <span class="rounded-full border border-rose-100 bg-rose-50 px-2.5 py-1">Abricate</span>
+                            <span class="rounded-full border border-rose-100 bg-rose-50 px-2.5 py-1">ResFinder</span>
+                            <span class="rounded-full border border-rose-100 bg-rose-50 px-2.5 py-1">VFDB</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md md:flex">
+                    <div class="module-thumb-4 relative flex h-36 items-center justify-center border-b border-slate-200 md:h-auto md:w-56 md:border-b-0 md:border-r">
+                        <div class="rounded-full border border-white/30 bg-white/15 p-4 text-white backdrop-blur-sm"><i class="fa-solid fa-play text-xl"></i></div>
+                        <div class="absolute bottom-3 right-3 rounded bg-black/70 px-2 py-1 text-[10px] font-bold text-white">14:10</div>
+                    </div>
+                    <div class="flex-1 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-slate-900">Módulo 04: Pangenoma e elementos móveis</h3>
+                        <p class="mb-3 text-sm text-slate-600">Identificação de plasmídeos, análise de mobiloma, distinção entre core e accessory genome e preparação de matrizes para clonalidade.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-amber-700">
+                            <span class="rounded-full border border-amber-100 bg-amber-50 px-2.5 py-1">MOB-suite</span>
+                            <span class="rounded-full border border-amber-100 bg-amber-50 px-2.5 py-1">Roary</span>
+                            <span class="rounded-full border border-amber-100 bg-amber-50 px-2.5 py-1">Panaroo</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md md:flex">
+                    <div class="module-thumb-5 relative flex h-36 items-center justify-center border-b border-slate-200 md:h-auto md:w-56 md:border-b-0 md:border-r">
+                        <div class="rounded-full border border-white/30 bg-white/15 p-4 text-white backdrop-blur-sm"><i class="fa-solid fa-play text-xl"></i></div>
+                        <div class="absolute bottom-3 right-3 rounded bg-black/70 px-2 py-1 text-[10px] font-bold text-white">18:30</div>
+                    </div>
+                    <div class="flex-1 p-5">
+                        <h3 class="mb-2 text-lg font-bold text-slate-900">Módulo 05: Filogenia e figuras no iTOL</h3>
+                        <p class="mb-3 text-sm text-slate-600">Construção de árvores filogenéticas, integração de metadados e geração de figuras finais para relatórios, manuscritos e apresentações científicas.</p>
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold text-violet-700">
+                            <span class="rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1">IQ-TREE</span>
+                            <span class="rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1">SNP-sites</span>
+                            <span class="rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1">iTOL</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="page-break mb-12">
+            <h2 class="mb-6 text-center text-2xl font-bold text-slate-950">Investimento detalhado</h2>
+
+            <div class="space-y-4">
+                <article class="price-bar-blue rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div class="flex-1">
+                            <div class="mb-2 flex flex-wrap items-center gap-3">
+                                <span class="text-lg font-bold text-blue-700">1.</span>
+                                <h3 class="font-bold text-slate-900">Curadoria e setup do ambiente</h3>
+                                <span class="badge-package rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">Incluso no pacote</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Avaliação inicial dos dados brutos, organização do ambiente computacional e preparação das dependências necessárias para o treinamento.</p>
+                        </div>
+                        <div class="shrink-0 text-right text-2xl font-bold text-blue-700">R$ 1.500,00</div>
+                    </div>
+                </article>
+
+                <article class="price-bar-blue rounded-2xl border border-slate-100 bg-white p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div class="flex-1">
+                            <div class="mb-2 flex flex-wrap items-center gap-3">
+                                <span class="text-lg font-bold text-blue-700">2.</span>
+                                <h3 class="font-bold text-slate-900">Formação síncrona hands-on</h3>
+                                <span class="badge-package rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">Incluso no pacote</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Cinco módulos online e interativos, com aplicação direta nas amostras reais e foco na autonomia para reprodução do fluxo completo.</p>
+                        </div>
+                        <div class="shrink-0 text-right text-2xl font-bold text-blue-700">R$ 3.500,00</div>
+                    </div>
+                </article>
+
+                <article class="price-bar-indigo rounded-2xl border border-indigo-200 bg-indigo-50 p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div class="flex-1">
+                            <div class="mb-2 flex flex-wrap items-center gap-3">
+                                <span class="text-lg font-bold text-indigo-700">3.</span>
+                                <h3 class="font-bold text-slate-900">Videoaulas e materiais de apoio</h3>
+                                <span class="badge-package rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">Incluso no pacote</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Vídeos complementares, banco de comandos estruturado, handouts em PDF e scripts preparados para execução em lote de até 100 amostras.</p>
+                        </div>
+                        <div class="shrink-0 text-right text-2xl font-bold text-indigo-700">R$ 3.300,00</div>
+                    </div>
+                </article>
+
+                <article class="price-bar-red rounded-2xl border border-red-200 bg-white p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div class="flex-1">
+                            <div class="mb-2 flex flex-wrap items-center gap-3">
+                                <span class="text-lg font-bold text-red-600">4.</span>
+                                <h3 class="font-bold text-slate-900">Resgate de genomas sob demanda</h3>
+                                <span class="badge-extra rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">Adicional</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Aplicação de binning metagenômico e limpeza computacional em lotes afetados por contaminação ou mistura, cobrado apenas se necessário.</p>
+                        </div>
+                        <div class="shrink-0 text-right text-2xl font-bold text-red-600">R$ 800,00</div>
+                    </div>
+                </article>
+
+                <article class="price-bar-amber rounded-2xl border border-amber-300 bg-white p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div class="flex-1">
+                            <div class="mb-2 flex flex-wrap items-center gap-3">
+                                <span class="text-lg font-bold text-amber-600">5.</span>
+                                <h3 class="font-bold text-slate-900">Portal e scripts de automação para iTOL</h3>
+                                <span class="badge-optional rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">Opcional</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Ferramenta para transformar saídas brutas de resistência e virulência em datasets prontos para uso no iTOL, reduzindo a tabulação manual.</p>
+                        </div>
+                        <div class="shrink-0 text-right text-2xl font-bold text-amber-600">R$ 2.500,00</div>
+                    </div>
+                </article>
+
+                <article class="price-bar-amber rounded-2xl border border-amber-300 bg-white p-5 shadow-sm">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div class="flex-1">
+                            <div class="mb-2 flex flex-wrap items-center gap-3">
+                                <span class="text-lg font-bold text-amber-600">6.</span>
+                                <h3 class="font-bold text-slate-900">Mentoria e suporte pós-curso por 60 dias</h3>
+                                <span class="badge-optional rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide">Opcional</span>
+                            </div>
+                            <p class="text-sm text-slate-600">Acompanhamento para dúvidas sobre novas amostras, revisão metodológica e duas reuniões online de uma hora ao longo do período de suporte.</p>
+                        </div>
+                        <div class="shrink-0 text-right text-2xl font-bold text-amber-600">R$ 1.200,00</div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="mt-8 grid gap-4 md:grid-cols-3">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                    <div class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Base garantida</div>
+                    <div class="mt-2 text-3xl font-black text-emerald-600">R$ 8.300,00</div>
+                    <p class="mt-2 text-sm text-slate-500">Pacote completo de capacitação, materiais e scripts.</p>
+                </div>
+                <div class="rounded-2xl border border-red-200 bg-red-50 p-5">
+                    <div class="text-xs font-bold uppercase tracking-[0.18em] text-red-500">Sob demanda</div>
+                    <div class="mt-2 text-3xl font-black text-red-600">+ R$ 800,00</div>
+                    <p class="mt-2 text-sm text-red-500">Por lote que exija resgate computacional adicional.</p>
+                </div>
+                <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                    <div class="text-xs font-bold uppercase tracking-[0.18em] text-amber-600">Opcionais</div>
+                    <div class="mt-2 text-3xl font-black text-amber-600">+ R$ 3.700,00</div>
+                    <p class="mt-2 text-sm text-amber-600">Portal iTOL e mentoria pós-curso, se desejados.</p>
+                </div>
+            </div>
+
+            <div class="mt-4 rounded-2xl bg-slate-900 px-6 py-5 text-white">
+                <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-[0.18em] text-slate-400">Referência de teto</div>
+                        <p class="mt-1 text-sm text-slate-300">Valor máximo de R$ 12.800,00 considerando a contratação dos opcionais e um lote sob demanda.</p>
+                    </div>
+                    <div class="text-3xl font-black text-green-400">R$ 12.800,00</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-break mb-12">
+            <h2 class="mb-6 text-center text-2xl font-bold text-slate-950">Condições de pagamento e cronograma</h2>
+            <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                    <h3 class="mb-4 flex items-center gap-2 text-base font-bold text-slate-900">
+                        <i class="fa-solid fa-credit-card text-blue-600"></i>
+                        Condições comerciais
+                    </h3>
+                    <ul class="space-y-3 text-sm text-slate-600">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-green-500"></i><span>Até 3x sem juros no PIX ou boleto, com possibilidade de pagamento por cartão.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-green-500"></i><span>Aceite de pagamento via verba de pesquisa, empenho ou transferência vinculada a CNPq, FAPESP e CAPES.</span></li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check mt-1 text-green-500"></i><span>Sugestão de fluxo financeiro: 50% na aprovação da proposta e 50% na conclusão das sessões síncronas.</span></li>
+                    </ul>
+                </div>
+
+                <div class="rounded-2xl border border-blue-200 bg-blue-50 p-6">
+                    <h3 class="mb-4 flex items-center gap-2 text-base font-bold text-blue-950">
+                        <i class="fa-solid fa-calendar-days text-blue-600"></i>
+                        Cronograma sugerido
+                    </h3>
+                    <ul class="space-y-2 text-sm text-slate-600">
+                        <li class="flex gap-3"><span class="min-w-14 rounded-full bg-blue-600 px-2.5 py-1 text-center text-xs font-bold text-white">Sem 1</span><span>Módulo 1 + handout + vídeo complementar</span></li>
+                        <li class="flex gap-3"><span class="min-w-14 rounded-full bg-blue-600 px-2.5 py-1 text-center text-xs font-bold text-white">Sem 2</span><span>Módulo 2 + revisão guiada das métricas de montagem</span></li>
+                        <li class="flex gap-3"><span class="min-w-14 rounded-full bg-blue-600 px-2.5 py-1 text-center text-xs font-bold text-white">Sem 3</span><span>Módulo 3 + consolidação das tabelas de AMR e virulência</span></li>
+                        <li class="flex gap-3"><span class="min-w-14 rounded-full bg-blue-600 px-2.5 py-1 text-center text-xs font-bold text-white">Sem 4</span><span>Módulo 4 + preparação dos insumos para filogenia</span></li>
+                        <li class="flex gap-3"><span class="min-w-14 rounded-full bg-blue-600 px-2.5 py-1 text-center text-xs font-bold text-white">Sem 5</span><span>Módulo 5 + organização das figuras finais no iTOL</span></li>
+                        <li class="flex gap-3"><span class="min-w-14 rounded-full bg-slate-700 px-2.5 py-1 text-center text-xs font-bold text-white">Sem 6</span><span>Revisão final e entrega consolidada dos materiais</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div class="rounded-2xl border border-green-200 bg-green-50 p-4">
+                    <div class="mb-2 flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-circle-check text-green-600"></i> Gravações e apoio</div>
+                    <p class="text-sm text-slate-600">Aulas síncronas gravadas e vídeo-aulas complementares para revisão contínua.</p>
+                </div>
+                <div class="rounded-2xl border border-green-200 bg-green-50 p-4">
+                    <div class="mb-2 flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-circle-check text-green-600"></i> Materiais e comandos</div>
+                    <p class="text-sm text-slate-600">Banco de comandos, scripts, documentação e handouts estruturados por módulo.</p>
+                </div>
+                <div class="rounded-2xl border border-green-200 bg-green-50 p-4">
+                    <div class="mb-2 flex items-center gap-2 font-bold text-slate-900"><i class="fa-solid fa-circle-check text-green-600"></i> Escala e publicação</div>
+                    <p class="text-sm text-slate-600">Pipeline pronto para 100 amostras e preparação de figuras finais voltadas para publicação.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-8">
+            <div class="hero-panel rounded-3xl p-8 text-white shadow-2xl">
+                <div class="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+                    <div>
+                        <h2 class="mb-3 text-2xl font-bold">Próximos passos</h2>
+                        <p class="max-w-3xl text-sm leading-relaxed text-blue-100">Após a aprovação, o cronograma é definido em conjunto e o material de preparação é organizado para iniciar o primeiro módulo com as amostras já disponíveis. Mais informações institucionais e de contato podem ser consultadas no site da LogikBioinfo.</p>
+                    </div>
+                    <a href="https://logikbioinfo.com.br/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 font-bold text-slate-900 transition-all duration-200 hover:bg-blue-50">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-blue-600"></i>
+                        logikbioinfo.com.br
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
+            <div class="mb-3 flex items-center justify-center gap-2 text-slate-900">
+                <i class="fa-solid fa-dna text-blue-600"></i>
+                <span class="font-bold">LogikBioinfo</span>
+            </div>
+            <p class="mb-2">Proposta Comercial Nº WKS-2026-001 · Maio / 2026 · Validade de 30 dias</p>
+            <p class="mb-4">Curso estruturado para transformar dados brutos de sequenciamento em resultados reprodutíveis e comunicáveis.</p>
+            <a href="https://logikbioinfo.com.br/" target="_blank" rel="noopener noreferrer" class="font-semibold text-blue-700 hover:text-blue-800">https://logikbioinfo.com.br/</a>
+        </footer>
+    </div>
+</body>
+</html>
