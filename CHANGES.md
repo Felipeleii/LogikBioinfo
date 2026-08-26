@@ -1,5 +1,26 @@
 # Changelog - Internationalization and Repository Cleanup
 
+## Version 1.2 - August 26, 2026
+
+### 🧪 Ferramentas de Laboratório
+
+#### Added
+
+- Nova página standalone `guia-cepas-atcc.html` com guia interativo educacional de cepas QC (CLSI/ATCC), incluindo:
+  - catálogo filtrável com modal de detalhes
+  - abas de navegação interna
+  - simulador de D-test
+  - calculadora de passagens
+  - painel de troubleshooting
+  - visualizações com Chart.js
+- Aviso de uso educacional destacando consulta obrigatória aos documentos CLSI e SOPs locais.
+
+#### Modified
+
+- `ferramentas.html`:
+  - adiciona card de destaque para abrir o guia interativo completo
+  - mantém o resumo rápido da aba ATCC com link para a nova página
+
 ## Version 1.1 - October 24, 2025
 
 ### 🔌 Tooling

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Guia Interativo de Cepas ATCC/CLSI | Logik Bioinfo</title>
+    <meta
+      name="description"
+      content="Guia interativo educacional de cepas de controle de qualidade ATCC/CLSI com catálogo, filtros, simulador D-test, calculadora de passagens e gráficos para apoio laboratorial."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="js/theme-toggle.css" />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #111827;
+      }
+      .nav-link-hover:hover {
+        color: #22c55e;
+      }
+      .nav-link-active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .language-selector {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .lang-option {
+        padding: 0.25rem 0.5rem;
+        color: #9ca3af;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .lang-option:hover {
+        color: #22c55e;
+      }
+      .lang-option.active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .lang-divider {
+        color: #4b5563;
+      }
+      .guide-card {
+        background-color: #1f2937;
+      }
+      .tab-btn[aria-selected='true'] {
+        background-color: #16a34a;
+        color: #ffffff;
+      }
+      .tab-btn[aria-selected='false'] {
+        background-color: #374151;
+        color: #d1d5db;
+      }
+      .tab-btn[aria-selected='false']:hover {
+        background-color: #4b5563;
+      }
+      .modal-backdrop {
+        background: rgba(17, 24, 39, 0.85);
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+      .accordion-content {
+        display: none;
+      }
+      .accordion-content.open {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="text-gray-200">
+    <header class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700">
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-dna text-green-500"></i>
+          Logik Bioinfo
+        </a>
+
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="index.html" class="nav-link-hover transition duration-300">Início</a>
+          <a href="servicos.html" class="nav-link-hover transition duration-300">Serviços</a>
+          <a href="publicacoes.html" class="nav-link-hover transition duration-300">Publicações</a>
+          <a href="portfolio.html" class="nav-link-hover transition duration-300">Portfólio</a>
+          <a href="ferramentas.html" class="nav-link-hover transition duration-300 nav-link-active">Ferramentas</a>
+          <a href="blog.html" class="nav-link-hover transition duration-300">Blog</a>
+          <a href="orcamento.html" class="nav-link-hover transition duration-300">Orçamento</a>
+          <a href="sobre.html" class="nav-link-hover transition duration-300">Sobre</a>
+          <a href="quem-sou-eu.html" class="nav-link-hover transition duration-300">Quem Sou Eu</a>
+          <div class="language-selector" aria-label="Seletor de idioma">
+            <span class="lang-divider">|</span>
+            <a href="guia-cepas-atcc.html" class="lang-option active" data-lang="pt">🇧🇷 PT</a>
+            <a href="en/ferramentas.html" class="lang-option" data-lang="en">🇬🇧 EN</a>
+            <a href="es/ferramentas.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
+          </div>
+          <div class="theme-toggle">
+            <button onclick="toggleTheme()" title="Alternar tema" aria-label="Alternar modo claro/escuro">
+              <i class="fas fa-sun theme-toggle-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white focus:outline-none" aria-label="Abrir menu">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl">
+        <a href="index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+        <a href="servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Serviços</a>
+        <a href="publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Publicações</a>
+        <a href="portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+        <a href="ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">Ferramentas</a>
+        <a href="blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Blog</a>
+        <a href="orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+        <a href="sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+        <a href="quem-sou-eu.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Quem Sou Eu</a>
+
+        <div class="flex justify-center py-2 px-6 space-x-2" aria-label="Seletor de idioma mobile">
+          <a href="guia-cepas-atcc.html" class="lang-option active text-sm" data-lang="pt">🇧🇷 PT</a>
+          <span class="text-gray-600">|</span>
+          <a href="en/ferramentas.html" class="lang-option text-sm" data-lang="en">🇬🇧 EN</a>
+          <span class="text-gray-600">|</span>
+          <a href="es/ferramentas.html" class="lang-option text-sm" data-lang="es">🇪🇸 ES</a>
+        </div>
+
+        <div class="flex justify-center py-2 px-6">
+          <button
+            onclick="toggleTheme()"
+            class="text-gray-400 hover:text-green-500 transition-colors"
+            title="Alternar tema"
+            aria-label="Alternar modo claro/escuro"
+          >
+            <i class="fas fa-sun theme-toggle-icon"></i>
+            <span class="ml-2 text-sm">Alternar Tema</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-28 pb-16">
+      <section class="container mx-auto px-6 mb-8">
+        <div class="guide-card rounded-xl p-6 md:p-8 border border-gray-700">
+          <p class="text-sm text-gray-400 mb-2">Ferramentas de Laboratório &gt; Guia Interativo</p>
+          <h1 class="text-3xl md:text-4xl font-bold text-white mb-3">
+            Guia Interativo de Cepas de Controle de Qualidade (CLSI/ATCC)
+          </h1>
+          <p class="text-gray-300 mb-4">
+            Material educacional para consulta rápida de cepas de QC em microbiologia clínica, com
+            catálogo filtrável, modais de referência, simulador de D-test, calculadora de passagens
+            e painéis visuais em Chart.js.
+          </p>
+          <div class="bg-yellow-900/30 border border-yellow-600 rounded-lg p-4 text-sm text-yellow-100">
+            <strong>Aviso importante:</strong> este guia tem finalidade educacional e de apoio.
+            Decisões clínicas e de liberação de resultados devem seguir documentos oficiais CLSI
+            vigentes e os POPs/SOPs locais do seu laboratório.
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto px-6">
+        <div class="flex flex-wrap gap-2 mb-6" role="tablist" aria-label="Seções do guia">
+          <button class="tab-btn px-4 py-2 rounded-md font-medium" role="tab" id="tab-catalogo" aria-controls="panel-catalogo" aria-selected="true" tabindex="0">Catálogo</button>
+          <button class="tab-btn px-4 py-2 rounded-md font-medium" role="tab" id="tab-dtest" aria-controls="panel-dtest" aria-selected="false" tabindex="-1">Simulador D-test</button>
+          <button class="tab-btn px-4 py-2 rounded-md font-medium" role="tab" id="tab-passagens" aria-controls="panel-passagens" aria-selected="false" tabindex="-1">Calculadora de passagens</button>
+          <button class="tab-btn px-4 py-2 rounded-md font-medium" role="tab" id="tab-troubleshooting" aria-controls="panel-troubleshooting" aria-selected="false" tabindex="-1">Troubleshooting</button>
+        </div>
+
+        <section id="panel-catalogo" role="tabpanel" aria-labelledby="tab-catalogo" class="space-y-6">
+          <div class="guide-card rounded-xl p-6 border border-gray-700">
+            <h2 class="text-2xl font-semibold text-white mb-4">Catálogo interativo de cepas QC</h2>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label for="strain-search" class="block text-sm text-gray-300 mb-2">Buscar cepa</label>
+                <input id="strain-search" type="text" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" placeholder="Ex.: ATCC 25922" aria-label="Buscar por nome da cepa" />
+              </div>
+              <div>
+                <label for="gram-filter" class="block text-sm text-gray-300 mb-2">Filtrar por Gram</label>
+                <select id="gram-filter" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" aria-label="Filtrar cepas por classificação de Gram">
+                  <option value="">Todos</option>
+                  <option value="positivo">Gram-positivo</option>
+                  <option value="negativo">Gram-negativo</option>
+                </select>
+              </div>
+              <div>
+                <label for="test-filter" class="block text-sm text-gray-300 mb-2">Filtrar por aplicação</label>
+                <select id="test-filter" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" aria-label="Filtrar cepas por aplicação principal">
+                  <option value="">Todas</option>
+                  <option value="difusao">Difusão em disco</option>
+                  <option value="mic">MIC</option>
+                  <option value="esbl">ESBL</option>
+                  <option value="carbapenemase">Carbapenemase</option>
+                  <option value="dtest">D-test</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div class="guide-card rounded-xl p-6 border border-gray-700">
+              <h3 class="text-xl font-semibold text-white mb-4">Cepa e aplicações</h3>
+              <div id="strain-list" class="space-y-3" aria-live="polite"></div>
+            </div>
+            <div class="guide-card rounded-xl p-6 border border-gray-700">
+              <h3 class="text-xl font-semibold text-white mb-4">Visão geral rápida</h3>
+              <div class="space-y-6">
+                <div>
+                  <p class="text-sm text-gray-400 mb-2">Distribuição por Gram</p>
+                  <canvas id="gram-chart" height="180"></canvas>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-400 mb-2">Distribuição por aplicação principal</p>
+                  <canvas id="use-chart" height="180"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="panel-dtest" role="tabpanel" aria-labelledby="tab-dtest" class="hidden">
+          <div class="guide-card rounded-xl p-6 border border-gray-700">
+            <h2 class="text-2xl font-semibold text-white mb-4">Simulador de interpretação do D-test</h2>
+            <p class="text-gray-400 mb-6">
+              Ferramenta educacional para treino de interpretação fenotípica (iMLSB, cMLSB e MS).
+            </p>
+            <form id="dtest-form" class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label for="dtest-strain" class="block text-sm text-gray-300 mb-2">Cepa de controle</label>
+                <select id="dtest-strain" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required>
+                  <option value="">Selecione</option>
+                  <option value="S. aureus ATCC 25923">S. aureus ATCC 25923</option>
+                  <option value="S. aureus ATCC BAA-977">S. aureus ATCC BAA-977 (iMLSB)</option>
+                  <option value="S. aureus ATCC BAA-976">S. aureus ATCC BAA-976 (cMLSB)</option>
+                </select>
+              </div>
+              <div>
+                <label for="erythro" class="block text-sm text-gray-300 mb-2">Resultado Eritromicina</label>
+                <select id="erythro" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required>
+                  <option value="">Selecione</option>
+                  <option value="S">Sensível (S)</option>
+                  <option value="R">Resistente (R)</option>
+                </select>
+              </div>
+              <div>
+                <label for="clinda" class="block text-sm text-gray-300 mb-2">Resultado Clindamicina</label>
+                <select id="clinda" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required>
+                  <option value="">Selecione</option>
+                  <option value="S">Sensível (S)</option>
+                  <option value="R">Resistente (R)</option>
+                </select>
+              </div>
+              <div>
+                <label for="flattening" class="block text-sm text-gray-300 mb-2">Achatamento em “D” próximo à eritromicina?</label>
+                <select id="flattening" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required>
+                  <option value="">Selecione</option>
+                  <option value="sim">Sim</option>
+                  <option value="nao">Não</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg">
+                  Interpretar cenário
+                </button>
+              </div>
+            </form>
+            <div id="dtest-result" class="mt-6 hidden p-4 rounded-lg border"></div>
+          </div>
+        </section>
+
+        <section id="panel-passagens" role="tabpanel" aria-labelledby="tab-passagens" class="hidden">
+          <div class="guide-card rounded-xl p-6 border border-gray-700">
+            <h2 class="text-2xl font-semibold text-white mb-4">Calculadora de passagens</h2>
+            <p class="text-gray-400 mb-6">
+              Estime o número de passagens planejadas para monitorar desvios antes de testes críticos.
+            </p>
+            <form id="passage-form" class="grid md:grid-cols-3 gap-4 items-end">
+              <div>
+                <label for="initial-passage" class="block text-sm text-gray-300 mb-2">Passagem inicial</label>
+                <input id="initial-passage" type="number" min="0" value="1" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required />
+              </div>
+              <div>
+                <label for="weeks" class="block text-sm text-gray-300 mb-2">Semanas planejadas</label>
+                <input id="weeks" type="number" min="1" value="2" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required />
+              </div>
+              <div>
+                <label for="subcultures" class="block text-sm text-gray-300 mb-2">Subcultivos por semana</label>
+                <input id="subcultures" type="number" min="1" value="2" class="w-full rounded-md p-3 bg-gray-800 border border-gray-600" required />
+              </div>
+              <div class="md:col-span-3">
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg">
+                  Calcular passagens
+                </button>
+              </div>
+            </form>
+            <div id="passage-result" class="mt-6 hidden p-4 rounded-lg border"></div>
+          </div>
+        </section>
+
+        <section id="panel-troubleshooting" role="tabpanel" aria-labelledby="tab-troubleshooting" class="hidden">
+          <div class="guide-card rounded-xl p-6 border border-gray-700">
+            <h2 class="text-2xl font-semibold text-white mb-4">Painel de troubleshooting</h2>
+            <p class="text-gray-400 mb-5">
+              Problemas frequentes em controle de qualidade e ações de investigação inicial.
+            </p>
+            <div id="troubleshooting-list" class="space-y-3"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800">
+      <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+        <div class="mb-4">
+          <a href="index.html" class="text-xl font-bold text-white flex items-center justify-center gap-2">
+            <i class="fa-solid fa-dna text-green-500"></i>
+            Logik Bioinfo
+          </a>
+          <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+        </div>
+        <div class="flex justify-center space-x-6 mb-4 text-2xl">
+          <a href="https://github.com/Felipeleii" target="_blank" class="hover:text-green-400 transition-colors" title="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/felipelei/" target="_blank" class="hover:text-green-400 transition-colors" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://wa.me/5511920045896" target="_blank" class="hover:text-green-400 transition-colors" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="mailto:contato@logikbioinfo.com.br" class="hover:text-green-400 transition-colors" title="E-mail">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p>&copy; <span id="current-year"></span> Logik Bioinfo. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <a
+      href="https://wa.me/5511920045896"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Fale conosco pelo WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="strain-modal" class="fixed inset-0 modal-backdrop hidden items-center justify-center p-4 z-[1000]" role="dialog" aria-modal="true" aria-labelledby="strain-modal-title">
+      <div class="bg-gray-900 border border-gray-700 rounded-xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h2 id="strain-modal-title" class="text-xl font-semibold text-white">Detalhes da cepa</h2>
+          <button id="close-modal" class="text-gray-300 hover:text-white" aria-label="Fechar modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="strain-modal-content" class="text-gray-300 space-y-2"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const strains = [
+        {
+          id: 'ecoli-25922',
+          name: 'Escherichia coli ATCC 25922',
+          gram: 'negativo',
+          applications: ['difusao', 'mic'],
+          useLabel: 'Controle geral para Gram-negativos',
+          notes: 'Cepa de referência para ensaios de suscetibilidade de não fastidiosos.',
+          keyPoints: ['Disco-difusão', 'MIC', 'Controle diário de rotina'],
+        },
+        {
+          id: 'saureus-25923',
+          name: 'Staphylococcus aureus ATCC 25923',
+          gram: 'positivo',
+          applications: ['difusao', 'dtest'],
+          useLabel: 'Controle para Gram-positivos e D-test',
+          notes: 'Muito utilizada como controle de difusão em disco.',
+          keyPoints: ['Disco-difusão', 'Treino de leitura de halos'],
+        },
+        {
+          id: 'saureus-29213',
+          name: 'Staphylococcus aureus ATCC 29213',
+          gram: 'positivo',
+          applications: ['mic'],
+          useLabel: 'Controle para MIC em Gram-positivos',
+          notes: 'Referência em métodos de microdiluição para S. aureus.',
+          keyPoints: ['MIC por microdiluição', 'Faixas de referência CLSI'],
+        },
+        {
+          id: 'paeruginosa-27853',
+          name: 'Pseudomonas aeruginosa ATCC 27853',
+          gram: 'negativo',
+          applications: ['difusao', 'mic'],
+          useLabel: 'Controle para não fermentadores',
+          notes: 'Cepa clássica para validação de antimicrobianos em Pseudomonas.',
+          keyPoints: ['Disco-difusão', 'MIC', 'Não fermentadores'],
+        },
+        {
+          id: 'kpneumo-700603',
+          name: 'Klebsiella pneumoniae ATCC 700603',
+          gram: 'negativo',
+          applications: ['esbl'],
+          useLabel: 'Controle positivo para ESBL',
+          notes: 'Frequentemente usada para confirmar detecção fenotípica de ESBL.',
+          keyPoints: ['Triagem de ESBL', 'Confirmação fenotípica'],
+        },
+        {
+          id: 'ecoli-35218',
+          name: 'Escherichia coli ATCC 35218',
+          gram: 'negativo',
+          applications: ['difusao', 'mic'],
+          useLabel: 'Controle β-lactamase TEM-1',
+          notes: 'Importante para combinações com inibidores de β-lactamase.',
+          keyPoints: ['Amoxicilina/clavulanato', 'Controle de inibidores'],
+        },
+        {
+          id: 'abaumannii-19606',
+          name: 'Acinetobacter baumannii ATCC 19606',
+          gram: 'negativo',
+          applications: ['difusao', 'mic'],
+          useLabel: 'Controle para Acinetobacter spp.',
+          notes: 'Útil para monitoramento de desempenho em não fermentadores.',
+          keyPoints: ['Rotina em Acinetobacter', 'Painéis de suscetibilidade'],
+        },
+        {
+          id: 'kpneumo-baa1705',
+          name: 'Klebsiella pneumoniae ATCC BAA-1705',
+          gram: 'negativo',
+          applications: ['carbapenemase'],
+          useLabel: 'Controle positivo para KPC/carbapenemase',
+          notes: 'Empregada em painéis de triagem para carbapenemases.',
+          keyPoints: ['Triagem de carbapenemase', 'Controle positivo'],
+        },
+        {
+          id: 'kpneumo-baa1706',
+          name: 'Klebsiella pneumoniae ATCC BAA-1706',
+          gram: 'negativo',
+          applications: ['carbapenemase'],
+          useLabel: 'Controle negativo para KPC/carbapenemase',
+          notes: 'Par complementar da BAA-1705 para ensaios de carbapenemase.',
+          keyPoints: ['Triagem de carbapenemase', 'Controle negativo'],
+        },
+      ];
+
+      const troubleshootingItems = [
+        {
+          title: 'Halos fora da faixa esperada',
+          content:
+            'Verifique lote e validade dos discos, profundidade do ágar, inóculo 0,5 McFarland e tempo/temperatura de incubação. Avalie também armazenamento dos discos e umidade da placa.',
+        },
+        {
+          title: 'Resultados instáveis em cepas de QC',
+          content:
+            'Revise número de passagens, pureza da cultura e consistência do preparo do inóculo. Passagens excessivas podem alterar fenótipo e gerar variabilidade.',
+        },
+        {
+          title: 'Falha na leitura de D-test',
+          content:
+            'Confirme distância entre discos de eritromicina e clindamicina, iluminação da bancada e treinamento do analista para identificar achatamento em “D”.',
+        },
+        {
+          title: 'Desvios recorrentes no mesmo antibiótico',
+          content:
+            'Investigue meio, discos/reagentes e equipamento de incubação; se necessário, abra não conformidade e realize investigação formal conforme SOP local.',
+        },
+      ];
+
+      const tabButtons = Array.from(document.querySelectorAll('.tab-btn'));
+      const tabPanels = {
+        catalogo: document.getElementById('panel-catalogo'),
+        dtest: document.getElementById('panel-dtest'),
+        passagens: document.getElementById('panel-passagens'),
+        troubleshooting: document.getElementById('panel-troubleshooting'),
+      };
+
+      function switchTab(target) {
+        tabButtons.forEach((btn) => {
+          const isTarget = btn.id === `tab-${target}`;
+          btn.setAttribute('aria-selected', String(isTarget));
+          btn.tabIndex = isTarget ? 0 : -1;
+        });
+        Object.entries(tabPanels).forEach(([key, panel]) => {
+          panel.classList.toggle('hidden', key !== target);
+        });
+      }
+
+      tabButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => switchTab(btn.id.replace('tab-', '')));
+        btn.addEventListener('keydown', (event) => {
+          let nextIndex = index;
+          if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabButtons.length;
+          if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabButtons.length - 1;
+          if (nextIndex !== index) {
+            event.preventDefault();
+            tabButtons[nextIndex].focus();
+            switchTab(tabButtons[nextIndex].id.replace('tab-', ''));
+          }
+        });
+      });
+
+      const searchInput = document.getElementById('strain-search');
+      const gramFilter = document.getElementById('gram-filter');
+      const testFilter = document.getElementById('test-filter');
+      const strainList = document.getElementById('strain-list');
+
+      const modal = document.getElementById('strain-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+      const modalContent = document.getElementById('strain-modal-content');
+      let modalPreviouslyFocusedElement = null;
+
+      function openModal(strain) {
+        modalPreviouslyFocusedElement = document.activeElement;
+        modalContent.innerHTML = `
+          <p><strong class="text-white">Cepa:</strong> ${strain.name}</p>
+          <p><strong class="text-white">Classificação:</strong> Gram-${strain.gram}</p>
+          <p><strong class="text-white">Uso principal:</strong> ${strain.useLabel}</p>
+          <p><strong class="text-white">Observações:</strong> ${strain.notes}</p>
+          <div>
+            <p class="text-white font-medium mt-3 mb-1">Aplicações sugeridas</p>
+            <ul class="list-disc pl-5">
+              ${strain.keyPoints.map((item) => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        closeModalBtn.focus();
+      }
+
+      function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        if (modalPreviouslyFocusedElement) {
+          modalPreviouslyFocusedElement.focus();
+        }
+      }
+
+      closeModalBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+      });
+
+      let gramChart;
+      let useChart;
+
+      function drawCharts(filtered) {
+        const gramCounts = filtered.reduce(
+          (acc, item) => {
+            acc[item.gram] += 1;
+            return acc;
+          },
+          { positivo: 0, negativo: 0 },
+        );
+
+        const useLabelsMap = {
+          difusao: 'Difusão em disco',
+          mic: 'MIC',
+          esbl: 'ESBL',
+          carbapenemase: 'Carbapenemase',
+          dtest: 'D-test',
+        };
+
+        const useCounts = Object.keys(useLabelsMap).reduce((acc, key) => {
+          acc[key] = filtered.filter((strain) => strain.applications.includes(key)).length;
+          return acc;
+        }, {});
+
+        const gramData = {
+          labels: ['Gram-positivo', 'Gram-negativo'],
+          datasets: [
+            {
+              label: 'Número de cepas',
+              data: [gramCounts.positivo, gramCounts.negativo],
+              backgroundColor: ['#4ade80', '#60a5fa'],
+            },
+          ],
+        };
+
+        const useData = {
+          labels: Object.values(useLabelsMap),
+          datasets: [
+            {
+              data: Object.keys(useLabelsMap).map((key) => useCounts[key]),
+              backgroundColor: ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'],
+            },
+          ],
+        };
+
+        if (gramChart) gramChart.destroy();
+        if (useChart) useChart.destroy();
+
+        gramChart = new Chart(document.getElementById('gram-chart'), {
+          type: 'bar',
+          data: gramData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: { precision: 0, color: '#d1d5db' },
+                grid: { color: '#374151' },
+              },
+              x: {
+                ticks: { color: '#d1d5db' },
+                grid: { color: '#374151' },
+              },
+            },
+          },
+        });
+
+        useChart = new Chart(document.getElementById('use-chart'), {
+          type: 'doughnut',
+          data: useData,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                labels: { color: '#d1d5db' },
+              },
+            },
+          },
+        });
+      }
+
+      function renderStrains() {
+        const term = searchInput.value.trim().toLowerCase();
+        const gramValue = gramFilter.value;
+        const testValue = testFilter.value;
+
+        const filtered = strains.filter((strain) => {
+          const matchTerm = !term || strain.name.toLowerCase().includes(term);
+          const matchGram = !gramValue || strain.gram === gramValue;
+          const matchTest = !testValue || strain.applications.includes(testValue);
+          return matchTerm && matchGram && matchTest;
+        });
+
+        if (filtered.length === 0) {
+          strainList.innerHTML = '<p class="text-gray-400">Nenhuma cepa encontrada para os filtros selecionados.</p>';
+          drawCharts([]);
+          return;
+        }
+
+        strainList.innerHTML = filtered
+          .map(
+            (strain) => `
+            <article class="bg-gray-800 border border-gray-700 rounded-lg p-4">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                  <h4 class="text-white font-semibold">${strain.name}</h4>
+                  <p class="text-sm text-gray-400">Gram-${strain.gram} • ${strain.useLabel}</p>
+                </div>
+                <button
+                  class="details-btn bg-green-600 hover:bg-green-700 text-white text-sm font-medium px-4 py-2 rounded-md"
+                  data-id="${strain.id}"
+                  aria-label="Ver detalhes da cepa ${strain.name}"
+                >
+                  Ver detalhes
+                </button>
+              </div>
+            </article>
+          `,
+          )
+          .join('');
+
+        document.querySelectorAll('.details-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const strain = strains.find((item) => item.id === btn.dataset.id);
+            if (strain) openModal(strain);
+          });
+        });
+
+        drawCharts(filtered);
+      }
+
+      [searchInput, gramFilter, testFilter].forEach((el) => el.addEventListener('input', renderStrains));
+
+      const dtestForm = document.getElementById('dtest-form');
+      const dtestResult = document.getElementById('dtest-result');
+
+      dtestForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const erythro = document.getElementById('erythro').value;
+        const clinda = document.getElementById('clinda').value;
+        const flattening = document.getElementById('flattening').value;
+
+        let title = 'Interpretação inconclusiva';
+        let message = 'Revise os parâmetros e repita o ensaio conforme SOP local.';
+        let classes = 'border-yellow-500 bg-yellow-900/30 text-yellow-100';
+
+        if (erythro === 'S' && clinda === 'S') {
+          title = 'Fenótipo compatível com sensibilidade';
+          message = 'Sem evidência fenotípica de resistência MLSB no cenário informado.';
+          classes = 'border-green-500 bg-green-900/30 text-green-100';
+        } else if (erythro === 'R' && clinda === 'S' && flattening === 'sim') {
+          title = 'Fenótipo iMLSB (resistência induzível)';
+          message = 'D-test positivo: considerar clindamicina como não confiável para reporte clínico.';
+          classes = 'border-red-500 bg-red-900/30 text-red-100';
+        } else if (erythro === 'R' && clinda === 'S' && flattening === 'nao') {
+          title = 'Fenótipo MS provável';
+          message = 'Sem achatamento em D; padrão compatível com mecanismo de efluxo (MS).';
+          classes = 'border-blue-500 bg-blue-900/30 text-blue-100';
+        } else if (erythro === 'R' && clinda === 'R') {
+          title = 'Fenótipo cMLSB';
+          message = 'Resistência constitutiva a macrolídeos/lincosamidas no cenário informado.';
+          classes = 'border-red-500 bg-red-900/30 text-red-100';
+        }
+
+        dtestResult.className = `mt-6 p-4 rounded-lg border ${classes}`;
+        dtestResult.innerHTML = `<p class="font-semibold">${title}</p><p class="mt-1">${message}</p>`;
+        dtestResult.classList.remove('hidden');
+      });
+
+      const passageForm = document.getElementById('passage-form');
+      const passageResult = document.getElementById('passage-result');
+
+      passageForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const initial = Number(document.getElementById('initial-passage').value);
+        const weeks = Number(document.getElementById('weeks').value);
+        const subcultures = Number(document.getElementById('subcultures').value);
+        const finalPassage = initial + weeks * subcultures;
+
+        const warning = finalPassage > 5;
+        passageResult.className = `mt-6 p-4 rounded-lg border ${warning ? 'border-yellow-500 bg-yellow-900/30 text-yellow-100' : 'border-green-500 bg-green-900/30 text-green-100'}`;
+        passageResult.innerHTML = `
+          <p class="font-semibold">Passagem estimada ao final: P${finalPassage}</p>
+          <p class="mt-1">${warning ? 'Atenção: considere reduzir repiques e recuperar do estoque mestre para minimizar drift fenotípico.' : 'Faixa de passagens mais conservadora para QC de rotina.'}</p>
+        `;
+        passageResult.classList.remove('hidden');
+      });
+
+      const troubleshootingList = document.getElementById('troubleshooting-list');
+      troubleshootingList.innerHTML = troubleshootingItems
+        .map(
+          (item, index) => `
+            <div class="bg-gray-800 border border-gray-700 rounded-lg">
+              <button
+                class="w-full text-left p-4 flex items-center justify-between accordion-toggle"
+                data-index="${index}"
+                aria-expanded="false"
+                aria-controls="tr-content-${index}"
+              >
+                <span class="font-medium text-white">${item.title}</span>
+                <i class="fas fa-chevron-down text-gray-400"></i>
+              </button>
+              <div id="tr-content-${index}" class="accordion-content px-4 pb-4 text-gray-300">${item.content}</div>
+            </div>
+          `,
+        )
+        .join('');
+
+      document.querySelectorAll('.accordion-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const content = document.getElementById(`tr-content-${btn.dataset.index}`);
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!expanded));
+          content.classList.toggle('open', !expanded);
+        });
+      });
+
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      renderStrains();
+      switchTab('catalogo');
+    </script>
+    <script src="js/theme-toggle.js"></script>
+  </body>
+</html>
