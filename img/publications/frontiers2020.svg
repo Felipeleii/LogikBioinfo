@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <!-- Background -->
+  <rect width="400" height="200" fill="#1f2937"/>
+
+  <!-- Panel: Phylogenetic tree -->
+  <text x="115" y="18" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#9ca3af" letter-spacing="0.5">PHYLOGENETIC TREE</text>
+
+  <!-- Tree root line -->
+  <line x1="20" y1="105" x2="50" y2="105" stroke="#4b5563" stroke-width="2"/>
+  <!-- Root split -->
+  <line x1="50" y1="65" x2="50" y2="145" stroke="#4b5563" stroke-width="2"/>
+
+  <!-- Upper clade (IC1 / CC79) -->
+  <line x1="50" y1="65" x2="90" y2="65" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="90" y1="45" x2="90" y2="85" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="90" y1="45" x2="200" y2="45" stroke="#22c55e" stroke-width="1.5"/>
+  <circle cx="200" cy="45" r="4" fill="#22c55e"/>
+  <text x="207" y="49" font-family="sans-serif" font-size="9" fill="#22c55e" font-weight="bold">IC1 / CC79</text>
+  <line x1="90" y1="85" x2="150" y2="85" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="150" y1="72" x2="150" y2="98" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="150" y1="72" x2="200" y2="72" stroke="#16a34a" stroke-width="1.5"/>
+  <circle cx="200" cy="72" r="4" fill="#16a34a"/>
+  <text x="207" y="76" font-family="sans-serif" font-size="9" fill="#86efac">IC2 / CC92</text>
+  <line x1="150" y1="98" x2="200" y2="98" stroke="#15803d" stroke-width="1.5"/>
+  <circle cx="200" cy="98" r="4" fill="#15803d"/>
+  <text x="207" y="102" font-family="sans-serif" font-size="9" fill="#bbf7d0">IC7 / CC15</text>
+
+  <!-- Lower clade (IC6) -->
+  <line x1="50" y1="145" x2="120" y2="145" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="120" y1="130" x2="120" y2="160" stroke="#4b5563" stroke-width="1.5"/>
+  <line x1="120" y1="130" x2="200" y2="130" stroke="#4b5563" stroke-width="1.5"/>
+  <circle cx="200" cy="130" r="4" fill="#6b7280"/>
+  <text x="207" y="134" font-family="sans-serif" font-size="9" fill="#9ca3af">IC6 / CC25</text>
+  <line x1="120" y1="160" x2="200" y2="160" stroke="#374151" stroke-width="1.5"/>
+  <circle cx="200" cy="160" r="4" fill="#374151" stroke="#6b7280" stroke-width="1"/>
+  <text x="207" y="164" font-family="sans-serif" font-size="9" fill="#6b7280">other</text>
+
+  <!-- Divider -->
+  <line x1="248" y1="25" x2="248" y2="185" stroke="#374151" stroke-width="1"/>
+
+  <!-- Panel: Resistance genes -->
+  <text x="325" y="18" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#9ca3af" letter-spacing="0.5">RESISTANCE GENES</text>
+
+  <!-- Gene bars with labels -->
+  <rect x="260" y="26" width="95" height="11" rx="3" fill="#22c55e" opacity="0.85"/>
+  <text x="265" y="35" font-family="sans-serif" font-size="8" fill="#111827" font-weight="bold">blaOXA-23 (major)</text>
+
+  <rect x="260" y="42" width="78" height="11" rx="3" fill="#16a34a" opacity="0.85"/>
+  <text x="265" y="51" font-family="sans-serif" font-size="8" fill="#111827" font-weight="bold">blaOXA-72</text>
+
+  <rect x="260" y="58" width="65" height="11" rx="3" fill="#15803d" opacity="0.85"/>
+  <text x="265" y="67" font-family="sans-serif" font-size="8" fill="#e5e7eb" font-weight="bold">blaOXA-143</text>
+
+  <rect x="260" y="74" width="52" height="11" rx="3" fill="#4b5563" opacity="0.9"/>
+  <text x="265" y="83" font-family="sans-serif" font-size="8" fill="#d1d5db" font-weight="bold">armA</text>
+
+  <rect x="260" y="90" width="60" height="11" rx="3" fill="#374151" opacity="0.9"/>
+  <text x="265" y="99" font-family="sans-serif" font-size="8" fill="#9ca3af" font-weight="bold">aac(6')-Ib</text>
+
+  <rect x="260" y="106" width="75" height="11" rx="3" fill="#374151" opacity="0.9"/>
+  <text x="265" y="115" font-family="sans-serif" font-size="8" fill="#9ca3af" font-weight="bold">ISAba1-blaOXA-51</text>
+
+  <!-- CRAB badge -->
+  <rect x="260" y="128" width="118" height="22" rx="4" fill="#052e16" stroke="#22c55e" stroke-width="1"/>
+  <text x="319" y="143" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#22c55e" font-weight="bold">CARBAPENEM-RESISTANT</text>
+
+  <!-- WGS badge -->
+  <rect x="260" y="157" width="55" height="16" rx="3" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"/>
+  <text x="287" y="169" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#93c5fd" font-weight="bold">WGS / MLST</text>
+
+  <!-- South America label -->
+  <rect x="318" y="157" width="60" height="16" rx="3" fill="#1a1a2e" stroke="#6b7280" stroke-width="1"/>
+  <text x="348" y="169" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#9ca3af">South America</text>
+
+  <!-- Footer -->
+  <text x="10" y="195" font-family="sans-serif" font-size="7" fill="#4b5563">Frontiers in Microbiology, 2020  •  DOI: 10.3389/fmicb.2020.584603</text>
+</svg>
