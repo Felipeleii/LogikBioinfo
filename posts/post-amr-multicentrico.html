@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <title>Blog | Dashboard Genômico AMR Multicêntrico (KPN/ACB) - Logik Bioinfo</title>
+    <meta
+      name="description"
+      content="Vigilância genômica de 236 isolados de K. pneumoniae e A. baumannii em UTIs de São Paulo, com dashboard interativo de resistoma, STs, carbapenemases e colistina/mgrB."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #111827;
+      }
+      .nav-link-hover:hover {
+        color: #22c55e;
+      }
+      .nav-link-active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .post-content {
+        background-color: #1f2937;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 300px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 350px;
+        }
+      }
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #e2e8f0;
+        padding: 12px;
+        text-align: center;
+      }
+      .comparison-table th {
+        background-color: #0e1c36;
+        color: white;
+      }
+      .metadata {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        font-size: 0.95rem;
+        color: #9ca3af;
+      }
+      .metadata-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .metadata-item i {
+        color: #22c55e;
+      }
+      .tag {
+        display: inline-block;
+        background-color: #374151;
+        color: #22c55e;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .breadcrumb {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        font-size: 0.9rem;
+        color: #9ca3af;
+        margin-bottom: 1.5rem;
+      }
+      .breadcrumb a {
+        color: #22c55e;
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+      .author-box {
+        background-color: rgba(34, 197, 94, 0.1);
+        border-left: 4px solid #22c55e;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        margin: 2rem 0;
+      }
+      .whatsapp-float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #25d366;
+        color: #fff;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+      .language-selector {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+      .lang-option {
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: #9ca3af;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .lang-option:hover {
+        color: #22c55e;
+      }
+      .lang-option.active {
+        color: #22c55e;
+        font-weight: 600;
+      }
+      .lang-divider {
+        color: #4b5563;
+      }
+      .post-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #374151;
+      }
+      .post-nav a {
+        color: #22c55e;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 500;
+      }
+      .post-nav a:hover {
+        text-decoration: underline;
+      }
+      /* Mobile menu button enhanced visibility */
+      #mobile-menu-button {
+        position: relative;
+        z-index: 60;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1f2937;
+        border: 1px solid #374151;
+        padding: 0.5rem;
+        border-radius: 0.375rem;
+        transition: all 0.2s;
+      }
+      #mobile-menu-button:hover {
+        background-color: #374151;
+        border-color: #22c55e;
+      }
+      #mobile-menu-button:active {
+        background-color: #4b5563;
+      }
+      #mobile-menu-button i {
+        color: #ffffff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      }
+      /* Enhanced header for mobile */
+      @media (max-width: 768px) {
+        header {
+          background-color: #111827 !important;
+          backdrop-filter: none !important;
+        }
+        header nav {
+          background-color: transparent;
+        }
+      }
+
+      .amr-chart {
+        position: relative;
+        height: 280px;
+      }
+      .amr-table th {
+        background-color: #111827;
+        color: #e5e7eb;
+        padding: 0.6rem 0.75rem;
+        cursor: pointer;
+        white-space: nowrap;
+        user-select: none;
+      }
+      .amr-table td {
+        padding: 0.5rem 0.75rem;
+        border-top: 1px solid #374151;
+        white-space: nowrap;
+      }
+      .amr-table tbody tr:hover {
+        background-color: rgba(34, 197, 94, 0.06);
+      }
+      .code-block {
+        background-color: #0b1220;
+        border: 1px solid #374151;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        overflow-x: auto;
+        font-size: 0.875rem;
+        color: #d1d5db;
+      }
+    </style>
+    <link rel="stylesheet" href="../js/theme-toggle.css">
+  </head>
+  <body class="text-gray-200">
+    <!-- Header -->
+    <header class="bg-gray-900 fixed w-full top-0 z-50 shadow-lg border-b border-gray-700">
+      <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="../index.html" class="text-2xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-dna text-green-500"></i>
+          Logik Bioinfo
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="../index.html" class="nav-link-hover transition duration-300">Início</a>
+          <a href="../servicos.html" class="nav-link-hover transition duration-300">Serviços</a>
+          <a href="../publicacoes.html" class="nav-link-hover transition duration-300">
+            Publicações
+          </a>
+          <a href="../portfolio.html" class="nav-link-hover transition duration-300">Portfólio</a>
+          <a href="../ferramentas.html" class="nav-link-hover transition duration-300">
+            Ferramentas
+          </a>
+          <a href="../blog.html" class="nav-link-hover transition duration-300 nav-link-active">
+            Blog
+          </a>
+          <a href="../orcamento.html" class="nav-link-hover transition duration-300">Orçamento</a>
+          <a href="../sobre.html" class="nav-link-hover transition duration-300">Sobre</a>
+          <div class="language-selector">
+            <span class="lang-divider">|</span>
+            <a href="post-amr-multicentrico.html" class="lang-option active" data-lang="pt">🇧🇷 PT</a>
+            <a href="../en/posts/post-amr-multicentrico.html" class="lang-option" data-lang="en">🇬🇧 EN</a>
+            <a href="../es/posts/post-amr-multicentrico.html" class="lang-option" data-lang="es">🇪🇸 ES</a>
+          
+          <div class="theme-toggle">
+            <button onclick="toggleTheme()" title="Toggle theme" aria-label="Toggle dark/light mode">
+              <i class="fas fa-sun theme-toggle-icon"></i>
+            </button>
+          </div>
+        </div>
+        </div>
+        <div class="md:hidden">
+          <button id="mobile-menu-button" class="text-white focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-700 shadow-xl">
+        <a href="../index.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Início</a>
+        <a href="../servicos.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Serviços</a>
+        <a href="../publicacoes.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Publicações
+        </a>
+        <a href="../portfolio.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Portfólio</a>
+        <a href="../ferramentas.html" class="block py-2 px-6 text-sm hover:bg-gray-800">
+          Ferramentas
+        </a>
+        <a href="../blog.html" class="block py-2 px-6 text-sm hover:bg-gray-800 nav-link-active">
+          Blog
+        </a>
+        <a href="../orcamento.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Orçamento</a>
+        <a href="../sobre.html" class="block py-2 px-6 text-sm hover:bg-gray-800">Sobre</a>
+        <div class="flex justify-center py-2 px-6 space-x-2">
+          <a href="post-amr-multicentrico.html" class="lang-option active text-sm" data-lang="pt">🇧🇷 PT</a>
+          <span class="text-gray-600">|</span>
+          <a href="../en/posts/post-amr-multicentrico.html" class="lang-option text-sm" data-lang="en">🇬🇧 EN</a>
+          <span class="text-gray-600">|</span>
+          <a href="../es/posts/post-amr-multicentrico.html" class="lang-option text-sm" data-lang="es">🇪🇸 ES</a>
+        
+        <div class="flex justify-center py-2 px-6">
+          <button onclick="toggleTheme()" class="text-gray-400 hover:text-green-500 transition-colors" title="Toggle theme" aria-label="Toggle dark/light mode">
+            <i class="fas fa-sun theme-toggle-icon"></i>
+            <span class="ml-2 text-sm">Toggle Theme</span>
+          </button>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <main class="pt-24">
+      <!-- Breadcrumb -->
+      <div class="bg-gray-900 border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+          <div class="breadcrumb">
+            <a href="../blog.html">
+              <i class="fa-solid fa-home"></i>
+              Blog
+            </a>
+            <span>/</span>
+            <span>Dashboard AMR Multicêntrico</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post Content -->
+      <article class="py-12 md:py-20 bg-gray-900">
+        <div class="container mx-auto px-6 max-w-5xl">
+          <!-- Post Header -->
+          <header class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+              Vigilância Genômica e Resistoma em UTIs: Desvendando
+              <em>Klebsiella pneumoniae</em> e <em>Acinetobacter baumannii</em> com Dashboard
+              Interativo
+            </h1>
+
+            <div class="metadata">
+              <div class="metadata-item">
+                <i class="fa-solid fa-calendar"></i>
+                <span>26 de Setembro de 2026</span>
+              </div>
+              <div class="metadata-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Felipe Lei</span>
+              </div>
+              <div class="metadata-item">
+                <i class="fa-solid fa-clock"></i>
+                <span id="reading-time">10 min leitura</span>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <span class="tag">Genômica Bacteriana</span>
+              <span class="tag">Bioinformática Clínica</span>
+              <span class="tag">R Shiny</span>
+              <span class="tag">Resistência Antimicrobiana (AMR)</span>
+            </div>
+
+            <p class="text-sm text-gray-400 mt-4">
+              <i class="fa-solid fa-database text-green-500"></i>
+              Repositório de dados:
+              <a
+                href="https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1185159"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-green-500 hover:underline"
+                >NCBI BioProject PRJNA1185159</a
+              >
+              | SRA Study SRP545647
+            </p>
+          </header>
+
+          <!-- 1. Introdução -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              1. Introdução: O Desafio da Resistência Antimicrobiana nas UTIs Brasileiras
+            </h2>
+            <p class="mb-4">
+              A resistência antimicrobiana (AMR) em patógenos bacterianos oportunistas é uma das
+              ameaças mais severas à saúde pública global. No ambiente de Terapia Intensiva (UTI),
+              onde pacientes imunocomprometidos e em uso de dispositivos invasivos enfrentam
+              infecções hospitalares graves, bactérias Gram-negativas multirresistentes como
+              <em>Klebsiella pneumoniae</em> produtora de carbapenemase (KPC) e
+              <em>Acinetobacter baumannii</em> resistente a carbapenêmicos (CRAB) impõem desfechos
+              clínicos desafiadores e escassez de opções terapêuticas.
+            </p>
+            <p class="mb-4">
+              Contudo, monitorar a disseminação desses patógenos apenas por testes fenotípicos
+              tradicionais já não é suficiente. É preciso investigar a arquitetura genômica das
+              cepas circulantes: quais clones estão se expandindo? Quais determinantes de
+              resistência estão em plasmídeos ou integrons? Como as mutações cromossômicas afetam
+              antimicrobianos de última linha, como a colistina?
+            </p>
+            <p>
+              Neste artigo, compartilhamos os bastidores e os achados genômicos de um amplo
+              <strong class="text-white"
+                >estudo multicêntrico prospectivo conduzido em seis hospitais terciários de São
+                Paulo</strong
+              >, coordenado pelo
+              <strong class="text-white">Prof. Dr. Eduardo Alexandrino Servolo de Medeiros</strong>
+              (Disciplina de Infectologia / LEMC / UNIFESP), no qual atuei diretamente na curadoria
+              genômica, auditoria bioinformática e desenvolvimento das ferramentas analíticas. Para
+              tornar esse volume expressivo de dados acessível, construímos um dashboard analítico
+              completo, que disponibilizamos interativamente
+              <a href="#dashboard" class="text-green-500 hover:underline">aqui no blog</a>!
+            </p>
+          </section>
+
+          <!-- Author Bio Box -->
+          <div class="author-box">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <i class="fa-solid fa-circle-user text-3xl text-green-500"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white">Felipe Alberto Lei</h3>
+                <p class="text-sm text-gray-400">
+                  Fundador da LogikBioinfo. Bioinformaticista especializado em genômica bacteriana,
+                  resistência antimicrobiana e desenvolvimento de ferramentas analíticas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Casuística -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              2. A Casuística Multicêntrica e o Pipeline de Bioinformática
+            </h2>
+            <p class="mb-4">
+              O estudo acompanhou UTIs de seis grandes centros hospitalares paulistas: Hospital São
+              Paulo (HSP), Hospital Estadual de Diadema (HED), Hospital Municipal de Barueri (HMB),
+              Hospital Geral de Pirajussara (HGPI), Hospital Geral de Guarulhos (HGG) e Hospital
+              Geral de Pedreira (HGPE).
+            </p>
+            <p class="mb-6">
+              A partir de 290 coletas brutas iniciais de vigilância ativa (swabs retais) e culturas
+              diagnósticas, aplicamos critérios estritos de controle de qualidade (QC) e inclusão
+              epidemiológica, consolidando uma coorte definitiva de
+              <strong class="text-white"
+                >236 isolados com Sequenciamento de Genoma Completo (WGS)</strong
+              >
+              na plataforma <strong class="text-white">Illumina NextSeq 1000</strong>:
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-4xl font-bold text-green-500 mb-1">236</div>
+                <p class="text-sm text-gray-400">isolados WGS</p>
+              </div>
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-4xl font-bold text-green-500 mb-1">144</div>
+                <p class="text-sm text-gray-400"><em>K. pneumoniae</em></p>
+              </div>
+              <div class="bg-gray-800 rounded-lg p-6 text-center">
+                <div class="text-4xl font-bold text-green-500 mb-1">92</div>
+                <p class="text-sm text-gray-400"><em>A. baumannii</em></p>
+              </div>
+            </div>
+
+            <h3 class="text-xl md:text-2xl font-bold text-white mb-4">
+              O Papel Decisivo da Curadoria em Bioinformática: Lições Práticas
+            </h3>
+            <p class="mb-4">
+              Na rotina da bioinformática clínica, pipelines automatizados "fora da caixa"
+              frequentemente produzem armadilhas que apenas uma curadoria especializada consegue
+              desvendar:
+            </p>
+            <ol class="list-decimal pl-6 space-y-4">
+              <li>
+                <strong class="text-white"
+                  >A armadilha do gene <em>mgrB</em> na resistência à colistina:</strong
+                >
+                em <em>K. pneumoniae</em>, a inativação de <em>mgrB</em> é a principal causa de
+                resistência a polimixinas. No entanto, ferramentas padrão baseadas em alinhamento de
+                SNPs pontuais acusavam que a maioria dos isolados resistentes não tinha mutação em
+                <em>mgrB</em>. Ao inspecionar a cobertura de bases, identificamos que
+                <strong class="text-white"
+                  >28 isolados resistentes tinham 0% de cobertura no gene <em>mgrB</em></strong
+                >
+                — ou seja, haviam sofrido deleção estrutural completa ou interrupção por sequências
+                de inserção (IS). Ao corrigir o artefato, revelou-se que
+                <strong class="text-white"
+                  >77,8% (35/45) dos isolados resistentes à colistina possuem inativação funcional de
+                  <em>mgrB</em></strong
+                >!
+              </li>
+              <li>
+                <strong class="text-white">Detecção e exclusão de quimeras/contaminações:</strong>
+                o isolado HED-117-ACB chamava a atenção por exibir 304 genes de virulência (contra a
+                média de 111 de <em>Acinetobacter</em>). Uma auditoria profunda revelou a presença de
+                vias completas de biossíntese de piocianina, pioverdina e sistemas de secreção tipo
+                III exclusivos de <em>Pseudomonas aeruginosa</em>. Tratava-se de contaminação
+                microbiológica pré-sequenciamento que, se não fosse auditada, distorceria gravemente
+                as publicações do grupo.
+              </li>
+              <li>
+                <strong class="text-white"
+                  >Harmonização internacional de breakpoints (BrCAST/EUCAST vs. CLSI):</strong
+                >
+                alinhamos os laudos entre a norma brasileira da ANVISA (<strong class="text-white"
+                  >BrCAST v14.0</strong
+                >) e o padrão internacional (<strong class="text-white">CLSI M100</strong>). Para
+                colistina em <em>A. baumannii</em>, por exemplo, a categoria "Sensível" não existe no
+                CLSI (CIM ≤ 2 µg/mL é classificada como <em>Intermediário</em>), exigindo relatórios
+                duplos para compatibilidade com periódicos estrangeiros de alto impacto.
+              </li>
+            </ol>
+          </section>
+
+          <!-- 3. Achados -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+              3. Principais Achados Biológicos Revelados pelo WGS
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-4">
+                  <em>Klebsiella pneumoniae</em>: a dicotomia clonal ST11 vs. ST258
+                </h3>
+                <ul class="space-y-3 list-disc pl-5">
+                  <li>
+                    <strong class="text-white">ST11 (41,0%):</strong> o clone de maior prevalência
+                    no estudo, amplamente disseminado no HGPI, HED e HMB. Caracteriza-se por uma
+                    perigosa combinação de
+                    <strong class="text-white">multirresistência e hipervirulência</strong>: 61% dos
+                    isolados ST11 são resistentes à colistina e coabrigam a ilha móvel
+                    <strong class="text-white">ICEKp10</strong>, codificando yersiniabactina
+                    (<em>ybt</em>) e colibactina (<em>clb</em>).
+                  </li>
+                  <li>
+                    <strong class="text-white">ST258 (18,1%):</strong> linhagem clássica associada à
+                    variante <em>bla</em>KPC-2* (com mutação conservada G822T). Notavelmente,
+                    <strong class="text-white"
+                      >100% dos isolados ST258 mantiveram sensibilidade total à colistina (CIM = 1
+                      µg/mL)</strong
+                    >.
+                  </li>
+                  <li>
+                    <strong class="text-white">Carbapenemases:</strong> predomínio quase absoluto de
+                    <em>bla</em>KPC-2 / <em>bla</em>KPC-2* (95,8%), com detecção de
+                    <em>bla</em>NDM-1 em 2,1% dos isolados.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                <h3 class="text-xl font-bold text-white mb-4">
+                  <em>Acinetobacter baumannii</em>: o alerta do cluster NDM-1 + <em>armA</em> em
+                  Diadema
+                </h3>
+                <ul class="space-y-3 list-disc pl-5">
+                  <li>
+                    <strong class="text-white">Oxacilinases dominantes:</strong>
+                    <em>bla</em>OXA-23 foi identificado em 77,4% dos isolados e <em>bla</em>OXA-72 em
+                    20,4%.
+                  </li>
+                  <li>
+                    <strong class="text-white">Cluster de emergência no HED:</strong> detectamos um
+                    agrupamento clonal de alto risco no Hospital Estadual de Diadema composto por 6
+                    isolados do clone internacional
+                    <strong class="text-white">ST2 (Global Clone 2 - GC2)</strong> coprodutores de
+                    <strong class="text-white"><em>bla</em>NDM-1 + <em>bla</em>OXA-23/66</strong>.
+                  </li>
+                  <li>
+                    <strong class="text-white">100% de coocorrência com <em>armA</em>:</strong>
+                    todos os isolados NDM-1 coabrigam a 16S rRNA metiltransferase <em>armA</em>,
+                    conferindo pan-resistência aos aminoglicosídeos (gentamicina, amicacina e
+                    tobramicina com CIM &gt; 64 µg/mL).
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Dashboard -->
+          <section id="dashboard" class="mb-12 text-gray-300 leading-relaxed scroll-mt-28">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              4. O Dashboard Interativo
+            </h2>
+            <p class="mb-4">
+              Para transformar essas análises em uma experiência visual e dinâmica, desenvolvemos
+              um dashboard analítico. A versão completa foi construída em
+              <strong class="text-white">R Shiny</strong> com o framework moderno
+              <strong class="text-white">bslib</strong> (tema Flatly), gráficos interativos via
+              <em>plotly</em> e tabelas reativas com <em>DT</em>. Abaixo, disponibilizamos uma versão
+              web leve do mesmo painel, com os dados dos 236 isolados, que roda diretamente no
+              navegador.
+            </p>
+            <h3 class="text-xl font-bold text-white mb-3">Funcionalidades do dashboard</h3>
+            <ol class="list-decimal pl-6 space-y-2 mb-8">
+              <li>
+                <strong class="text-white">Filtros dinâmicos reativos:</strong> filtre
+                instantaneamente por espécie (<em>K. pneumoniae</em>, <em>A. baumannii</em>) ou por
+                centros hospitalares específicos.
+              </li>
+              <li>
+                <strong class="text-white">Indicadores epidemiológicos:</strong> total de amostras
+                filtradas, casos de KPC, oxacilinases, NDM-1 e isolados resistentes à colistina.
+              </li>
+              <li>
+                <strong class="text-white">Módulos por espécie:</strong> distribuição de STs,
+                colistina por clone e status detalhado de <em>mgrB</em>.
+              </li>
+              <li>
+                <strong class="text-white">Tabela de dados pesquisável:</strong> acesso individual a
+                cada um dos 236 isolados, com busca global e ordenação por qualquer coluna.
+              </li>
+            </ol>
+
+            <div class="bg-gray-900 border border-gray-700 rounded-2xl p-4 md:p-6 shadow-xl">
+              <h3 class="text-xl font-bold text-white mb-4">
+                <i class="fa-solid fa-chart-column text-green-500"></i>
+                Experimente o dashboard interativo
+              </h3>
+              <div id="amr-dashboard">
+                <noscript>Ative o JavaScript para visualizar o dashboard.</noscript>
+              </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-3">
+              Dados: Manifesto Geral Consolidado (N = 236), Projeto Multicêntrico UNIFESP/LEMC.
+              Nenhum dado identificável de pacientes é exibido. Fenótipo de colistina em
+              <em>A. baumannii</em>: S (BrCAST) / I (CLSI) para CIM ≤ 2 µg/mL.
+            </p>
+          </section>
+
+          <!-- 5. Como executar -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              5. Como Executar e Publicar a Aplicação Shiny
+            </h2>
+            <p class="mb-4">
+              Se você deseja executar a versão R Shiny do dashboard em sua própria máquina ou
+              implantá-la no <strong class="text-white">shinyapps.io</strong>, o código está
+              totalmente preparado e modularizado.
+            </p>
+            <h3 class="text-xl font-bold text-white mb-3">Execução local no R / RStudio</h3>
+            <pre class="code-block"><code># Instalar os pacotes necessários
+install.packages(c("shiny", "bslib", "DT", "plotly", "rsconnect", "bsicons"))
+
+# Executar a aplicação
+shiny::runApp("app.R")</code></pre>
+            <h3 class="text-xl font-bold text-white mt-6 mb-3">Publicação no shinyapps.io</h3>
+            <p class="mb-3">
+              Basta inserir suas credenciais do shinyapps.io (Account → Tokens → Show):
+            </p>
+            <pre class="code-block"><code>library(rsconnect)
+
+rsconnect::setAccountInfo(
+  name   = "logikbioinfo",
+  token  = "SEU_TOKEN",
+  secret = "SEU_SECRET"
+)
+
+rsconnect::deployApp(
+  appDir        = getwd(),
+  appPrimaryDoc = "app.R",
+  appName       = "amr-genomics-multicenter-unifesp"
+)</code></pre>
+          </section>
+
+          <!-- 6. Conclusão -->
+          <section class="mb-12 text-gray-300 leading-relaxed">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">
+              6. Conclusão e Serviços LogikBioinfo
+            </h2>
+            <p class="mb-6">
+              A integração entre microbiologia clássica, sequenciamento de última geração e
+              bioinformática curada é o padrão-ouro contemporâneo para pesquisas de alto impacto e
+              vigilância em saúde. Casos como a elucidação do mecanismo de <em>mgrB</em> e a
+              identificação do cluster NDM-1 em Diadema evidenciam que a análise bioinformática
+              detalhada vai muito além da geração de tabelas brutas: ela transforma sequências de
+              nucleotídeos em conhecimento epidemiológico acionável.
+            </p>
+
+            <div class="bg-gray-800 rounded-xl p-6 border-l-4 border-green-500">
+              <h3 class="text-xl font-bold text-white mb-3">
+                Precisa de apoio bioinformático no seu projeto de pesquisa?
+              </h3>
+              <p class="mb-3">
+                Na <strong class="text-white">LogikBioinfo</strong>, oferecemos consultoria
+                científica completa para pesquisadores, grupos de pesquisa e laboratórios clínicos:
+              </p>
+              <ul class="list-disc pl-6 space-y-1 mb-5">
+                <li>Montagem de genomas e análise de resistoma/viruloma (WGS)</li>
+                <li>Análises filogenômicas e pangenômicas</li>
+                <li>
+                  Desenvolvimento de dashboards personalizados em R Shiny e Python (Streamlit/Dash)
+                </li>
+                <li>
+                  Submissão e curadoria de dados em bancos públicos (NCBI BioProject, BioSample, SRA,
+                  GenBank)
+                </li>
+                <li>Capacitação prática em bioinformática com dados reais do seu projeto</li>
+              </ul>
+              <div class="flex flex-wrap gap-3">
+                <a
+                  href="../orcamento.html"
+                  class="bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+                  >Solicitar orçamento</a
+                >
+                <a
+                  href="../sobre.html"
+                  class="border border-green-500 text-green-500 hover:bg-green-500 hover:text-white font-semibold px-5 py-2 rounded-lg transition-colors"
+                  >Fale conosco</a
+                >
+              </div>
+            </div>
+          </section>
+
+          <!-- Post Navigation -->
+          <div class="post-nav">
+            <a href="post-kpn.html">
+              <i class="fa-solid fa-arrow-left"></i>
+              Post anterior
+            </a>
+            <a href="../blog.html" class="justify-end">
+              Voltar ao Blog
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 border-t border-gray-700">
+      <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+        <div class="mb-4">
+          <a
+            href="../index.html"
+            class="text-xl font-bold text-white flex items-center justify-center gap-2"
+          >
+            <i class="fa-solid fa-dna text-green-500"></i>
+            Logik Bioinfo
+          </a>
+          <p class="text-sm mt-2">Felipe Alberto Lei - CNPJ: 61.474.591/0001-23</p>
+        </div>
+        <div class="flex justify-center space-x-6 mb-4 text-2xl">
+          <a
+            href="https://github.com/Felipeleii"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="GitHub"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/felipelei/"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="LinkedIn"
+          >
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a
+            href="https://scholar.google.com/citations?user=0h7F7emPRFsC"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="Google Scholar"
+          >
+            <i class="fas fa-graduation-cap"></i>
+          </a>
+          <a
+            href="https://wa.me/5511920045896"
+            target="_blank"
+            class="hover:text-green-400 transition-colors"
+            title="WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a
+            href="mailto:contato@logikbioinfo.com.br"
+            class="hover:text-green-400 transition-colors"
+            title="E-mail"
+          >
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+        <p>
+          &copy;
+          <span id="current-year"></span>
+          Logik Bioinfo. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a
+      href="https://wa.me/5511920045896"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Fale conosco pelo WhatsApp"
+    >
+      <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+      document.getElementById('mobile-menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+
+      (function () {
+        const words = document.querySelector('article').innerText.split(/\s+/).length;
+        document.getElementById('reading-time').textContent = `${Math.ceil(words / 200)} min leitura`;
+      })();
+    </script>
+    <script src="../js/amr-multicentrico-data.js"></script>
+    <script src="../js/amr-dashboard.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+  </body>
+</html>

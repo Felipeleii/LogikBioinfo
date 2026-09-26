@@ -1,5 +1,18 @@
 # Changelog - Internationalization and Repository Cleanup
 
+## Version 1.3 - September 26, 2026
+
+### 📝 Blog: Dashboard Genômico AMR Multicêntrico
+
+#### Added
+
+- Novo post `posts/post-amr-multicentrico.html` (+ `en/posts/`, `es/posts/`): vigilância genômica de 236 isolados (144 *K. pneumoniae* + 92 *A. baumannii*) do projeto multicêntrico UNIFESP/LEMC.
+- Dashboard interativo embutido no post (`js/amr-dashboard.js` + `js/amr-multicentrico-data.js`): filtros por espécie/hospital, indicadores, gráficos Chart.js (hospital, ST, carbapenemases, colistina por ST, status de *mgrB*) e tabela pesquisável/ordenável. Sem dados identificáveis de pacientes.
+
+#### Modified
+
+- `blog.html`, `en/blog.html`, `es/blog.html`: card do novo post no topo da lista.
+
 ## Version 1.2 - August 26, 2026
 
 ### 🧪 Ferramentas de Laboratório
